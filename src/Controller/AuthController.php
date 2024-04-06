@@ -202,6 +202,8 @@ class AuthController extends AppController
              * Saves cookie for 1 year using (1 * 365 * 24 * 60 * 60)
              * 
              * Ensures cookies are cleared if not checked
+             * 
+             * References data from login.php in \Auth
              */
             if($this->request->getData('remember_me') == 1){
                 setcookie('remembered_email', $this->request->getData('email'), time() + (1 * 365 * 24 * 60 * 60), "/");

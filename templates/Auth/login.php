@@ -41,6 +41,7 @@ $this->assign('title', 'Login');
                         'type' => 'checkbox',
                         'label' => 'Remember me',
                         'value' => '1',
+                        //Set box to be checked if there is a value saved, assuming user wants to keep their email remembered.
                         'checked' => !empty($rememberedEmail),
                     ]);
                     ?>
