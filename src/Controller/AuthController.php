@@ -195,8 +195,21 @@ class AuthController extends AppController
 
         // if user passes authentication, grant access to the system
         if ($result && $result->isValid()) {
+
+            /**
+             * Sets a cookie that saves the email used to login if the remember me box is checked
+             * 
+             * Saves cookie for 1 year using (1 * 365 * 24 * 60 * 60)
+             * 
+             * Ensures cookies are cleared if not checked
+             */
             if($this->request->getData('remember_me') == 1){
-                setcookie('remembered_email', $this->request->getData('email'), time() + (10 * 365 * 24 * 60 * 60), "/");
+                setcookie('remembered_email', $this->request->getData('email'), time() + (1 * 365 * 24 * 60 * 60), "/");
+            } else {
+                // If 'Remember me' is not checked, clear the cookie
+                if (isset($_COOKIE['remembered_email'])) {
+                    setcookie('remembered_email', '', time() - 3600, "/");
+                }
             }
             // set a fallback location in case user logged in without triggering 'unauthenticatedRedirect'
             $fallbackLocation = ['controller' => 'Users', 'action' => 'index'];
