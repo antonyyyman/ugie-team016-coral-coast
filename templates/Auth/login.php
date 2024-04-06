@@ -6,6 +6,7 @@
 use Cake\Core\Configure;
 
 $debug = Configure::read('debug');
+$rememberedEmail = isset($_COOKIE['remembered_email']) ? $_COOKIE['remembered_email'] : '';
 
 $this->layout = 'login';
 $this->assign('title', 'Login');
@@ -19,29 +20,28 @@ $this->assign('title', 'Login');
 
                 <fieldset>
 
-                    <legend>Login</legend>
+                    <legend style="text-align:center;">Login</legend>
 
                     <?= $this->Flash->render() ?>
 
                     <?php
-                    /*
-                     * NOTE: regarding 'value' config in the login page form controls
-                     * In this demo the email and password fields will be filled by demo account
-                     * credentials when debug mode is on. You should NOT do that in your production
-                     * systems. Also it's a good practice to clear (set password value to empty)
-                     * in the view so when an error occurred with form validation, the password
-                     * values are always cleared.
-                     */
+
                     echo $this->Form->control('email', [
                         'type' => 'email',
                         'required' => true,
                         'autofocus' => true,
-                        'value' => $debug ? "test@example.com" : "",
+                        'value' => $rememberedEmail,
                     ]);
                     echo $this->Form->control('password', [
                         'type' => 'password',
                         'required' => true,
-                        'value' => $debug ? 'password' : '',
+                        'value' => "",
+                    ]);
+                    echo $this->Form->control('remember_me',[
+                        'type' => 'checkbox',
+                        'label' => 'Remember me',
+                        'value' => '1',
+                        'checked' => !empty($rememberedEmail),
                     ]);
                     ?>
                 </fieldset>
