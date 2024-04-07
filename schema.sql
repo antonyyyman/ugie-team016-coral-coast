@@ -1,7 +1,7 @@
 CREATE TABLE User (
                       ID INT PRIMARY KEY,
                       Username VARCHAR(50) NOT NULL,
-                      PasswordHash VARCHAR(50) NOT NULL,
+                      Password VARCHAR(50) NOT NULL,
                       Email VARCHAR(50) NOT (NULL),
     PhoneNumber VARCHAR(15),
     IsStaff BOOLEAN DEFAULT FALSE,
