@@ -1,14 +1,14 @@
-CREATE TABLE User (
+CREATE TABLE users (
                       ID INT PRIMARY KEY,
                       Username VARCHAR(50) NOT NULL,
                       Password VARCHAR(50) NOT NULL,
-                      Email VARCHAR(50) NOT (NULL),
+                      Email VARCHAR(50) NOT NULL,
     PhoneNumber VARCHAR(15),
-    IsStaff BOOLEAN DEFAULT FALSE,
+    IsStaff TINYINT,
     Nonce VARCHAR(255),
     NonceExpiry DATETIME,
     Created DATETIME,
-    Modified DATETIME,
+    Modified DATETIME
 );
 
 CREATE TABLE Booking (
@@ -17,7 +17,7 @@ CREATE TABLE Booking (
                          StartDate DATE,
                          EndDate DATE,
                          Destination VARCHAR(50),
-                         FOREIGN KEY (UserID) REFERENCES User(ID)
+                         FOREIGN KEY (UserID) REFERENCES users(ID)
 );
 
 CREATE TABLE Payment (
@@ -99,7 +99,7 @@ CREATE TABLE TravelDeal (
                             FOREIGN KEY (FlightID) REFERENCES Flight(ID)
 );
 
-ALTER TABLE Booking ADD FOREIGN KEY (UserID) REFERENCES User(ID);
+ALTER TABLE Booking ADD FOREIGN KEY (UserID) REFERENCES users(ID);
 ALTER TABLE Payment ADD FOREIGN KEY (BookingID) REFERENCES Booking(ID);
 ALTER TABLE Cruise ADD FOREIGN KEY (HotelID) REFERENCES Hotel(ID);
 ALTER TABLE CarRental ADD FOREIGN KEY (HotelID) REFERENCES Hotel(ID);
