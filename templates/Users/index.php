@@ -13,8 +13,8 @@
                 <tr>
                     <th><?= $this->Paginator->sort('id') ?></th>
                     <th><?= $this->Paginator->sort('email') ?></th>
-                    <th><?= $this->Paginator->sort('first_name') ?></th>
-                    <th><?= $this->Paginator->sort('last_name') ?></th>
+                    <th><?= $this->Paginator->sort('nonce') ?></th>
+                    <th><?= $this->Paginator->sort('nonce_expiry') ?></th>
                     <th><?= $this->Paginator->sort('created') ?></th>
                     <th><?= $this->Paginator->sort('modified') ?></th>
                     <th class="actions"><?= __('Actions') ?></th>
@@ -23,10 +23,10 @@
             <tbody>
                 <?php foreach ($users as $user): ?>
                 <tr>
-                    <td><?= h($user->id) ?></td>
+                    <td><?= $this->Number->format($user->id) ?></td>
                     <td><?= h($user->email) ?></td>
-                    <td><?= h($user->first_name) ?></td>
-                    <td><?= h($user->last_name) ?></td>
+                    <td><?= h($user->nonce) ?></td>
+                    <td><?= h($user->nonce_expiry) ?></td>
                     <td><?= h($user->created) ?></td>
                     <td><?= h($user->modified) ?></td>
                     <td class="actions">

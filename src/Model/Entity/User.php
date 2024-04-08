@@ -3,20 +3,19 @@ declare(strict_types=1);
 
 namespace App\Model\Entity;
 
+use Authentication\PasswordHasher\DefaultPasswordHasher;
 use Cake\ORM\Entity;
 
 /**
  * User Entity
  *
- * @property string $id
+ * @property int $id
  * @property string $email
  * @property string $password
- * @property string $first_name
- * @property string $last_name
- * @property \Cake\I18n\FrozenTime $created
- * @property \Cake\I18n\FrozenTime $modified
- *
- * @property \App\Model\Entity\Property[] $properties
+ * @property string|null $nonce
+ * @property \Cake\I18n\DateTime|null $nonce_expiry
+ * @property \Cake\I18n\DateTime|null $created
+ * @property \Cake\I18n\DateTime|null $modified
  */
 class User extends Entity
 {
@@ -29,22 +28,38 @@ class User extends Entity
      *
      * @var array<string, bool>
      */
-    protected $_accessible = [
+    protected array $_accessible = [
         'email' => true,
         'password' => true,
-        'first_name' => true,
-        'last_name' => true,
+        'nonce' => true,
+        'nonce_expiry' => true,
         'created' => true,
         'modified' => true,
-        'properties' => true,
     ];
 
     /**
      * Fields that are excluded from JSON versions of the entity.
      *
-     * @var array<string>
+     * @var list<string>
      */
-    protected $_hidden = [
+    protected array $_hidden = [
         'password',
     ];
+
+    /**
+     * Hashing password for User entity
+     *
+     * @param string $password Password field
+     * @return string|null hashed password
+     * @see \App\Model\Entity\User::$password
+     */
+    protected function _setPassword(string $password): ?string
+    {
+        if (strlen($password) > 0) {
+            return (new DefaultPasswordHasher())->hash($password);
+        }
+
+        return $password;
+    }
+
 }

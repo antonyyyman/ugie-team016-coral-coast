@@ -75,6 +75,9 @@ endif;
     <?= $this->fetch('script') ?>
 </head>
 <body>
+    <div style="position: fixed; top: 0; right: 0; margin: 10px;">
+    <?= $this->Html->link('Logout', ['controller' => 'Auth', 'action' => 'logout'], ['class' => 'button', 'style' => 'background-color: #007bff; color: white; padding: 10px 20px; line-height: 20px; text-decoration: none; border-radius: 10px; display: inline-block; text-align: center;']) ?>
+    </div>
     <header>
         <div class="container text-center">
             <a href="https://cakephp.org/" target="_blank" rel="noopener">
