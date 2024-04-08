@@ -9,7 +9,6 @@ CREATE TABLE User (
     NonceExpiry DATETIME,
     Created DATETIME,
     Modified DATETIME,
-    Role ENUM('staff','manager','customer') NOT NULL
 );
 
 CREATE TABLE Booking (
