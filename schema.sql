@@ -1,110 +1,115 @@
 CREATE TABLE users (
-                      ID INT PRIMARY KEY,
-                      Username VARCHAR(50) NOT NULL,
-                      Password VARCHAR(50) NOT NULL,
-                      Email VARCHAR(50) NOT NULL,
-    PhoneNumber VARCHAR(15),
-    IsStaff TINYINT,
-    Nonce VARCHAR(255),
-    NonceExpiry DATETIME,
-    Created DATETIME,
-    Modified DATETIME
+                      id INT PRIMARY KEY,
+                      username VARCHAR(50) NOT NULL,
+                      password VARCHAR(50) NOT NULL,
+                      email VARCHAR(50) NOT NULL,
+    phonenumber VARCHAR(15),
+    isstaff TINYINT,
+    nonce VARCHAR(255),
+    nonceexpiry DATETIME,
+    created DATETIME,
+    modified DATETIME
 );
 
 CREATE TABLE Booking (
-                         ID INT PRIMARY KEY,
-                         UserID INT,
-                         StartDate DATE,
-                         EndDate DATE,
-                         Destination VARCHAR(50),
-                         FOREIGN KEY (UserID) REFERENCES users(ID)
+                         id INT PRIMARY KEY,
+                         userid INT,
+                         startdate DATE,
+                         enddate DATE,
+                         destination VARCHAR(50),
+                         FOREIGN KEY (userid) REFERENCES users(id),
+                         FOREIGN KEY (insuranceid) REFERENCES Insurance(id),
+                         FOREIGN KEY (hotelid) REFERENCES Hotel(id),
+                         FOREIGN KEY (carrentalid) REFERENCES CarRental(id),
+                         FOREIGN KEY (translationid) REFERENCES Translation(id),
+                         FOREIGN KEY (flightid) REFERENCES Flight(id)
 );
 
 CREATE TABLE Payment (
-                         ID INT PRIMARY KEY,
-                         BookingID INT,
-                         Amount DECIMAL(10,2),
-                         PaymentMethod VARCHAR(50),
-                         Status VARCHAR(50),
-                         FOREIGN KEY (BookingID) REFERENCES Booking(ID)
+                         id INT PRIMARY KEY,
+                         bookingid INT,
+                         amount DECIMAL(10,2),
+                         paymentmethod VARCHAR(50),
+                         status VARCHAR(50),
+                         FOREIGN KEY (bookingid) REFERENCES Booking(id)
 );
 
 CREATE TABLE Insurance (
-                           ID INT PRIMARY KEY,
-                           Supplier VARCHAR(50),
-                           Level VARCHAR(50),
-                           Description VARCHAR(50),
-                           Price DECIMAL(10,2)
+                           id INT PRIMARY KEY,
+                           supplier VARCHAR(50),
+                           level VARCHAR(50),
+                           description VARCHAR(50),
+                           price DECIMAL(10,2)
 );
 
 CREATE TABLE Hotel (
-                       ID INT PRIMARY KEY,
-                       Name VARCHAR(50),
-                       Location VARCHAR(50)
+                       id INT PRIMARY KEY,
+                       name VARCHAR(50),
+                       location VARCHAR(50)
 );
 
 CREATE TABLE Cruise (
-                        ID INT PRIMARY KEY,
-                        Company VARCHAR(50),
-                        Description VARCHAR(50),
-                        Price DECIMAL(10,2),
-                        HotelID INT,
-                        FOREIGN KEY (HotelID) REFERENCES Hotel(ID)
+                        id INT PRIMARY KEY,
+                        company VARCHAR(50),
+                        description VARCHAR(50),
+                        price DECIMAL(10,2),
+                        hotelid INT
 );
 
 CREATE TABLE Translation (
-                             ID INT PRIMARY KEY,
-                             FromLanguage VARCHAR(50),
-                             ToLanguage VARCHAR(50),
-                             Description VARCHAR(50),
-                             Price DECIMAL(10,2)
+                             id INT PRIMARY KEY,
+                             fromlanguage VARCHAR(50),
+                             tolanguage VARCHAR(50),
+                             description VARCHAR(50),
+                             price DECIMAL(10,2)
 );
 
 CREATE TABLE Flight (
-                        ID INT PRIMARY KEY,
-                        Number VARCHAR(50),
-                        DepartureAirport VARCHAR(50),
-                        ArrivalAirport VARCHAR(50),
-                        DepartureDate DATE,
-                        ArrivalDate DATE,
-                        Price DECIMAL(10,2)
+                        id INT PRIMARY KEY,
+                        number VARCHAR(50),
+                        departureairport VARCHAR(50),
+                        arrivalairport VARCHAR(50),
+                        departuredate DATE,
+                        arrivaldate DATE,
+                        price DECIMAL(10,2)
 );
 
 CREATE TABLE CarRental (
-                           ID INT PRIMARY KEY,
-                           Company VARCHAR(50),
-                           Description VARCHAR(50),
-                           Plate VARCHAR(50),
-                           Brand VARCHAR(50),
-                           Price DECIMAL(10,2),
-                           HotelID INT,
-                           FOREIGN KEY (HotelID) REFERENCES Hotel(ID)
+                           id INT PRIMARY KEY,
+                           company VARCHAR(50),
+                           description VARCHAR(50),
+                           plate VARCHAR(50),
+                           brand VARCHAR(50),
+                           price DECIMAL(10,2)
 );
 
 CREATE TABLE TravelDeal (
-                            ID INT PRIMARY KEY,
-                            StartDate DATE,
-                            EndDate DATE,
-                            Description VARCHAR(50),
-                            TotalPrice DECIMAL(10,2),
-                            InsuranceID INT,
-                            HotelID INT,
-                            CarRentalID INT,
-                            TranslationID INT,
-                            FlightID INT,
-                            FOREIGN KEY (InsuranceID) REFERENCES Insurance(ID),
-                            FOREIGN KEY (HotelID) REFERENCES Hotel(ID),
-                            FOREIGN KEY (CarRentalID) REFERENCES CarRental(ID),
-                            FOREIGN KEY (TranslationID) REFERENCES Translation(ID),
-                            FOREIGN KEY (FlightID) REFERENCES Flight(ID)
+                            id INT PRIMARY KEY,
+                            startdate DATE,
+                            enddate DATE,
+                            description VARCHAR(50),
+                            totalprice DECIMAL(10,2),
+                            insuranceid INT,
+                            hotelid INT,
+                            carrentalid INT,
+                            translationid INT,
+                            flightid INT,
+                            FOREIGN KEY (insuranceid) REFERENCES Insurance(id),
+                            FOREIGN KEY (hotelid) REFERENCES Hotel(id),
+                            FOREIGN KEY (carrentalid) REFERENCES CarRental(id),
+                            FOREIGN KEY (translationid) REFERENCES Translation(id),
+                            FOREIGN KEY (flightid) REFERENCES Flight(id)
 );
 
-ALTER TABLE Booking ADD FOREIGN KEY (UserID) REFERENCES users(ID);
-ALTER TABLE Payment ADD FOREIGN KEY (BookingID) REFERENCES Booking(ID);
-ALTER TABLE Cruise ADD FOREIGN KEY (HotelID) REFERENCES Hotel(ID);
-ALTER TABLE CarRental ADD FOREIGN KEY (HotelID) REFERENCES Hotel(ID);
-ALTER TABLE TravelDeal ADD FOREIGN KEY (InsuranceID) REFERENCES Insurance(ID);
-ALTER TABLE TravelDeal ADD FOREIGN KEY (HotelID) REFERENCES Hotel(ID);
-ALTER TABLE TravelDeal ADD FOREIGN KEY (CarRentalID) REFERENCES CarRental(ID);
-ALTER TABLE TravelDeal ADD FOREIGN KEY (TranslationID) REFERENCES Translation(ID);
-ALTER TABLE TravelDeal ADD FOREIGN KEY (FlightID) REFERENCES Flight(ID);
+ALTER TABLE Booking ADD FOREIGN KEY (userid) REFERENCES users(id);
+ALTER TABLE Booking ADD FOREIGN KEY (insuranceid) REFERENCES Insurance(id);
+ALTER TABLE Booking ADD FOREIGN KEY (hotelid) REFERENCES Hotel(id);
+ALTER TABLE Booking ADD FOREIGN KEY (carrentalid) REFERENCES CarRental(id);
+ALTER TABLE Booking ADD FOREIGN KEY (translationid) REFERENCES Translation(id);
+ALTER TABLE Booking ADD FOREIGN KEY (flightid) REFERENCES Flight(id);
+ALTER TABLE Payment ADD FOREIGN KEY (bookingid) REFERENCES Booking(id);
+ALTER TABLE TravelDeal ADD FOREIGN KEY (insuranceid) REFERENCES Insurance(id);
+ALTER TABLE TravelDeal ADD FOREIGN KEY (hotelid) REFERENCES Hotel(id);
+ALTER TABLE TravelDeal ADD FOREIGN KEY (carrentalid) REFERENCES CarRental(id);
+ALTER TABLE TravelDeal ADD FOREIGN KEY (translationid) REFERENCES Translation(id);
+ALTER TABLE TravelDeal ADD FOREIGN KEY (flightid) REFERENCES Flight(id);
