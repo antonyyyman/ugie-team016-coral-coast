@@ -24,8 +24,6 @@
                     echo $this->Form->control('email');
                     echo $this->Form->control('phone_number');
                     echo $this->Form->control('is_staff');
-                    echo $this->Form->control('nonce');
-                    echo $this->Form->control('nonce_expiry', ['empty' => true]);
                 ?>
             </fieldset>
             <?= $this->Form->button(__('Submit')) ?>
