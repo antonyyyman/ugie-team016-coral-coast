@@ -3,6 +3,7 @@ declare(strict_types=1);
 
 namespace App\Model\Entity;
 
+
 use Authentication\PasswordHasher\DefaultPasswordHasher;
 use Cake\ORM\Entity;
 
@@ -10,12 +11,19 @@ use Cake\ORM\Entity;
  * User Entity
  *
  * @property int $id
- * @property string $email
+ * @property string $username
+ * @property string $first_name
+ * @property string $last_name
  * @property string $password
+ * @property string $email
+ * @property string|null $phone_number
+ * @property bool|null $is_staff
  * @property string|null $nonce
  * @property \Cake\I18n\DateTime|null $nonce_expiry
  * @property \Cake\I18n\DateTime|null $created
  * @property \Cake\I18n\DateTime|null $modified
+ *
+ * @property \App\Model\Entity\Booking[] $bookings
  */
 class User extends Entity
 {
@@ -29,12 +37,18 @@ class User extends Entity
      * @var array<string, bool>
      */
     protected array $_accessible = [
-        'email' => true,
+        'username' => true,
+        'first_name' => true,
+        'last_name' => true,
         'password' => true,
+        'email' => true,
+        'phone_number' => true,
+        'is_staff' => true,
         'nonce' => true,
         'nonce_expiry' => true,
-        'created' => true,
-        'modified' => true,
+        'created' => false,
+        'modified' => false,
+        'bookings' => true,
     ];
 
     /**
@@ -45,6 +59,28 @@ class User extends Entity
     protected array $_hidden = [
         'password',
     ];
+
+        /**
+     * Generate display field for User entity
+     *
+     * @return string Display field
+     * @see \App\Model\Entity\User::$user_full_display
+     */
+    protected function _getUserFullDisplay(): string
+    {
+        return $this->first_name . ' ' . $this->last_name . ' (' . $this->email . ')';
+    }
+
+    /**
+     * Generate Full Name of a user
+     *
+     * @return string Full Name
+     * @see \App\Model\Entity\User::$full_name
+     */
+    protected function _getFullName(): string
+    {
+        return $this->first_name . ' ' . $this->last_name;
+    }
 
     /**
      * Hashing password for User entity
@@ -61,5 +97,4 @@ class User extends Entity
 
         return $password;
     }
-
 }
