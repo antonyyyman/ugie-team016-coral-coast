@@ -17,12 +17,20 @@
             <fieldset>
                 <legend><?= __('Add User') ?></legend>
                 <?php
-                    echo $this->Form->control('username');
-                    echo $this->Form->control('first_name');
-                    echo $this->Form->control('last_name');
-                    echo $this->Form->control('password');
                     echo $this->Form->control('email');
-                    echo $this->Form->control('phone_number');
+                    echo $this->Form->control('first_name', ['templateVars' => ['container_class' => 'column']]);
+                    echo $this->Form->control('last_name', ['templateVars' => ['container_class' => 'column']]);
+                    echo $this->Form->control('username', ['templateVars' => ['container_class' => 'column']]);
+                    echo $this->Form->control('password', [
+                        'value' => '',  // Ensure password is not sending back to the client side
+                        'templateVars' => ['container_class' => 'column']
+                    ]);
+                    echo $this->Form->control('password_confirm', [
+                        'type' => 'password',
+                        'value' => '',  // Ensure password is not sending back to the client side
+                        'label' => 'Retype Password',
+                        'templateVars' => ['container_class' => 'column']
+                    ]);
                     echo $this->Form->control('is_staff');
                 ?>
             </fieldset>
