@@ -34,6 +34,21 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
     <?= $this->fetch('script') ?>
 </head>
 <body>
+<div style="position: fixed; top: 0; right: 0; margin: 10px;">
+    <?php
+    if ($this->Identity->isLoggedIn()) {
+        echo $this->Html->link(
+            'Logout',
+            ['controller' => 'Auth', 'action' => 'logout'],
+            ['class' => 'button button-outline']);
+    } else{
+        echo $this->Html->link(
+            'Log in',
+            ['controller' => 'Auth', 'action' => 'login'],
+            ['class' => 'button button-outline']);
+    }
+    ?>
+</div>
     <nav class="top-nav">
         <div class="top-nav-title">
             <a href="<?= $this->Url->build('/') ?>"><span>Cake</span>PHP</a>

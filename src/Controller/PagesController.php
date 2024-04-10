@@ -83,7 +83,7 @@ class PagesController extends AppController
 
         $this->loadComponent('Authentication.Authentication');
 
-        $this->Authentication->allowUnauthenticated(['view', 'index']);
+        $this->Authentication->allowUnauthenticated(['display']);
 
 
         /*
