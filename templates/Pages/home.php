@@ -87,12 +87,10 @@ endif;
     ?>
 </div>
     <header>
+    <img alt="Plane booked through Coral Coast" src="https://www.forbes.com/advisor/wp-content/uploads/2021/03/traveling-based-on-fare-deals.jpg" width="100%" height="600px" />
         <div class="container text-center">
-            <a href="https://cakephp.org/" target="_blank" rel="noopener">
-                <img alt="CakePHP" src="https://cakephp.org/v2/img/logos/CakePHP_Logo.svg" width="350" />
-            </a>
             <h1>
-                Welcome to CakePHP <?= h(Configure::version()) ?> Chiffon (🍰)
+            CORAL COAST TRAVEL AGENCY
             </h1>
         </div>
     </header>
