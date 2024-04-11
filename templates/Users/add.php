@@ -21,6 +21,7 @@
                     echo $this->Form->control('first_name', ['templateVars' => ['container_class' => 'column']]);
                     echo $this->Form->control('last_name', ['templateVars' => ['container_class' => 'column']]);
                     echo $this->Form->control('username', ['templateVars' => ['container_class' => 'column']]);
+                    echo $this->Form->control('phone_number', ['templateVars' => ['container_class' => 'column']]);
                     echo $this->Form->control('password', [
                         'value' => '',  // Ensure password is not sending back to the client side
                         'templateVars' => ['container_class' => 'column']

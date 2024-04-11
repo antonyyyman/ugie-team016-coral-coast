@@ -23,6 +23,7 @@ $this->assign('title', 'Register new user');
                 <?= $this->Form->control('first_name', ['templateVars' => ['container_class' => 'column']]); ?>
                 <?= $this->Form->control('last_name', ['templateVars' => ['container_class' => 'column']]); ?>
                 <?= $this->Form->control('username', ['templateVars' => ['container_class' => 'column']]); ?>
+                <?= $this->Form->control('phone_number', ['templateVars' => ['container_class' => 'column']]); ?>
             </div>
 
             <div class="row">
