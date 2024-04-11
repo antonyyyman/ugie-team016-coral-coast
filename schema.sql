@@ -1,6 +1,8 @@
 CREATE TABLE users (
                     id INT AUTO_INCREMENT PRIMARY KEY,
                     username VARCHAR(50) NOT NULL,
+                    first_name VARCHAR(50) NOT NULL,
+                    last_name VARCHAR(50) NOT NULL,
                     password VARCHAR(255) NOT NULL,
                     email VARCHAR(255) NOT NULL,
                     phone_number VARCHAR(15),
@@ -29,14 +31,13 @@ CREATE TABLE cruises (
                         id INT AUTO_INCREMENT PRIMARY KEY,
                         company VARCHAR(50),
                         description VARCHAR(50),
-                        price DECIMAL(10,2),
-                        hotel_id INT
+                        price DECIMAL(10,2)
 );
 
 CREATE TABLE translations (
                              id INT AUTO_INCREMENT PRIMARY KEY,
-                             from_language VARCHAR(50),
-                             to_language VARCHAR(50),
+                             language_from VARCHAR(50),
+                             language_to VARCHAR(50),
                              description VARCHAR(50),
                              price DECIMAL(10,2)
 );
@@ -55,7 +56,6 @@ CREATE TABLE car_rentals (
                            id INT AUTO_INCREMENT PRIMARY KEY,
                            company VARCHAR(50),
                            description VARCHAR(50),
-                           plate VARCHAR(50),
                            brand VARCHAR(50),
                            price DECIMAL(10,2)
 );
@@ -63,6 +63,7 @@ CREATE TABLE car_rentals (
 CREATE TABLE bookings (
                          id INT AUTO_INCREMENT PRIMARY KEY,
                          user_id INT,
+                         payment_id INT,
                          start_date DATE,
                          end_date DATE,
                          destination VARCHAR(50),
@@ -76,16 +77,23 @@ CREATE TABLE bookings (
                          FOREIGN KEY (hotel_id) REFERENCES hotels(id),
                          FOREIGN KEY (car_rental_id) REFERENCES car_rentals(id),
                          FOREIGN KEY (translation_id) REFERENCES translations(id),
-                         FOREIGN KEY (flight_id) REFERENCES flights(id)
+                         FOREIGN KEY (flight_id) REFERENCES flights(id),
+                         FOREIGN KEY (payment_id) REFERENCES payments(id)
+);
+
+CREATE TABLE bookings_flights (
+    booking_id INT,
+    flight_id INT,
+    PRIMARY KEY (booking_id,flight_id),
+    FOREIGN KEY (booking_id) REFERENCES bookings(id),
+    FOREIGN KEY (flight) REFERENCES bookings(flight_id)
 );
 
 CREATE TABLE payments (
                          id INT AUTO_INCREMENT PRIMARY KEY,
-                         booking_id INT,
                          amount DECIMAL(10,2),
                          payment_method VARCHAR(100),
-                         status VARCHAR(50),
-                         FOREIGN KEY (booking_id) REFERENCES bookings(id)
+                         status ENUM('paid','unpaid','pending')
 );
 
 CREATE TABLE travel_deals (
@@ -104,4 +112,12 @@ CREATE TABLE travel_deals (
                             FOREIGN KEY (car_rental_id) REFERENCES car_rentals(id),
                             FOREIGN KEY (translation_id) REFERENCES translations(id),
                             FOREIGN KEY (flight_id) REFERENCES flights(id)
+);
+
+CREATE TABLE flight_travel_deals(
+    flight_id INT,
+    travel_deal_id INT,
+    PRIMARY KEY (flight_id,travel_deal_id),
+    FOREIGN KEY (flight_id) REFERENCES travel_deals(flight_id),
+    FOREIGN KEY (travel_deal_id) REFERENCES travel_deals(id)
 );
