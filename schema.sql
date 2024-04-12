@@ -60,6 +60,13 @@ CREATE TABLE car_rentals (
                            price DECIMAL(10,2)
 );
 
+CREATE TABLE payments (
+                         id INT AUTO_INCREMENT PRIMARY KEY,
+                         amount DECIMAL(10,2),
+                         payment_method VARCHAR(100),
+                         status ENUM('paid','unpaid','pending')
+);
+
 CREATE TABLE bookings (
                          id INT AUTO_INCREMENT PRIMARY KEY,
                          user_id INT,
@@ -87,13 +94,6 @@ CREATE TABLE bookings_flights (
     PRIMARY KEY (booking_id,flight_id),
     FOREIGN KEY (booking_id) REFERENCES bookings(id),
     FOREIGN KEY (flight) REFERENCES bookings(flight_id)
-);
-
-CREATE TABLE payments (
-                         id INT AUTO_INCREMENT PRIMARY KEY,
-                         amount DECIMAL(10,2),
-                         payment_method VARCHAR(100),
-                         status ENUM('paid','unpaid','pending')
 );
 
 CREATE TABLE travel_deals (
