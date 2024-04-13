@@ -45,6 +45,10 @@ class PagesController extends AppController
      */
     public function display(string ...$path): ?Response
     {
+
+        if (in_array('home', $path)) {
+            $this->Authentication->allowUnauthenticated(['display']);
+        }
         if (!$path) {
             return $this->redirect('/');
         }
@@ -69,5 +73,23 @@ class PagesController extends AppController
             }
             throw new NotFoundException();
         }
+    }
+
+    public function initialize(): void
+    {
+        parent::initialize();
+
+        $this->loadComponent('Flash');
+
+        $this->loadComponent('Authentication.Authentication');
+
+        $this->Authentication->allowUnauthenticated(['display']);
+
+
+        /*
+         * Enable the following component for recommended CakePHP form protection settings.
+         * see https://book.cakephp.org/4/en/controllers/components/form-protection.html
+         */
+        //$this->loadComponent('FormProtection');
     }
 }

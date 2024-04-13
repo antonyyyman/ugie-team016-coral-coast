@@ -11,6 +11,8 @@ use Cake\Validation\Validator;
 /**
  * Users Model
  *
+ * @property \App\Model\Table\BookingsTable&\Cake\ORM\Association\HasMany $Bookings
+ *
  * @method \App\Model\Entity\User newEmptyEntity()
  * @method \App\Model\Entity\User newEntity(array $data, array $options = [])
  * @method array<\App\Model\Entity\User> newEntities(array $data, array $options = [])
@@ -44,7 +46,13 @@ class UsersTable extends Table
         $this->setPrimaryKey('id');
 
         $this->addBehavior('Timestamp');
+        // Adding the authenticate behaviour to check for missing columns in users table
         $this->addBehavior('CanAuthenticate');
+
+
+        $this->hasMany('Bookings', [
+            'foreignKey' => 'user_id',
+        ]);
     }
 
     /**
@@ -56,15 +64,47 @@ class UsersTable extends Table
     public function validationDefault(Validator $validator): Validator
     {
         $validator
-            ->email('email')
-            ->requirePresence('email', 'create')
-            ->notEmptyString('email');
+            ->scalar('username')
+            ->maxLength('username', 50)
+            ->requirePresence('username', 'create')
+            ->notEmptyString('username');
+
+        $validator
+            ->scalar('first_name')
+            ->maxLength('first_name', 50)
+            ->requirePresence('first_name', 'create')
+            ->notEmptyString('first_name');
+
+        $validator
+            ->scalar('last_name')
+            ->maxLength('last_name', 50)
+            ->requirePresence('last_name', 'create')
+            ->notEmptyString('last_name');
 
         $validator
             ->scalar('password')
             ->maxLength('password', 255)
             ->requirePresence('password', 'create')
             ->notEmptyString('password');
+
+        // Validate retyped password
+        $validator
+            ->requirePresence('password_confirm', 'create')
+            ->sameAs('password_confirm', 'password', 'Both passwords must match');
+
+        $validator
+            ->email('email')
+            ->requirePresence('email', 'create')
+            ->notEmptyString('email');
+
+        $validator
+            ->scalar('phone_number')
+            ->maxLength('phone_number', 15)
+            ->allowEmptyString('phone_number');
+
+        $validator
+            ->boolean('is_staff')
+            ->allowEmptyString('is_staff');
 
         $validator
             ->scalar('nonce')
@@ -87,6 +127,7 @@ class UsersTable extends Table
      */
     public function buildRules(RulesChecker $rules): RulesChecker
     {
+        $rules->add($rules->isUnique(['username']), ['errorField' => 'username']);
         $rules->add($rules->isUnique(['email']), ['errorField' => 'email']);
 
         return $rules;
