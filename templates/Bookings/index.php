@@ -4,6 +4,18 @@
  * @var iterable<\App\Model\Entity\Booking> $bookings
  */
 ?>
+
+<style>
+    .container {        
+        width: 100%;
+        max-width: none;
+        margin-left: 0px;
+        margin-right: 0px;
+        padding-left: 30px;
+        padding-right: 30px;
+    }
+</style>
+
 <div class="bookings index content">
     <?= $this->Html->link(__('New Booking'), ['action' => 'add'], ['class' => 'button float-right']) ?>
     <h3><?= __('Bookings') ?></h3>
