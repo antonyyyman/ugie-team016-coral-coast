@@ -93,7 +93,7 @@ CREATE TABLE bookings_flights (
     flight_id INT,
     PRIMARY KEY (booking_id,flight_id),
     FOREIGN KEY (booking_id) REFERENCES bookings(id),
-    FOREIGN KEY (flight) REFERENCES bookings(flight_id)
+    FOREIGN KEY (flight_id) REFERENCES bookings(flight_id)
 );
 
 CREATE TABLE travel_deals (

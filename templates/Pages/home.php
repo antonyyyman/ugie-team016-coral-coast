@@ -75,15 +75,22 @@ endif;
     <?= $this->fetch('script') ?>
 </head>
 <body>
-
+<!--
+    Don't know why this doesn't appear in homepage if I add it to default.php. I think someone will change it up anyway when they do HTML/CSS
+!-->
 <div style="position: fixed; top: 0; right: 0; margin: 10px;">
-<?php
-        if (!$this->Identity->isLoggedIn()) {
-            echo $this->Html->link(
-                'Log in',
-                ['controller' => 'Auth', 'action' => 'login'],
-                ['class' => 'button button-outline']);
-        }
+    <?php
+    if ($this->Identity->isLoggedIn()) {
+        echo $this->Html->link(
+            'Logout',
+            ['controller' => 'Auth', 'action' => 'logout'],
+            ['class' => 'button button-outline']);
+    } else{
+        echo $this->Html->link(
+            'Log in',
+            ['controller' => 'Auth', 'action' => 'login'],
+            ['class' => 'button button-outline']);
+    }
     ?>
 </div>
     <header>
