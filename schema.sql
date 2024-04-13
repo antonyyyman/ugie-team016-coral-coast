@@ -1,3 +1,19 @@
+DROP TABLE IF EXISTS payments;
+DROP TABLE IF EXISTS bookings;
+DROP TABLE IF EXISTS travel_deals;
+
+DROP TABLE IF EXISTS flights;
+DROP TABLE IF EXISTS cruises;
+DROP TABLE IF EXISTS hotels;
+DROP TABLE IF EXISTS insurances;
+DROP TABLE IF EXISTS car_rentals;
+DROP TABLE IF EXISTS translations;
+DROP TABLE IF EXISTS users;
+
+DROP TABLE IF EXISTS bookings_flights;
+DROP TABLE IF EXISTS flights_travel_deals;
+
+
 CREATE TABLE users (
                     id INT AUTO_INCREMENT PRIMARY KEY,
                     username VARCHAR(50) NOT NULL,
