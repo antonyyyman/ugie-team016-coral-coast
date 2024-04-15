@@ -42,46 +42,23 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
             <a href="<?= $this->Url->build('/') ?>"><span>Cake</span>PHP</a>
         </div>
         <div class="top-nav-links">
-            <?= $this->Html->link('Bookings', [
-                'controller' => 'Bookings',
-                'action' => 'index'
+            <?= $this->Html->link('Dashboard', [
+                'controller' => 'Dashboard',
+//                'action' => 'index'
             ], [])?>
+
             <?= $this->Html->link('Users', [
                 'controller' => 'Users',
                 'action' => 'index'
             ], [])?>
-            <?= $this->Html->link('TravelDeals', [
-                'controller' => 'TravelDeals',
+
+            <?= $this->Html->link('Bookings', [
+                'controller' => 'Bookings',
                 'action' => 'index'
             ], [])?>
-            <?= $this->Html->link('Paymemts', [
-                'controller' => 'Paymemts',
-                'action' => 'index'
-            ], [])?>
-            <?= $this->Html->link('Flights', [
-                'controller' => 'Flights',
-                'action' => 'index'
-            ], [])?>
-            <?= $this->Html->link('Hotels', [
-                'controller' => 'Hotels',
-                'action' => 'index'
-            ], [])?>
-            <?= $this->Html->link('Insurances', [
-                'controller' => 'Insurances',
-                'action' => 'index'
-            ], [])?>
-            <?= $this->Html->link('Cruises', [
-                'controller' => 'Cruises',
-                'action' => 'index'
-            ], [])?>
-            <?= $this->Html->link('Translations', [
-                'controller' => 'Translations',
-                'action' => 'index'
-            ], [])?>
-            <?= $this->Html->link('CarRentals', [
-                'controller' => 'CarRentals',
-                'action' => 'index'
-            ], [])?>
+
+
+
 
             |
 
