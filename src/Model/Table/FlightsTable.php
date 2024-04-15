@@ -51,8 +51,6 @@ class FlightsTable extends Table
         ]);
         $this->belongsToMany('TravelDeals', [
             'foreignKey' => 'flight_id',
-            'targetForeignKey' => 'travel_deal_id',
-            'joinTable' => 'flights_travel_deals',
         ]);
     }
 

@@ -3,8 +3,6 @@ declare(strict_types=1);
 
 namespace App\Model\Entity;
 
-
-use Authentication\PasswordHasher\DefaultPasswordHasher;
 use Cake\ORM\Entity;
 
 /**
@@ -46,8 +44,8 @@ class User extends Entity
         'is_staff' => true,
         'nonce' => true,
         'nonce_expiry' => true,
-        'created' => false,
-        'modified' => false,
+        'created' => true,
+        'modified' => true,
         'bookings' => true,
     ];
 

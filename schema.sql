@@ -39,6 +39,20 @@ CREATE TABLE payments (
     --     FOREIGN KEY (booking_id) REFERENCES bookings(id)
 );
 
+CREATE TABLE contact_forms(
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    email VARCHAR(255) NOT NULL,
+    phone_number VARCHAR(15),
+    first_name VARCHAR(50) NOT NULL,
+    last_name VARCHAR(50) NOT NULL,
+    query VARCHAR(2000) NOT NULL,
+    created TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
+    modified TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP NOT NULL,
+    INDEX (email),
+    INDEX (created)
+);
+
+
 CREATE TABLE insurances (
     id INT PRIMARY KEY AUTO_INCREMENT,
     supplier VARCHAR(50),
@@ -142,6 +156,7 @@ CREATE TABLE bookings (
     FOREIGN KEY (travel_deal_id) REFERENCES travel_deals(id)
 );
 
+<<<<<<< HEAD
 
 --Sample data, first create users using Seed, then execute the following
 
@@ -260,3 +275,16 @@ INSERT INTO flights_travel_deals (flight_id, travel_deal_id) VALUES
     (6, 4),
     (7, 7),
     (8, 7);
+=======
+ALTER TABLE contact_forms
+ADD CONSTRAINT chk_email
+CHECK (email LIKE '%_@__%.__%');
+
+ALTER TABLE contact_forms
+ADD CONSTRAINT chk_phone
+CHECK (phone_number IS NULL OR phone_number REGEXP '^[0-9]{10}$');
+
+ALTER TABLE contact_forms
+ADD CONSTRAINT chk_name_length
+CHECK (CHAR_LENGTH(first_name) >= 1 AND CHAR_LENGTH(last_name) >= 1);
+>>>>>>> c7a35e9 (initial commit of baked files)

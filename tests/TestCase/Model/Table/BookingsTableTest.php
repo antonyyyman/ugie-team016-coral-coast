@@ -26,12 +26,12 @@ class BookingsTableTest extends TestCase
     protected array $fixtures = [
         'app.Bookings',
         'app.Users',
+        'app.Payments',
         'app.Insurances',
         'app.Hotels',
         'app.CarRentals',
         'app.Translations',
         'app.Flights',
-        'app.Payments',
     ];
 
     /**

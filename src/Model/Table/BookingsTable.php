@@ -90,6 +90,10 @@ class BookingsTable extends Table
             ->allowEmptyString('user_id');
 
         $validator
+            ->integer('payment_id')
+            ->allowEmptyString('payment_id');
+
+        $validator
             ->date('start_date')
             ->allowEmptyDate('start_date');
 

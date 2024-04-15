@@ -6,18 +6,15 @@ namespace App\Model\Entity;
 use Cake\ORM\Entity;
 
 /**
- * Translation Entity
+ * BookingsFlight Entity
  *
- * @property int $id
- * @property string|null $language_from
- * @property string|null $language_to
- * @property string|null $description
- * @property string|null $price
+ * @property int $booking_id
+ * @property int $flight_id
  *
- * @property \App\Model\Entity\Booking[] $bookings
- * @property \App\Model\Entity\TravelDeal[] $travel_deals
+ * @property \App\Model\Entity\Booking $booking
+ * @property \App\Model\Entity\Flight $flight
  */
-class Translation extends Entity
+class BookingsFlight extends Entity
 {
     /**
      * Fields that can be mass assigned using newEntity() or patchEntity().
@@ -29,11 +26,7 @@ class Translation extends Entity
      * @var array<string, bool>
      */
     protected array $_accessible = [
-        'language_from' => true,
-        'language_to' => true,
-        'description' => true,
-        'price' => true,
-        'bookings' => true,
-        'travel_deals' => true,
+        'booking' => true,
+        'flight' => true,
     ];
 }

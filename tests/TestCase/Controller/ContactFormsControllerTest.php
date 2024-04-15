@@ -3,16 +3,16 @@ declare(strict_types=1);
 
 namespace App\Test\TestCase\Controller;
 
-use App\Controller\FlightsController;
+use App\Controller\ContactFormsController;
 use Cake\TestSuite\IntegrationTestTrait;
 use Cake\TestSuite\TestCase;
 
 /**
- * App\Controller\FlightsController Test Case
+ * App\Controller\ContactFormsController Test Case
  *
- * @uses \App\Controller\FlightsController
+ * @uses \App\Controller\ContactFormsController
  */
-class FlightsControllerTest extends TestCase
+class ContactFormsControllerTest extends TestCase
 {
     use IntegrationTestTrait;
 
@@ -22,18 +22,14 @@ class FlightsControllerTest extends TestCase
      * @var list<string>
      */
     protected array $fixtures = [
-        'app.Flights',
-        'app.Bookings',
-        'app.FlightTravelDeals',
-        'app.TravelDeals',
-        'app.BookingsFlights',
+        'app.ContactForms',
     ];
 
     /**
      * Test index method
      *
      * @return void
-     * @uses \App\Controller\FlightsController::index()
+     * @uses \App\Controller\ContactFormsController::index()
      */
     public function testIndex(): void
     {
@@ -44,7 +40,7 @@ class FlightsControllerTest extends TestCase
      * Test view method
      *
      * @return void
-     * @uses \App\Controller\FlightsController::view()
+     * @uses \App\Controller\ContactFormsController::view()
      */
     public function testView(): void
     {
@@ -55,7 +51,7 @@ class FlightsControllerTest extends TestCase
      * Test add method
      *
      * @return void
-     * @uses \App\Controller\FlightsController::add()
+     * @uses \App\Controller\ContactFormsController::add()
      */
     public function testAdd(): void
     {
@@ -66,7 +62,7 @@ class FlightsControllerTest extends TestCase
      * Test edit method
      *
      * @return void
-     * @uses \App\Controller\FlightsController::edit()
+     * @uses \App\Controller\ContactFormsController::edit()
      */
     public function testEdit(): void
     {
@@ -77,7 +73,7 @@ class FlightsControllerTest extends TestCase
      * Test delete method
      *
      * @return void
-     * @uses \App\Controller\FlightsController::delete()
+     * @uses \App\Controller\ContactFormsController::delete()
      */
     public function testDelete(): void
     {

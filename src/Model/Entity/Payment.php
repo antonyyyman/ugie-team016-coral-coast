@@ -13,7 +13,7 @@ use Cake\ORM\Entity;
  * @property string|null $payment_method
  * @property string|null $status
  *
- * @property \App\Model\Entity\Booking $booking
+ * @property \App\Model\Entity\Booking[] $bookings
  */
 class Payment extends Entity
 {
@@ -30,6 +30,6 @@ class Payment extends Entity
         'amount' => true,
         'payment_method' => true,
         'status' => true,
-        'booking' => true,
+        'bookings' => true,
     ];
 }
