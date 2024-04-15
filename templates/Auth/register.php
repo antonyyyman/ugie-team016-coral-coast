@@ -7,6 +7,7 @@
 $this->layout = 'login';
 $this->assign('title', 'Register new user');
 ?>
+
 <div class="container register">
     <div class="users form content">
 
