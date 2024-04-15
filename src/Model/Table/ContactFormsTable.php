@@ -38,7 +38,7 @@ class ContactFormsTable extends Table
     public function initialize(array $config): void
     {
         parent::initialize($config);
-        $this->loadModel('ContactForm');
+
         $this->setTable('contact_forms');
         $this->setDisplayField('email');
         $this->setPrimaryKey('id');
