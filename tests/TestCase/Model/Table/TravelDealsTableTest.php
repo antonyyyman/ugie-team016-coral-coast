@@ -30,6 +30,7 @@ class TravelDealsTableTest extends TestCase
         'app.CarRentals',
         'app.Translations',
         'app.Flights',
+        'app.FlightTravelDeals',
     ];
 
     /**

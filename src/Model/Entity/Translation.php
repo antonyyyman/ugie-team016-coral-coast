@@ -9,8 +9,8 @@ use Cake\ORM\Entity;
  * Translation Entity
  *
  * @property int $id
- * @property string|null $from_language
- * @property string|null $to_language
+ * @property string|null $language_from
+ * @property string|null $language_to
  * @property string|null $description
  * @property string|null $price
  *
@@ -29,8 +29,8 @@ class Translation extends Entity
      * @var array<string, bool>
      */
     protected array $_accessible = [
-        'from_language' => true,
-        'to_language' => true,
+        'language_from' => true,
+        'language_to' => true,
         'description' => true,
         'price' => true,
         'bookings' => true,

@@ -61,14 +61,14 @@ class TranslationsTable extends Table
     public function validationDefault(Validator $validator): Validator
     {
         $validator
-            ->scalar('from_language')
-            ->maxLength('from_language', 50)
-            ->allowEmptyString('from_language');
+            ->scalar('language_from')
+            ->maxLength('language_from', 50)
+            ->allowEmptyString('language_from');
 
         $validator
-            ->scalar('to_language')
-            ->maxLength('to_language', 50)
-            ->allowEmptyString('to_language');
+            ->scalar('language_to')
+            ->maxLength('language_to', 50)
+            ->allowEmptyString('language_to');
 
         $validator
             ->scalar('description')

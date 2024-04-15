@@ -12,7 +12,9 @@ use Cake\Validation\Validator;
  * Flights Model
  *
  * @property \App\Model\Table\BookingsTable&\Cake\ORM\Association\HasMany $Bookings
+ * @property \App\Model\Table\FlightTravelDealsTable&\Cake\ORM\Association\HasMany $FlightTravelDeals
  * @property \App\Model\Table\TravelDealsTable&\Cake\ORM\Association\HasMany $TravelDeals
+ * @property \App\Model\Table\BookingsTable&\Cake\ORM\Association\BelongsToMany $Bookings
  *
  * @method \App\Model\Entity\Flight newEmptyEntity()
  * @method \App\Model\Entity\Flight newEntity(array $data, array $options = [])
@@ -47,8 +49,16 @@ class FlightsTable extends Table
         $this->hasMany('Bookings', [
             'foreignKey' => 'flight_id',
         ]);
+        $this->hasMany('FlightTravelDeals', [
+            'foreignKey' => 'flight_id',
+        ]);
         $this->hasMany('TravelDeals', [
             'foreignKey' => 'flight_id',
+        ]);
+        $this->belongsToMany('Bookings', [
+            'foreignKey' => 'flight_id',
+            'targetForeignKey' => 'booking_id',
+            'joinTable' => 'bookings_flights',
         ]);
     }
 

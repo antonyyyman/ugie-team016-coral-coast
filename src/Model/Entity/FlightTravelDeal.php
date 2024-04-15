@@ -6,16 +6,15 @@ namespace App\Model\Entity;
 use Cake\ORM\Entity;
 
 /**
- * Hotel Entity
+ * FlightTravelDeal Entity
  *
- * @property int $id
- * @property string|null $name
- * @property string|null $location
+ * @property int $flight_id
+ * @property int $travel_deal_id
  *
- * @property \App\Model\Entity\Booking[] $bookings
- * @property \App\Model\Entity\TravelDeal[] $travel_deals
+ * @property \App\Model\Entity\Flight $flight
+ * @property \App\Model\Entity\TravelDeal $travel_deal
  */
-class Hotel extends Entity
+class FlightTravelDeal extends Entity
 {
     /**
      * Fields that can be mass assigned using newEntity() or patchEntity().
@@ -27,9 +26,7 @@ class Hotel extends Entity
      * @var array<string, bool>
      */
     protected array $_accessible = [
-        'name' => true,
-        'location' => true,
-        'bookings' => true,
-        'travel_deals' => true,
+        'flight' => true,
+        'travel_deal' => true,
     ];
 }

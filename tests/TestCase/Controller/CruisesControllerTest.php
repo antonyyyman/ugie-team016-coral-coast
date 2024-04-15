@@ -23,7 +23,6 @@ class CruisesControllerTest extends TestCase
      */
     protected array $fixtures = [
         'app.Cruises',
-        'app.Hotels',
     ];
 
     /**

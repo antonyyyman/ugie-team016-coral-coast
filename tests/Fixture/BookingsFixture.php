@@ -21,8 +21,9 @@ class BookingsFixture extends TestFixture
             [
                 'id' => 1,
                 'user_id' => 1,
-                'start_date' => '2024-04-09',
-                'end_date' => '2024-04-09',
+                'payment_id' => 1,
+                'start_date' => '2024-04-15',
+                'end_date' => '2024-04-15',
                 'destination' => 'Lorem ipsum dolor sit amet',
                 'insurance_id' => 1,
                 'hotel_id' => 1,

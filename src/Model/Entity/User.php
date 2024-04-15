@@ -3,8 +3,6 @@ declare(strict_types=1);
 
 namespace App\Model\Entity;
 
-
-use Authentication\PasswordHasher\DefaultPasswordHasher;
 use Cake\ORM\Entity;
 
 /**
@@ -46,8 +44,8 @@ class User extends Entity
         'is_staff' => true,
         'nonce' => true,
         'nonce_expiry' => true,
-        'created' => false,
-        'modified' => false,
+        'created' => true,
+        'modified' => true,
         'bookings' => true,
     ];
 
@@ -59,42 +57,4 @@ class User extends Entity
     protected array $_hidden = [
         'password',
     ];
-
-        /**
-     * Generate display field for User entity
-     *
-     * @return string Display field
-     * @see \App\Model\Entity\User::$user_full_display
-     */
-    protected function _getUserFullDisplay(): string
-    {
-        return $this->first_name . ' ' . $this->last_name . ' (' . $this->email . ')';
-    }
-
-    /**
-     * Generate Full Name of a user
-     *
-     * @return string Full Name
-     * @see \App\Model\Entity\User::$full_name
-     */
-    protected function _getFullName(): string
-    {
-        return $this->first_name . ' ' . $this->last_name;
-    }
-
-    /**
-     * Hashing password for User entity
-     *
-     * @param string $password Password field
-     * @return string|null hashed password
-     * @see \App\Model\Entity\User::$password
-     */
-    protected function _setPassword(string $password): ?string
-    {
-        if (strlen($password) > 0) {
-            return (new DefaultPasswordHasher())->hash($password);
-        }
-
-        return $password;
-    }
 }

@@ -12,7 +12,6 @@ use Cake\Validation\Validator;
  * Hotels Model
  *
  * @property \App\Model\Table\BookingsTable&\Cake\ORM\Association\HasMany $Bookings
- * @property \App\Model\Table\CruisesTable&\Cake\ORM\Association\HasMany $Cruises
  * @property \App\Model\Table\TravelDealsTable&\Cake\ORM\Association\HasMany $TravelDeals
  *
  * @method \App\Model\Entity\Hotel newEmptyEntity()
@@ -46,9 +45,6 @@ class HotelsTable extends Table
         $this->setPrimaryKey('id');
 
         $this->hasMany('Bookings', [
-            'foreignKey' => 'hotel_id',
-        ]);
-        $this->hasMany('Cruises', [
             'foreignKey' => 'hotel_id',
         ]);
         $this->hasMany('TravelDeals', [

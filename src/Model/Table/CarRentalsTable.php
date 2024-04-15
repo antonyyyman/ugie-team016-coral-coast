@@ -71,11 +71,6 @@ class CarRentalsTable extends Table
             ->allowEmptyString('description');
 
         $validator
-            ->scalar('plate')
-            ->maxLength('plate', 50)
-            ->allowEmptyString('plate');
-
-        $validator
             ->scalar('brand')
             ->maxLength('brand', 50)
             ->allowEmptyString('brand');

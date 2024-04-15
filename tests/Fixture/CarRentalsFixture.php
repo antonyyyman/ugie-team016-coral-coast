@@ -22,7 +22,6 @@ class CarRentalsFixture extends TestFixture
                 'id' => 1,
                 'company' => 'Lorem ipsum dolor sit amet',
                 'description' => 'Lorem ipsum dolor sit amet',
-                'plate' => 'Lorem ipsum dolor sit amet',
                 'brand' => 'Lorem ipsum dolor sit amet',
                 'price' => 1.5,
             ],

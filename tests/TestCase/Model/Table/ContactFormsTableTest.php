@@ -3,20 +3,20 @@ declare(strict_types=1);
 
 namespace App\Test\TestCase\Model\Table;
 
-use App\Model\Table\FlightsTable;
+use App\Model\Table\ContactFormsTable;
 use Cake\TestSuite\TestCase;
 
 /**
- * App\Model\Table\FlightsTable Test Case
+ * App\Model\Table\ContactFormsTable Test Case
  */
-class FlightsTableTest extends TestCase
+class ContactFormsTableTest extends TestCase
 {
     /**
      * Test subject
      *
-     * @var \App\Model\Table\FlightsTable
+     * @var \App\Model\Table\ContactFormsTable
      */
-    protected $Flights;
+    protected $ContactForms;
 
     /**
      * Fixtures
@@ -24,10 +24,7 @@ class FlightsTableTest extends TestCase
      * @var list<string>
      */
     protected array $fixtures = [
-        'app.Flights',
-        'app.Bookings',
-        'app.FlightTravelDeals',
-        'app.TravelDeals',
+        'app.ContactForms',
     ];
 
     /**
@@ -38,8 +35,8 @@ class FlightsTableTest extends TestCase
     protected function setUp(): void
     {
         parent::setUp();
-        $config = $this->getTableLocator()->exists('Flights') ? [] : ['className' => FlightsTable::class];
-        $this->Flights = $this->getTableLocator()->get('Flights', $config);
+        $config = $this->getTableLocator()->exists('ContactForms') ? [] : ['className' => ContactFormsTable::class];
+        $this->ContactForms = $this->getTableLocator()->get('ContactForms', $config);
     }
 
     /**
@@ -49,7 +46,7 @@ class FlightsTableTest extends TestCase
      */
     protected function tearDown(): void
     {
-        unset($this->Flights);
+        unset($this->ContactForms);
 
         parent::tearDown();
     }
@@ -58,7 +55,7 @@ class FlightsTableTest extends TestCase
      * Test validationDefault method
      *
      * @return void
-     * @uses \App\Model\Table\FlightsTable::validationDefault()
+     * @uses \App\Model\Table\ContactFormsTable::validationDefault()
      */
     public function testValidationDefault(): void
     {

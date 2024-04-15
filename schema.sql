@@ -13,6 +13,20 @@ CREATE TABLE users (
                     modified DATETIME
 );
 
+CREATE TABLE contact_forms(
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    email VARCHAR(255) NOT NULL,
+    phone_number VARCHAR(15),
+    first_name VARCHAR(50) NOT NULL,
+    last_name VARCHAR(50) NOT NULL,
+    query VARCHAR(2000) NOT NULL,
+    created TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
+    modified TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP NOT NULL,
+    INDEX (email),
+    INDEX (created)
+);
+
+
 CREATE TABLE insurances (
                            id INT AUTO_INCREMENT PRIMARY KEY,
                            supplier VARCHAR(50),
@@ -121,3 +135,15 @@ CREATE TABLE flight_travel_deals(
     FOREIGN KEY (flight_id) REFERENCES travel_deals(flight_id),
     FOREIGN KEY (travel_deal_id) REFERENCES travel_deals(id)
 );
+
+ALTER TABLE contact_forms
+ADD CONSTRAINT chk_email
+CHECK (email LIKE '%_@__%.__%');
+
+ALTER TABLE contact_forms
+ADD CONSTRAINT chk_phone
+CHECK (phone_number IS NULL OR phone_number REGEXP '^[0-9]{10}$');
+
+ALTER TABLE contact_forms
+ADD CONSTRAINT chk_name_length
+CHECK (CHAR_LENGTH(first_name) >= 1 AND CHAR_LENGTH(last_name) >= 1);

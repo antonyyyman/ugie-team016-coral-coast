@@ -17,8 +17,7 @@ class PaymentsController extends AppController
      */
     public function index()
     {
-        $query = $this->Payments->find()
-            ->contain(['Bookings']);
+        $query = $this->Payments->find();
         $payments = $this->paginate($query);
 
         $this->set(compact('payments'));
@@ -54,8 +53,7 @@ class PaymentsController extends AppController
             }
             $this->Flash->error(__('The payment could not be saved. Please, try again.'));
         }
-        $bookings = $this->Payments->Bookings->find('list', limit: 200)->all();
-        $this->set(compact('payment', 'bookings'));
+        $this->set(compact('payment'));
     }
 
     /**
@@ -77,8 +75,7 @@ class PaymentsController extends AppController
             }
             $this->Flash->error(__('The payment could not be saved. Please, try again.'));
         }
-        $bookings = $this->Payments->Bookings->find('list', limit: 200)->all();
-        $this->set(compact('payment', 'bookings'));
+        $this->set(compact('payment'));
     }
 
     /**

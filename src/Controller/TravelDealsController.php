@@ -33,7 +33,7 @@ class TravelDealsController extends AppController
      */
     public function view($id = null)
     {
-        $travelDeal = $this->TravelDeals->get($id, contain: ['Insurances', 'Hotels', 'CarRentals', 'Translations', 'Flights']);
+        $travelDeal = $this->TravelDeals->get($id, contain: ['Insurances', 'Hotels', 'CarRentals', 'Translations', 'Flights', 'FlightTravelDeals']);
         $this->set(compact('travelDeal'));
     }
 

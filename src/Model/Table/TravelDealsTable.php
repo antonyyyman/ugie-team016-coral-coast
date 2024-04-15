@@ -16,6 +16,7 @@ use Cake\Validation\Validator;
  * @property \App\Model\Table\CarRentalsTable&\Cake\ORM\Association\BelongsTo $CarRentals
  * @property \App\Model\Table\TranslationsTable&\Cake\ORM\Association\BelongsTo $Translations
  * @property \App\Model\Table\FlightsTable&\Cake\ORM\Association\BelongsTo $Flights
+ * @property \App\Model\Table\FlightTravelDealsTable&\Cake\ORM\Association\HasMany $FlightTravelDeals
  *
  * @method \App\Model\Entity\TravelDeal newEmptyEntity()
  * @method \App\Model\Entity\TravelDeal newEntity(array $data, array $options = [])
@@ -61,6 +62,9 @@ class TravelDealsTable extends Table
         ]);
         $this->belongsTo('Flights', [
             'foreignKey' => 'flight_id',
+        ]);
+        $this->hasMany('FlightTravelDeals', [
+            'foreignKey' => 'travel_deal_id',
         ]);
     }
 

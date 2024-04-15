@@ -28,9 +28,9 @@ class UsersFixture extends TestFixture
                 'phone_number' => 'Lorem ipsum d',
                 'is_staff' => 1,
                 'nonce' => 'Lorem ipsum dolor sit amet',
-                'nonce_expiry' => '2024-04-09 14:29:27',
-                'created' => '2024-04-09 14:29:27',
-                'modified' => '2024-04-09 14:29:27',
+                'nonce_expiry' => '2024-04-15 06:13:52',
+                'created' => '2024-04-15 06:13:52',
+                'modified' => '2024-04-15 06:13:52',
             ],
         ];
         parent::init();

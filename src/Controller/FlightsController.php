@@ -32,7 +32,7 @@ class FlightsController extends AppController
      */
     public function view($id = null)
     {
-        $flight = $this->Flights->get($id, contain: ['Bookings', 'TravelDeals']);
+        $flight = $this->Flights->get($id, contain: ['Bookings', 'FlightTravelDeals', 'TravelDeals']);
         $this->set(compact('flight'));
     }
 
@@ -53,7 +53,8 @@ class FlightsController extends AppController
             }
             $this->Flash->error(__('The flight could not be saved. Please, try again.'));
         }
-        $this->set(compact('flight'));
+        $bookings = $this->Flights->Bookings->find('list', limit: 200)->all();
+        $this->set(compact('flight', 'bookings'));
     }
 
     /**
@@ -65,7 +66,7 @@ class FlightsController extends AppController
      */
     public function edit($id = null)
     {
-        $flight = $this->Flights->get($id, contain: []);
+        $flight = $this->Flights->get($id, contain: ['Bookings']);
         if ($this->request->is(['patch', 'post', 'put'])) {
             $flight = $this->Flights->patchEntity($flight, $this->request->getData());
             if ($this->Flights->save($flight)) {
@@ -75,7 +76,8 @@ class FlightsController extends AppController
             }
             $this->Flash->error(__('The flight could not be saved. Please, try again.'));
         }
-        $this->set(compact('flight'));
+        $bookings = $this->Flights->Bookings->find('list', limit: 200)->all();
+        $this->set(compact('flight', 'bookings'));
     }
 
     /**
