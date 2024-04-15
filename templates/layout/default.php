@@ -35,27 +35,70 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
 </head>
 <body>
 <div style="position: fixed; top: 0; right: 0; margin: 10px;">
-    <?php
-    if ($this->Identity->isLoggedIn()) {
-        echo $this->Html->link(
-            'Logout',
-            ['controller' => 'Auth', 'action' => 'logout'],
-            ['class' => 'button button-outline']);
-    } else{
-        echo $this->Html->link(
-            'Log in',
-            ['controller' => 'Auth', 'action' => 'login'],
-            ['class' => 'button button-outline']);
-    }
-    ?>
+
 </div>
     <nav class="top-nav">
         <div class="top-nav-title">
             <a href="<?= $this->Url->build('/') ?>"><span>Cake</span>PHP</a>
         </div>
         <div class="top-nav-links">
-            <a target="_blank" rel="noopener" href="https://book.cakephp.org/5/">Documentation</a>
-            <a target="_blank" rel="noopener" href="https://api.cakephp.org/">API</a>
+            <?= $this->Html->link('Bookings', [
+                'controller' => 'Bookings',
+                'action' => 'index'
+            ], [])?>
+            <?= $this->Html->link('Users', [
+                'controller' => 'Users',
+                'action' => 'index'
+            ], [])?>
+            <?= $this->Html->link('TravelDeals', [
+                'controller' => 'TravelDeals',
+                'action' => 'index'
+            ], [])?>
+            <?= $this->Html->link('Paymemts', [
+                'controller' => 'Paymemts',
+                'action' => 'index'
+            ], [])?>
+            <?= $this->Html->link('Flights', [
+                'controller' => 'Flights',
+                'action' => 'index'
+            ], [])?>
+            <?= $this->Html->link('Hotels', [
+                'controller' => 'Hotels',
+                'action' => 'index'
+            ], [])?>
+            <?= $this->Html->link('Insurances', [
+                'controller' => 'Insurances',
+                'action' => 'index'
+            ], [])?>
+            <?= $this->Html->link('Cruises', [
+                'controller' => 'Cruises',
+                'action' => 'index'
+            ], [])?>
+            <?= $this->Html->link('Translations', [
+                'controller' => 'Translations',
+                'action' => 'index'
+            ], [])?>
+            <?= $this->Html->link('CarRentals', [
+                'controller' => 'CarRentals',
+                'action' => 'index'
+            ], [])?>
+
+            |
+
+            <?php
+            if ($this->Identity->isLoggedIn()) {
+                echo $this->Html->link(
+                    'Logout',
+                    ['controller' => 'Auth', 'action' => 'logout']);
+//                    ['class' => 'button button-outline']);
+            } else{
+                echo $this->Html->link(
+                    'Log in',
+                    ['controller' => 'Auth', 'action' => 'login']);
+//                    ['class' => 'button button-outline']);
+            }
+            ?>
+
         </div>
     </nav>
     <main class="main">
