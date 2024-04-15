@@ -15,6 +15,15 @@ class ContactFormsController extends AppController
      *
      * @return \Cake\Http\Response|null|void Renders view
      */
+
+    //Allow access to booking enquiries page without having to login.
+    public function initialize(): void
+    {
+        parent::initialize();
+        $this->loadComponent('Authentication.Authentication');
+        $this->Authentication->allowUnauthenticated(['add']);
+    }
+
     public function index()
     {
         $query = $this->ContactForms->find();
@@ -48,10 +57,11 @@ class ContactFormsController extends AppController
             $contactForm = $this->ContactForms->patchEntity($contactForm, $this->request->getData());
             if ($this->ContactForms->save($contactForm)) {
                 $this->Flash->success(__('The contact form has been saved.'));
-
                 return $this->redirect(['action' => 'index']);
-            }
+        } else{
             $this->Flash->error(__('The contact form could not be saved. Please, try again.'));
+        }
+            
         }
         $this->set(compact('contactForm'));
     }
