@@ -130,7 +130,7 @@ CREATE TABLE travel_deals (
                             FOREIGN KEY (flight_id) REFERENCES flights(id)
 );
 
-CREATE TABLE flight_travel_deals(
+CREATE TABLE flights_travel_deals(
     flight_id INT,
     travel_deal_id INT,
     PRIMARY KEY (flight_id,travel_deal_id),
