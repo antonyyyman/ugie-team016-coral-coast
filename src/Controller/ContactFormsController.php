@@ -3,7 +3,6 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
-
 /**
  * ContactForms Controller
  *
@@ -18,7 +17,6 @@ class ContactFormsController extends AppController
      */
     public function index()
     {
-        $this->loadModel('ContactForm');
         $query = $this->ContactForms->find();
         $contactForms = $this->paginate($query);
 
