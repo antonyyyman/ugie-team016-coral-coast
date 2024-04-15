@@ -15,7 +15,12 @@
 <h1>Dashboard</h1>
 <ul>
     <?php foreach ($tables as $table): ?>
-        <li><a href=<?= $this->Url->build(['controller' => $table, 'action' => 'index']) ?>><?= $table ?></a></li>
+        <?php if (($table != 'bookings_flights') and ($table != 'flight_travel_deals')): ?>
+            <li>
+                <a href=<?= $this->Url->build(['controller' => $table, 'action' => 'index']) ?>><?= $table ?></a>
+                | <a href="<?= $this->Url->build(['controller' => $table, 'action' => 'add']) ?>">add <?= $table ?></a>
+            </li>
+        <?php endif; ?>
     <?php endforeach; ?>
 </ul>
 </body>
