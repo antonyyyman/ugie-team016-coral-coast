@@ -16,11 +16,14 @@
                     <th><?= $this->Paginator->sort('start_date') ?></th>
                     <th><?= $this->Paginator->sort('end_date') ?></th>
                     <th><?= $this->Paginator->sort('destination') ?></th>
-                    <th><?= $this->Paginator->sort('insurance_id') ?></th>
                     <th><?= $this->Paginator->sort('hotel_id') ?></th>
                     <th><?= $this->Paginator->sort('car_rental_id') ?></th>
+                    <th><?= $this->Paginator->sort('insurance_id') ?></th>
                     <th><?= $this->Paginator->sort('translation_id') ?></th>
-                    <th><?= $this->Paginator->sort('flight_id') ?></th>
+                    <th><?= $this->Paginator->sort('payment_id') ?></th>
+                    <th><?= $this->Paginator->sort('travel_deal_id') ?></th>
+                    <th><?= $this->Paginator->sort('total_price') ?></th>
+                    <th><?= $this->Paginator->sort('booking_status') ?></th>
                     <th class="actions"><?= __('Actions') ?></th>
                 </tr>
             </thead>
@@ -28,15 +31,18 @@
                 <?php foreach ($bookings as $booking): ?>
                 <tr>
                     <td><?= $this->Number->format($booking->id) ?></td>
-                    <td><?= $booking->hasValue('user') ? $this->Html->link($booking->user->email, ['controller' => 'Users', 'action' => 'view', $booking->user->id]) : '' ?></td>
+                    <td><?= $booking->hasValue('user') ? $this->Html->link($booking->user->user_info_string, ['controller' => 'Users', 'action' => 'view', $booking->user->id]) : '' ?></td>
                     <td><?= h($booking->start_date) ?></td>
                     <td><?= h($booking->end_date) ?></td>
                     <td><?= h($booking->destination) ?></td>
-                    <td><?= $booking->hasValue('insurance') ? $this->Html->link($booking->insurance->id, ['controller' => 'Insurances', 'action' => 'view', $booking->insurance->id]) : '' ?></td>
                     <td><?= $booking->hasValue('hotel') ? $this->Html->link($booking->hotel->name, ['controller' => 'Hotels', 'action' => 'view', $booking->hotel->id]) : '' ?></td>
                     <td><?= $booking->hasValue('car_rental') ? $this->Html->link($booking->car_rental->id, ['controller' => 'CarRentals', 'action' => 'view', $booking->car_rental->id]) : '' ?></td>
+                    <td><?= $booking->hasValue('insurance') ? $this->Html->link($booking->insurance->id, ['controller' => 'Insurances', 'action' => 'view', $booking->insurance->id]) : '' ?></td>
                     <td><?= $booking->hasValue('translation') ? $this->Html->link($booking->translation->id, ['controller' => 'Translations', 'action' => 'view', $booking->translation->id]) : '' ?></td>
-                    <td><?= $booking->hasValue('flight') ? $this->Html->link($booking->flight->id, ['controller' => 'Flights', 'action' => 'view', $booking->flight->id]) : '' ?></td>
+                    <td><?= $booking->payment_id === null ? '' : $this->Number->format($booking->payment_id) ?></td>
+                    <td><?= $booking->travel_deal_id === null ? '' : $this->Number->format($booking->travel_deal_id) ?></td>
+                    <td><?= $booking->total_price === null ? '' : $this->Number->format($booking->total_price) ?></td>
+                    <td><?= h($booking->booking_status) ?></td>
                     <td class="actions">
                         <?= $this->Html->link(__('View'), ['action' => 'view', $booking->id]) ?>
                         <?= $this->Html->link(__('Edit'), ['action' => 'edit', $booking->id]) ?>

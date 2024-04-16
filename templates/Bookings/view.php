@@ -20,15 +20,11 @@
             <table>
                 <tr>
                     <th><?= __('User') ?></th>
-                    <td><?= $booking->hasValue('user') ? $this->Html->link($booking->user->email, ['controller' => 'Users', 'action' => 'view', $booking->user->id]) : '' ?></td>
+                    <td><?= $booking->hasValue('user') ? $this->Html->link($booking->user->user_info_string, ['controller' => 'Users', 'action' => 'view', $booking->user->id]) : '' ?></td>
                 </tr>
                 <tr>
                     <th><?= __('Destination') ?></th>
                     <td><?= h($booking->destination) ?></td>
-                </tr>
-                <tr>
-                    <th><?= __('Insurance') ?></th>
-                    <td><?= $booking->hasValue('insurance') ? $this->Html->link($booking->insurance->id, ['controller' => 'Insurances', 'action' => 'view', $booking->insurance->id]) : '' ?></td>
                 </tr>
                 <tr>
                     <th><?= __('Hotel') ?></th>
@@ -39,16 +35,28 @@
                     <td><?= $booking->hasValue('car_rental') ? $this->Html->link($booking->car_rental->id, ['controller' => 'CarRentals', 'action' => 'view', $booking->car_rental->id]) : '' ?></td>
                 </tr>
                 <tr>
+                    <th><?= __('Insurance') ?></th>
+                    <td><?= $booking->hasValue('insurance') ? $this->Html->link($booking->insurance->id, ['controller' => 'Insurances', 'action' => 'view', $booking->insurance->id]) : '' ?></td>
+                </tr>
+                <tr>
                     <th><?= __('Translation') ?></th>
                     <td><?= $booking->hasValue('translation') ? $this->Html->link($booking->translation->id, ['controller' => 'Translations', 'action' => 'view', $booking->translation->id]) : '' ?></td>
                 </tr>
                 <tr>
-                    <th><?= __('Flight') ?></th>
-                    <td><?= $booking->hasValue('flight') ? $this->Html->link($booking->flight->id, ['controller' => 'Flights', 'action' => 'view', $booking->flight->id]) : '' ?></td>
-                </tr>
-                <tr>
                     <th><?= __('Id') ?></th>
                     <td><?= $this->Number->format($booking->id) ?></td>
+                </tr>
+                <tr>
+                    <th><?= __('Payment Id') ?></th>
+                    <td><?= $booking->payment_id === null ? '' : $this->Number->format($booking->payment_id) ?></td>
+                </tr>
+                <tr>
+                    <th><?= __('Travel Deal Id') ?></th>
+                    <td><?= $booking->travel_deal_id === null ? '' : $this->Number->format($booking->travel_deal_id) ?></td>
+                </tr>
+                <tr>
+                    <th><?= __('Total Price') ?></th>
+                    <td><?= $booking->total_price === null ? '' : $this->Number->format($booking->total_price) ?></td>
                 </tr>
                 <tr>
                     <th><?= __('Start Date') ?></th>
@@ -58,6 +66,10 @@
                     <th><?= __('End Date') ?></th>
                     <td><?= h($booking->end_date) ?></td>
                 </tr>
+                <tr>
+                    <th><?= __('Booking Status') ?></th>
+                    <td><?= $booking->booking_status ? __('Yes') : __('No'); ?></td>
+                </tr>
             </table>
             <div class="related">
                 <h4><?= __('Related Payments') ?></h4>
@@ -66,7 +78,6 @@
                     <table>
                         <tr>
                             <th><?= __('Id') ?></th>
-                            <th><?= __('Booking Id') ?></th>
                             <th><?= __('Amount') ?></th>
                             <th><?= __('Payment Method') ?></th>
                             <th><?= __('Status') ?></th>
@@ -75,7 +86,6 @@
                         <?php foreach ($booking->payments as $payment) : ?>
                         <tr>
                             <td><?= h($payment->id) ?></td>
-                            <td><?= h($payment->booking_id) ?></td>
                             <td><?= h($payment->amount) ?></td>
                             <td><?= h($payment->payment_method) ?></td>
                             <td><?= h($payment->status) ?></td>
