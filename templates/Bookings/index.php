@@ -7,6 +7,34 @@
 <div class="bookings index content">
     <?= $this->Html->link(__('New Booking'), ['action' => 'add'], ['class' => 'button float-right']) ?>
     <h3><?= __('Bookings') ?></h3>
+
+    <div class="content">
+        <?= $this->Form->create(null, ['type' => 'get']) ?>
+        <fieldset>
+            <div class="row">
+                <div class="column">
+                    <?= $this->Form->control('id', [
+                        'placeholder' => 'Booking Reference contains...',
+                        'value' => $this->request->getQuery('id'),
+                    ]); ?>
+                </div>
+            </div>
+            <div class="row">
+                <div class="column">
+                    <?= $this->Form->control('username', [
+                        'placeholder' => 'Customer Username contains...',
+                        'value' => $this->request->getQuery('username'),
+                    ]); ?>
+                </div>
+            </div>
+        </fieldset>
+
+
+        <?= $this->Form->button(__('Search')) ?>
+        <?= $this->Form->end() ?>
+
+    </div>
+
     <div class="table-responsive">
         <table>
             <thead>

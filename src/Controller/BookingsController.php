@@ -17,8 +17,35 @@ class BookingsController extends AppController
      */
     public function index()
     {
-        $query = $this->Bookings->find()
-            ->contain(['Users', 'Insurances', 'Hotels', 'CarRentals', 'Translations', 'Flights']);
+        $query = $this->Bookings->find();
+//            ->contain(['Users', 'Hotels', 'CarRentals', 'Insurances', 'Translations', 'Payments', 'TravelDeals']);
+
+        if (!empty($this->request->getQuery('id'))) {
+//            $query->where(['Bookings.id LIKE' => '%' . $this->request->getQuery('id') . '%']);
+            $id = $this->request->getQuery('id');
+            $query->where(['Bookings.id' => $id]);
+        }
+        //retrive username from user refered by user_id in $this
+        if (!empty($this->request->getQuery('username'))) {
+            $userName = $this->request->getQuery('username');
+            $usersTable = $this->fetchTable('Users');
+            $user = $usersTable->find()
+                ->select(['id'])
+                ->where(['Users.username LIKE' => '%' . $userName . '%'])
+                ->first();
+
+            if ($user) {
+                // query the Bookings table according to user id
+                $bookingsTable = $this->fetchTable('Bookings');
+                $query = $bookingsTable->find()
+                    ->where(['Bookings.user_id' => $user->id]);
+            } else {
+                // if the user does not exist, return an empty result set
+                $query = $this->Bookings->find()->where(['Bookings.id' => 0]);
+            }
+        }
+
+
         $bookings = $this->paginate($query);
 
         $this->set(compact('bookings'));
@@ -46,6 +73,15 @@ class BookingsController extends AppController
     {
         $booking = $this->Bookings->newEmptyEntity();
         if ($this->request->is('post')) {
+
+            $data = $this->request->getData();
+
+            foreach (['hotel_id', 'car_rental_id', 'insurance_id', 'translation_id', 'payment_id', 'travel_deal_id'] as $field) {
+                if (empty($data[$field])) {
+                    $data[$field] = null;
+                }
+            }
+
             $booking = $this->Bookings->patchEntity($booking, $this->request->getData());
             if ($this->Bookings->save($booking)) {
                 $this->Flash->success(__('The booking has been saved.'));
