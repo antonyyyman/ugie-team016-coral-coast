@@ -9,7 +9,7 @@ use Cake\ORM\Entity;
  * Flight Entity
  *
  * @property int $id
- * @property string|null $flight_number
+ * @property string|null $number
  * @property string|null $departure_airport
  * @property string|null $arrival_airport
  * @property \Cake\I18n\Date|null $departure_date
@@ -31,7 +31,7 @@ class Flight extends Entity
      * @var array<string, bool>
      */
     protected array $_accessible = [
-        'flight_number' => true,
+        'number' => true,
         'departure_airport' => true,
         'arrival_airport' => true,
         'departure_date' => true,

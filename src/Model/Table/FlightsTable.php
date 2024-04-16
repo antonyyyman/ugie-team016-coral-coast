@@ -11,8 +11,8 @@ use Cake\Validation\Validator;
 /**
  * Flights Model
  *
- * @property \App\Model\Table\BookingsTable&\Cake\ORM\Association\HasMany $Bookings
- * @property \App\Model\Table\TravelDealsTable&\Cake\ORM\Association\HasMany $TravelDeals
+ * @property \App\Model\Table\BookingsTable&\Cake\ORM\Association\BelongsToMany $Bookings
+ * @property \App\Model\Table\TravelDealsTable&\Cake\ORM\Association\BelongsToMany $TravelDeals
  *
  * @method \App\Model\Entity\Flight newEmptyEntity()
  * @method \App\Model\Entity\Flight newEntity(array $data, array $options = [])
@@ -44,11 +44,15 @@ class FlightsTable extends Table
         $this->setDisplayField('id');
         $this->setPrimaryKey('id');
 
-        $this->hasMany('Bookings', [
+        $this->belongsToMany('Bookings', [
             'foreignKey' => 'flight_id',
+            'targetForeignKey' => 'booking_id',
+            'joinTable' => 'bookings_flights',
         ]);
-        $this->hasMany('TravelDeals', [
+        $this->belongsToMany('TravelDeals', [
             'foreignKey' => 'flight_id',
+            'targetForeignKey' => 'travel_deal_id',
+            'joinTable' => 'flights_travel_deals',
         ]);
     }
 
@@ -61,9 +65,9 @@ class FlightsTable extends Table
     public function validationDefault(Validator $validator): Validator
     {
         $validator
-            ->scalar('flight_number')
-            ->maxLength('flight_number', 50)
-            ->allowEmptyString('flight_number');
+            ->scalar('number')
+            ->maxLength('number', 50)
+            ->allowEmptyString('number');
 
         $validator
             ->scalar('departure_airport')
