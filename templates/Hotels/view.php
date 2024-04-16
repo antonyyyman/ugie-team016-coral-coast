@@ -27,8 +27,16 @@
                     <td><?= h($hotel->location) ?></td>
                 </tr>
                 <tr>
+                    <th><?= __('Telephone') ?></th>
+                    <td><?= h($hotel->telephone) ?></td>
+                </tr>
+                <tr>
                     <th><?= __('Id') ?></th>
                     <td><?= $this->Number->format($hotel->id) ?></td>
+                </tr>
+                <tr>
+                    <th><?= __('Price') ?></th>
+                    <td><?= $hotel->price === null ? '' : $this->Number->format($hotel->price) ?></td>
                 </tr>
             </table>
             <div class="related">
@@ -42,11 +50,14 @@
                             <th><?= __('Start Date') ?></th>
                             <th><?= __('End Date') ?></th>
                             <th><?= __('Destination') ?></th>
-                            <th><?= __('Insurance Id') ?></th>
                             <th><?= __('Hotel Id') ?></th>
                             <th><?= __('Car Rental Id') ?></th>
+                            <th><?= __('Insurance Id') ?></th>
                             <th><?= __('Translation Id') ?></th>
-                            <th><?= __('Flight Id') ?></th>
+                            <th><?= __('Payment Id') ?></th>
+                            <th><?= __('Travel Deal Id') ?></th>
+                            <th><?= __('Total Price') ?></th>
+                            <th><?= __('Booking Status') ?></th>
                             <th class="actions"><?= __('Actions') ?></th>
                         </tr>
                         <?php foreach ($hotel->bookings as $booking) : ?>
@@ -56,11 +67,14 @@
                             <td><?= h($booking->start_date) ?></td>
                             <td><?= h($booking->end_date) ?></td>
                             <td><?= h($booking->destination) ?></td>
-                            <td><?= h($booking->insurance_id) ?></td>
                             <td><?= h($booking->hotel_id) ?></td>
                             <td><?= h($booking->car_rental_id) ?></td>
+                            <td><?= h($booking->insurance_id) ?></td>
                             <td><?= h($booking->translation_id) ?></td>
-                            <td><?= h($booking->flight_id) ?></td>
+                            <td><?= h($booking->payment_id) ?></td>
+                            <td><?= h($booking->travel_deal_id) ?></td>
+                            <td><?= h($booking->total_price) ?></td>
+                            <td><?= h($booking->booking_status) ?></td>
                             <td class="actions">
                                 <?= $this->Html->link(__('View'), ['controller' => 'Bookings', 'action' => 'view', $booking->id]) ?>
                                 <?= $this->Html->link(__('Edit'), ['controller' => 'Bookings', 'action' => 'edit', $booking->id]) ?>
@@ -82,7 +96,6 @@
                             <th><?= __('Company') ?></th>
                             <th><?= __('Description') ?></th>
                             <th><?= __('Price') ?></th>
-                            <th><?= __('Hotel Id') ?></th>
                             <th class="actions"><?= __('Actions') ?></th>
                         </tr>
                         <?php foreach ($hotel->cruises as $cruise) : ?>
@@ -91,7 +104,6 @@
                             <td><?= h($cruise->company) ?></td>
                             <td><?= h($cruise->description) ?></td>
                             <td><?= h($cruise->price) ?></td>
-                            <td><?= h($cruise->hotel_id) ?></td>
                             <td class="actions">
                                 <?= $this->Html->link(__('View'), ['controller' => 'Cruises', 'action' => 'view', $cruise->id]) ?>
                                 <?= $this->Html->link(__('Edit'), ['controller' => 'Cruises', 'action' => 'edit', $cruise->id]) ?>
@@ -116,9 +128,9 @@
                             <th><?= __('Total Price') ?></th>
                             <th><?= __('Insurance Id') ?></th>
                             <th><?= __('Hotel Id') ?></th>
+                            <th><?= __('Cruise Id') ?></th>
                             <th><?= __('Car Rental Id') ?></th>
                             <th><?= __('Translation Id') ?></th>
-                            <th><?= __('Flight Id') ?></th>
                             <th class="actions"><?= __('Actions') ?></th>
                         </tr>
                         <?php foreach ($hotel->travel_deals as $travelDeal) : ?>
@@ -130,9 +142,9 @@
                             <td><?= h($travelDeal->total_price) ?></td>
                             <td><?= h($travelDeal->insurance_id) ?></td>
                             <td><?= h($travelDeal->hotel_id) ?></td>
+                            <td><?= h($travelDeal->cruise_id) ?></td>
                             <td><?= h($travelDeal->car_rental_id) ?></td>
                             <td><?= h($travelDeal->translation_id) ?></td>
-                            <td><?= h($travelDeal->flight_id) ?></td>
                             <td class="actions">
                                 <?= $this->Html->link(__('View'), ['controller' => 'TravelDeals', 'action' => 'view', $travelDeal->id]) ?>
                                 <?= $this->Html->link(__('Edit'), ['controller' => 'TravelDeals', 'action' => 'edit', $travelDeal->id]) ?>

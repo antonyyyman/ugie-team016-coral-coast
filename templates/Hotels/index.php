@@ -14,6 +14,8 @@
                     <th><?= $this->Paginator->sort('id') ?></th>
                     <th><?= $this->Paginator->sort('name') ?></th>
                     <th><?= $this->Paginator->sort('location') ?></th>
+                    <th><?= $this->Paginator->sort('telephone') ?></th>
+                    <th><?= $this->Paginator->sort('price') ?></th>
                     <th class="actions"><?= __('Actions') ?></th>
                 </tr>
             </thead>
@@ -23,6 +25,8 @@
                     <td><?= $this->Number->format($hotel->id) ?></td>
                     <td><?= h($hotel->name) ?></td>
                     <td><?= h($hotel->location) ?></td>
+                    <td><?= h($hotel->telephone) ?></td>
+                    <td><?= $hotel->price === null ? '' : $this->Number->format($hotel->price) ?></td>
                     <td class="actions">
                         <?= $this->Html->link(__('View'), ['action' => 'view', $hotel->id]) ?>
                         <?= $this->Html->link(__('Edit'), ['action' => 'edit', $hotel->id]) ?>
