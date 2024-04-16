@@ -3,6 +3,8 @@ declare(strict_types=1);
 
 use Migrations\AbstractSeed;
 
+use Authentication\PasswordHasher\DefaultPasswordHasher;;
+use Cake\ORM\TableRegistry;
 /**
  * Users seed.
  */
