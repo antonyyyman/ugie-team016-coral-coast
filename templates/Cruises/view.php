@@ -27,10 +27,6 @@
                     <td><?= h($cruise->description) ?></td>
                 </tr>
                 <tr>
-                    <th><?= __('Hotel') ?></th>
-                    <td><?= $cruise->hasValue('hotel') ? $this->Html->link($cruise->hotel->name, ['controller' => 'Hotels', 'action' => 'view', $cruise->hotel->id]) : '' ?></td>
-                </tr>
-                <tr>
                     <th><?= __('Id') ?></th>
                     <td><?= $this->Number->format($cruise->id) ?></td>
                 </tr>
