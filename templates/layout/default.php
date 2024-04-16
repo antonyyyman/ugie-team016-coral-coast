@@ -54,7 +54,7 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
 <header id="menu-jk" class="container-fluid">
         <div class="row">
             <div class="col-md-3 logo">
-                <img src="assets/images/logo.jpg" alt="">
+                <img src="webroot/img/logo_coral_fit.png" alt="">
                  <a data-toggle="collapse" data-target="#menu" href="#menu"><i class="fas d-block d-lg-none  small-menu fa-bars"></i></a>
             </div>
             <div id="menu" class="col-lg-6 col-md-9 d-none d-md-block navs">
