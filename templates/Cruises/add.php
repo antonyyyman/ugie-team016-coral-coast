@@ -2,7 +2,6 @@
 /**
  * @var \App\View\AppView $this
  * @var \App\Model\Entity\Cruise $cruise
- * @var \Cake\Collection\CollectionInterface|string[] $hotels
  */
 ?>
 <div class="row">

@@ -87,35 +87,6 @@
                 <?php endif; ?>
             </div>
             <div class="related">
-                <h4><?= __('Related Cruises') ?></h4>
-                <?php if (!empty($hotel->cruises)) : ?>
-                <div class="table-responsive">
-                    <table>
-                        <tr>
-                            <th><?= __('Id') ?></th>
-                            <th><?= __('Company') ?></th>
-                            <th><?= __('Description') ?></th>
-                            <th><?= __('Price') ?></th>
-                            <th class="actions"><?= __('Actions') ?></th>
-                        </tr>
-                        <?php foreach ($hotel->cruises as $cruise) : ?>
-                        <tr>
-                            <td><?= h($cruise->id) ?></td>
-                            <td><?= h($cruise->company) ?></td>
-                            <td><?= h($cruise->description) ?></td>
-                            <td><?= h($cruise->price) ?></td>
-                            <td class="actions">
-                                <?= $this->Html->link(__('View'), ['controller' => 'Cruises', 'action' => 'view', $cruise->id]) ?>
-                                <?= $this->Html->link(__('Edit'), ['controller' => 'Cruises', 'action' => 'edit', $cruise->id]) ?>
-                                <?= $this->Form->postLink(__('Delete'), ['controller' => 'Cruises', 'action' => 'delete', $cruise->id], ['confirm' => __('Are you sure you want to delete # {0}?', $cruise->id)]) ?>
-                            </td>
-                        </tr>
-                        <?php endforeach; ?>
-                    </table>
-                </div>
-                <?php endif; ?>
-            </div>
-            <div class="related">
                 <h4><?= __('Related Travel Deals') ?></h4>
                 <?php if (!empty($hotel->travel_deals)) : ?>
                 <div class="table-responsive">

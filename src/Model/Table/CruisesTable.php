@@ -11,6 +11,8 @@ use Cake\Validation\Validator;
 /**
  * Cruises Model
  *
+ * @property \App\Model\Table\TravelDealsTable&\Cake\ORM\Association\HasMany $TravelDeals
+ *
  * @method \App\Model\Entity\Cruise newEmptyEntity()
  * @method \App\Model\Entity\Cruise newEntity(array $data, array $options = [])
  * @method array<\App\Model\Entity\Cruise> newEntities(array $data, array $options = [])

@@ -35,6 +35,47 @@
                     <td><?= $cruise->price === null ? '' : $this->Number->format($cruise->price) ?></td>
                 </tr>
             </table>
+            <div class="related">
+                <h4><?= __('Related Travel Deals') ?></h4>
+                <?php if (!empty($cruise->travel_deals)) : ?>
+                <div class="table-responsive">
+                    <table>
+                        <tr>
+                            <th><?= __('Id') ?></th>
+                            <th><?= __('Start Date') ?></th>
+                            <th><?= __('End Date') ?></th>
+                            <th><?= __('Description') ?></th>
+                            <th><?= __('Total Price') ?></th>
+                            <th><?= __('Insurance Id') ?></th>
+                            <th><?= __('Hotel Id') ?></th>
+                            <th><?= __('Cruise Id') ?></th>
+                            <th><?= __('Car Rental Id') ?></th>
+                            <th><?= __('Translation Id') ?></th>
+                            <th class="actions"><?= __('Actions') ?></th>
+                        </tr>
+                        <?php foreach ($cruise->travel_deals as $travelDeal) : ?>
+                        <tr>
+                            <td><?= h($travelDeal->id) ?></td>
+                            <td><?= h($travelDeal->start_date) ?></td>
+                            <td><?= h($travelDeal->end_date) ?></td>
+                            <td><?= h($travelDeal->description) ?></td>
+                            <td><?= h($travelDeal->total_price) ?></td>
+                            <td><?= h($travelDeal->insurance_id) ?></td>
+                            <td><?= h($travelDeal->hotel_id) ?></td>
+                            <td><?= h($travelDeal->cruise_id) ?></td>
+                            <td><?= h($travelDeal->car_rental_id) ?></td>
+                            <td><?= h($travelDeal->translation_id) ?></td>
+                            <td class="actions">
+                                <?= $this->Html->link(__('View'), ['controller' => 'TravelDeals', 'action' => 'view', $travelDeal->id]) ?>
+                                <?= $this->Html->link(__('Edit'), ['controller' => 'TravelDeals', 'action' => 'edit', $travelDeal->id]) ?>
+                                <?= $this->Form->postLink(__('Delete'), ['controller' => 'TravelDeals', 'action' => 'delete', $travelDeal->id], ['confirm' => __('Are you sure you want to delete # {0}?', $travelDeal->id)]) ?>
+                            </td>
+                        </tr>
+                        <?php endforeach; ?>
+                    </table>
+                </div>
+                <?php endif; ?>
+            </div>
         </div>
     </div>
 </div>
