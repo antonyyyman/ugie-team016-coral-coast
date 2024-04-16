@@ -17,8 +17,8 @@ class BookingsController extends AppController
      */
     public function index()
     {
-        $query = $this->Bookings->find();
-//            ->contain(['Users', 'Hotels', 'CarRentals', 'Insurances', 'Translations', 'Payments', 'TravelDeals']);
+        $query = $this->Bookings->find()
+            ->contain(['Users', 'Hotels', 'CarRentals', 'Insurances', 'Translations', 'Payments', 'TravelDeals']);
 
         if (!empty($this->request->getQuery('id'))) {
 //            $query->where(['Bookings.id LIKE' => '%' . $this->request->getQuery('id') . '%']);
@@ -38,6 +38,7 @@ class BookingsController extends AppController
                 // query the Bookings table according to user id
                 $bookingsTable = $this->fetchTable('Bookings');
                 $query = $bookingsTable->find()
+                    ->contain(['Users', 'Hotels', 'CarRentals', 'Insurances', 'Translations', 'Payments', 'TravelDeals'])
                     ->where(['Bookings.user_id' => $user->id]);
             } else {
                 // if the user does not exist, return an empty result set
