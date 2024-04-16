@@ -15,9 +15,9 @@ use Cake\ORM\Entity;
  * @property string|null $total_price
  * @property int|null $insurance_id
  * @property int|null $hotel_id
+ * @property int|null $cruise_id
  * @property int|null $car_rental_id
  * @property int|null $translation_id
- * @property int|null $flight_id
  *
  * @property \App\Model\Entity\Insurance $insurance
  * @property \App\Model\Entity\Hotel $hotel
@@ -43,9 +43,9 @@ class TravelDeal extends Entity
         'total_price' => true,
         'insurance_id' => true,
         'hotel_id' => true,
+        'cruise_id' => true,
         'car_rental_id' => true,
         'translation_id' => true,
-        'flight_id' => true,
         'insurance' => true,
         'hotel' => true,
         'car_rental' => true,

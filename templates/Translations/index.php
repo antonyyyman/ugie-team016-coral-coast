@@ -12,8 +12,8 @@
             <thead>
                 <tr>
                     <th><?= $this->Paginator->sort('id') ?></th>
-                    <th><?= $this->Paginator->sort('from_language') ?></th>
-                    <th><?= $this->Paginator->sort('to_language') ?></th>
+                    <th><?= $this->Paginator->sort('language_from') ?></th>
+                    <th><?= $this->Paginator->sort('language_to') ?></th>
                     <th><?= $this->Paginator->sort('description') ?></th>
                     <th><?= $this->Paginator->sort('price') ?></th>
                     <th class="actions"><?= __('Actions') ?></th>
@@ -23,8 +23,8 @@
                 <?php foreach ($translations as $translation): ?>
                 <tr>
                     <td><?= $this->Number->format($translation->id) ?></td>
-                    <td><?= h($translation->from_language) ?></td>
-                    <td><?= h($translation->to_language) ?></td>
+                    <td><?= h($translation->language_from) ?></td>
+                    <td><?= h($translation->language_to) ?></td>
                     <td><?= h($translation->description) ?></td>
                     <td><?= $translation->price === null ? '' : $this->Number->format($translation->price) ?></td>
                     <td class="actions">

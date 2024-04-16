@@ -15,7 +15,7 @@ use Cake\Validation\Validator;
  * @property \App\Model\Table\HotelsTable&\Cake\ORM\Association\BelongsTo $Hotels
  * @property \App\Model\Table\CarRentalsTable&\Cake\ORM\Association\BelongsTo $CarRentals
  * @property \App\Model\Table\TranslationsTable&\Cake\ORM\Association\BelongsTo $Translations
- * @property \App\Model\Table\FlightsTable&\Cake\ORM\Association\BelongsTo $Flights
+ * @property \App\Model\Table\FlightsTable&\Cake\ORM\Association\BelongsToMany $Flights
  *
  * @method \App\Model\Entity\TravelDeal newEmptyEntity()
  * @method \App\Model\Entity\TravelDeal newEntity(array $data, array $options = [])
@@ -53,14 +53,22 @@ class TravelDealsTable extends Table
         $this->belongsTo('Hotels', [
             'foreignKey' => 'hotel_id',
         ]);
+        $this->belongsTo('Cruises', [
+            'foreignKey' => 'cruise_id',
+        ]);
         $this->belongsTo('CarRentals', [
             'foreignKey' => 'car_rental_id',
         ]);
         $this->belongsTo('Translations', [
             'foreignKey' => 'translation_id',
         ]);
-        $this->belongsTo('Flights', [
-            'foreignKey' => 'flight_id',
+        $this->hasMany('Bookings', [
+            'foreignKey' => 'travel_deal_id',
+        ]);
+        $this->belongsToMany('Flights', [
+            'foreignKey' => 'travel_deal_id',
+            'targetForeignKey' => 'flight_id',
+            'joinTable' => 'flights_travel_deals',
         ]);
     }
 
@@ -98,16 +106,16 @@ class TravelDealsTable extends Table
             ->allowEmptyString('hotel_id');
 
         $validator
+            ->integer('cruise_id')
+            ->allowEmptyString('cruise_id');
+
+        $validator
             ->integer('car_rental_id')
             ->allowEmptyString('car_rental_id');
 
         $validator
             ->integer('translation_id')
             ->allowEmptyString('translation_id');
-
-        $validator
-            ->integer('flight_id')
-            ->allowEmptyString('flight_id');
 
         return $validator;
     }
@@ -123,9 +131,9 @@ class TravelDealsTable extends Table
     {
         $rules->add($rules->existsIn(['insurance_id'], 'Insurances'), ['errorField' => 'insurance_id']);
         $rules->add($rules->existsIn(['hotel_id'], 'Hotels'), ['errorField' => 'hotel_id']);
+        $rules->add($rules->existsIn(['cruise_id'], 'Cruises'), ['errorField' => 'cruise_id']);
         $rules->add($rules->existsIn(['car_rental_id'], 'CarRentals'), ['errorField' => 'car_rental_id']);
         $rules->add($rules->existsIn(['translation_id'], 'Translations'), ['errorField' => 'translation_id']);
-        $rules->add($rules->existsIn(['flight_id'], 'Flights'), ['errorField' => 'flight_id']);
 
         return $rules;
     }

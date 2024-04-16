@@ -22,8 +22,8 @@
             <fieldset>
                 <legend><?= __('Edit Translation') ?></legend>
                 <?php
-                    echo $this->Form->control('from_language');
-                    echo $this->Form->control('to_language');
+                    echo $this->Form->control('language_from');
+                    echo $this->Form->control('language_to');
                     echo $this->Form->control('description');
                     echo $this->Form->control('price');
                 ?>
