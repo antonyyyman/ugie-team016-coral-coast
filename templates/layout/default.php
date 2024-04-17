@@ -49,7 +49,19 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
 </head>
 <body>
 <div style="position: fixed; top: 0; right: 0; margin: 10px;">
-
+    <?php
+    if ($this->Identity->isLoggedIn()) {
+        echo $this->Html->link(
+            'Logout',
+            ['controller' => 'Auth', 'action' => 'logout'],
+            ['class' => 'button button-outline']);
+    } else{
+        echo $this->Html->link(
+            'Log in',
+            ['controller' => 'Auth', 'action' => 'login'],
+            ['class' => 'button button-outline']);
+    }
+    ?>
 </div>
 <header id="menu-jk" class="container-fluid">
         <div class="row">
@@ -61,7 +73,7 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
             </div>
             <div id="menu" class="col-lg-6 col-md-9 d-none d-md-block navs">
                 <ul>
-                    <li><a href="/team016-app_fit3047/pages/home">Home</a></li>
+                <li><a href="/team016-app_fit3047/pages/home">Home</a></li>
                     <li><a href="about_us.html">About Us</a></li>
                     <li><a href="packages.html">Packages</a></li>
                     <li><a href="destination.html">Destinations</a></li>
@@ -87,45 +99,6 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
         </div>
     </header>
     <nav class="top-nav">
-        <div class="top-nav-title">
-            <a href="<?= $this->Url->build('/') ?>"><span>Cake</span>PHP</a>
-        </div>
-        <div class="top-nav-links">
-            <?= $this->Html->link('Dashboard', [
-                'controller' => 'Dashboard',
-//                'action' => 'index'
-            ], [])?>
-
-            <?= $this->Html->link('Users', [
-                'controller' => 'Users',
-                'action' => 'index'
-            ], [])?>
-
-            <?= $this->Html->link('Bookings', [
-                'controller' => 'Bookings',
-                'action' => 'index'
-            ], [])?>
-
-
-
-
-            |
-
-            <?php
-            if ($this->Identity->isLoggedIn()) {
-                echo $this->Html->link(
-                    'Logout',
-                    ['controller' => 'Auth', 'action' => 'logout']);
-//                    ['class' => 'button button-outline']);
-            } else{
-                echo $this->Html->link(
-                    'Log in',
-                    ['controller' => 'Auth', 'action' => 'login']);
-//                    ['class' => 'button button-outline']);
-            }
-            ?>
-
-        </div>
     </nav>
     <main class="main">
         <div class="container">
