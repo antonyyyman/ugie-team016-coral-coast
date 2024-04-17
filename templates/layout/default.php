@@ -139,9 +139,9 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
                 <div class="col-md-4 col-sm-12">
                     <h2>About Us</h2>
                     <p>
-                        Smart Eye is a leading provider of information technology, consulting, and business process services. Our dedicated employees offer strategic insights, technological expertise and industry experience.
+                    Coral Coast Travel has been a specialist in Southeast Asian Travel since 1984, now expanding to international travel. 
                     </p>
-                    <p>We focus on technologies that promise to reduce costs, streamline processes and speed time-to-market, Backed by our strong quality processes and rich experience managing global... </p>
+                    <p>We prioritise modern travel experiences through an end-to-end online platform, offering worldwide travel options including cruises and air travel, along with accommodation, car rentals, travel insurance, and translation services. </p>
                 </div>
                 <div class="col-md-4 col-sm-12">
                     <h2>Useful Links</h2>
@@ -156,12 +156,12 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
                 <div class="col-md-4 col-sm-12 map-img">
                     <h2>Contact Us</h2>
                     <address class="md-margin-bottom-40">
-                        BlueDart Hosting <br>
+                        Coral Coast <br>
                        765th Boulevard, <br>
                         Rochester, CA <br>
                         Phone: +1 831 143 556 <br>
-                        Email: <a href="mailto:info@bluedart.com" class="">info@bluedart.in</a><br>
-                        Web: <a href="https://smarteyeapps.com/" class="">www.bluedart.in</a>
+                        Email: <a href="/team016-app_fit3047/pages/home" class="">inquiry@coralcoast.com.au</a><br>
+                        Web: <a href="/team016-app_fit3047/pages/home" class="">www.coralcoast.com.au</a>
                     </address>
 
                 </div>
