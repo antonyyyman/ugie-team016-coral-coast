@@ -40,6 +40,8 @@ use Cake\Http\Exception\NotFoundException;
             <h1>
             CORAL COAST TRAVEL AGENCY
             </h1>
+
+            <h2><li><a href="/team016-app_fit3047/ContactForms/add">Enquire Here</a></li></h2>
         </div>  
     </main>
 </body>
