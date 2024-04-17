@@ -35,6 +35,10 @@
                     <td><?= h($contactForm->last_name) ?></td>
                 </tr>
                 <tr>
+                    <th><?= __('Query Nature') ?></th>
+                    <td><?= h($contactForm->request_nature) ?></td>
+                </tr>
+                <tr>
                     <th><?= __('Query') ?></th>
                     <td><?= h($contactForm->query) ?></td>
                 </tr>

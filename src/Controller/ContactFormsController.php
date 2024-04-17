@@ -3,6 +3,9 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
+use Cake\Core\Configure;
+use Cake\Mailer\Mailer;
+
 /**
  * ContactForms Controller
  *
@@ -16,12 +19,12 @@ class ContactFormsController extends AppController
      * @return \Cake\Http\Response|null|void Renders view
      */
 
-    //Allow access to booking enquiries page without having to login.
-    public function initialize(): void
-    {
-        parent::initialize();
-        $this->loadComponent('Authentication.Authentication');
+    public function initialize(): void{
+
+        parent::initialize();        
+        $this->loadComponent('Authentication.Authentication');      
         $this->Authentication->allowUnauthenticated(['add']);
+
     }
 
     public function index()
@@ -53,17 +56,34 @@ class ContactFormsController extends AppController
     public function add()
     {
         $contactForm = $this->ContactForms->newEmptyEntity();
+        $requestNatureOptions = $this->ContactForms->getRequestNatureOptions();
         if ($this->request->is('post')) {
             $contactForm = $this->ContactForms->patchEntity($contactForm, $this->request->getData());
             if ($this->ContactForms->save($contactForm)) {
+                $mailer = new Mailer('default');
+                $mailer
+                ->setEmailFormat('html')
+                ->setTo($contactForm->email)
+                ->setFrom(Configure::read('ContactFormMail.from'))
+                ->viewBuilder()
+                    ->setTemplate('contact_forms');
+
+                $mailer->setViewVars([
+                    'query' => $contactForm->query,
+                    'first_name' => $contactForm->first_name,
+                    'email' => $contactForm->email,
+                    'created' => $contactForm->created,
+                    'id' => $contactForm->id
+                ]);
+
+                $mailer->deliver();
+    
                 $this->Flash->success(__('The contact form has been saved.'));
                 return $this->redirect(['action' => 'index']);
-        } else{
+            }
             $this->Flash->error(__('The contact form could not be saved. Please, try again.'));
         }
-            
-        }
-        $this->set(compact('contactForm'));
+        $this->set(compact('contactForm', 'requestNatureOptions'));
     }
 
     /**
@@ -107,4 +127,5 @@ class ContactFormsController extends AppController
 
         return $this->redirect(['action' => 'index']);
     }
+
 }

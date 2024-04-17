@@ -16,6 +16,7 @@ use Cake\ORM\Entity;
  * @property string $query
  * @property \Cake\I18n\DateTime $created
  * @property \Cake\I18n\DateTime $modified
+ * @property string|null $request_nature
  */
 class ContactForm extends Entity
 {
@@ -36,5 +37,6 @@ class ContactForm extends Entity
         'query' => true,
         'created' => true,
         'modified' => true,
+        'query_nature' => true,
     ];
 }

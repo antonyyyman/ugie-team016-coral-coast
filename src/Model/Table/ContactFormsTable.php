@@ -46,6 +46,17 @@ class ContactFormsTable extends Table
         $this->addBehavior('Timestamp');
     }
 
+    
+    public function getRequestNatureOptions()
+    {
+        return [
+            'general' => 'General Inquiry',
+            'support' => 'Support',
+            'feedback' => 'Feedback',
+            'complaint' => 'Complaint'
+        ];
+    }
+
     /**
      * Default validation rules.
      *
@@ -81,6 +92,14 @@ class ContactFormsTable extends Table
             ->maxLength('query', 2000)
             ->requirePresence('query', 'create')
             ->notEmptyString('query');
+
+        $validator
+            ->requirePresence('request_nature', 'create')
+            ->notEmptyString('request_nature')
+            ->add('request_nature', 'inList', [
+            'rule' => ['inList', array_keys($this->getRequestNatureOptions())],
+            'message' => 'Please select a valid request nature.'
+            ]);
 
         return $validator;
     }
