@@ -8,9 +8,54 @@ $this->layout = 'login';
 $this->assign('title', 'Register new user');
 ?>
 
+<style>
+    .register {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+    }
+
+    .register .form {
+        max-width: 400px;
+        width: 100%;
+        padding: 20px;
+        background-color: #f9f9f9;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .form legend {
+        font-size: 1.2rem;
+        font-weight: bold;
+        margin-bottom: 20px;
+    }
+
+    .form .row {
+        margin-bottom: 15px;
+    }
+
+    .form .column {
+        flex: 1;
+        margin-right: 10px;
+    }
+
+    .form .column:last-child {
+        margin-right: 0;
+    }
+
+    .form .button {
+        width: 100%;
+        margin-top: 20px;
+    }
+
+    .float-right {
+        float: right;
+    }
+</style>
+
 <div class="container register">
     <div class="users form content">
-
         <?= $this->Form->create($user) ?>
 
         <fieldset>
@@ -18,37 +63,63 @@ $this->assign('title', 'Register new user');
 
             <?= $this->Flash->render() ?>
 
-            <?= $this->Form->control('email'); ?>
-
             <div class="row">
-                <?= $this->Form->control('first_name', ['templateVars' => ['container_class' => 'column']]); ?>
-                <?= $this->Form->control('last_name', ['templateVars' => ['container_class' => 'column']]); ?>
-                <?= $this->Form->control('username', ['templateVars' => ['container_class' => 'column']]); ?>
-                <?= $this->Form->control('phone_number', ['templateVars' => ['container_class' => 'column']]); ?>
+                <div class="column">
+                    <?= $this->Form->control('first_name', ['placeholder' => 'First Name']); ?>
+                </div>
+                <div class="column">
+                    <?= $this->Form->control('last_name', ['placeholder' => 'Last Name']); ?>
+                </div>
             </div>
 
             <div class="row">
-                <?php
-                echo $this->Form->control('password', [
-                    'value' => '',  // Ensure password is not sending back to the client side
-                    'templateVars' => ['container_class' => 'column']
-                ]);
-                // Validate password by repeating it
-                echo $this->Form->control('password_confirm', [
-                    'type' => 'password',
-                    'value' => '',  // Ensure password is not sending back to the client side
-                    'label' => 'Retype Password',
-                    'templateVars' => ['container_class' => 'column']
-                ]);
-                ?>
+                <div class="column">
+                    <?= $this->Form->control('email', ['placeholder' => 'Email']); ?>
+                </div>
+                <div class="column">
+                    <?= $this->Form->control('username', ['placeholder' => 'Username']); ?>
+                </div>
             </div>
 
-            <?= $this->Form->control('avatar', ['type' => 'file']); ?>
+            <div class="row">
+                <div class="column">
+                    <?= $this->Form->control('phone_number', ['placeholder' => 'Phone Number']); ?>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="column">
+                    <?= $this->Form->control('password', [
+                        'placeholder' => 'Password',
+                        'value' => '',  // Ensure password is not sent back to the client side
+                    ]); ?>
+                </div>
+                <div class="column">
+                    <?= $this->Form->control('password_confirm', [
+                        'type' => 'password',
+                        'placeholder' => 'Retype Password',
+                        'value' => '',  // Ensure password is not sent back to the client side
+                    ]); ?>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="column">
+                    <?= $this->Form->control('avatar', ['type' => 'file', 'label' => 'Choose Avatar']); ?>
+                </div>
+            </div>
 
         </fieldset>
 
-        <?= $this->Form->button('Register') ?>
-        <?= $this->Html->link('Back to login', ['controller' => 'Auth', 'action' => 'login'], ['class' => 'button button-outline float-right']) ?>
+        <div class="row">
+            <div class="column">
+                <?= $this->Form->button('Register', ['class' => 'button']) ?>
+            </div>
+            <div class="column">
+                <?= $this->Html->link('Back to login', ['controller' => 'Auth', 'action' => 'login'], ['class' => 'button button-outline float-right']) ?>
+            </div>
+        </div>
+
         <?= $this->Form->end() ?>
 
     </div>
