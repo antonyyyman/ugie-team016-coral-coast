@@ -11,9 +11,10 @@ use Cake\ORM\Entity;
  * @property int $id
  * @property string|null $name
  * @property string|null $location
+ * @property string|null $telephone
+ * @property string|null $price
  *
  * @property \App\Model\Entity\Booking[] $bookings
- * @property \App\Model\Entity\Cruise[] $cruises
  * @property \App\Model\Entity\TravelDeal[] $travel_deals
  */
 class Hotel extends Entity
@@ -30,8 +31,9 @@ class Hotel extends Entity
     protected array $_accessible = [
         'name' => true,
         'location' => true,
+        'telephone' => true,
+        'price' => true,
         'bookings' => true,
-        'cruises' => true,
         'travel_deals' => true,
     ];
 }

@@ -11,7 +11,7 @@ use Cake\Validation\Validator;
 /**
  * Cruises Model
  *
- * @property \App\Model\Table\HotelsTable&\Cake\ORM\Association\BelongsTo $Hotels
+ * @property \App\Model\Table\TravelDealsTable&\Cake\ORM\Association\HasMany $TravelDeals
  *
  * @method \App\Model\Entity\Cruise newEmptyEntity()
  * @method \App\Model\Entity\Cruise newEntity(array $data, array $options = [])
@@ -40,11 +40,11 @@ class CruisesTable extends Table
         parent::initialize($config);
 
         $this->setTable('cruises');
-        $this->setDisplayField('id');
+        $this->setDisplayField('description');
         $this->setPrimaryKey('id');
 
-        $this->belongsTo('Hotels', [
-            'foreignKey' => 'hotel_id',
+        $this->hasMany('TravelDeals', [
+            'foreignKey' => 'cruise_id',
         ]);
     }
 
@@ -70,24 +70,6 @@ class CruisesTable extends Table
             ->decimal('price')
             ->allowEmptyString('price');
 
-        $validator
-            ->integer('hotel_id')
-            ->allowEmptyString('hotel_id');
-
         return $validator;
-    }
-
-    /**
-     * Returns a rules checker object that will be used for validating
-     * application integrity.
-     *
-     * @param \Cake\ORM\RulesChecker $rules The rules object to be modified.
-     * @return \Cake\ORM\RulesChecker
-     */
-    public function buildRules(RulesChecker $rules): RulesChecker
-    {
-        $rules->add($rules->existsIn(['hotel_id'], 'Hotels'), ['errorField' => 'hotel_id']);
-
-        return $rules;
     }
 }

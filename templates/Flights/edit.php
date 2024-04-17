@@ -22,7 +22,7 @@
             <fieldset>
                 <legend><?= __('Edit Flight') ?></legend>
                 <?php
-                    echo $this->Form->control('flight_number');
+                    echo $this->Form->control('number');
                     echo $this->Form->control('departure_airport');
                     echo $this->Form->control('arrival_airport');
                     echo $this->Form->control('departure_date', ['empty' => true]);

@@ -23,7 +23,6 @@ class CruisesFixture extends TestFixture
                 'company' => 'Lorem ipsum dolor sit amet',
                 'description' => 'Lorem ipsum dolor sit amet',
                 'price' => 1.5,
-                'hotel_id' => 1,
             ],
         ];
         parent::init();

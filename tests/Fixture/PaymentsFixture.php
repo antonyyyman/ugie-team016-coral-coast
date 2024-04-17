@@ -20,7 +20,6 @@ class PaymentsFixture extends TestFixture
         $this->records = [
             [
                 'id' => 1,
-                'booking_id' => 1,
                 'amount' => 1.5,
                 'payment_method' => 'Lorem ipsum dolor sit amet',
                 'status' => 'Lorem ipsum dolor sit amet',

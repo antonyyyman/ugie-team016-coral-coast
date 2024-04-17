@@ -32,7 +32,7 @@ class HotelsController extends AppController
      */
     public function view($id = null)
     {
-        $hotel = $this->Hotels->get($id, contain: ['Bookings', 'Cruises', 'TravelDeals']);
+        $hotel = $this->Hotels->get($id, contain: ['Bookings', 'TravelDeals']);
         $this->set(compact('hotel'));
     }
 

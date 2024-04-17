@@ -2,7 +2,6 @@
 /**
  * @var \App\View\AppView $this
  * @var \App\Model\Entity\Cruise $cruise
- * @var string[]|\Cake\Collection\CollectionInterface $hotels
  */
 ?>
 <div class="row">
@@ -26,7 +25,6 @@
                     echo $this->Form->control('company');
                     echo $this->Form->control('description');
                     echo $this->Form->control('price');
-                    echo $this->Form->control('hotel_id', ['options' => $hotels, 'empty' => true]);
                 ?>
             </fieldset>
             <?= $this->Form->button(__('Submit')) ?>

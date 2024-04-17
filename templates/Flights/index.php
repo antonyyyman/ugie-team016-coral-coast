@@ -12,7 +12,7 @@
             <thead>
                 <tr>
                     <th><?= $this->Paginator->sort('id') ?></th>
-                    <th><?= $this->Paginator->sort('flight_number') ?></th>
+                    <th><?= $this->Paginator->sort('number') ?></th>
                     <th><?= $this->Paginator->sort('departure_airport') ?></th>
                     <th><?= $this->Paginator->sort('arrival_airport') ?></th>
                     <th><?= $this->Paginator->sort('departure_date') ?></th>
@@ -25,7 +25,7 @@
                 <?php foreach ($flights as $flight): ?>
                 <tr>
                     <td><?= $this->Number->format($flight->id) ?></td>
-                    <td><?= h($flight->flight_number) ?></td>
+                    <td><?= h($flight->number) ?></td>
                     <td><?= h($flight->departure_airport) ?></td>
                     <td><?= h($flight->arrival_airport) ?></td>
                     <td><?= h($flight->departure_date) ?></td>

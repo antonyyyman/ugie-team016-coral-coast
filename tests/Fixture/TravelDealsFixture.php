@@ -20,15 +20,15 @@ class TravelDealsFixture extends TestFixture
         $this->records = [
             [
                 'id' => 1,
-                'start_date' => '2024-04-09',
-                'end_date' => '2024-04-09',
+                'start_date' => '2024-04-16',
+                'end_date' => '2024-04-16',
                 'description' => 'Lorem ipsum dolor sit amet',
                 'total_price' => 1.5,
                 'insurance_id' => 1,
                 'hotel_id' => 1,
+                'cruise_id' => 1,
                 'car_rental_id' => 1,
                 'translation_id' => 1,
-                'flight_id' => 1,
             ],
         ];
         parent::init();

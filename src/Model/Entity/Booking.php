@@ -13,11 +13,14 @@ use Cake\ORM\Entity;
  * @property \Cake\I18n\Date|null $start_date
  * @property \Cake\I18n\Date|null $end_date
  * @property string|null $destination
- * @property int|null $insurance_id
  * @property int|null $hotel_id
  * @property int|null $car_rental_id
+ * @property int|null $insurance_id
  * @property int|null $translation_id
- * @property int|null $flight_id
+ * @property int|null $payment_id
+ * @property int|null $travel_deal_id
+ * @property string|null $total_price
+ * @property bool|null $booking_status
  *
  * @property \App\Model\Entity\User $user
  * @property \App\Model\Entity\Insurance $insurance
@@ -43,11 +46,14 @@ class Booking extends Entity
         'start_date' => true,
         'end_date' => true,
         'destination' => true,
-        'insurance_id' => true,
         'hotel_id' => true,
         'car_rental_id' => true,
+        'insurance_id' => true,
         'translation_id' => true,
-        'flight_id' => true,
+        'payment_id' => true,
+        'travel_deal_id' => true,
+        'total_price' => true,
+        'booking_status' => true,
         'user' => true,
         'insurance' => true,
         'hotel' => true,

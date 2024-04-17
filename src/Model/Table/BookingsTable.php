@@ -12,12 +12,12 @@ use Cake\Validation\Validator;
  * Bookings Model
  *
  * @property \App\Model\Table\UsersTable&\Cake\ORM\Association\BelongsTo $Users
- * @property \App\Model\Table\InsurancesTable&\Cake\ORM\Association\BelongsTo $Insurances
  * @property \App\Model\Table\HotelsTable&\Cake\ORM\Association\BelongsTo $Hotels
  * @property \App\Model\Table\CarRentalsTable&\Cake\ORM\Association\BelongsTo $CarRentals
+ * @property \App\Model\Table\InsurancesTable&\Cake\ORM\Association\BelongsTo $Insurances
  * @property \App\Model\Table\TranslationsTable&\Cake\ORM\Association\BelongsTo $Translations
- * @property \App\Model\Table\FlightsTable&\Cake\ORM\Association\BelongsTo $Flights
- * @property \App\Model\Table\PaymentsTable&\Cake\ORM\Association\HasMany $Payments
+ * @property \App\Model\Table\PaymentsTable&\Cake\ORM\Association\BelongsTo $Payments
+ * @property \App\Model\Table\FlightsTable&\Cake\ORM\Association\BelongsToMany $Flights
  *
  * @method \App\Model\Entity\Booking newEmptyEntity()
  * @method \App\Model\Entity\Booking newEntity(array $data, array $options = [])
@@ -52,23 +52,28 @@ class BookingsTable extends Table
         $this->belongsTo('Users', [
             'foreignKey' => 'user_id',
         ]);
-        $this->belongsTo('Insurances', [
-            'foreignKey' => 'insurance_id',
-        ]);
         $this->belongsTo('Hotels', [
             'foreignKey' => 'hotel_id',
         ]);
         $this->belongsTo('CarRentals', [
             'foreignKey' => 'car_rental_id',
         ]);
+        $this->belongsTo('Insurances', [
+            'foreignKey' => 'insurance_id',
+        ]);
         $this->belongsTo('Translations', [
             'foreignKey' => 'translation_id',
         ]);
-        $this->belongsTo('Flights', [
-            'foreignKey' => 'flight_id',
+        $this->belongsTo('Payments', [
+            'foreignKey' => 'payment_id',
         ]);
-        $this->hasMany('Payments', [
+        $this->belongsTo('TravelDeals', [
+            'foreignKey' => 'travel_deal_id',
+        ]);
+        $this->belongsToMany('Flights', [
             'foreignKey' => 'booking_id',
+            'targetForeignKey' => 'flight_id',
+            'joinTable' => 'bookings_flights',
         ]);
     }
 
@@ -98,10 +103,6 @@ class BookingsTable extends Table
             ->allowEmptyString('destination');
 
         $validator
-            ->integer('insurance_id')
-            ->allowEmptyString('insurance_id');
-
-        $validator
             ->integer('hotel_id')
             ->allowEmptyString('hotel_id');
 
@@ -110,12 +111,28 @@ class BookingsTable extends Table
             ->allowEmptyString('car_rental_id');
 
         $validator
+            ->integer('insurance_id')
+            ->allowEmptyString('insurance_id');
+
+        $validator
             ->integer('translation_id')
             ->allowEmptyString('translation_id');
 
         $validator
-            ->integer('flight_id')
-            ->allowEmptyString('flight_id');
+            ->integer('payment_id')
+            ->allowEmptyString('payment_id');
+
+        $validator
+            ->integer('travel_deal_id')
+            ->allowEmptyString('travel_deal_id');
+
+        $validator
+            ->decimal('total_price')
+            ->allowEmptyString('total_price');
+
+        $validator
+            ->boolean('booking_status')
+            ->allowEmptyString('booking_status');
 
         return $validator;
     }
@@ -130,11 +147,12 @@ class BookingsTable extends Table
     public function buildRules(RulesChecker $rules): RulesChecker
     {
         $rules->add($rules->existsIn(['user_id'], 'Users'), ['errorField' => 'user_id']);
-        $rules->add($rules->existsIn(['insurance_id'], 'Insurances'), ['errorField' => 'insurance_id']);
         $rules->add($rules->existsIn(['hotel_id'], 'Hotels'), ['errorField' => 'hotel_id']);
         $rules->add($rules->existsIn(['car_rental_id'], 'CarRentals'), ['errorField' => 'car_rental_id']);
+        $rules->add($rules->existsIn(['insurance_id'], 'Insurances'), ['errorField' => 'insurance_id']);
         $rules->add($rules->existsIn(['translation_id'], 'Translations'), ['errorField' => 'translation_id']);
-        $rules->add($rules->existsIn(['flight_id'], 'Flights'), ['errorField' => 'flight_id']);
+        $rules->add($rules->existsIn(['payment_id'], 'Payments'), ['errorField' => 'payment_id']);
+        $rules->add($rules->existsIn(['travel_deal_id'], 'TravelDeals'), ['errorField' => 'travel_deal_id']);
 
         return $rules;
     }

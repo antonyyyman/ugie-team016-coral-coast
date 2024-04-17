@@ -28,9 +28,9 @@
                     echo $this->Form->control('total_price');
                     echo $this->Form->control('insurance_id', ['options' => $insurances, 'empty' => true]);
                     echo $this->Form->control('hotel_id', ['options' => $hotels, 'empty' => true]);
+                    echo $this->Form->control('cruise_id');
                     echo $this->Form->control('car_rental_id', ['options' => $carRentals, 'empty' => true]);
                     echo $this->Form->control('translation_id', ['options' => $translations, 'empty' => true]);
-                    echo $this->Form->control('flight_id', ['options' => $flights, 'empty' => true]);
                 ?>
             </fieldset>
             <?= $this->Form->button(__('Submit')) ?>

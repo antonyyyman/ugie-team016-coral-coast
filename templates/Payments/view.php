@@ -19,10 +19,6 @@
             <h3><?= h($payment->id) ?></h3>
             <table>
                 <tr>
-                    <th><?= __('Booking') ?></th>
-                    <td><?= $payment->hasValue('booking') ? $this->Html->link($payment->booking->id, ['controller' => 'Bookings', 'action' => 'view', $payment->booking->id]) : '' ?></td>
-                </tr>
-                <tr>
                     <th><?= __('Payment Method') ?></th>
                     <td><?= h($payment->payment_method) ?></td>
                 </tr>

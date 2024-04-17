@@ -18,7 +18,6 @@
             <fieldset>
                 <legend><?= __('Add Payment') ?></legend>
                 <?php
-                    echo $this->Form->control('booking_id', ['options' => $bookings, 'empty' => true]);
                     echo $this->Form->control('amount');
                     echo $this->Form->control('payment_method');
                     echo $this->Form->control('status');

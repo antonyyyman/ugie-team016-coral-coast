@@ -41,7 +41,7 @@ class CarRentalsTable extends Table
         parent::initialize($config);
 
         $this->setTable('car_rentals');
-        $this->setDisplayField('id');
+        $this->setDisplayField('plate');
         $this->setPrimaryKey('id');
 
         $this->hasMany('Bookings', [
