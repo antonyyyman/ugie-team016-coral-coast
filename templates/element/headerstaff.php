@@ -8,11 +8,11 @@
             </div>
             <div id="menu" class="col-lg-6 col-md-9 d-none d-md-block navs">
                 <ul>
-                <li><a href="/team016-app_fit3047/pages/home">Home</a></li>
-                    <li><a href="/team016-app_fit3047/bookings">Bookings</a></li>
-                    <li><a href="/team016-app_fit3047/flights">Flights</a></li>
-                    <li><a href="/team016-app_fit3047/hotels">Hotels</a></li>
-                    <li><a href="/team016-app_fit3047/contact-forms">Inquiries</a></li>
+                <li><a href=<?= $this->Url->build(['controller' => 'Dashboard', 'action' => 'index'])?>>Home</a></li>
+                    <li><a href=<?= $this->Url->build(['controller' =>'Bookings', 'action' => 'index'])?>>Bookings</a></li>
+                    <li><a href="<?= $this->Url->build(['controller' => 'Flights', 'action' => 'index'])?>">Flights</a></li>
+                    <li><a href=<?= $this->Url->build(['controller' => 'Hotels', 'action' => 'index'])?>>Hotels</a></li>
+                    <li><a href="<?= $this->Url->build(['controller' => 'ContactForms', 'action' => 'index'])?>">Enquiries</a></li>
                     <li><a href="/team016-app_fit3047/payments">Payments</a></li>
                 </ul>
             </div>
