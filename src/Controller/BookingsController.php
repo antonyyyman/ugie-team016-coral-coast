@@ -3,6 +3,8 @@ declare(strict_types=1);
 
 namespace App\Controller;
 
+use Cake\Mailer\Mailer;
+
 /**
  * Bookings Controller
  *
@@ -147,4 +149,93 @@ class BookingsController extends AppController
 
         return $this->redirect(['action' => 'index']);
     }
+
+
+
+//    public function cancel($id = null)
+//    {
+//        $this->request->allowMethod(['post']);
+//
+//        $booking = $this->Bookings->get($id, [
+//            'contain' => ['Users'],
+//            'fields' => ['id', 'start_date', 'Users.email', 'booking_status']
+//        ]);
+//
+//        if ($this->request->is('post')) {
+//            $cancelReason = $this->request->getData('cancel_reason');
+////            $cancelLimit = new \DateTime($booking->start_date->format('Y-m-d'));
+//            if ($booking->start_date) {
+//                $cancelLimit = new \DateTime($booking->start_date->format('Y-m-d'));
+//                $cancelLimit->modify('-2 weeks');
+//            } else {
+//                $this->Flash->error(__('Cannot cancel the booking as the start date is missing.'));
+//                return $this->redirect(['action' => 'index']);
+//            }
+//            $cancelLimit->modify('-2 weeks');
+//            if (new \DateTime() < $cancelLimit) {
+//                $booking->booking_status = false;
+//                if ($this->Bookings->save($booking)) {
+//                    $mailer = new Mailer('default');
+//                    $mailer->setTo($booking->user->email)
+//                        ->setSubject('Booking Cancellation Notice')
+//                        ->setEmailFormat('text')
+//                        ->deliver("Your booking on " . $booking->start_date->format('Y-m-d') . " has been cancelled. Reason: " . $cancelReason);
+//
+//                    $this->Flash->success(__('Your booking has been cancelled.'));
+//                } else {
+//                    $this->Flash->error(__('Unable to cancel your booking.'));
+//                }
+//            } else {
+//                $this->Flash->error(__('Bookings can only be cancelled up to 2 weeks in advance.'));
+//            }
+//        }
+//
+//        return $this->redirect(['action' => 'index']);
+//    }
+
+    public function cancel($id = null)
+    {
+        $this->request->allowMethod(['post', 'get']); // 允许GET来显示表单，POST用于处理表单提交
+
+        $booking = $this->Bookings->get($id, [
+            'contain' => ['Users'],
+            'fields' => ['id', 'start_date', 'Users.email', 'booking_status']
+        ]);
+
+        if ($this->request->is('post')) {
+            $cancelReason = $this->request->getData('cancel_reason');
+            $customReason = $this->request->getData('custom_reason');
+            $actualReason = $cancelReason === 'Others' ? $customReason : $cancelReason;
+
+            if ($booking->start_date) {
+                $cancelLimit = new \DateTime($booking->start_date->format('Y-m-d'));
+                $cancelLimit->modify('-2 weeks');
+                if (new \DateTime() < $cancelLimit) {
+                    $booking->booking_status = false;
+                    if ($this->Bookings->save($booking)) {
+                        $mailer = new Mailer('default');
+                        $mailer->setTo($booking->user->email)
+                            ->setSubject('Booking Cancellation Notice')
+                            ->setEmailFormat('text')
+                            ->deliver("Your booking on " . $booking->start_date->format('Y-m-d') . " has been cancelled. Reason: " . $actualReason);
+
+                        $this->Flash->success(__('Your booking has been cancelled.'));
+                        return $this->redirect(['action' => 'index']);
+                    } else {
+                        $this->Flash->error(__('Unable to cancel your booking.'));
+                    }
+                } else {
+                    $this->Flash->error(__('Bookings can only be cancelled up to 2 weeks in advance.'));
+                }
+            } else {
+                $this->Flash->error(__('Cannot cancel the booking as the start date is missing.'));
+            }
+        } else {
+            // GET 请求时，渲染表单
+            $this->set(compact('booking'));
+            $this->set('_serialize', ['booking']);
+        }
+    }
+
+
 }

@@ -74,6 +74,13 @@
                     <td class="actions">
                         <?= $this->Html->link(__('View'), ['action' => 'view', $booking->id]) ?>
                         <?= $this->Html->link(__('Edit'), ['action' => 'edit', $booking->id]) ?>
+
+                        <?= $this->Html->link(
+                            __('Cancel'),
+                            ['action' => 'cancel', $booking->id],
+                            ['confirm' => __('Are you sure you want to cancel this booking? This will only mark the booking status as cancelled, not to be removed from the list.')]
+                        ) ?>
+
                         <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $booking->id], ['confirm' => __('Are you sure you want to delete # {0}?', $booking->id)]) ?>
                     </td>
                 </tr>
