@@ -96,6 +96,9 @@ class ContactFormsController extends AppController
     public function edit($id = null)
     {
         $contactForm = $this->ContactForms->get($id, contain: []);
+        $requestNatureOptions = $this->ContactForms->getRequestNatureOptions();
+        $this->set(compact('contactForm'));
+        $this->set(compact('contactForm', 'requestNatureOptions'));
         if ($this->request->is(['patch', 'post', 'put'])) {
             $contactForm = $this->ContactForms->patchEntity($contactForm, $this->request->getData());
             if ($this->ContactForms->save($contactForm)) {
@@ -105,7 +108,7 @@ class ContactFormsController extends AppController
             }
             $this->Flash->error(__('The contact form could not be saved. Please, try again.'));
         }
-        $this->set(compact('contactForm'));
+
     }
 
     /**

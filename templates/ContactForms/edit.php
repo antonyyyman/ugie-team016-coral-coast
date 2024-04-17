@@ -26,8 +26,13 @@
                     echo $this->Form->control('phone_number');
                     echo $this->Form->control('first_name');
                     echo $this->Form->control('last_name');
+                    echo $this->Form->control('query_nature', [
+                        'type' => 'select',
+                        'options' => $requestNatureOptions,
+                        'empty' => 'Please select...',
+                        'required' => true
+                    ]);
                     echo $this->Form->control('query');
-                    echo $this->Form->control('query_nature');
                 ?>
             </fieldset>
             <?= $this->Form->button(__('Submit')) ?>

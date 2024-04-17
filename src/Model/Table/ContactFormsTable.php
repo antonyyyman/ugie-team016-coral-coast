@@ -94,9 +94,9 @@ class ContactFormsTable extends Table
             ->notEmptyString('query');
 
         $validator
-            ->requirePresence('request_nature', 'create')
-            ->notEmptyString('request_nature')
-            ->add('request_nature', 'inList', [
+            ->requirePresence('query_nature', 'create')
+            ->notEmptyString('query_nature')
+            ->add('query_nature', 'inList', [
             'rule' => ['inList', array_keys($this->getRequestNatureOptions())],
             'message' => 'Please select a valid request nature.'
             ]);

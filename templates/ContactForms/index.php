@@ -34,7 +34,7 @@
                     <td><?= h($contactForm->query) ?></td>
                     <td><?= h($contactForm->created) ?></td>
                     <td><?= h($contactForm->modified) ?></td>
-                    <td><?= h($contactForm->request_nature) ?></td>
+                    <td><?= h($contactForm->query_nature) ?></td>
                     <td class="actions">
                         <?= $this->Html->link(__('View'), ['action' => 'view', $contactForm->id]) ?>
                         <?= $this->Html->link(__('Edit'), ['action' => 'edit', $contactForm->id]) ?>

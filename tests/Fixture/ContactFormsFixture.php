@@ -27,7 +27,7 @@ class ContactFormsFixture extends TestFixture
                 'query' => 'Lorem ipsum dolor sit amet',
                 'created' => 1713245762,
                 'modified' => 1713245762,
-                'request_nature' => 'Lorem ipsum dolor sit amet',
+                'query_nature' => 'Lorem ipsum dolor sit amet',
             ],
         ];
         parent::init();
