@@ -97,4 +97,17 @@ class User extends Entity
 
         return $password;
     }
+
+
+    /**
+     * Generate User information string of a user
+     *
+     * @return string User info string
+     * @see \App\Model\Entity\User::$user_info_string
+     */
+    protected function _getUserInfoString(): string
+    {
+        return $this->first_name . ' ' . $this->last_name . ' (Email: ' . $this->email . ', Phone: ' . $this->phone_number . ')';
+    }
+
 }
