@@ -60,23 +60,23 @@ class ContactFormsController extends AppController
         if ($this->request->is('post')) {
             $contactForm = $this->ContactForms->patchEntity($contactForm, $this->request->getData());
             if ($this->ContactForms->save($contactForm)) {
-                $mailer = new Mailer('default');
-                $mailer
-                ->setEmailFormat('html')
-                ->setTo($contactForm->email)
-                ->setFrom(Configure::read('ContactFormMail.from'))
-                ->viewBuilder()
-                    ->setTemplate('contact_forms');
+                // $mailer = new Mailer('default');
+                // $mailer
+                // ->setEmailFormat('html')
+                // ->setTo($contactForm->email)
+                // ->setFrom(Configure::read('ContactFormMail.from'))
+                // ->viewBuilder()
+                //     ->setTemplate('contact_forms');
 
-                $mailer->setViewVars([
-                    'query' => $contactForm->query,
-                    'first_name' => $contactForm->first_name,
-                    'email' => $contactForm->email,
-                    'created' => $contactForm->created,
-                    'id' => $contactForm->id
-                ]);
+                // $mailer->setViewVars([
+                //     'query' => $contactForm->query,
+                //     'first_name' => $contactForm->first_name,
+                //     'email' => $contactForm->email,
+                //     'created' => $contactForm->created,
+                //     'id' => $contactForm->id
+                // ]);
 
-                $mailer->deliver();
+                // $mailer->deliver();
     
                 $this->Flash->success(__('The contact form has been saved.'));
                 return $this->redirect(['action' => 'index']);
