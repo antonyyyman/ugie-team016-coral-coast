@@ -20,7 +20,7 @@ class HotelsController extends AppController
      {
          parent::initialize();
          $this->loadComponent('Authentication.Authentication');
-         $this->Authentication->allowUnauthenticated(['add']);
+         $this->Authentication->allowUnauthenticated(['index']);
      }
     public function index()
     {
