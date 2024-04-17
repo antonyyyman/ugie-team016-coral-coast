@@ -10,7 +10,7 @@
                 <ul>
                 <li><a href=<?= $this->Url->build(['controller' => 'Dashboard', 'action' => 'index'])?>>Dashboard</a></li>
                     <li><a href=<?= $this->Url->build(['controller' =>'Bookings', 'action' => 'index'])?>>Bookings</a></li>
-                    <li><a href="<?= $this->Url->build(['controller' => 'Flights', 'action' => 'index'])?>">Flights</a></li>
+                    <li><a href=<?= $this->Url->build(['controller' => 'Flights', 'action' => 'index'])?>>Flights</a></li>
                     <li><a href=<?= $this->Url->build(['controller' => 'Hotels', 'action' => 'index'])?>>Hotels</a></li>
                     <li><a href=<?= $this->Url->build(['controller' => 'Payments', 'action' => 'index'])?>>Payments</a></li>
                 </ul>
