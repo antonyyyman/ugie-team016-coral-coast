@@ -41,7 +41,7 @@ class TranslationsTable extends Table
         parent::initialize($config);
 
         $this->setTable('translations');
-        $this->setDisplayField('id');
+        $this->setDisplayField('description');
         $this->setPrimaryKey('id');
 
         $this->hasMany('Bookings', [

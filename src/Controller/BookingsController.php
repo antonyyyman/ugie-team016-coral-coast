@@ -87,7 +87,7 @@ class BookingsController extends AppController
 
             $booking = $this->Bookings->patchEntity($booking, $this->request->getData());
             if ($this->Bookings->save($booking)) {
-                $this->Flash->success(__('The booking has been saved.'));
+                $this->Flash->success(__('The booking has been saved. Reference: ' . $booking->id));
 
                 return $this->redirect(['action' => 'index']);
             }
@@ -149,49 +149,6 @@ class BookingsController extends AppController
 
         return $this->redirect(['action' => 'index']);
     }
-
-
-
-//    public function cancel($id = null)
-//    {
-//        $this->request->allowMethod(['post']);
-//
-//        $booking = $this->Bookings->get($id, [
-//            'contain' => ['Users'],
-//            'fields' => ['id', 'start_date', 'Users.email', 'booking_status']
-//        ]);
-//
-//        if ($this->request->is('post')) {
-//            $cancelReason = $this->request->getData('cancel_reason');
-////            $cancelLimit = new \DateTime($booking->start_date->format('Y-m-d'));
-//            if ($booking->start_date) {
-//                $cancelLimit = new \DateTime($booking->start_date->format('Y-m-d'));
-//                $cancelLimit->modify('-2 weeks');
-//            } else {
-//                $this->Flash->error(__('Cannot cancel the booking as the start date is missing.'));
-//                return $this->redirect(['action' => 'index']);
-//            }
-//            $cancelLimit->modify('-2 weeks');
-//            if (new \DateTime() < $cancelLimit) {
-//                $booking->booking_status = false;
-//                if ($this->Bookings->save($booking)) {
-//                    $mailer = new Mailer('default');
-//                    $mailer->setTo($booking->user->email)
-//                        ->setSubject('Booking Cancellation Notice')
-//                        ->setEmailFormat('text')
-//                        ->deliver("Your booking on " . $booking->start_date->format('Y-m-d') . " has been cancelled. Reason: " . $cancelReason);
-//
-//                    $this->Flash->success(__('Your booking has been cancelled.'));
-//                } else {
-//                    $this->Flash->error(__('Unable to cancel your booking.'));
-//                }
-//            } else {
-//                $this->Flash->error(__('Bookings can only be cancelled up to 2 weeks in advance.'));
-//            }
-//        }
-//
-//        return $this->redirect(['action' => 'index']);
-//    }
 
     public function cancel($id = null)
     {

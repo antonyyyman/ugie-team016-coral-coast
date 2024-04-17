@@ -44,7 +44,7 @@ class TravelDealsTable extends Table
         parent::initialize($config);
 
         $this->setTable('travel_deals');
-        $this->setDisplayField('id');
+        $this->setDisplayField('description');
         $this->setPrimaryKey('id');
 
         $this->belongsTo('Insurances', [

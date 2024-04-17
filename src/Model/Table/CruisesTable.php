@@ -40,7 +40,7 @@ class CruisesTable extends Table
         parent::initialize($config);
 
         $this->setTable('cruises');
-        $this->setDisplayField('id');
+        $this->setDisplayField('description');
         $this->setPrimaryKey('id');
 
         $this->hasMany('TravelDeals', [
