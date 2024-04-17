@@ -36,7 +36,12 @@ use Cake\Http\Exception\NotFoundException;
             <h1>
             CORAL COAST TRAVEL AGENCY
             </h1>
-        </div>
+        </div>  
     </main>
 </body>
+
+<footer>
+        <?= $this->element('footer') ?>
+</footer>
+
 </html>
