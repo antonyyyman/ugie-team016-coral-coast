@@ -13,12 +13,12 @@
     </aside>
     <div class="column column-80">
         <div class="contactForms form content">
-            <?= $this->Form->create($contactForm) ?>
+            <?= $this->Form->create($contactForm, ['onsubmit' => 'return validatePhoneNumber()']) ?>
             <fieldset>
                 <legend><?= __('Add Contact Form') ?></legend>
                 <?php
                     echo $this->Form->control('email');
-                    echo $this->Form->control('phone_number');
+                    echo $this->Form->control('phone_number', ['label' => 'Phone Number', 'id' => 'phone_number']);
                     echo $this->Form->control('first_name');
                     echo $this->Form->control('last_name');
                     echo $this->Form->control('request_nature', [
@@ -35,3 +35,14 @@
         </div>
     </div>
 </div>
+
+<script>
+function validatePhoneNumber() {
+    var phoneNumber = document.getElementById('phone_number').value;
+    if (!phoneNumber.startsWith('04') || phoneNumber.length !== 10) {
+        alert('Phone number must start with "04" and be exactly 10 digits long.');
+        return false; // Prevent form submission
+    }
+    return true; // Allow form submission
+}
+</script>
