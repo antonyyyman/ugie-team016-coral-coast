@@ -17,7 +17,7 @@
 <div class="container-fluid">
     <div class="row">
         <?php foreach ($tables as $table):?>
-            <?php if (($table!= 'bookings_flights') and ($table!= 'flight_travel_deals')):?>
+            <?php if (($table!= 'bookings_flights') and ($table!= 'flight_travel_deals') and ($table != 'phinxlog')):?>
                 <div class="col-md-4">
                     <div class="card mb-4">
                         <div class="card-header">
