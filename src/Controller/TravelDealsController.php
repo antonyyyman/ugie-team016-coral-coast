@@ -10,6 +10,13 @@ namespace App\Controller;
  */
 class TravelDealsController extends AppController
 {
+
+    public function initialize(): void
+    {
+        parent::initialize();
+        $this->loadComponent('Authentication.Authentication');
+        $this->Authentication->allowUnauthenticated(['index']);
+    }
     /**
      * Index method
      *

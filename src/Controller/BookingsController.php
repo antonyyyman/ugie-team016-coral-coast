@@ -63,7 +63,7 @@ class BookingsController extends AppController
      */
     public function view($id = null)
     {
-        $booking = $this->Bookings->get($id, contain: ['Users', 'Insurances', 'Hotels', 'CarRentals', 'Translations', 'Flights', 'Payments']);
+        $booking = $this->Bookings->get($id, contain: ['Users', 'Payments', 'Insurances', 'Hotels', 'CarRentals', 'Translations', 'Flights']);
         $this->set(compact('booking'));
     }
 
@@ -94,12 +94,13 @@ class BookingsController extends AppController
             $this->Flash->error(__('The booking could not be saved. Please, try again.'));
         }
         $users = $this->Bookings->Users->find('list', limit: 200)->all();
+        $payments = $this->Bookings->Payments->find('list', limit: 200)->all();
         $insurances = $this->Bookings->Insurances->find('list', limit: 200)->all();
         $hotels = $this->Bookings->Hotels->find('list', limit: 200)->all();
         $carRentals = $this->Bookings->CarRentals->find('list', limit: 200)->all();
         $translations = $this->Bookings->Translations->find('list', limit: 200)->all();
         $flights = $this->Bookings->Flights->find('list', limit: 200)->all();
-        $this->set(compact('booking', 'users', 'insurances', 'hotels', 'carRentals', 'translations', 'flights'));
+        $this->set(compact('booking', 'users', 'payments', 'insurances', 'hotels', 'carRentals', 'translations', 'flights'));
     }
 
     /**
@@ -111,7 +112,7 @@ class BookingsController extends AppController
      */
     public function edit($id = null)
     {
-        $booking = $this->Bookings->get($id, contain: []);
+        $booking = $this->Bookings->get($id, contain: ['Flights']);
         if ($this->request->is(['patch', 'post', 'put'])) {
             $booking = $this->Bookings->patchEntity($booking, $this->request->getData());
             if ($this->Bookings->save($booking)) {
@@ -122,12 +123,13 @@ class BookingsController extends AppController
             $this->Flash->error(__('The booking could not be saved. Please, try again.'));
         }
         $users = $this->Bookings->Users->find('list', limit: 200)->all();
+        $payments = $this->Bookings->Payments->find('list', limit: 200)->all();
         $insurances = $this->Bookings->Insurances->find('list', limit: 200)->all();
         $hotels = $this->Bookings->Hotels->find('list', limit: 200)->all();
         $carRentals = $this->Bookings->CarRentals->find('list', limit: 200)->all();
         $translations = $this->Bookings->Translations->find('list', limit: 200)->all();
         $flights = $this->Bookings->Flights->find('list', limit: 200)->all();
-        $this->set(compact('booking', 'users', 'insurances', 'hotels', 'carRentals', 'translations', 'flights'));
+        $this->set(compact('booking', 'users', 'payments', 'insurances', 'hotels', 'carRentals', 'translations', 'flights'));
     }
 
     /**

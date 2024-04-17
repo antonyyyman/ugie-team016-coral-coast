@@ -20,8 +20,8 @@ class TranslationsFixture extends TestFixture
         $this->records = [
             [
                 'id' => 1,
-                'from_language' => 'Lorem ipsum dolor sit amet',
-                'to_language' => 'Lorem ipsum dolor sit amet',
+                'language_from' => 'Lorem ipsum dolor sit amet',
+                'language_to' => 'Lorem ipsum dolor sit amet',
                 'description' => 'Lorem ipsum dolor sit amet',
                 'price' => 1.5,
             ],

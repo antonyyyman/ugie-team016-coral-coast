@@ -67,7 +67,6 @@ class PaymentsTable extends Table
 
         $validator
             ->scalar('status')
-            ->maxLength('status', 50)
             ->allowEmptyString('status');
 
         return $validator;

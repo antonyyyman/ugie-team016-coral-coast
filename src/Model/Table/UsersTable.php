@@ -46,9 +46,6 @@ class UsersTable extends Table
         $this->setPrimaryKey('id');
 
         $this->addBehavior('Timestamp');
-        // Adding the authenticate behaviour to check for missing columns in users table
-        $this->addBehavior('CanAuthenticate');
-
 
         $this->hasMany('Bookings', [
             'foreignKey' => 'user_id',
@@ -86,11 +83,6 @@ class UsersTable extends Table
             ->maxLength('password', 255)
             ->requirePresence('password', 'create')
             ->notEmptyString('password');
-
-        // Validate retyped password
-        $validator
-            ->requirePresence('password_confirm', 'create')
-            ->sameAs('password_confirm', 'password', 'Both passwords must match');
 
         $validator
             ->email('email')
