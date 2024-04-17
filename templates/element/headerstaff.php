@@ -8,18 +8,12 @@
             </div>
             <div id="menu" class="col-lg-6 col-md-9 d-none d-md-block navs">
                 <ul>
-                    <li><a href="/team016-app_fit3047/pages/home">Home</a></li>
-                    <li><a href="about_us.html">About Us</a></li>
-                    <li><a href="packages.html">Packages</a></li>
-                    <li><a href="destination.html">Destinations</a></li>
-                    <li><a href="blog.html">Blog</a></li>
-                    <li><a href="contact-us.html">Contact US</a></li>
-                    <li><a href="about_us.html">About Us</a></li>
-                    <li><a href="about_us.html">About Us</a></li>
-                    <li><a href="about_us.html">About Us</a></li>
-                    <li><a href="about_us.html">About Us</a></li>
-                    <li><a href="about_us.html">About Us</a></li>
-                    <li><a href="about_us.html">About Us</a></li>
+                <li><a href="/team016-app_fit3047/pages/home">Home</a></li>
+                    <li><a href="/team016-app_fit3047/bookings">Bookings</a></li>
+                    <li><a href="/team016-app_fit3047/flights">Flights</a></li>
+                    <li><a href="/team016-app_fit3047/hotels">Hotels</a></li>
+                    <li><a href="/team016-app_fit3047/contact-forms">Inquiries</a></li>
+                    <li><a href="/team016-app_fit3047/payments">Payments</a></li>
                 </ul>
             </div>
             <div class="col-md-3 d-none d-lg-block socila-link">
@@ -38,4 +32,4 @@
             ?>
             </div>
         </div>
-    </header>
+</header>

@@ -30,6 +30,10 @@ use Cake\Http\Exception\NotFoundException;
 </head>
 <body>
 
+<div class="row">
+            <?= $this->element('headerstaff') ?>
+    </div>
+
     <main class="main">
     <img alt="Plane booked through Coral Coast" src="https://www.forbes.com/advisor/wp-content/uploads/2021/03/traveling-based-on-fare-deals.jpg" width="100%" height="600px" />
         <div class="container text-center">

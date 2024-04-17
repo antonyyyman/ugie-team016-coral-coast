@@ -4,7 +4,22 @@
  * @var iterable<\App\Model\Entity\Booking> $bookings
  */
 ?>
-<div class="bookings index content">
+
+<head>
+<style>
+        body {
+            border: 1px solid #ccc; /* Border style */
+            /*padding: 20px; /* Padding around the content */
+        }
+    </style>
+</head>
+            
+    <div class="row">
+            <?= $this->element('headerstaff') ?>
+    </div> 
+
+
+<div class="bookings index content" style="padding-top: 10%">
     <?= $this->Html->link(__('New Booking'), ['action' => 'add'], ['class' => 'button float-right']) ?>
     <h3><?= __('Bookings') ?></h3>
 
@@ -99,3 +114,4 @@
         <p><?= $this->Paginator->counter(__('Page {{page}} of {{pages}}, showing {{current}} record(s) out of {{count}} total')) ?></p>
     </div>
 </div>
+
