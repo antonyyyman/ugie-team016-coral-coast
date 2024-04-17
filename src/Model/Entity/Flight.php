@@ -17,7 +17,6 @@ use Cake\ORM\Entity;
  * @property string|null $price
  *
  * @property \App\Model\Entity\Booking[] $bookings
- * @property \App\Model\Entity\FlightTravelDeal[] $flight_travel_deals
  * @property \App\Model\Entity\TravelDeal[] $travel_deals
  */
 class Flight extends Entity
@@ -39,7 +38,6 @@ class Flight extends Entity
         'arrival_date' => true,
         'price' => true,
         'bookings' => true,
-        'flight_travel_deals' => true,
         'travel_deals' => true,
     ];
 }

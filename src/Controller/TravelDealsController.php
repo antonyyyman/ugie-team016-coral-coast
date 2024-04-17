@@ -11,7 +11,6 @@ namespace App\Controller;
 class TravelDealsController extends AppController
 {
 
-
     public function initialize(): void
     {
         parent::initialize();

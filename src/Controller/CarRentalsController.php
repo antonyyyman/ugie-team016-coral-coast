@@ -24,7 +24,7 @@ class CarRentalsController extends AppController
 
      public function index()
     {
-        debug($this->ContactForms);
+        //debug($this->ContactForms);
 
         $query = $this->CarRentals->find();
         $carRentals = $this->paginate($query);

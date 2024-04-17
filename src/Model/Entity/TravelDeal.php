@@ -24,7 +24,6 @@ use Cake\ORM\Entity;
  * @property \App\Model\Entity\CarRental $car_rental
  * @property \App\Model\Entity\Translation $translation
  * @property \App\Model\Entity\Flight $flight
- * @property \App\Model\Entity\FlightTravelDeal[] $flight_travel_deals
  */
 class TravelDeal extends Entity
 {
@@ -52,6 +51,5 @@ class TravelDeal extends Entity
         'car_rental' => true,
         'translation' => true,
         'flight' => true,
-        'flight_travel_deals' => true,
     ];
 }
