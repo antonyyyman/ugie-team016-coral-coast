@@ -54,7 +54,8 @@ $this->assign('title', 'Login');
                 <hr class="hr-between-buttons">
 
                 <?= $this->Html->link('Register new user', ['controller' => 'Auth', 'action' => 'register'], ['class' => 'button button-clear']) ?>
-                <?= $this->Html->link('Go to Homepage', '/', ['class' => 'button button-clear']) ?>
+                <?= $this->Html->link('Go to Homepage', '/pages/home', ['class' => 'button button-clear']) ?>
+
             </div>
         </div>
     </div>
