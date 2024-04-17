@@ -40,7 +40,9 @@ use Cake\Http\Exception\NotFoundException;
             <h1>
             CORAL COAST TRAVEL AGENCY
             </h1>
-        </div>  
+
+            <h2><li><a href= <?= $this->Url->build(['controller' => 'ContactForms', 'action' => 'add'])?>>Enquire Here</a></li></h2>
+        </div>
     </main>
 </body>
 
