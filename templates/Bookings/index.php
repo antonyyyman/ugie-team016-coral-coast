@@ -5,18 +5,21 @@
  */
 ?>
 
+<head>
 <style>
-    .container {        
-        width: 100%;
-        max-width: none;
-        margin-left: 0px;
-        margin-right: 0px;
-        padding-left: 30px;
-        padding-right: 30px;
-    }
-</style>
+        body {
+            border: 1px solid #ccc; /* Border style */
+            /*padding: 20px; /* Padding around the content */
+        }
+    </style>
+</head>
+            
+    <div class="row">
+            <?= $this->element('headerstaff') ?>
+    </div> 
 
-<div class="bookings index content">
+
+<div class="bookings index content" style="padding-top: 10%">
     <?= $this->Html->link(__('New Booking'), ['action' => 'add'], ['class' => 'button float-right']) ?>
     <h3><?= __('Bookings') ?></h3>
 
@@ -111,3 +114,4 @@
         <p><?= $this->Paginator->counter(__('Page {{page}} of {{pages}}, showing {{current}} record(s) out of {{count}} total')) ?></p>
     </div>
 </div>
+

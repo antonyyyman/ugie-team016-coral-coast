@@ -4,7 +4,12 @@
  * @var iterable<\App\Model\Entity\User> $users
  */
 ?>
-<div class="users index content">
+
+<div class="row">
+            <?= $this->element('headerstaff') ?>
+</div>
+
+<div class="users index content" style="padding-top: 10%">
     <?= $this->Html->link(__('New User'), ['action' => 'add'], ['class' => 'button float-right']) ?>
     <h3><?= __('Users') ?></h3>
     <div class="table-responsive">

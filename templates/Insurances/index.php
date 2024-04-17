@@ -4,7 +4,12 @@
  * @var iterable<\App\Model\Entity\Insurance> $insurances
  */
 ?>
-<div class="insurances index content">
+
+<div class="row">
+            <?= $this->element('headerstaff') ?>
+</div> 
+
+<div class="insurances index content" style="padding-top: 10%">
     <?= $this->Html->link(__('New Insurance'), ['action' => 'add'], ['class' => 'button float-right']) ?>
     <h3><?= __('Insurances') ?></h3>
     <div class="table-responsive">

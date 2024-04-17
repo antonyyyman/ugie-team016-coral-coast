@@ -27,64 +27,42 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
     </title>
     <?= $this->Html->meta('icon') ?>
 
-    <?= $this->Html->css(['normalize.min', 'milligram.min', 'fonts', 'cake']) ?>
+    <?= $this->Html->css(['fontawsom-all.min','fonts','all.min','bootstrap.min','animate','cake','style']) ?>
 
     <?= $this->fetch('meta') ?>
     <?= $this->fetch('css') ?>
     <?= $this->fetch('script') ?>
+    
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Free Tour and Travel Website Tempalte | Smarteyeapps.com</title>
+    <link rel="shortcut icon" href="assets/images/fav.png" type="image/x-icon">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i&display=swap" rel="stylesheet">
+    <link rel="shortcut icon" href="assets/images/fav.jpg">
+    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="assets/css/all.min.css">
+    <link rel="stylesheet" href="assets/css/animate.css">
+    <link rel="stylesheet" href="assets/plugins/slider/css/owl.carousel.min.css">
+    <link rel="stylesheet" href="assets/plugins/slider/css/owl.theme.default.css">
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css" />
+
 </head>
 <body>
-<div style="position: fixed; top: 0; right: 0; margin: 10px;">
+</div> 
 
-</div>
-    <nav class="top-nav">
-        <div class="top-nav-title">
-            <a href="<?= $this->Url->build('/') ?>"><span>Cake</span>PHP</a>
-        </div>
-        <div class="top-nav-links">
-            <?= $this->Html->link('Dashboard', [
-                'controller' => 'Dashboard',
-//                'action' => 'index'
-            ], [])?>
-
-            <?= $this->Html->link('Users', [
-                'controller' => 'Users',
-                'action' => 'index'
-            ], [])?>
-
-            <?= $this->Html->link('Bookings', [
-                'controller' => 'Bookings',
-                'action' => 'index'
-            ], [])?>
-
-
-
-
-            |
-
-            <?php
-            if ($this->Identity->isLoggedIn()) {
-                echo $this->Html->link(
-                    'Logout',
-                    ['controller' => 'Auth', 'action' => 'logout']);
-//                    ['class' => 'button button-outline']);
-            } else{
-                echo $this->Html->link(
-                    'Log in',
-                    ['controller' => 'Auth', 'action' => 'login']);
-//                    ['class' => 'button button-outline']);
-            }
-            ?>
-
-        </div>
-    </nav>
     <main class="main">
         <div class="container">
             <?= $this->Flash->render() ?>
             <?= $this->fetch('content') ?>
         </div>
     </main>
-    <footer>
-    </footer>
+
+    
+    <script src="assets/js/jquery-3.2.1.min.js"></script>
+    <script src="assets/js/popper.min.js"></script>
+    <script src="assets/js/bootstrap.min.js"></script>
+    <script src="assets/plugins/scroll-fixed/jquery-scrolltofixed-min.js"></script>
+    <script src="assets/plugins/slider/js/owl.carousel.min.js"></script>
+    <script src="assets/js/script.js"></script>
 </body>
 </html>
