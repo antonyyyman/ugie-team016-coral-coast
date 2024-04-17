@@ -19,7 +19,8 @@ CREATE TABLE contact_forms(
     phone_number VARCHAR(15),
     first_name VARCHAR(50) NOT NULL,
     last_name VARCHAR(50) NOT NULL,
-    query VARCHAR(2000) NOT NULL,
+    request_nature ENUM('Booking request', 'Technical issues', 'Payment issues', 'General')
+    query VARCHAR(500) NOT NULL,
     created TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
     modified TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP NOT NULL,
     INDEX (email),

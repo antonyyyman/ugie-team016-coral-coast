@@ -3,16 +3,6 @@
  * @var \App\View\AppView $this
  * @var \App\Model\Entity\ContactForm $contactForm
  */
-
- $this->Html->scriptBlock("
-    document.addEventListener('DOMContentLoaded', function() {
-        var message = " . json_encode($this->Flash->render('flash', ['element' => 'success'])) . ";
-        if (message) {
-            alert(message);
-            window.location.href = '" . $this->Url->build(['controller' => 'Pages', 'action' => 'display', 'home']) . "';
-        }
-    });
-", ['block' => true]);
 ?>
 <div class="row">
     <aside class="column">
@@ -28,13 +18,19 @@
                 <legend><?= __('Add Contact Form') ?></legend>
                 <?php
                     echo $this->Form->control('email');
-                    echo $this->Form->control('phone_number', ['default' => null]);
+                    echo $this->Form->control('phone_number');
                     echo $this->Form->control('first_name');
                     echo $this->Form->control('last_name');
-                    echo $this->Form->control('query',['type' => 'textarea', 'style' => 'width: 100%; height: 300px; resize: none; overflow-y: auto;']);
+                    echo $this->Form->control('request_nature', [
+                        'type' => 'select',
+                        'options' => $requestNatureOptions,
+                        'empty' => 'Please select...',
+                        'required' => true
+                    ]);
+                    echo $this->Form->control('query');             
                 ?>
             </fieldset>
-            <?= $this->Form->button(__('Submit')) ?> All fields required unless marked optional
+            <?= $this->Form->button(__('Submit')) ?>
             <?= $this->Form->end() ?>
         </div>
     </div>
