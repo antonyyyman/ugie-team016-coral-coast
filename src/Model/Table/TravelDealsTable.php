@@ -65,6 +65,9 @@ class TravelDealsTable extends Table
         $this->belongsTo('Flights', [
             'foreignKey' => 'flight_id',
         ]);
+        $this->hasMany('FlightTravelDeals', [
+            'foreignKey' => 'travel_deal_id',
+        ]);
     }
 
     /**

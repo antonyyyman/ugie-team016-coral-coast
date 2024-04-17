@@ -70,6 +70,11 @@ class TravelDealsTable extends Table
             'targetForeignKey' => 'flight_id',
             'joinTable' => 'flights_travel_deals',
         ]);
+        $this->belongsToMany('Bookings', [
+            'foreignKey' => 'flight_id',
+            'targetForeignKey' => 'booking_id',
+            'joinTable' => 'bookings_flights',
+        ]);
     }
 
     /**
