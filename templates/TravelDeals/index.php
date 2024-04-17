@@ -4,7 +4,12 @@
  * @var iterable<\App\Model\Entity\TravelDeal> $travelDeals
  */
 ?>
-<div class="travelDeals index content">
+
+<div class="row">
+            <?= $this->element('headerstaff') ?>
+</div>
+
+<div class="travelDeals index content" style="padding-top: 10%">
     <?= $this->Html->link(__('New Travel Deal'), ['action' => 'add'], ['class' => 'button float-right']) ?>
     <h3><?= __('Travel Deals') ?></h3>
     <div class="table-responsive">

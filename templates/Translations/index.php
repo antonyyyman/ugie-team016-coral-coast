@@ -4,7 +4,12 @@
  * @var iterable<\App\Model\Entity\Translation> $translations
  */
 ?>
-<div class="translations index content">
+
+<div class="row">
+            <?= $this->element('headerstaff') ?>
+</div> 
+
+<div class="translations index content" style="padding-top: 10%">
     <?= $this->Html->link(__('New Translation'), ['action' => 'add'], ['class' => 'button float-right']) ?>
     <h3><?= __('Translations') ?></h3>
     <div class="table-responsive">
