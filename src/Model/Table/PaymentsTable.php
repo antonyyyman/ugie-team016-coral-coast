@@ -11,7 +11,7 @@ use Cake\Validation\Validator;
 /**
  * Payments Model
  *
- * @property \App\Model\Table\BookingsTable&\Cake\ORM\Association\BelongsTo $Bookings
+ * @property \App\Model\Table\BookingsTable&\Cake\ORM\Association\HasMany $Bookings
  *
  * @method \App\Model\Entity\Payment newEmptyEntity()
  * @method \App\Model\Entity\Payment newEntity(array $data, array $options = [])
@@ -43,8 +43,8 @@ class PaymentsTable extends Table
         $this->setDisplayField('id');
         $this->setPrimaryKey('id');
 
-        $this->belongsTo('Bookings', [
-            'foreignKey' => 'booking_id',
+        $this->hasMany('Bookings', [
+            'foreignKey' => 'payment_id',
         ]);
     }
 
@@ -57,16 +57,12 @@ class PaymentsTable extends Table
     public function validationDefault(Validator $validator): Validator
     {
         $validator
-            ->integer('booking_id')
-            ->allowEmptyString('booking_id');
-
-        $validator
             ->decimal('amount')
             ->allowEmptyString('amount');
 
         $validator
             ->scalar('payment_method')
-            ->maxLength('payment_method', 100)
+            ->maxLength('payment_method', 50)
             ->allowEmptyString('payment_method');
 
         $validator
@@ -75,19 +71,5 @@ class PaymentsTable extends Table
             ->allowEmptyString('status');
 
         return $validator;
-    }
-
-    /**
-     * Returns a rules checker object that will be used for validating
-     * application integrity.
-     *
-     * @param \Cake\ORM\RulesChecker $rules The rules object to be modified.
-     * @return \Cake\ORM\RulesChecker
-     */
-    public function buildRules(RulesChecker $rules): RulesChecker
-    {
-        $rules->add($rules->existsIn(['booking_id'], 'Bookings'), ['errorField' => 'booking_id']);
-
-        return $rules;
     }
 }

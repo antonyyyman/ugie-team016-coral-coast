@@ -17,8 +17,7 @@ class CruisesController extends AppController
      */
     public function index()
     {
-        $query = $this->Cruises->find()
-            ->contain(['Hotels']);
+        $query = $this->Cruises->find();
         $cruises = $this->paginate($query);
 
         $this->set(compact('cruises'));
@@ -33,7 +32,7 @@ class CruisesController extends AppController
      */
     public function view($id = null)
     {
-        $cruise = $this->Cruises->get($id, contain: ['Hotels']);
+        $cruise = $this->Cruises->get($id, contain: ['TravelDeals']);
         $this->set(compact('cruise'));
     }
 
@@ -54,8 +53,7 @@ class CruisesController extends AppController
             }
             $this->Flash->error(__('The cruise could not be saved. Please, try again.'));
         }
-        $hotels = $this->Cruises->Hotels->find('list', limit: 200)->all();
-        $this->set(compact('cruise', 'hotels'));
+        $this->set(compact('cruise'));
     }
 
     /**
@@ -77,8 +75,7 @@ class CruisesController extends AppController
             }
             $this->Flash->error(__('The cruise could not be saved. Please, try again.'));
         }
-        $hotels = $this->Cruises->Hotels->find('list', limit: 200)->all();
-        $this->set(compact('cruise', 'hotels'));
+        $this->set(compact('cruise'));
     }
 
     /**

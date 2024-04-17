@@ -24,7 +24,6 @@ class HotelsControllerTest extends TestCase
     protected array $fixtures = [
         'app.Hotels',
         'app.Bookings',
-        'app.Cruises',
         'app.TravelDeals',
     ];
 

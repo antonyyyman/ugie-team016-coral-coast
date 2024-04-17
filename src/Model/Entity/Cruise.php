@@ -12,9 +12,8 @@ use Cake\ORM\Entity;
  * @property string|null $company
  * @property string|null $description
  * @property string|null $price
- * @property int|null $hotel_id
  *
- * @property \App\Model\Entity\Hotel $hotel
+ * @property \App\Model\Entity\TravelDeal[] $travel_deals
  */
 class Cruise extends Entity
 {
@@ -31,7 +30,6 @@ class Cruise extends Entity
         'company' => true,
         'description' => true,
         'price' => true,
-        'hotel_id' => true,
-        'hotel' => true,
+        'travel_deals' => true,
     ];
 }

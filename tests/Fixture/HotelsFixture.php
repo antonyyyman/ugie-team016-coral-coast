@@ -22,6 +22,8 @@ class HotelsFixture extends TestFixture
                 'id' => 1,
                 'name' => 'Lorem ipsum dolor sit amet',
                 'location' => 'Lorem ipsum dolor sit amet',
+                'telephone' => 'Lorem ipsum dolor sit amet',
+                'price' => 1.5,
             ],
         ];
         parent::init();

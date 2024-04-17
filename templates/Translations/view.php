@@ -20,11 +20,11 @@
             <table>
                 <tr>
                     <th><?= __('From Language') ?></th>
-                    <td><?= h($translation->from_language) ?></td>
+                    <td><?= h($translation->language_from) ?></td>
                 </tr>
                 <tr>
                     <th><?= __('To Language') ?></th>
-                    <td><?= h($translation->to_language) ?></td>
+                    <td><?= h($translation->language_to) ?></td>
                 </tr>
                 <tr>
                     <th><?= __('Description') ?></th>

@@ -32,11 +32,26 @@
                     echo $this->Form->control('start_date', ['empty' => true]);
                     echo $this->Form->control('end_date', ['empty' => true]);
                     echo $this->Form->control('destination');
-                    echo $this->Form->control('insurance_id', ['options' => $insurances, 'empty' => true]);
+
                     echo $this->Form->control('hotel_id', ['options' => $hotels, 'empty' => true]);
                     echo $this->Form->control('car_rental_id', ['options' => $carRentals, 'empty' => true]);
+                    echo $this->Form->control('insurance_id', ['options' => $insurances, 'empty' => true]);
                     echo $this->Form->control('translation_id', ['options' => $translations, 'empty' => true]);
-                    echo $this->Form->control('flight_id', ['options' => $flights, 'empty' => true]);
+                    echo $this->Form->control('travel_deal_id');
+
+                    echo $this->Form->control('total_price');
+                    echo $this->Form->control('payment_id');
+
+                    $bookingStatus = $booking['booking_status'] ?? false;
+                    if ($bookingStatus == true) {
+                        echo 'Booking Active!';
+                    }
+                    else {
+                        echo 'Booking Cancelled!';
+                    }
+                    echo '   Click checkbox below to change booking status';
+
+                    echo $this->Form->control('booking_status');
                 ?>
             </fieldset>
             <?= $this->Form->button(__('Submit')) ?>

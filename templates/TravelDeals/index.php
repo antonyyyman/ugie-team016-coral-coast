@@ -18,9 +18,9 @@
                     <th><?= $this->Paginator->sort('total_price') ?></th>
                     <th><?= $this->Paginator->sort('insurance_id') ?></th>
                     <th><?= $this->Paginator->sort('hotel_id') ?></th>
+                    <th><?= $this->Paginator->sort('cruise_id') ?></th>
                     <th><?= $this->Paginator->sort('car_rental_id') ?></th>
                     <th><?= $this->Paginator->sort('translation_id') ?></th>
-                    <th><?= $this->Paginator->sort('flight_id') ?></th>
                     <th class="actions"><?= __('Actions') ?></th>
                 </tr>
             </thead>
@@ -32,11 +32,11 @@
                     <td><?= h($travelDeal->end_date) ?></td>
                     <td><?= h($travelDeal->description) ?></td>
                     <td><?= $travelDeal->total_price === null ? '' : $this->Number->format($travelDeal->total_price) ?></td>
-                    <td><?= $travelDeal->hasValue('insurance') ? $this->Html->link($travelDeal->insurance->id, ['controller' => 'Insurances', 'action' => 'view', $travelDeal->insurance->id]) : '' ?></td>
-                    <td><?= $travelDeal->hasValue('hotel') ? $this->Html->link($travelDeal->hotel->name, ['controller' => 'Hotels', 'action' => 'view', $travelDeal->hotel->id]) : '' ?></td>
-                    <td><?= $travelDeal->hasValue('car_rental') ? $this->Html->link($travelDeal->car_rental->id, ['controller' => 'CarRentals', 'action' => 'view', $travelDeal->car_rental->id]) : '' ?></td>
-                    <td><?= $travelDeal->hasValue('translation') ? $this->Html->link($travelDeal->translation->id, ['controller' => 'Translations', 'action' => 'view', $travelDeal->translation->id]) : '' ?></td>
-                    <td><?= $travelDeal->hasValue('flight') ? $this->Html->link($travelDeal->flight->id, ['controller' => 'Flights', 'action' => 'view', $travelDeal->flight->id]) : '' ?></td>
+                    <td><?= $travelDeal->hasValue('insurance') ? $this->Html->link($travelDeal->insurance->id, ['controller' => 'Insurances', 'action' => 'view', $travelDeal->insurance->id]) : 'N/A' ?></td>
+                    <td><?= $travelDeal->hasValue('hotel') ? $this->Html->link($travelDeal->hotel->name, ['controller' => 'Hotels', 'action' => 'view', $travelDeal->hotel->id]) : 'N/A' ?></td>
+                    <td><?= $travelDeal->hasValue('cruise') ? $this->Html->link($travelDeal->cruise->description, ['controller' => 'Cruises', 'action' => 'view', $travelDeal->cruise->id]) : 'N/A' ?></td>
+                    <td><?= $travelDeal->hasValue('car_rental') ? $this->Html->link($travelDeal->car_rental->plate, ['controller' => 'CarRentals', 'action' => 'view', $travelDeal->car_rental->id]) : 'N/A' ?></td>
+                    <td><?= $travelDeal->hasValue('translation') ? $this->Html->link($travelDeal->translation->id, ['controller' => 'Translations', 'action' => 'view', $travelDeal->translation->id]) : 'N/A' ?></td>
                     <td class="actions">
                         <?= $this->Html->link(__('View'), ['action' => 'view', $travelDeal->id]) ?>
                         <?= $this->Html->link(__('Edit'), ['action' => 'edit', $travelDeal->id]) ?>

@@ -18,7 +18,7 @@ class TravelDealsController extends AppController
     public function index()
     {
         $query = $this->TravelDeals->find()
-            ->contain(['Insurances', 'Hotels', 'CarRentals', 'Translations', 'Flights']);
+            ->contain(['Insurances', 'Hotels', 'CarRentals', 'Translations', 'Flights', 'Cruises']);
         $travelDeals = $this->paginate($query);
 
         $this->set(compact('travelDeals'));
@@ -33,7 +33,7 @@ class TravelDealsController extends AppController
      */
     public function view($id = null)
     {
-        $travelDeal = $this->TravelDeals->get($id, contain: ['Insurances', 'Hotels', 'CarRentals', 'Translations', 'Flights']);
+        $travelDeal = $this->TravelDeals->get($id, contain: ['Insurances', 'Hotels', 'CarRentals', 'Translations', 'Flights', 'Cruises']);
         $this->set(compact('travelDeal'));
     }
 
@@ -59,7 +59,8 @@ class TravelDealsController extends AppController
         $carRentals = $this->TravelDeals->CarRentals->find('list', limit: 200)->all();
         $translations = $this->TravelDeals->Translations->find('list', limit: 200)->all();
         $flights = $this->TravelDeals->Flights->find('list', limit: 200)->all();
-        $this->set(compact('travelDeal', 'insurances', 'hotels', 'carRentals', 'translations', 'flights'));
+        $cruises = $this->TravelDeals->Cruises->find('list', limit: 200)->all();
+        $this->set(compact('travelDeal', 'insurances', 'hotels', 'carRentals', 'translations', 'flights', 'cruises'));
     }
 
     /**
@@ -86,7 +87,8 @@ class TravelDealsController extends AppController
         $carRentals = $this->TravelDeals->CarRentals->find('list', limit: 200)->all();
         $translations = $this->TravelDeals->Translations->find('list', limit: 200)->all();
         $flights = $this->TravelDeals->Flights->find('list', limit: 200)->all();
-        $this->set(compact('travelDeal', 'insurances', 'hotels', 'carRentals', 'translations', 'flights'));
+        $cruises = $this->TravelDeals->Flights->find('list', limit: 200)->all();
+        $this->set(compact('travelDeal', 'insurances', 'hotels', 'carRentals', 'translations', 'flights', 'cuirses'));
     }
 
     /**

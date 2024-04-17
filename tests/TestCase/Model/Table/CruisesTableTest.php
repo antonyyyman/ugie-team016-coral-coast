@@ -25,7 +25,7 @@ class CruisesTableTest extends TestCase
      */
     protected array $fixtures = [
         'app.Cruises',
-        'app.Hotels',
+        'app.TravelDeals',
     ];
 
     /**
@@ -59,17 +59,6 @@ class CruisesTableTest extends TestCase
      * @uses \App\Model\Table\CruisesTable::validationDefault()
      */
     public function testValidationDefault(): void
-    {
-        $this->markTestIncomplete('Not implemented yet.');
-    }
-
-    /**
-     * Test buildRules method
-     *
-     * @return void
-     * @uses \App\Model\Table\CruisesTable::buildRules()
-     */
-    public function testBuildRules(): void
     {
         $this->markTestIncomplete('Not implemented yet.');
     }
