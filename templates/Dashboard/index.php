@@ -12,6 +12,8 @@
 
 
 <body id="body-top">
+
+<h1>Admin Dashboard</h1>
 <div class="container-fluid">
     <div class="row">
         <?php foreach ($tables as $table):?>
