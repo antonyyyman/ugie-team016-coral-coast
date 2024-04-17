@@ -39,6 +39,21 @@ CREATE TABLE payments (
     --     FOREIGN KEY (booking_id) REFERENCES bookings(id)
 );
 
+CREATE TABLE contact_forms(
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    email VARCHAR(255) NOT NULL,
+    phone_number VARCHAR(15),
+    first_name VARCHAR(50) NOT NULL,
+    last_name VARCHAR(50) NOT NULL,
+    request_nature ENUM('Booking request', 'Technical issues', 'Payment issues', 'General')
+    query VARCHAR(500) NOT NULL,
+    created TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
+    modified TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP NOT NULL,
+    INDEX (email),
+    INDEX (created)
+);
+
+
 CREATE TABLE insurances (
     id INT PRIMARY KEY AUTO_INCREMENT,
     supplier VARCHAR(50),
@@ -142,6 +157,20 @@ CREATE TABLE bookings (
     FOREIGN KEY (travel_deal_id) REFERENCES travel_deals(id)
 );
 
+CREATE TABLE contact_forms(
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    email VARCHAR(255) NOT NULL,
+    phone_number VARCHAR(15),
+    first_name VARCHAR(50) NOT NULL,
+    last_name VARCHAR(50) NOT NULL,
+    query_nature VARCHAR(50) NOT NULL,
+    query VARCHAR(500) NOT NULL,
+    created TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
+    modified TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP NOT NULL,
+    INDEX (email),
+    INDEX (created)
+);
+
 
 --Sample data, first create users using Seed, then execute the following
 
@@ -228,20 +257,6 @@ VALUES (7, 2, '2024-07-01', '2024-07-07', 'New York', NULL, NULL, NULL, NULL, 4,
 INSERT INTO bookings (id, user_id, start_date, end_date, destination, hotel_id, car_rental_id, insurance_id, translation_id, payment_id, travel_deal_id, total_price, booking_status)
 VALUES (8, 1, '2024-08-01', '2024-08-07', 'Los Angeles', NULL, NULL, NULL, NULL, 5, 2, 800.00, 1);
 
-INSERT INTO flights (id, number, departure_airport, arrival_airport, departure_date, arrival_date, price) VALUES
-    (1, 'AA123', 'JFK', 'LAX', '2024-01-01', '2024-01-01', 200.00),
-    (2, 'UA456', 'LAX', 'SFO', '2024-01-01', '2024-01-01', 150.00),
-    (3, 'DL789', 'SFO', 'JFK', '2024-01-01', '2024-01-01', 100.00),
-    (4, 'AA123', 'JFK', 'LAX', '2024-02-01', '2024-02-01', 200.00),
-    (5, 'UA456', 'LAX', 'SFO', '2024-02-01', '2024-02-01', 150.00),
-    (6, 'DL789', 'SFO', 'JFK', '2024-02-01', '2024-02-01', 100.00),
-    (7, 'AA123', 'JFK', 'LAX', '2024-03-01', '2024-03-01', 200.00),
-    (8, 'UA456', 'LAX', 'SFO', '2024-03-01', '2024-03-01', 150.00),
-    (9, 'DL789', 'SFO', 'JFK', '2024-03-01', '2024-03-01', 100.00),
-    (10, 'AA123', 'JFK', 'LAX', '2024-04-01', '2024-04-01', 200.00),
-    (11, 'UA456', 'LAX', 'SFO', '2024-04-01', '2024-04-01', 150.00),
-    (12, 'DL789', 'SFO', 'JFK', '2024-04-01', '2024-04-01', 100.00),
-    (13, 'AA123', 'JFK', 'LAX', '2024-05-01', '2024-05-01', 203.00);
 
 INSERT INTO bookings_flights (booking_id, flight_id) VALUES
     (1, 1),

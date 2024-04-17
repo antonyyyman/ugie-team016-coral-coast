@@ -11,10 +11,18 @@ $rememberedEmail = isset($_COOKIE['remembered_email']) ? $_COOKIE['remembered_em
 $this->layout = 'login';
 $this->assign('title', 'Login');
 ?>
-<div class="container login">
-    <div class="row">
-        <div class="column column-50 column-offset-25">
-            <div class="users form content">
+<style>
+    /* CSS for centering the login box */
+    .login-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+    }
+    .row {
+        justify-content: center; /* Center horizontally */
+    }
+</style>
 
                 <?= $this->Form->create() ?>
 

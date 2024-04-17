@@ -11,7 +11,6 @@ use Cake\ORM\Entity;
  * @property int $id
  * @property string|null $company
  * @property string|null $description
- * @property string|null $plate
  * @property string|null $brand
  * @property string|null $price
  *
@@ -32,7 +31,6 @@ class CarRental extends Entity
     protected array $_accessible = [
         'company' => true,
         'description' => true,
-        'plate' => true,
         'brand' => true,
         'price' => true,
         'bookings' => true,

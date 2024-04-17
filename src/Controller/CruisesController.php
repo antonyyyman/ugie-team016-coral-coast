@@ -15,6 +15,14 @@ class CruisesController extends AppController
      *
      * @return \Cake\Http\Response|null|void Renders view
      */
+
+     public function initialize(): void
+     {
+         parent::initialize();
+         $this->loadComponent('Authentication.Authentication');
+         $this->Authentication->allowUnauthenticated(['index']);
+     }
+      
     public function index()
     {
         $query = $this->Cruises->find();

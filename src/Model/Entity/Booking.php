@@ -10,6 +10,7 @@ use Cake\ORM\Entity;
  *
  * @property int $id
  * @property int|null $user_id
+ * @property int|null $payment_id
  * @property \Cake\I18n\Date|null $start_date
  * @property \Cake\I18n\Date|null $end_date
  * @property string|null $destination
@@ -23,12 +24,12 @@ use Cake\ORM\Entity;
  * @property bool|null $booking_status
  *
  * @property \App\Model\Entity\User $user
+ * @property \App\Model\Entity\Payment $payment
  * @property \App\Model\Entity\Insurance $insurance
  * @property \App\Model\Entity\Hotel $hotel
  * @property \App\Model\Entity\CarRental $car_rental
  * @property \App\Model\Entity\Translation $translation
- * @property \App\Model\Entity\Flight $flight
- * @property \App\Model\Entity\Payment[] $payments
+ * @property \App\Model\Entity\Flight[] $flights
  */
 class Booking extends Entity
 {
@@ -43,6 +44,7 @@ class Booking extends Entity
      */
     protected array $_accessible = [
         'user_id' => true,
+        'payment_id' => true,
         'start_date' => true,
         'end_date' => true,
         'destination' => true,
@@ -55,11 +57,11 @@ class Booking extends Entity
         'total_price' => true,
         'booking_status' => true,
         'user' => true,
+        'payment' => true,
         'insurance' => true,
         'hotel' => true,
         'car_rental' => true,
         'translation' => true,
-        'flight' => true,
-        'payments' => true,
+        'flights' => true,
     ];
 }

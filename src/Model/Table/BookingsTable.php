@@ -74,6 +74,8 @@ class BookingsTable extends Table
             'foreignKey' => 'booking_id',
             'targetForeignKey' => 'flight_id',
             'joinTable' => 'bookings_flights',
+            'targetForeignKey' => 'flight_id',
+            'joinTable' => 'bookings_flights',
         ]);
     }
 
@@ -88,6 +90,10 @@ class BookingsTable extends Table
         $validator
             ->integer('user_id')
             ->allowEmptyString('user_id');
+
+        $validator
+            ->integer('payment_id')
+            ->allowEmptyString('payment_id');
 
         $validator
             ->date('start_date')
@@ -147,6 +153,7 @@ class BookingsTable extends Table
     public function buildRules(RulesChecker $rules): RulesChecker
     {
         $rules->add($rules->existsIn(['user_id'], 'Users'), ['errorField' => 'user_id']);
+        $rules->add($rules->existsIn(['insurance_id'], 'Insurances'), ['errorField' => 'insurance_id']);
         $rules->add($rules->existsIn(['hotel_id'], 'Hotels'), ['errorField' => 'hotel_id']);
         $rules->add($rules->existsIn(['car_rental_id'], 'CarRentals'), ['errorField' => 'car_rental_id']);
         $rules->add($rules->existsIn(['insurance_id'], 'Insurances'), ['errorField' => 'insurance_id']);

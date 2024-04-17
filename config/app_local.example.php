@@ -91,4 +91,9 @@ return [
             'url' => env('EMAIL_TRANSPORT_DEFAULT_URL', null),
         ],
     ],
+
+    'ContactFormMail' => [
+        'to' => 'test@example.com',
+        'from' => 'admin@coralcoast.com',
+    ]
 ];
