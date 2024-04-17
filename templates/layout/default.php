@@ -35,27 +35,47 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
 </head>
 <body>
 <div style="position: fixed; top: 0; right: 0; margin: 10px;">
-    <?php
-    if ($this->Identity->isLoggedIn()) {
-        echo $this->Html->link(
-            'Logout',
-            ['controller' => 'Auth', 'action' => 'logout'],
-            ['class' => 'button button-outline']);
-    } else{
-        echo $this->Html->link(
-            'Log in',
-            ['controller' => 'Auth', 'action' => 'login'],
-            ['class' => 'button button-outline']);
-    }
-    ?>
+
 </div>
     <nav class="top-nav">
         <div class="top-nav-title">
             <a href="<?= $this->Url->build('/') ?>"><span>Cake</span>PHP</a>
         </div>
         <div class="top-nav-links">
-            <a target="_blank" rel="noopener" href="https://book.cakephp.org/5/">Documentation</a>
-            <a target="_blank" rel="noopener" href="https://api.cakephp.org/">API</a>
+            <?= $this->Html->link('Dashboard', [
+                'controller' => 'Dashboard',
+//                'action' => 'index'
+            ], [])?>
+
+            <?= $this->Html->link('Users', [
+                'controller' => 'Users',
+                'action' => 'index'
+            ], [])?>
+
+            <?= $this->Html->link('Bookings', [
+                'controller' => 'Bookings',
+                'action' => 'index'
+            ], [])?>
+
+
+
+
+            |
+
+            <?php
+            if ($this->Identity->isLoggedIn()) {
+                echo $this->Html->link(
+                    'Logout',
+                    ['controller' => 'Auth', 'action' => 'logout']);
+//                    ['class' => 'button button-outline']);
+            } else{
+                echo $this->Html->link(
+                    'Log in',
+                    ['controller' => 'Auth', 'action' => 'login']);
+//                    ['class' => 'button button-outline']);
+            }
+            ?>
+
         </div>
     </nav>
     <main class="main">
