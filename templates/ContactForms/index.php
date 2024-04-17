@@ -5,7 +5,6 @@
  */
 ?>
 <div class="contactForms index content">
-    <?= $this->Html->link(__('New Contact Form'), ['action' => 'add'], ['class' => 'button float-right']) ?>
     <h3><?= __('Contact Forms') ?></h3>
     <div class="table-responsive">
         <table>
