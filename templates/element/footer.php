@@ -21,16 +21,13 @@
                     </ul>
                 </div>
                 <div class="col-md-4 col-sm-12 map-img">
-                    <h2>Contact Us</h2>
+                    <h2><a href= <?= $this->Url->build(['controller' => 'ContactForms', 'action' => 'add'])?>>Contact Us</a></h2>
                     <address class="md-margin-bottom-40">
                         Coral Coast <br>
                         Wellington Rd, <br>
                         Clayton, VIC <br>
-                        Phone: 0412 345 678 <br>
-                        Email: <a href="/team016-app_fit3047/pages/home" class="">inquiry@coralcoast.com.au</a><br>
-                        Web: <a href="/team016-app_fit3047/pages/home" class="">www.coralcoast.com.au</a>
                     </address>
-
+                    <a href= <?= $this->Url->build(['controller' => 'ContactForms', 'action' => 'add'])?>>Make an enquiry</a>
                 </div>
             </div>
         </div>
