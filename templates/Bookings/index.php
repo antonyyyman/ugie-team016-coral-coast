@@ -8,15 +8,71 @@
 <head>
 <style>
         body {
-            border: 1px solid #ccc; /* Border style */
-            /*padding: 20px; /* Padding around the content */
+            border: 1px solid #ccc;
         }
-    </style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        th, td {
+            border: 1px solid #ccc;
+            padding: 8px;
+            text-align: left;
+            font-size: 16px;
+            vertical-align: middle;
+            text-align: center;
+            padding: 8px;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        tr:hover {
+            background-color: #f9f9f9;
+        }
+        thead {
+            position: sticky;
+            top: 0;
+            background-color: #fff;
+            z-index: 10;
+        }
+        .actions {
+            display: inline-block;
+            vertical-align: middle;
+            justify-content: space-around;
+            padding: 10px 0;
+
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+        }
+
+        .button-link {
+            display: block;
+            box-sizing: border-box;
+            width: 95%;
+            margin: 4px 0;
+            text-align: center;
+            padding: 8px 0;
+            border: 1px solid #ccc;
+            background-color: #fefefe;
+            text-decoration: none;
+            color: #333;
+            border-radius: 5px;
+        }
+        .button-link:hover {
+            background-color: #e7e7e7;
+            border-color: #adadad;
+        }
+
+</style>
 </head>
-            
-    <div class="row">
-            <?= $this->element('headerstaff') ?>
-    </div> 
+
+<div class="row">
+    <?= $this->element('headerstaff') ?>
+</div>
 
 
 <div class="bookings index content" style="padding-top: 10%">
@@ -86,17 +142,17 @@
                     <td><?= $booking->travel_deal_id ? $this->Html->link($booking->travel_deal->id ?? 'N/A', ['controller' => 'TravelDeals', 'action' => 'view', $booking->travel_deal->id]) : 'No Travel Deal Booked' ?></td>
                     <td><?= $booking->total_price === null ? 'Not Calculated' : $this->Number->format($booking->total_price) ?></td>
                     <td><?= h($booking->booking_status) == 1 ? 'active' : 'cancelled' ?></td>
-                    <td class="actions">
-                        <?= $this->Html->link(__('View'), ['action' => 'view', $booking->id]) ?>
-                        <?= $this->Html->link(__('Edit'), ['action' => 'edit', $booking->id]) ?>
+                    <td class="actions" style="">
+                        <?= $this->Html->link(__('View'), ['action' => 'view', $booking->id], ['class' => 'button-link']) ?>
+                        <?= $this->Html->link(__('Edit'), ['action' => 'edit', $booking->id], ['class' => 'button-link']) ?>
 
                         <?= $this->Html->link(
                             __('Cancel'),
                             ['action' => 'cancel', $booking->id],
-                            ['confirm' => __('Are you sure you want to cancel this booking? This will only mark the booking status as cancelled, not to be removed from the list.')]
+                            ['class' => 'button-link', 'confirm' => __('Are you sure you want to cancel this booking? This will only mark the booking status as cancelled, not to be removed from the list.')]
                         ) ?>
 
-                        <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $booking->id], ['confirm' => __('Are you sure you want to delete # {0}?', $booking->id)]) ?>
+                        <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $booking->id], ['class' => 'button-link', 'confirm' => __('Are you sure you want to delete # {0}?', $booking->id)]) ?>
                     </td>
                 </tr>
                 <?php endforeach; ?>
