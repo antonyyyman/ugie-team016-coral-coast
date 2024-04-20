@@ -17,32 +17,23 @@
             <fieldset>
                 <legend><?= __('Add Contact Form') ?></legend>
                 <?php
-                    echo $this->Form->control('email');
-                    echo $this->Form->control('phone_number', ['label' => 'Phone Number', 'id' => 'phone_number']);
-                    echo $this->Form->control('first_name');
-                    echo $this->Form->control('last_name');
+                    echo $this->Form->control('email', ['required' => true, 'label' => 'Email*']);
+                    echo $this->Form->control('phone_number', ['label' => 'Phone Number', 'id' => 'phone_number', 'required' => false]);
+                    echo $this->Form->control('first_name', ['required' => true, 'label' => 'First name*']);
+                    echo $this->Form->control('last_name', ['required' => true, 'label' => 'Last name*']);
                     echo $this->Form->control('query_nature', [
                         'type' => 'select',
                         'options' => $requestNatureOptions,
                         'empty' => 'Please select...',
-                        'required' => true
+                        'required' => true,
+                        'label' => 'Query Nature*'
                     ]);
-                    echo $this->Form->control('query');             
+                    echo $this->Form->control('query', ['required' => true, 'label' => 'Query*']);             
                 ?>
             </fieldset>
-            <?= $this->Form->button(__('Submit')) ?>
+            <p><span class="required">*</span> Indicates required field</p>
+            <?= $this->Form->button(__('Submit')) ?> 
             <?= $this->Form->end() ?>
         </div>
     </div>
 </div>
-
-<!-- <script>
-function validatePhoneNumber() {
-    var phoneNumber = document.getElementById('phone_number').value;
-    if (!phoneNumber.startsWith('04') || phoneNumber.length !== 10) {
-        alert('Phone number must start with "04" and be exactly 10 digits long.');
-        return false; // Prevent form submission
-    }
-    return true; // Allow form submission
-}
-</script> -->
