@@ -13,7 +13,7 @@
     </aside>
     <div class="column column-80">
         <div class="contactForms form content">
-            <?= $this->Form->create($contactForm, ['onsubmit' => 'return validatePhoneNumber()']) ?>
+            <?= $this->Form->create($contactForm) ?>
             <fieldset>
                 <legend><?= __('Add Contact Form') ?></legend>
                 <?php
@@ -36,7 +36,7 @@
     </div>
 </div>
 
-<script>
+<!-- <script>
 function validatePhoneNumber() {
     var phoneNumber = document.getElementById('phone_number').value;
     if (!phoneNumber.startsWith('04') || phoneNumber.length !== 10) {
@@ -45,4 +45,4 @@ function validatePhoneNumber() {
     }
     return true; // Allow form submission
 }
-</script>
+</script> -->
