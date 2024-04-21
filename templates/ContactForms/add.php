@@ -15,7 +15,7 @@
         <div class="contact-form">
             <?= $this->Form->create($contactForm, ['class' => 'contact-form']) ?>
             <fieldset>
-                <legend><?= __('Add Contact Form') ?></legend>
+                <legend><?= __('Contact Us') ?></legend>
                 <?php
                     echo $this->Form->control('email', ['required' => true, 'label' => ['text' => 'Email', 'class' => 'required-asterisk']]);
                     echo $this->Form->control('phone_number', ['label' => 'Phone Number', 'id' => 'phone_number', 'required' => false]);
@@ -28,7 +28,7 @@
                         'required' => true,
                         'label' => ['text' => 'Query Nature', 'class' => 'required-asterisk']
                     ]);
-                    echo $this->Form->control('query', ['required' => true,'label' => ['text' => 'Query', 'class' => 'required-asterisk']]);     
+                    echo $this->Form->control('query', ['required' => true, 'type' => 'textarea', 'label' => ['text' => 'Query','class' => 'required-asterisk'],'class' => 'large-textarea']);             
                 ?>
             </fieldset>
             <p style="color:red"><span class="required">*</span> Indicates required field</p>

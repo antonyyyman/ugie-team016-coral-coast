@@ -709,11 +709,24 @@ address {
 
 /* Styling the form */
 .contact-form {
+  margin: 0 auto;
   background: #f9f9f9;
   padding: 20px;
   border-radius: 8px;
   box-shadow: 0 4px 6px rgba(0,0,0,0.1);
 }
+
+.large-textarea {
+  height: 100px;  /* Custom height for your textarea */
+  width: 100%;
+  padding: 8px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
 
 fieldset {
   border: 1px solid #ddd;
