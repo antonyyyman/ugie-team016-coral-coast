@@ -4,6 +4,78 @@
  * @var iterable<\App\Model\Entity\ContactForm> $contactForms
  */
 ?>
+
+<head>
+    <style>
+        body {
+            border: 1px solid #ccc;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        th, td {
+            border: 1px solid #ccc;
+            padding: 8px;
+            text-align: left;
+            font-size: 16px;
+            vertical-align: middle;
+            text-align: center;
+            padding: 8px;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        tr:hover {
+            background-color: #f9f9f9;
+        }
+        thead {
+            position: sticky;
+            top: 0;
+            background-color: #fff;
+            z-index: 10;
+        }
+        .actions {
+            display: inline-block;
+            vertical-align: middle;
+            justify-content: space-around;
+            padding: 10px 0;
+
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100%;
+        }
+
+        .button-link {
+            display: block;
+            box-sizing: border-box;
+            width: 95%;
+            margin: 4px 0;
+            text-align: center;
+            padding: 8px 0;
+            border: 1px solid #ccc;
+            background-color: #fefefe;
+            text-decoration: none;
+            color: #333;
+            border-radius: 5px;
+        }
+        .button-link:hover {
+            background-color: #e7e7e7;
+            border-color: #adadad;
+        }
+
+        th:nth-child(7), td:nth-child(7) {
+        text-align: left;
+        width:50%; 
+        max-width: 250px;
+        word-wrap: break-word;
+        }
+    </style>
+</head>
+
 <div class="contactForms index content">
     <h3><?= __('Contact Forms') ?></h3>
     <div class="table-responsive">
@@ -15,10 +87,10 @@
                     <th><?= $this->Paginator->sort('phone_number') ?></th>
                     <th><?= $this->Paginator->sort('first_name') ?></th>
                     <th><?= $this->Paginator->sort('last_name') ?></th>
+                    <th><?= $this->Paginator->sort('query_nature') ?></th>
                     <th><?= $this->Paginator->sort('query') ?></th>
                     <th><?= $this->Paginator->sort('created') ?></th>
                     <th><?= $this->Paginator->sort('modified') ?></th>
-                    <th><?= $this->Paginator->sort('query_nature') ?></th>
                     <th class="actions"><?= __('Actions') ?></th>
                 </tr>
             </thead>
@@ -30,10 +102,10 @@
                     <td><?= h($contactForm->phone_number) ?></td>
                     <td><?= h($contactForm->first_name) ?></td>
                     <td><?= h($contactForm->last_name) ?></td>
+                    <td><?= h($contactForm->query_nature) ?></td>
                     <td><?= h($contactForm->query) ?></td>
                     <td><?= h($contactForm->created) ?></td>
-                    <td><?= h($contactForm->modified) ?></td>
-                    <td><?= h($contactForm->query_nature) ?></td>
+                    <td><?= h($contactForm->modified) ?></td>                  
                     <td class="actions">
                         <?= $this->Html->link(__('View'), ['action' => 'view', $contactForm->id]) ?>
                         <?= $this->Html->link(__('Edit'), ['action' => 'edit', $contactForm->id]) ?>
