@@ -67,7 +67,7 @@
             border-color: #adadad;
         }
 
-        th:nth-child(7), td:nth-child(7) {
+        td:nth-child(7) {
         text-align: left;
         width:50%; 
         max-width: 250px;
