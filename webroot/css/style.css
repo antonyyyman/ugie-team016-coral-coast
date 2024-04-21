@@ -707,7 +707,6 @@ address {
   flex: 0 0 80%;
 }
 
-/* Styling the form */
 .contact-form {
   margin: 0 auto;
   background: #f9f9f9;
@@ -717,7 +716,7 @@ address {
 }
 
 .large-textarea {
-  height: 100px;  /* Custom height for your textarea */
+  height: 100px; 
   width: 100%;
   padding: 8px;
   margin: 8px 0;
@@ -726,7 +725,6 @@ address {
   border-radius: 4px;
   box-sizing: border-box;
 }
-
 
 fieldset {
   border: 1px solid #ddd;
@@ -742,7 +740,6 @@ legend {
   color: #333;
 }
 
-/* Form fields styling */
 input[type="text"],
 input[type="email"],
 select {
@@ -755,7 +752,6 @@ select {
   box-sizing: border-box;
 }
 
-/* Button Styling */
 button {
   background-color: #4CAF50;
   color: white;
@@ -770,7 +766,6 @@ button:hover {
   background-color: #45a049;
 }
 
-/* Responsive adjustments */
 @media (max-width: 768px) {
   .row {
       flex-direction: column;
