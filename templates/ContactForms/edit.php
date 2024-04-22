@@ -3,6 +3,8 @@
  * @var \App\View\AppView $this
  * @var \App\Model\Entity\ContactForm $contactForm
  */
+    $this->Html->script('contact-form', ['block' => true]);
+    $this->Html->css('contact-form', ['block' => true]);
 ?>
 <div class="row">
     <aside class="column">
