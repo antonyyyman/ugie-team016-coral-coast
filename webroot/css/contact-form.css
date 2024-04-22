@@ -78,7 +78,22 @@
   button:hover {
     background-color: #45a049;
   }
-  
+
+.hidden {
+    display: none;
+}
+.full-text {
+    display: none;
+}
+.text-preview {
+    display: inline;
+}
+.toggle-text {
+    color: blue;    
+    cursor: pointer; 
+    text-decoration: underline;
+}
+
   @media (max-width: 768px) {
     .row {
         flex-direction: column;

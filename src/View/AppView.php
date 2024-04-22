@@ -16,6 +16,7 @@ declare(strict_types=1);
 namespace App\View;
 
 use Cake\View\View;
+use Cake\Utility\Text;
 
 /**
  * Application View
@@ -38,5 +39,6 @@ class AppView extends View
     public function initialize(): void
     {
         $this->loadHelper('Authentication.Identity');
+        $this->loadHelper('Text');
     }
 }
