@@ -44,12 +44,12 @@ function toggleText(element) {
     var fullText = container.querySelector('.full-text');
 
     if (preview.style.display === 'none') {
-        preview.style.display = 'inline';
+        preview.style.display = 'block';
         fullText.style.display = 'none';
         element.textContent = 'Show More';
     } else {
         preview.style.display = 'none';
-        fullText.style.display = 'inline';
+        fullText.style.display = 'block';
         element.textContent = 'Show Less';
     }
 }

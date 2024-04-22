@@ -38,30 +38,31 @@
                 </tr>
                 <tr>
                     <th><?= __('Query Nature') ?></th>
-                    <td><?= h($contactForm->request_nature) ?></td>
+                    <td><?= h($contactForm->query_nature) ?></td>
                 </tr>
                 <tr>
                 <th><?= __('Query') ?></th>
                 <td>
-                <div class="content-container">
-                <td>
-                <div class="content-container">
-                    <?php
-                    $truncatedText = $this->Text->truncate(h($contactForm->query), 150, [
-                        'ellipsis' => '...',
-                        'exact' => false,
-                        'html' => false
-                    ]);
-                    echo '<span class="text-preview">' . $truncatedText . '</span>';
-                    if (strlen(h($contactForm->query)) > 150) {
-                        echo '<span class="full-text hidden">' . h($contactForm->query) . '</span>';
-                        echo '<span class="toggle-text" onclick="toggleText(this)" style="color: blue; cursor: pointer; text-decoration: underline;">Show More</span>';
-                    } else {
-                        echo '<span>' . h($contactForm->query) . '</span>';
-                    }
-                    ?>
-                </div>
-                </td>
+                    <div class="content-container">
+                        <?php
+                        // Check if text needs to be truncated
+                        $isLongText = strlen(h($contactForm->query)) > 150;
+                        // If true truncate, else just show text
+                        if ($isLongText) {
+                            $truncatedText = $this->Text->truncate(h($contactForm->query), 150, [
+                                'ellipsis' => '...',
+                                'exact' => false,
+                                'html' => false
+                            ]);
+                            echo '<span class="text-preview">' . $truncatedText . '</span>';
+                            echo '<span class="full-text hidden">' . h($contactForm->query) . '</span>';
+                            echo '<span class="toggle-text" onclick="toggleText(this)" style="color: blue; cursor: pointer; text-decoration: underline;">Show More</span>';
+                        } else {
+                            echo '<span>' . h($contactForm->query) . '</span>';
+                        }
+                        ?>
+                    </div>
+                    </td>
                 </tr>
                 <tr>
                     <th><?= __('Reference Number') ?></th>
