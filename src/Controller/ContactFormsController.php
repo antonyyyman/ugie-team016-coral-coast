@@ -44,6 +44,7 @@ class ContactFormsController extends AppController
      */
     public function view($id = null)
     {
+        $this->viewBuilder()->setLayout('contact-form');
         $contactForm = $this->ContactForms->get($id, contain: []);
         $this->set(compact('contactForm'));
     }
