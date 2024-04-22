@@ -33,6 +33,7 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
     <?= $this->fetch('meta') ?>
     <?= $this->fetch('css') ?>
     <?= $this->fetch('script') ?>
+    <?= $this->Html->css('contact-form.css') ?>
     
     
     <meta charset="utf-8">
@@ -46,8 +47,8 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
     <link rel="stylesheet" href="assets/css/animate.css">
     <link rel="stylesheet" href="assets/plugins/slider/css/owl.carousel.min.css">
     <link rel="stylesheet" href="assets/plugins/slider/css/owl.theme.default.css">
-    <!--<link rel="stylesheet" type="text/css" href="assets/css/style.css" /> -->
-    <?= $this->Html->css('contact-form.css') ?>
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css" />
+    
 
 </head>
 <body>
