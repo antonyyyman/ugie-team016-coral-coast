@@ -3,6 +3,8 @@
  * @var \App\View\AppView $this
  * @var iterable<\App\Model\Entity\ContactForm> $contactForms
  */
+    $this->Html->script('script', ['block' => true]);
+    $this->Html->css('contact-form', ['block' => true]);
 ?>
 
 <head>
@@ -103,7 +105,24 @@
                     <td><?= h($contactForm->first_name) ?></td>
                     <td><?= h($contactForm->last_name) ?></td>
                     <td><?= h($contactForm->query_nature) ?></td>
-                    <td><?= h($contactForm->query) ?></td>
+                    <td>
+                    <div class="content-container">
+                        <?php
+                        $truncatedText = $this->Text->truncate(h($contactForm->query), 150, [
+                            'ellipsis' => '...',
+                            'exact' => false,
+                            'html' => false
+                        ]);
+                        echo '<span class="text-preview">' . $truncatedText . '</span>';
+                        if (strlen(h($contactForm->query)) > 150) {
+                            echo '<span class="full-text hidden">' . h($contactForm->query) . '</span>';
+                            echo '<span class="toggle-text" onclick="toggleText(this)" style="color: blue; cursor: pointer; text-decoration: underline;">Show More</span>';
+                        } else {
+                            echo '<span>' . h($contactForm->query) . '</span>';
+                        }
+                        ?>
+                    </div>
+                    </td>
                     <td><?= h($contactForm->created) ?></td>
                     <td><?= h($contactForm->modified) ?></td>                  
                     <td class="actions">

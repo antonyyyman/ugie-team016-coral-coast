@@ -3,7 +3,7 @@
  * @var \App\View\AppView $this
  * @var \App\Model\Entity\ContactForm $contactForm
  */
-    $this->Html->script('contact-form', ['block' => true]);
+    $this->Html->script('script', ['block' => true]);
     $this->Html->css('contact-form', ['block' => true]);
 ?>
 <div class="row">
@@ -38,6 +38,7 @@
                     echo $this->Form->control('query', ['required' => true, 'type' => 'textarea', 'label' => ['text' => 'Query','class' => 'required-asterisk'],'class' => 'large-textarea']);
                 ?>
             </fieldset>
+            <p style="color:red"><span class="required">*</span> Indicates required field</p>
             <?= $this->Form->button(__('Submit')) ?>
             <?= $this->Form->end() ?>
         </div>
