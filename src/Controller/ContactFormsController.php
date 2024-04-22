@@ -82,7 +82,7 @@ class ContactFormsController extends AppController
                 $this->Flash->success(__('The contact form has been saved.'));
                 return $this->redirect(['controller' => 'Pages', 'action' => 'display', 'home']);
             }
-            $this->Flash->error(__('The contact form could not be saved. Please, try again.'));
+            $this->Flash->error(__('There are errors in your form, please correct them and try again.'));
         }
         $this->set(compact('contactForm', 'requestNatureOptions'));
     }
@@ -107,7 +107,7 @@ class ContactFormsController extends AppController
 
                 return $this->redirect(['action' => 'index']);
             }
-            $this->Flash->error(__('The contact form could not be saved. Please, try again.'));
+            $this->Flash->error(__('There are errors in your form, please correct them and try again.'));
         }
 
     }

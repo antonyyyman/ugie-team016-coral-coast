@@ -43,7 +43,7 @@
                     <td><?= h($contactForm->query) ?></td>
                 </tr>
                 <tr>
-                    <th><?= __('Id') ?></th>
+                    <th><?= __('Reference Number') ?></th>
                     <td><?= $this->Number->format($contactForm->id) ?></td>
                 </tr>
                 <tr>
