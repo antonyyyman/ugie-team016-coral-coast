@@ -7,17 +7,6 @@
     $this->Html->css('contact-form', ['block' => true]);
 ?>
 
-<head>
-    <!-- <style>
-        td:nth-child(7) {
-        text-align: left;
-        width:50%; 
-        max-width: 250px;
-        word-wrap: break-word;
-        }
-    </style>
-</head> -->
-
 <div class="contactForms index content">
     <h3><?= __('Contact Forms') ?></h3>
     <div class="table-responsive">
@@ -46,7 +35,6 @@
                     <td><?= h($contactForm->last_name) ?></td>
                     <td><?= h($contactForm->query_nature) ?></td>
                     <td>
-                    <!-- <div class="content-container"> -->
                         <?php
                         // Check if text needs to be truncated
                         $isLongText = strlen(h($contactForm->query)) > 150;
@@ -64,7 +52,6 @@
                             echo '<span>' . h($contactForm->query) . '</span>';
                         }
                         ?>
-                    <!-- </div> -->
                     </td>
                     <td><?= h($contactForm->created) ?></td>
                     <td><?= h($contactForm->modified) ?></td>                  
