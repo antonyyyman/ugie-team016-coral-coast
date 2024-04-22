@@ -50,10 +50,10 @@ class ContactFormsTable extends Table
     public function getRequestNatureOptions()
     {
         return [
-            'general' => 'General Inquiry',
-            'support' => 'Support',
-            'feedback' => 'Feedback',
-            'complaint' => 'Complaint'
+            'General' => 'General Inquiry',
+            'Support' => 'Support',
+            'Feedback' => 'Feedback',
+            'Complaint' => 'Complaint'
         ];
     }
 
