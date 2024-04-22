@@ -95,7 +95,7 @@ class ContactFormsTable extends Table
 
         $validator
             ->scalar('query')
-            ->maxLength('query', 2000)
+            ->maxLength('query', 2000, 'Query cannot be greater than 2000 characters. Please call us if you need to discuss something in more detail.')
             ->requirePresence('query', 'create')
             ->notEmptyString('query');
 
