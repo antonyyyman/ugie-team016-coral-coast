@@ -45,6 +45,7 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
     <link rel="stylesheet" href="assets/plugins/slider/css/owl.carousel.min.css">
     <link rel="stylesheet" href="assets/plugins/slider/css/owl.theme.default.css">
     <link rel="stylesheet" type="text/css" href="assets/css/style.css" />
+    <link rel="stylesheet" href="webroot/css/style.css">
 
 </head>
 <body>

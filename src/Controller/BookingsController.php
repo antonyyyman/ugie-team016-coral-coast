@@ -156,10 +156,12 @@ class BookingsController extends AppController
     {
         $this->request->allowMethod(['post', 'get']); // 允许GET来显示表单，POST用于处理表单提交
 
-        $booking = $this->Bookings->get($id, [
-            'contain' => ['Users'],
-            'fields' => ['id', 'start_date', 'Users.email', 'booking_status']
-        ]);
+//        $booking = $this->Bookings->get($id, [
+//            'contain' => ['Users'],
+//            'fields' => ['id', 'start_date', 'Users.email', 'booking_status']
+//        ]);
+        $booking = $this->Bookings->get($id, contain: ['Users'], fields: ['id', 'start_date', 'Users.email', 'booking_status']);
+
 
         if ($this->request->is('post')) {
             $cancelReason = $this->request->getData('cancel_reason');

@@ -2,7 +2,7 @@
         <div class="row">
             <div class="col-md-3 logo">
             <a href=<?= $this->Url->build(['controller' => 'pages', 'action' => 'home'])?>>
-                <img src="/team016-app_fit3047/webroot/img/logo_coralcoast.png" alt="Coral Coast Logo">
+                <img src="/img/logo_coralcoast.png" alt="Coral Coast Logo">
             </a>
                  <a data-toggle="collapse" data-target="#menu" href="#menu"><i class="fas d-block d-lg-none  small-menu fa-bars"></i></a>
             </div>

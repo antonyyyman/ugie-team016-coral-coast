@@ -6,43 +6,34 @@
 ?>
 <div class="row">
     <aside class="column">
-        <div class="side-nav">
+        <!-- <div class="side-nav">
             <h4 class="heading"><?= __('Actions') ?></h4>
-            <?= $this->Html->link(__('List Contact Forms'), ['action' => 'index'], ['class' => 'side-nav-item']) ?>
+            <?= $this->Html->link(__('List Contact Forms'), ['action' => 'index'], ['class' => 'side-nav-item']) ?> -->
         </div>
     </aside>
     <div class="column column-80">
-        <div class="contactForms form content">
-            <?= $this->Form->create($contactForm, ['onsubmit' => 'return validatePhoneNumber()']) ?>
+        <div class="contact-form">
+            <?= $this->Form->create($contactForm, ['class' => 'contact-form']) ?>
             <fieldset>
-                <legend><?= __('Add Contact Form') ?></legend>
+                <legend><?= __('Contact Us') ?></legend>
                 <?php
-                    echo $this->Form->control('email');
-                    echo $this->Form->control('phone_number', ['label' => 'Phone Number', 'id' => 'phone_number']);
-                    echo $this->Form->control('first_name');
-                    echo $this->Form->control('last_name');
+                    echo $this->Form->control('email', ['required' => true, 'label' => ['text' => 'Email', 'class' => 'required-asterisk']]);
+                    echo $this->Form->control('phone_number', ['label' => 'Phone Number', 'id' => 'phone_number', 'required' => false]);
+                    echo $this->Form->control('first_name', ['required' => true,'label' => ['text' => 'First name', 'class' => 'required-asterisk']]);
+                    echo $this->Form->control('last_name', ['required' => true,'label' => ['text' => 'Last name', 'class' => 'required-asterisk']]);
                     echo $this->Form->control('query_nature', [
                         'type' => 'select',
                         'options' => $requestNatureOptions,
                         'empty' => 'Please select...',
-                        'required' => true
+                        'required' => true,
+                        'label' => ['text' => 'Query Nature', 'class' => 'required-asterisk']
                     ]);
-                    echo $this->Form->control('query');             
+                    echo $this->Form->control('query', ['required' => true, 'type' => 'textarea', 'label' => ['text' => 'Query','class' => 'required-asterisk'],'class' => 'large-textarea']);             
                 ?>
             </fieldset>
-            <?= $this->Form->button(__('Submit')) ?>
+            <p style="color:red"><span class="required">*</span> Indicates required field</p>
+            <?= $this->Form->button(__('Submit')) ?> 
             <?= $this->Form->end() ?>
         </div>
     </div>
 </div>
-
-<script>
-function validatePhoneNumber() {
-    var phoneNumber = document.getElementById('phone_number').value;
-    if (!phoneNumber.startsWith('04') || phoneNumber.length !== 10) {
-        alert('Phone number must start with "04" and be exactly 10 digits long.');
-        return false; // Prevent form submission
-    }
-    return true; // Allow form submission
-}
-</script>

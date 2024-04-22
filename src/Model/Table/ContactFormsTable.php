@@ -72,8 +72,14 @@ class ContactFormsTable extends Table
 
         $validator
             ->scalar('phone_number')
-            ->maxLength('phone_number', 15)
-            ->allowEmptyString('phone_number');
+            ->maxLength('phone_number', 12)
+            ->allowEmptyString('phone_number')
+            ->add('phone_number', 'custom', [
+                'rule' => function ($value, $context) {
+                    return preg_match('/^(04\d{8}|\+61\d{9})$/', $value) > 0;
+                },
+                'message' => 'Phone number must be an Australian phone number starting with "04" or "+61"'
+            ]);
 
         $validator
             ->scalar('first_name')
