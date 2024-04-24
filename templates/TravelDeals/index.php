@@ -103,11 +103,11 @@
                     <td><?= h($travelDeal->end_date) ?></td>
                     <td><?= h($travelDeal->description) ?></td>
                     <td><?= $travelDeal->total_price === null ? '' : $this->Number->format($travelDeal->total_price) ?></td>
-                    <td><?= $travelDeal->hasValue('insurance') ? $this->Html->link($travelDeal->insurance->id, ['controller' => 'Insurances', 'action' => 'view', $travelDeal->insurance->id]) : 'N/A' ?></td>
+                    <td><?= $travelDeal->hasValue('insurance') ? $this->Html->link($travelDeal->insurance->supplier, ['controller' => 'Insurances', 'action' => 'view', $travelDeal->insurance->id]) : 'N/A' ?></td>
                     <td><?= $travelDeal->hasValue('hotel') ? $this->Html->link($travelDeal->hotel->name, ['controller' => 'Hotels', 'action' => 'view', $travelDeal->hotel->id]) : 'N/A' ?></td>
                     <td><?= $travelDeal->hasValue('cruise') ? $this->Html->link($travelDeal->cruise->description, ['controller' => 'Cruises', 'action' => 'view', $travelDeal->cruise->id]) : 'N/A' ?></td>
                     <td><?= $travelDeal->hasValue('car_rental') ? $this->Html->link($travelDeal->car_rental->plate, ['controller' => 'CarRentals', 'action' => 'view', $travelDeal->car_rental->id]) : 'N/A' ?></td>
-                    <td><?= $travelDeal->hasValue('translation') ? $this->Html->link($travelDeal->translation->id, ['controller' => 'Translations', 'action' => 'view', $travelDeal->translation->id]) : 'N/A' ?></td>
+                    <td><?= $travelDeal->hasValue('translation') ? $this->Html->link($travelDeal->translation->description, ['controller' => 'Translations', 'action' => 'view', $travelDeal->translation->id]) : 'N/A' ?></td>
                     <td class="actions">
                         <?= $this->Html->link(__('View'), ['action' => 'view', $travelDeal->id], ['class' => 'button-link']) ?>
                         <?= $this->Html->link(__('Edit'), ['action' => 'edit', $travelDeal->id], ['class' => 'button-link']) ?>
