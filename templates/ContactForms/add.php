@@ -32,6 +32,9 @@
             </fieldset>
             <?= $this->Form->button(__('Submit')) ?>
             <?= $this->Form->end() ?>
+
+            <?= $this->Html->link('Go to Homepage', ['controller' => 'Pages', 'action' => 'display', 'home'], ['class' => 'button']) ?>
+
         </div>
     </div>
 </div>
