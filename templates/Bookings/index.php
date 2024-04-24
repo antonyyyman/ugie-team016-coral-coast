@@ -70,10 +70,6 @@
 </style>
 </head>
 
-<div class="row">
-    <?= $this->element('headerstaff') ?>
-</div>
-
 
 <div class="bookings index content" style="padding-top: 10%">
     <?= $this->Html->link(__('New Booking'), ['action' => 'add'], ['class' => 'button float-right']) ?>

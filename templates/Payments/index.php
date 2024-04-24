@@ -70,11 +70,6 @@
     </style>
 </head>
 
-
-<div class="row">
-            <?= $this->element('headerstaff') ?>
-</div>
-
 <div class="payments index content" style="padding-top: 10%">
     <?= $this->Html->link(__('New Payment'), ['action' => 'add'], ['class' => 'button float-right']) ?>
     <h3><?= __('Payments') ?></h3>
