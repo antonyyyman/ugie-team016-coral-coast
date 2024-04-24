@@ -53,7 +53,7 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
 
 </head>
 
-<header id="menu-jk" class="container-fluid">
+<header id="menu-jk" class="container-fluid fixed-top">
         <div class="row">
             <div class="col-md-3 logo">
             <a href=<?= $this->Url->build(['controller' => 'pages', 'action' => 'home'])?>>
