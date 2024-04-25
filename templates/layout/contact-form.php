@@ -15,6 +15,7 @@
  */
 
 $cakeDescription = 'CakePHP: the rapid development php framework';
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -32,14 +33,13 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
     <?= $this->fetch('meta') ?>
     <?= $this->fetch('css') ?>
     <?= $this->fetch('script') ?>
+    <?= $this->Html->css('contact-form.css') ?>
+    <?= $this->Html->script('script.js') ?>
+    
     
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Free Tour and Travel Website Tempalte | Smarteyeapps.com</title>
-
-    <!-- Weija said to remove this right? Either way it is bugging my code so I'm removing it for now. 
-        If you need something in default stylesheet move it out.-->
-        
     <!-- <link rel="shortcut icon" href="assets/images/fav.png" type="image/x-icon">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i&display=swap" rel="stylesheet">
     <link rel="shortcut icon" href="assets/images/fav.jpg">
@@ -48,8 +48,8 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
     <link rel="stylesheet" href="assets/css/animate.css">
     <link rel="stylesheet" href="assets/plugins/slider/css/owl.carousel.min.css">
     <link rel="stylesheet" href="assets/plugins/slider/css/owl.theme.default.css">
-    <link rel="stylesheet" type="text/css" href="assets/css/style.css" />
-    <link rel="stylesheet" href="webroot/css/style.css"> -->
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css" /> -->
+    
 
 </head>
 <body>

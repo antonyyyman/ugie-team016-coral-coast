@@ -3,7 +3,12 @@
  * @var \App\View\AppView $this
  * @var \App\Model\Entity\ContactForm $contactForm
  */
+    $this->Html->script('script', ['block' => true]);
+    $this->Html->css('contact-form', ['block' => true]);
 ?>
+<head>
+    
+</head>
 <div class="row">
     <aside class="column">
         <!-- <div class="side-nav">
@@ -34,6 +39,9 @@
             <p style="color:red"><span class="required">*</span> Indicates required field</p>
             <?= $this->Form->button(__('Submit')) ?> 
             <?= $this->Form->end() ?>
+
+            <?= $this->Html->link('Go to Homepage', ['controller' => 'Pages', 'action' => 'display', 'home'], ['class' => 'button']) ?>
+
         </div>
     </div>
 </div>

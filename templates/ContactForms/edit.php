@@ -3,6 +3,8 @@
  * @var \App\View\AppView $this
  * @var \App\Model\Entity\ContactForm $contactForm
  */
+    $this->Html->script('script', ['block' => true]);
+    $this->Html->css('contact-form', ['block' => true]);
 ?>
 <div class="row">
     <aside class="column">
@@ -22,19 +24,21 @@
             <fieldset>
                 <legend><?= __('Edit Contact Form') ?></legend>
                 <?php
-                    echo $this->Form->control('email');
-                    echo $this->Form->control('phone_number');
-                    echo $this->Form->control('first_name');
-                    echo $this->Form->control('last_name');
+                    echo $this->Form->control('email', ['required' => true, 'label' => ['text' => 'Email', 'class' => 'required-asterisk']]);
+                    echo $this->Form->control('phone_number', ['label' => 'Phone Number', 'id' => 'phone_number', 'required' => false]);
+                    echo $this->Form->control('first_name', ['required' => true,'label' => ['text' => 'First name', 'class' => 'required-asterisk']]);
+                    echo $this->Form->control('last_name', ['required' => true,'label' => ['text' => 'Last name', 'class' => 'required-asterisk']]);
                     echo $this->Form->control('query_nature', [
                         'type' => 'select',
                         'options' => $requestNatureOptions,
                         'empty' => 'Please select...',
-                        'required' => true
+                        'required' => true,
+                        'label' => ['text' => 'Query Nature', 'class' => 'required-asterisk']
                     ]);
-                    echo $this->Form->control('query');
+                    echo $this->Form->control('query', ['required' => true, 'type' => 'textarea', 'label' => ['text' => 'Query','class' => 'required-asterisk'],'class' => 'large-textarea']);
                 ?>
             </fieldset>
+            <p style="color:red"><span class="required">*</span> Indicates required field</p>
             <?= $this->Form->button(__('Submit')) ?>
             <?= $this->Form->end() ?>
         </div>

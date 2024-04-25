@@ -3,6 +3,8 @@
  * @var \App\View\AppView $this
  * @var \App\Model\Entity\ContactForm $contactForm
  */
+    $this->Html->script('script', ['block' => true]);
+    $this->Html->css('contact-form', ['block' => true]);
 ?>
 <div class="row">
     <aside class="column">
@@ -36,14 +38,34 @@
                 </tr>
                 <tr>
                     <th><?= __('Query Nature') ?></th>
-                    <td><?= h($contactForm->request_nature) ?></td>
+                    <td><?= h($contactForm->query_nature) ?></td>
                 </tr>
                 <tr>
-                    <th><?= __('Query') ?></th>
-                    <td><?= h($contactForm->query) ?></td>
+                <th><?= __('Query') ?></th>
+                <td>
+                    <div class="content-container">
+                        <?php
+                        // Check if text needs to be truncated
+                        $isLongText = strlen(h($contactForm->query)) > 150;
+                        // If true truncate, else just show text
+                        if ($isLongText) {
+                            $truncatedText = $this->Text->truncate(h($contactForm->query), 150, [
+                                'ellipsis' => '...',
+                                'exact' => false,
+                                'html' => false
+                            ]);
+                            echo '<span class="text-preview">' . $truncatedText . '</span>';
+                            echo '<span class="full-text hidden">' . h($contactForm->query) . '</span>';
+                            echo '<span class="toggle-text" onclick="toggleText(this)" style="color: blue; cursor: pointer; text-decoration: underline;">Show More</span>';
+                        } else {
+                            echo '<span>' . h($contactForm->query) . '</span>';
+                        }
+                        ?>
+                    </div>
+                    </td>
                 </tr>
                 <tr>
-                    <th><?= __('Id') ?></th>
+                    <th><?= __('Reference Number') ?></th>
                     <td><?= $this->Number->format($contactForm->id) ?></td>
                 </tr>
                 <tr>

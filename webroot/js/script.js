@@ -37,3 +37,19 @@ $( document ).ready(function() {
 
 
 });
+
+function toggleText(element) {
+    var container = element.parentNode;
+    var preview = container.querySelector('.text-preview');
+    var fullText = container.querySelector('.full-text');
+
+    if (preview.style.display === 'none') {
+        preview.style.display = 'block';
+        fullText.style.display = 'none';
+        element.textContent = 'Show More';
+    } else {
+        preview.style.display = 'none';
+        fullText.style.display = 'block';
+        element.textContent = 'Show Less';
+    }
+}

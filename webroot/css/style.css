@@ -685,7 +685,7 @@ address {
 
 /*# sourceMappingURL=style.css.map */
 
-.required-asterisk::after {
+/* .required-asterisk::after {
   content:'*';
   color: red;
   padding-left: 3px;
@@ -774,4 +774,4 @@ button:hover {
   .column {
       width: 100%;
   }
-}
+} */

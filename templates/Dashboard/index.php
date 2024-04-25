@@ -17,15 +17,15 @@
 <div class="container-fluid">
     <div class="row">
         <?php foreach ($tables as $table):?>
-            <?php if (($table!= 'bookings_flights') and ($table!= 'flights_travel_deals') and ($table != 'phinxlog')):?>
+            <?php if (($table!= 'bookings_flights') and ($table!= 'flights_travel_deals') and ($table!= 'phinxlog')):?>
                 <div class="col-md-4">
                     <div class="card mb-4">
                         <div class="card-header">
-                            <h5 class="card-title"><?= $table?></h5>
+                            <h5 class="card-title"><?= ucwords(str_replace('_', ' ', $table))?></h5>
                         </div>
                         <div class="card-body">
                             <a href=<?= $this->Url->build(['controller' => $table, 'action' => 'index'])?> class="btn btn-primary">View</a>
-                            <a href="<?= $this->Url->build(['controller' => $table, 'action' => 'add'])?>" class="btn btn-secondary">Add <?= $table?></a>
+                            <a href="<?= $this->Url->build(['controller' => $table, 'action' => 'add'])?>" class="btn btn-secondary">Add <?= ucwords(str_replace('_', ' ', $table))?></a>
                         </div>
                     </div>
                 </div>
