@@ -29,6 +29,7 @@ class CruisesController extends AppController
         $cruises = $this->paginate($query);
 
         $this->set(compact('cruises'));
+        $this->viewBuilder()->setLayout("defaultadmin");
     }
 
     /**

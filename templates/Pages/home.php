@@ -42,8 +42,4 @@ use Cake\Http\Exception\NotFoundException;
     </main>
 </body>
 
-<footer>
-        <?= $this->element('footer') ?>
-</footer>
-
 </html>

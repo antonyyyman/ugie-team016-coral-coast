@@ -3,6 +3,7 @@
  * @var \App\View\AppView $this
  * @var iterable<\App\Model\Entity\CarRental> $carRentals
  */
+$this->setLayout("defaultadmin");
 ?>
 
 

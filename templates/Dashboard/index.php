@@ -1,3 +1,6 @@
+<?php
+$this->setLayout("defaultadmin");
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -16,7 +19,7 @@
         }
         main {
             flex: 1; 
-            padding: 20px; 
+            padding: 100px; 
         }
         .spacer-for-fixed-header {
         height: 100px; 

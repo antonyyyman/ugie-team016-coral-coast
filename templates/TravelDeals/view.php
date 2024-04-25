@@ -3,6 +3,7 @@
  * @var \App\View\AppView $this
  * @var \App\Model\Entity\TravelDeal $travelDeal
  */
+$this->setLayout("defaultadmin");
 ?>
 <div class="row">
     <aside class="column">
