@@ -79,7 +79,7 @@ class ContactFormsController extends AppController
 
                 // $mailer->deliver();
     
-                $this->Flash->success(__('The contact form has been saved.'));
+                $this->Flash->success(__('The contact form has been saved. Your reference number is: ' . $contactForm->id));
                 return $this->redirect(['controller' => 'Pages', 'action' => 'display', 'home']);
             }
             $this->Flash->error(__('There are errors in your form, please correct them and try again.'));
