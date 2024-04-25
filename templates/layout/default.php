@@ -36,6 +36,7 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Free Tour and Travel Website Tempalte | Smarteyeapps.com</title>
+    
 
     <!-- Weija said to remove this right? Either way it is bugging my code so I'm removing it for now. 
         If you need something in default stylesheet move it out.-->
@@ -93,7 +94,7 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
 </div> 
 
     <main class="main">
-        <div class="container">
+        <div>
             <?= $this->Flash->render() ?>
             <?= $this->fetch('content') ?>
         </div>
