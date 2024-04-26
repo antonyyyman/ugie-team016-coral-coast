@@ -15,7 +15,7 @@ class FlightsController extends AppController
      *
      * @return \Cake\Http\Response|null|void Renders view
      */
-    
+
     public function initialize(): void
     {
         parent::initialize();
@@ -40,7 +40,7 @@ class FlightsController extends AppController
      */
     public function view($id = null)
     {
-        $flight = $this->Flights->get($id, contain: ['Bookings', 'FlightTravelDeals', 'TravelDeals']);
+        $flight = $this->Flights->get($id, contain: ['Bookings', 'TravelDeals']);
         $this->set(compact('flight'));
     }
 

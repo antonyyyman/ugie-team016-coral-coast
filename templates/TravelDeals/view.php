@@ -48,6 +48,18 @@
                     <td><?=$travelDeal->hasValue('cruise') ? $this->Html->link($travelDeal->cruise->description, ['controller' => 'Cruises', 'action' => 'view', $travelDeal->cruise->id]) : 'N/A' ?></td>
                 </tr>
                 <tr>
+                    <th><?=__('Flights')?></th>
+                    <td><?php if (!empty($travelDeal->flights)): ?>
+                            <ul>
+                                <?php foreach ($travelDeal->flights as $flight): ?>
+                                    <li><?= $this->Html->link(h($flight->number), ['controller' => 'Flights', 'action' => 'view', $flight->id]) ?></li>
+                                <?php endforeach; ?>
+                            </ul>
+                        <?php else: ?>
+                            N/A
+                        <?php endif; ?></td>
+                </tr>
+                <tr>
                     <th><?= __('Start Date') ?></th>
                     <td><?= h($travelDeal->start_date) ?></td>
                 </tr>
