@@ -3,6 +3,7 @@
  * @var \App\View\AppView $this
  * @var iterable<\App\Model\Entity\Booking> $bookings
  */
+$this->setLayout("defaultadmin");
 ?>
 
 <head>
@@ -69,10 +70,6 @@
 
 </style>
 </head>
-
-<div class="row">
-    <?= $this->element('headerstaff') ?>
-</div>
 
 
 <div class="bookings index content" style="padding-top: 10%">

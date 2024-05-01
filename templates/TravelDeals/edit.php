@@ -8,6 +8,7 @@
  * @var string[]|\Cake\Collection\CollectionInterface $translations
  * @var string[]|\Cake\Collection\CollectionInterface $flights
  */
+$this->setLayout("defaultadmin");
 ?>
 <div class="row">
     <aside class="column">

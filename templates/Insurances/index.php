@@ -3,6 +3,7 @@
  * @var \App\View\AppView $this
  * @var iterable<\App\Model\Entity\Insurance> $insurances
  */
+$this->setLayout("defaultadmin");
 ?>
 
 
@@ -69,11 +70,6 @@
         }
     </style>
 </head>
-
-
-<div class="row">
-            <?= $this->element('headerstaff') ?>
-</div>
 
 <div class="insurances index content" style="padding-top: 10%">
     <?= $this->Html->link(__('New Insurance'), ['action' => 'add'], ['class' => 'button float-right']) ?>

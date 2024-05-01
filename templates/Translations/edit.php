@@ -3,6 +3,7 @@
  * @var \App\View\AppView $this
  * @var \App\Model\Entity\Translation $translation
  */
+$this->setLayout("defaultadmin");
 ?>
 <div class="row">
     <aside class="column">

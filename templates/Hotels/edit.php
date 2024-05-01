@@ -3,6 +3,7 @@
  * @var \App\View\AppView $this
  * @var \App\Model\Entity\Hotel $hotel
  */
+$this->setLayout("defaultadmin");
 ?>
 <div class="row">
     <aside class="column">

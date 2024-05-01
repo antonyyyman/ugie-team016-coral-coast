@@ -3,6 +3,7 @@
  * @var \App\View\AppView $this
  * @var iterable<\App\Model\Entity\User> $users
  */
+$this->setLayout("defaultadmin");
 ?>
 
 <head>
@@ -68,10 +69,6 @@
         }
     </style>
 </head>
-
-<div class="row">
-            <?= $this->element('headerstaff') ?>
-</div>
 
 <div class="users index content" style="padding-top: 10%">
     <?= $this->Html->link(__('New User'), ['action' => 'add'], ['class' => 'button float-right']) ?>

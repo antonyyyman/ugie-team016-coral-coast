@@ -5,7 +5,27 @@
  */
     $this->Html->script('script', ['block' => true]);
     $this->Html->css('contact-form', ['block' => true]);
+    $this->setLayout("defaultadmin");
 ?>
+<head>
+    <style>
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: #ffffff; 
+            z-index: 1000; 
+        }
+
+        main {
+            margin-top: 100px; 
+            padding: 100px; 
+        }
+    </style>
+</head>
+
+<main class="main">
 <div class="row">
     <aside class="column">
         <div class="side-nav">
@@ -80,3 +100,4 @@
         </div>
     </div>
 </div>
+                    </main>

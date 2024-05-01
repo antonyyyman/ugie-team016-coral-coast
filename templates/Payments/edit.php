@@ -4,6 +4,7 @@
  * @var \App\Model\Entity\Payment $payment
  * @var string[]|\Cake\Collection\CollectionInterface $bookings
  */
+$this->setLayout("defaultadmin");
 ?>
 <div class="row">
     <aside class="column">

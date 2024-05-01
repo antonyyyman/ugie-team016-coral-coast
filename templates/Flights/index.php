@@ -3,6 +3,7 @@
  * @var \App\View\AppView $this
  * @var iterable<\App\Model\Entity\Flight> $flights
  */
+$this->setLayout("defaultadmin");
 ?>
 
 <head>
@@ -70,11 +71,6 @@
 </head>
 
 <body>
-
-
-<div class="row">
-            <?= $this->element('headerstaff') ?>
-</div>
 
 <div class="flights index content" style="padding-top: 10%">
     <?= $this->Html->link(__('New Flight'), ['action' => 'add'], ['class' => 'button float-right']) ?>

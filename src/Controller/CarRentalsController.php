@@ -30,6 +30,7 @@ class CarRentalsController extends AppController
         $carRentals = $this->paginate($query);
 
         $this->set(compact('carRentals'));
+        $this->viewBuilder()->setLayout("defaultadmin");
     }
 
     /**

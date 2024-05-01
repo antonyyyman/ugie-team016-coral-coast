@@ -3,6 +3,7 @@
  * @var \App\View\AppView $this
  * @var iterable<\App\Model\Entity\Hotel> $hotels
  */
+$this->setLayout("defaultadmin");
 ?>
 
 
@@ -69,11 +70,6 @@
         }
     </style>
 </head>
-
-
-<div class="row">
-            <?= $this->element('headerstaff') ?>
-</div>
 
 <div class="hotels index content" style="padding-top: 10%">
     <?= $this->Html->link(__('New Hotel'), ['action' => 'add'], ['class' => 'button float-right']) ?>
