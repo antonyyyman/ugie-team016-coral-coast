@@ -28,6 +28,18 @@ $this->setLayout("defaultadmin");
                     <td><?= h($booking->destination) ?></td>
                 </tr>
                 <tr>
+                    <th><?=__('Flights')?></th>
+                    <td><?php if (!empty($booking->flights)): ?>
+                            <ul>
+                                <?php foreach ($booking->flights as $flight): ?>
+                                    <li><?= $this->Html->link(h($flight->number), ['controller' => 'Flights', 'action' => 'view', $flight->id]) ?></li>
+                                <?php endforeach; ?>
+                            </ul>
+                        <?php else: ?>
+                            N/A
+                        <?php endif; ?></td>
+                </tr>
+                <tr>
                     <th><?= __('Hotel') ?></th>
                     <td><?= $booking->hasValue('hotel') ? $this->Html->link($booking->hotel->name, ['controller' => 'Hotels', 'action' => 'view', $booking->hotel->id]) : '' ?></td>
                 </tr>

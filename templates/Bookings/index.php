@@ -112,6 +112,7 @@ $this->setLayout("defaultadmin");
                     <th><?= $this->Paginator->sort('start_date') ?></th>
                     <th><?= $this->Paginator->sort('end_date') ?></th>
                     <th><?= $this->Paginator->sort('destination') ?></th>
+                    <th><?= $this->Paginator->sort('flights') ?></th>
                     <th><?= $this->Paginator->sort('hotel_id') ?></th>
                     <th><?= $this->Paginator->sort('car_rental_id') ?></th>
                     <th><?= $this->Paginator->sort('insurance_id') ?></th>
@@ -131,12 +132,21 @@ $this->setLayout("defaultadmin");
                     <td><?= h($booking->start_date) ?></td>
                     <td><?= h($booking->end_date) ?></td>
                     <td><?= h($booking->destination) ?></td>
+                    <td><?php if (!empty($booking->flights)): ?>
+                            <ul>
+                                <?php foreach ($booking->flights as $flight): ?>
+                                    <li><?= $this->Html->link(h($flight->number), ['controller' => 'Flights', 'action' => 'view', $flight->id]) ?></li>
+                                <?php endforeach; ?>
+                            </ul>
+                        <?php else: ?>
+                            N/A
+                        <?php endif; ?></td>
                     <td><?= $booking->hotel_id ? $this->Html->link($booking->hotel->name ?? 'N/A', ['controller' => 'Hotels', 'action' => 'view', $booking->hotel_id]) : 'No Hotel Booked' ?></td>
-                    <td><?= $booking->car_rental_id ? $this->Html->link($booking->car_rental->id ?? 'N/A', ['controller' => 'CarRentals', 'action' => 'view', $booking->car_rental->id]) : 'No Car Rented' ?></td>
+                    <td><?= $booking->car_rental_id ? $this->Html->link($booking->car_rental->plate ?? 'N/A', ['controller' => 'CarRentals', 'action' => 'view', $booking->car_rental->id]) : 'No Car Rented' ?></td>
                     <td><?= $booking->insurance_id ? $this->Html->link($booking->insurance->supplier ?? 'N/A', ['controller' => 'Insurances', 'action' => 'view', $booking->insurance->id]) : 'No Insurance Booked' ?></td>
-                    <td><?= $booking->translation_id ? $this->Html->link($booking->translation->id ?? 'N/A', ['controller' => 'Translations', 'action' => 'view', $booking->translation->id]) : 'No Translation Service Booked' ?></td>
+                    <td><?= $booking->translation_id ? $this->Html->link($booking->translation->description ?? 'N/A', ['controller' => 'Translations', 'action' => 'view', $booking->translation->id]) : 'No Translation Service Booked' ?></td>
                     <td><?= $booking->payment_id ? $this->Html->link($booking->payment->id ?? 'N/A', ['controller' => 'Payments', 'action' => 'view', $booking->payment->id]) : 'Payment Not Available' ?></td>
-                    <td><?= $booking->travel_deal_id ? $this->Html->link($booking->travel_deal->id ?? 'N/A', ['controller' => 'TravelDeals', 'action' => 'view', $booking->travel_deal->id]) : 'No Travel Deal Booked' ?></td>
+                    <td><?= $booking->travel_deal_id ? $this->Html->link($booking->travel_deal->description ?? 'N/A', ['controller' => 'TravelDeals', 'action' => 'view', $booking->travel_deal->id]) : 'No Travel Deal Booked' ?></td>
                     <td><?= $booking->total_price === null ? 'Not Calculated' : $this->Number->format($booking->total_price) ?></td>
                     <td><?= h($booking->booking_status) == 1 ? 'active' : 'cancelled' ?></td>
                     <td class="actions" style="">

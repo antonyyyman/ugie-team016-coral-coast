@@ -74,8 +74,6 @@ class BookingsTable extends Table
             'foreignKey' => 'booking_id',
             'targetForeignKey' => 'flight_id',
             'joinTable' => 'bookings_flights',
-            'targetForeignKey' => 'flight_id',
-            'joinTable' => 'bookings_flights',
         ]);
     }
 
