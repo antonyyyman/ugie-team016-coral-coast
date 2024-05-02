@@ -156,6 +156,8 @@ th {
     border-width: 1px;
     border-style: solid;
     border-radius: 4px;
+    /* placeholder until a better way to display messages below header */    
+    margin-top: 6rem;
     margin-bottom: 1rem;
     cursor: pointer;
 }
