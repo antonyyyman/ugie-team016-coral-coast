@@ -111,14 +111,14 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
                     <p>We prioritise modern travel experiences through an end-to-end online platform, offering worldwide travel options including cruises and air travel, along with accommodation, car rentals, travel insurance, and translation services. </p>
                 </div>
                 <div class="col-md-4 col-sm-12">
-                    <h2>Useful Links</h2>
+                    <!-- <h2>Useful Links</h2>
                     <ul class="list-unstyled link-list">
                         <li><a ui-sref="about" >About us</a><i class="fa fa-angle-right"></i></li>
                         <li><a ui-sref="portfolio" >Portfolio</a><i class="fa fa-angle-right"></i></li>
                         <li><a ui-sref="products" >Latest jobs</a><i class="fa fa-angle-right"></i></li>
                         <li><a ui-sref="gallery" >Pricing</a><i class="fa fa-angle-right"></i></li>
                         <li><a ui-sref="contact" >Contact us</a><i class="fa fa-angle-right"></i></li>
-                    </ul>
+                    </ul> -->
                 </div>
                 <div class="col-md-4 col-sm-12 map-img">
                     <h2><a href= <?= $this->Url->build(['controller' => 'ContactForms', 'action' => 'add'])?>>Contact Us</a></h2>
