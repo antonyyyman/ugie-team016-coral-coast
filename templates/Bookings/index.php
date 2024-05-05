@@ -126,11 +126,21 @@ $this->setLayout("defaultadmin");
             </thead>
             <tbody>
                 <?php foreach ($bookings as $booking): ?>
+
+                <!-- FOR CELINE -->    
                 <?php
+                    //Just decarling as variables for future use, this step is not necessary but probably good to do. If you DONT do this, just do the "$this->Identity->get('is_staff') etc within the conditional check
                     $isStaff = $this->Identity->get('is_staff');
-                    $currentUserId = $this->Identity->get('id'); // Assuming 'id' is the attribute for user ID
+                    $currentUserId = $this->Identity->get('id'); 
+
+                    /**
+                     * Conditional check
+                     * If CURRENT LOGGED IN USER is NOT a staff member AND the user_id of the BOOKING does not MATCH the id of CURRENT LOGGED IN USER
+                     * Skip current iteration of forloop and check next booking
+                     * You can write the conditional checks different probably depending on if you declared the variables or if you just want to do it a different way, but thats the general idea
+                     */
                     if (!$isStaff && $booking->user_id != $currentUserId) {
-                        continue; // Skip this iteration if the current user is not staff and not the owner of the booking
+                        continue; 
                     }
                 ?>
                 <tr>
