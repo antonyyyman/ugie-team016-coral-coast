@@ -107,7 +107,7 @@ $this->setLayout("defaultadmin");
         <table>
             <thead>
                 <tr>
-                    <th><?= $this->Paginator->sort('id') ?></th>
+                    <th><?= $this->Paginator->sort('id', 'Reference #') ?></th>
                     <th><?= $this->Paginator->sort('user_id') ?></th>
                     <th><?= $this->Paginator->sort('start_date') ?></th>
                     <th><?= $this->Paginator->sort('end_date') ?></th>
@@ -126,6 +126,13 @@ $this->setLayout("defaultadmin");
             </thead>
             <tbody>
                 <?php foreach ($bookings as $booking): ?>
+                <?php
+                    $isStaff = $this->Identity->get('is_staff');
+                    $currentUserId = $this->Identity->get('id'); // Assuming 'id' is the attribute for user ID
+                    if (!$isStaff && $booking->user_id != $currentUserId) {
+                        continue; // Skip this iteration if the current user is not staff and not the owner of the booking
+                    }
+                ?>
                 <tr>
                     <td><?= $this->Number->format($booking->id) ?></td>
                     <td><?= $booking->hasValue('user') ? $this->Html->link($booking->user->user_info_string, ['controller' => 'Users', 'action' => 'view', $booking->user->id]) : '' ?></td>

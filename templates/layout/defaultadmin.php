@@ -73,7 +73,7 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
             </div>
             <div class="col-md-3 d-none d-lg-block socila-link">
             <?php
-                if ($this->Identity->isLoggedIn()) {
+                if ($this->Identity->isLoggedIn()){
                 echo $this->Html->link(
                     'Logout',
                     ['controller' => 'Auth', 'action' => 'logout'],
