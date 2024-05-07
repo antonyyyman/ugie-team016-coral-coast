@@ -169,13 +169,11 @@ $this->setLayout("defaultadmin");
                     <td class="actions" style="">
                         <?= $this->Html->link(__('View'), ['action' => 'view', $booking->id], ['class' => 'button-link']) ?>
                         <?= $this->Html->link(__('Edit'), ['action' => 'edit', $booking->id], ['class' => 'button-link']) ?>
-
                         <?= $this->Html->link(
                             __('Cancel'),
                             ['action' => 'cancel', $booking->id],
                             ['class' => 'button-link', 'confirm' => __('Are you sure you want to cancel this booking? This will only mark the booking status as cancelled, not to be removed from the list.')]
                         ) ?>
-
                         <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $booking->id], ['class' => 'button-link', 'confirm' => __('Are you sure you want to delete # {0}?', $booking->id)]) ?>
                     </td>
                 </tr>
