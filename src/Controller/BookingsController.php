@@ -373,9 +373,27 @@ class BookingsController extends AppController
 
         $total_price = $flights_price + $translation_price + $insurance_price + $car_rental_price + $hotel_price;
         $booking->total_price = $total_price;
-        $this->set(compact('booking'));
+//        $this->set(compact('booking'));
         //all the information displayed
-        //ready for function change pyment status
+
+        //******* start to create a payment record, and store its id into bookings.payment_id
+        $payment = $this->Bookings->Payments->newEmptyEntity();
+        $payment->amount = $total_price;
+        $payment->status = 'unpaid';
+
+        if ($this->Bookings->Payments->save($payment)) {
+            $booking->payment_id = $payment->id;
+            if ($this->Bookings->save($booking)) {
+                $this->Flash->success('Payment record created and booking updated successfully.');
+            } else {
+                $this->Flash->error('Failed to update booking.');
+            }
+        } else {
+            $this->Flash->error('Failed to create payment record.');
+        }
+        //ready for change payment status
     }
+
+
 
 }
