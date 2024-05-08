@@ -169,7 +169,9 @@ class BookingsController extends AppController
                 }
             }
 
-            $booking = $this->Bookings->patchEntity($booking, $this->request->getData());
+            $booking = $this->Bookings->patchEntity($booking, $this->request->getData(), [
+                'associated' => ['Flights']
+            ]);
             if ($this->Bookings->save($booking)) {
                 $this->Flash->success(__('The booking has been saved. Reference: ' . $booking->id));
 
@@ -183,7 +185,15 @@ class BookingsController extends AppController
         $hotels = $this->Bookings->Hotels->find('list', limit: 200)->all();
         $carRentals = $this->Bookings->CarRentals->find('list', limit: 200)->all();
         $translations = $this->Bookings->Translations->find('list', limit: 200)->all();
-        $flights = $this->Bookings->Flights->find('list', limit: 200)->all();
+
+//        $flights = $this->Bookings->Flights->find('list', limit: 200)->all();
+        $flights = [];
+//        debug($this->Bookings->Flights->find()->all());
+//        exit;
+        foreach ($this->Bookings->Flights->find()->all() as $flight) {
+            $flights[$flight->id] = $flight->number;
+        }
+
         $this->set(compact('booking', 'users', 'payments', 'insurances', 'hotels', 'carRentals', 'translations', 'flights'));
 
         //get user id
@@ -223,7 +233,14 @@ class BookingsController extends AppController
         $hotels = $this->Bookings->Hotels->find('list', limit: 200)->all();
         $carRentals = $this->Bookings->CarRentals->find('list', limit: 200)->all();
         $translations = $this->Bookings->Translations->find('list', limit: 200)->all();
-        $flights = $this->Bookings->Flights->find('list', limit: 200)->all();
+
+        $flights_pnt_detail = [];
+//        debug($this->Bookings->Flights->find()->all());
+//        exit;
+        foreach ($this->Bookings->Flights->find()->all() as $flight) {
+            $flights_pnt_detail[$flight->id] = $flight->number;
+        }
+        $this->set('flight_pnt_detail', $flights_pnt_detail);
 
         // ********** auto-calculating price for each booking **********
         // so the price set for each booking in database becomes rubbish

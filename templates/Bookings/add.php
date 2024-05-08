@@ -27,7 +27,17 @@ $this->setLayout("defaultadmin");
                     echo $this->Form->control('user_id', ['disabled' => true, 'value' => $user_id]);
                     echo $this->Form->hidden('user_id', ['value' => $user_id]);
 
-                    echo $this->Form->control('start_date', ['empty' => true, 'id' => 'start-date']);
+                    //for flights
+                echo $this->Form->control('flights._ids', [
+                    'type' => 'select',
+                    'multiple' => 'checkbox',
+                    'options' => $flights,
+                    'label' => __('Select Flights')
+                ]);
+
+
+
+                echo $this->Form->control('start_date', ['empty' => true, 'id' => 'start-date']);
                     echo $this->Form->control('end_date', ['empty' => true, 'id' => 'end-date']);
                     echo $this->Form->control('destination');
                     echo $this->Form->control('hotel_id', ['options' => $hotels, 'empty' => true]);

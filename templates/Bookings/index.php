@@ -158,7 +158,8 @@ $this->setLayout("defaultadmin");
                             </ul>
                         <?php else: ?>
                             N/A
-                        <?php endif; ?></td>
+                        <?php endif; ?>
+                    </td>
                     <td><?= $booking->hotel_id ? $this->Html->link($booking->hotel->name ?? 'N/A', ['controller' => 'Hotels', 'action' => 'view', $booking->hotel_id]) : '/' ?></td>
                     <td><?= $booking->car_rental_id ? $this->Html->link($booking->car_rental->plate ?? 'N/A', ['controller' => 'CarRentals', 'action' => 'view', $booking->car_rental->id]) : '/' ?></td>
                     <td><?= $booking->insurance_id ? $this->Html->link($booking->insurance->supplier ?? 'N/A', ['controller' => 'Insurances', 'action' => 'view', $booking->insurance->id]) : '/' ?></td>
