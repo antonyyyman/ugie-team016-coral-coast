@@ -411,6 +411,47 @@ class BookingsController extends AppController
         $this->set('paymentMethods', $paymentMethods);
     }
 
+    //change bookingpayment status from unpaid to paid action
+    public function changestatus($bookingId)
+    {
+        $booking = $this->Bookings->get($bookingId, [
+            'contain' => ['Payments']
+        ]);
+
+        if (!$booking) {
+            $this->Flash->error('Booking not found.');
+            return $this->redirect(['action' => 'index']);
+        }
+
+        if ($this->request->is(['patch', 'post', 'put'])) {
+            $payment = $booking->payment;
+            $paymentMethod = $this->request->getData('payment_method');
+
+            // Update payment method if provided
+            if ($paymentMethod) {
+                $payment->payment_method = $paymentMethod;
+            }
+
+            // Check if payment is unpaid and update status
+            if ($payment && $payment->status == 'unpaid') {
+                $payment->status = 'paid';
+
+                if ($this->Bookings->Payments->save($payment)) {
+                    $this->Flash->success('Payment updated successfully.');
+                } else {
+                    $this->Flash->error('Failed to update payment.');
+                }
+            } else {
+                if ($payment) {
+                    $this->Flash->error('Payment is already paid or not available.');
+                } else {
+                    $this->Flash->error('No payment associated with this booking.');
+                }
+            }
+        }
+
+        return $this->redirect(['action' => 'index', $bookingId]);
+    }
 
 
 }

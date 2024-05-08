@@ -134,6 +134,7 @@ $this->setLayout("defaultadmin");
                     <th><?= $this->Paginator->sort('travel_deal_id') ?></th>
                     <th><?= $this->Paginator->sort('total_price', __('Total')) ?></th>
                     <th><?= $this->Paginator->sort('booking_status', __('Status')) ?></th>
+                    <th><?= $this->Paginator->sort('payment_status', __('Status')) ?></th>
                     <th class="actions"><?= __('Actions') ?></th>
                 </tr>
             </thead>
