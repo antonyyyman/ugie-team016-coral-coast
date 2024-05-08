@@ -424,7 +424,7 @@ class BookingsController extends AppController
         }
 
         if ($this->request->is(['patch', 'post', 'put'])) {
-            $payment = $booking->payment;
+            $payment = $booking->payment;//real entity
             $paymentMethod = $this->request->getData('payment_method');
 
             // Update payment method if provided
@@ -432,6 +432,8 @@ class BookingsController extends AppController
                 $payment->payment_method = $paymentMethod;
             }
 
+            debug($payment);
+            exit;
             // Check if payment is unpaid and update status
             if ($payment && $payment->status == 'unpaid') {
                 $payment->status = 'paid';

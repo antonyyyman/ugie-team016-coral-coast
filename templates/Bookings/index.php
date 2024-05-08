@@ -134,7 +134,7 @@ $this->setLayout("defaultadmin");
                     <th><?= $this->Paginator->sort('travel_deal_id') ?></th>
                     <th><?= $this->Paginator->sort('total_price', __('Total')) ?></th>
                     <th><?= $this->Paginator->sort('booking_status', __('Status')) ?></th>
-                    <th><?= $this->Paginator->sort('payment_status', __('Status')) ?></th>
+                    <th><?= $this->Paginator->sort('payment_status', __('Payment Status')) ?></th>
                     <th class="actions"><?= __('Actions') ?></th>
                 </tr>
             </thead>
@@ -167,6 +167,16 @@ $this->setLayout("defaultadmin");
                     <td><?= $booking->travel_deal_id ? $this->Html->link($booking->travel_deal->description ?? 'N/A', ['controller' => 'TravelDeals', 'action' => 'view', $booking->travel_deal->id]) : '/' ?></td>
                     <td><?= $booking->total_price === null ? 'Not Calculated' : '$' . $this->Number->format($booking->total_price) ?></td>
                     <td><?= h($booking->booking_status) == 1 ? 'active' : 'cancelled' ?></td>
+
+                    <td>
+                        <?php if ($booking->payment_id && $booking->payment): ?>
+                            <?= h($booking->payment->status) ?>
+                        <?php else: ?>
+                            <?= __('Unpaid') ?>
+                        <?php endif; ?>
+                    </td>
+
+
                     <td class="actions" style="">
 <!--                        //newly added payment button-->
                         <?= $this->Html->link(__('Pay'), ['action' => 'paymentview', $booking->id], ['class' => 'button-link']) ?>
