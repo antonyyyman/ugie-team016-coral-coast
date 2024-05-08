@@ -68,6 +68,8 @@ class TravelDealsController extends AppController
         $flights = $this->TravelDeals->Flights->find('list', limit: 200)->all();
         $cruises = $this->TravelDeals->Cruises->find('list', limit: 200)->all();
         $this->set(compact('travelDeal', 'insurances', 'hotels', 'carRentals', 'translations', 'flights', 'cruises'));
+        
+        $this->viewBuilder()->setLayout('defaultadmin');
     }
 
     /**
@@ -96,6 +98,8 @@ class TravelDealsController extends AppController
         $flights = $this->TravelDeals->Flights->find('list', limit: 200)->all();
         $cruises = $this->TravelDeals->Flights->find('list', limit: 200)->all();
         $this->set(compact('travelDeal', 'insurances', 'hotels', 'carRentals', 'translations', 'flights', 'cuirses'));
+        
+        $this->viewBuilder()->setLayout('defaultadmin');
     }
 
     /**
@@ -116,5 +120,7 @@ class TravelDealsController extends AppController
         }
 
         return $this->redirect(['action' => 'index']);
+        
+        $this->viewBuilder()->setLayout('defaultadmin');
     }
 }

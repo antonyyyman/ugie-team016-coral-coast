@@ -28,6 +28,7 @@ class TranslationsController extends AppController
         $translations = $this->paginate($query);
 
         $this->set(compact('translations'));
+        
     }
 
     /**
@@ -61,6 +62,7 @@ class TranslationsController extends AppController
             $this->Flash->error(__('The translation could not be saved. Please, try again.'));
         }
         $this->set(compact('translation'));
+        $this->viewBuilder()->setLayout('defaultadmin');
     }
 
     /**
@@ -83,6 +85,7 @@ class TranslationsController extends AppController
             $this->Flash->error(__('The translation could not be saved. Please, try again.'));
         }
         $this->set(compact('translation'));
+        $this->viewBuilder()->setLayout('defaultadmin');
     }
 
     /**
@@ -103,5 +106,6 @@ class TranslationsController extends AppController
         }
 
         return $this->redirect(['action' => 'index']);
+        $this->viewBuilder()->setLayout('defaultadmin');
     }
 }

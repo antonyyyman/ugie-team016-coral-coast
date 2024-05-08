@@ -3,6 +3,7 @@
  * @var \App\View\AppView $this
  * @var \App\Model\Entity\CarRental $carRental
  */
+$this->setLayout('defaultadmin');
 ?>
 
 <head>

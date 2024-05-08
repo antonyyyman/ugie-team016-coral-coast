@@ -1,5 +1,5 @@
 <?php
-
+    $this->setLayout('defaultadmin');
 ?>
 <!DOCTYPE html>
 <html>

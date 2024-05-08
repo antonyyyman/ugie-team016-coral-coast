@@ -21,6 +21,7 @@ class UsersController extends AppController
         $users = $this->paginate($query);
 
         $this->set(compact('users'));
+        $this->viewBuilder()->setLayout('defaultadmin');
     }
 
     /**
@@ -34,6 +35,8 @@ class UsersController extends AppController
     {
         $user = $this->Users->get($id, contain: ['Bookings']);
         $this->set(compact('user'));
+        
+        $this->viewBuilder()->setLayout('defaultadmin');
     }
 
     /**
@@ -54,6 +57,8 @@ class UsersController extends AppController
             $this->Flash->error(__('The user could not be saved. Please, try again.'));
         }
         $this->set(compact('user'));
+        
+        $this->viewBuilder()->setLayout('defaultadmin');
     }
 
     /**
@@ -76,6 +81,8 @@ class UsersController extends AppController
             $this->Flash->error(__('The user could not be saved. Please, try again.'));
         }
         $this->set(compact('user'));
+        
+        $this->viewBuilder()->setLayout('defaultadmin');
     }
 
     /**
@@ -96,5 +103,7 @@ class UsersController extends AppController
         }
 
         return $this->redirect(['action' => 'index']);
+        
+        $this->viewBuilder()->setLayout('defaultadmin');
     }
 }

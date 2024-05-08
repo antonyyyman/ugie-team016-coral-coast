@@ -9,6 +9,7 @@ class DashboardController extends AppController
     public function index() {
         $tables = $this ->getTableNames();
         $this->set('tables',$tables);
+        $this->viewBuilder()->setLayout('defaultadmin');
     }
 
     private function getTableNames()

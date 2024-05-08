@@ -30,6 +30,7 @@ class CarRentalsController extends AppController
         $carRentals = $this->paginate($query);
 
         $this->set(compact('carRentals'));
+        
     }
 
     /**
@@ -63,6 +64,7 @@ class CarRentalsController extends AppController
             $this->Flash->error(__('The car rental could not be saved. Please, try again.'));
         }
         $this->set(compact('carRental'));
+        $this->viewBuilder()->setLayout('defaultadmin');
     }
 
     /**
@@ -85,6 +87,7 @@ class CarRentalsController extends AppController
             $this->Flash->error(__('The car rental could not be saved. Please, try again.'));
         }
         $this->set(compact('carRental'));
+        $this->viewBuilder()->setLayout('defaultadmin');
     }
 
     /**
@@ -105,5 +108,6 @@ class CarRentalsController extends AppController
         }
 
         return $this->redirect(['action' => 'index']);
+        $this->viewBuilder()->setLayout('defaultadmin');
     }
 }

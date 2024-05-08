@@ -52,7 +52,7 @@ class BookingsController extends AppController
         $bookings = $this->paginate($query);
 
         $this->set(compact('bookings'));
-        // $this->viewBuilder()->setLayout("defaultadmin");
+        
     }
 
     /**
@@ -102,6 +102,7 @@ class BookingsController extends AppController
         $translations = $this->Bookings->Translations->find('list', limit: 200)->all();
         $flights = $this->Bookings->Flights->find('list', limit: 200)->all();
         $this->set(compact('booking', 'users', 'payments', 'insurances', 'hotels', 'carRentals', 'translations', 'flights'));
+        $this->viewBuilder()->setLayout("defaultadmin");
     }
 
     /**
@@ -131,6 +132,7 @@ class BookingsController extends AppController
         $translations = $this->Bookings->Translations->find('list', limit: 200)->all();
         $flights = $this->Bookings->Flights->find('list', limit: 200)->all();
         $this->set(compact('booking', 'users', 'payments', 'insurances', 'hotels', 'carRentals', 'translations', 'flights'));
+        $this->viewBuilder()->setLayout("defaultadmin");
     }
 
     /**
@@ -151,6 +153,7 @@ class BookingsController extends AppController
         }
 
         return $this->redirect(['action' => 'index']);
+        $this->viewBuilder()->setLayout("defaultadmin");
     }
 
     public function cancel($id = null)
@@ -197,6 +200,7 @@ class BookingsController extends AppController
             $this->set(compact('booking'));
             $this->set('_serialize', ['booking']);
         }
+        $this->viewBuilder()->setLayout("defaultadmin");
     }
 
 

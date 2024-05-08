@@ -61,6 +61,8 @@ class HotelsController extends AppController
             $this->Flash->error(__('The hotel could not be saved. Please, try again.'));
         }
         $this->set(compact('hotel'));
+        
+        $this->viewBuilder()->setLayout('defaultadmin');
     }
 
     /**
@@ -83,6 +85,8 @@ class HotelsController extends AppController
             $this->Flash->error(__('The hotel could not be saved. Please, try again.'));
         }
         $this->set(compact('hotel'));
+        
+        $this->viewBuilder()->setLayout('defaultadmin');
     }
 
     /**
@@ -103,5 +107,7 @@ class HotelsController extends AppController
         }
 
         return $this->redirect(['action' => 'index']);
+        
+        $this->viewBuilder()->setLayout('defaultadmin');
     }
 }

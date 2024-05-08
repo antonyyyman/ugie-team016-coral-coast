@@ -5,6 +5,7 @@
  */
     $this->Html->script('script', ['block' => true]);
     $this->Html->css('contact-form', ['block' => true]);
+    $this->setLayout('defaultadmin');
 ?>
 <head>
     <style>

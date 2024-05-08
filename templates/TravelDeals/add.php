@@ -8,6 +8,7 @@
  * @var \Cake\Collection\CollectionInterface|string[] $translations
  * @var \Cake\Collection\CollectionInterface|string[] $flights
  */
+$this->setLayout('defaultadmin');
 ?>
 
 <head>
