@@ -33,6 +33,7 @@ class AuthController extends AppController
         // These actions, however, are typically required for users who have not yet logged in.
         $this->Authentication->allowUnauthenticated(['login', 'register', 'forgetPassword', 'resetPassword']);
 
+
         // CakePHP loads the model with the same name as the controller by default.
         // Since we don't have an Auth model, we'll need to load "Users" model when starting the controller manually.
         $this->Users = $this->fetchTable('Users');
@@ -196,6 +197,9 @@ class AuthController extends AppController
         // if user passes authentication, grant access to the system
         if ($result && $result->isValid()) {
 
+
+            $staff_login = $this->request->getData('is_staff');
+            
             /**
              * Sets a cookie that saves the email used to login if the remember me box is checked
              * 
@@ -214,7 +218,12 @@ class AuthController extends AppController
                 }
             }
             // set a fallback location in case user logged in without triggering 'unauthenticatedRedirect'
-            $fallbackLocation = ['controller' => 'Dashboard', 'action' => 'index'];
+            if(!$staff_login){
+                $fallbackLocation = ['controller' => 'Pages', 'action' => 'index'];
+            } else {
+                $fallbackLocation = ['controller' => 'Dashboard', 'action' => 'index'];
+            }
+            
 
             // and redirect user to the location they're trying to access
             return $this->redirect($this->Authentication->getLoginRedirect() ?? $fallbackLocation);

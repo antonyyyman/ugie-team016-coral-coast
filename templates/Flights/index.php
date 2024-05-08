@@ -100,8 +100,10 @@
                     <td><?= $flight->price === null ? '' : $this->Number->format($flight->price) ?></td>
                     <td class="actions">
                         <?= $this->Html->link(__('View'), ['action' => 'view', $flight->id], ['class' => 'button-link']) ?>
-                        <?= $this->Html->link(__('Edit'), ['action' => 'edit', $flight->id], ['class' => 'button-link']) ?>
-                        <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $flight->id], ['class' => 'button-link', 'confirm' => __('Are you sure you want to delete # {0}?', $flight->id)]) ?>
+                        <?php if ($this->Identity->get('is_staff') == true) { 
+                            echo $this->Html->link(__('Edit'), ['action' => 'edit', $flight->id], ['class' => 'button-link']);
+                            echo $this->Form->postLink(__('Delete'), ['action' => 'delete', $flight->id], ['class' => 'button-link', 'confirm' => __('Are you sure you want to delete # {0}?', $flight->id)]);
+                        }?>
                     </td>
                 </tr>
                 <?php endforeach; ?>

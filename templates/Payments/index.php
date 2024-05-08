@@ -93,7 +93,10 @@
                     <td><?= h($payment->status) ?></td>
                     <td class="actions">
                         <?= $this->Html->link(__('View'), ['action' => 'view', $payment->id], ['class' => 'button-link']) ?>
-                        <?= $this->Html->link(__('Edit'), ['action' => 'edit', $payment->id], ['class' => 'button-link']) ?>
+                        <!-- What is the edit button for in payments? Why can payments be edited manually? Making it staff only I guess???? -->
+                        <?php if ($this->Identity->get('is_staff') == true) {
+                            echo $this->Html->link(__('Edit'), ['action' => 'edit', $payment->id], ['class' => 'button-link']);
+                        }?>
                         <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $payment->id], ['class' => 'button-link', 'confirm' => __('Are you sure you want to delete # {0}?', $payment->id)]) ?>
                     </td>
                 </tr>

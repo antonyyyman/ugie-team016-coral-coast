@@ -97,8 +97,10 @@
                     <td><?= $carRental->price === null ? '' : $this->Number->format($carRental->price) ?></td>
                     <td class="actions">
                         <?= $this->Html->link(__('View'), ['action' => 'view', $carRental->id], ['class' => 'button-link']) ?>
-                        <?= $this->Html->link(__('Edit'), ['action' => 'edit', $carRental->id], ['class' => 'button-link']) ?>
-                        <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $carRental->id], ['class' => 'button-link', 'confirm' => __('Are you sure you want to delete # {0}?', $carRental->id)]) ?>
+                        <?php if ($this->Identity->get('is_staff') == true) { 
+                            echo $this->Html->link(__('Edit'), ['action' => 'edit', $carRental->id], ['class' => 'button-link']);
+                            echo $this->Form->postLink(__('Delete'), ['action' => 'delete', $carRental->id], ['class' => 'button-link', 'confirm' => __('Are you sure you want to delete # {0}?', $carRental->id)]);
+                        }?>
                     </td>
                 </tr>
                 <?php endforeach; ?>

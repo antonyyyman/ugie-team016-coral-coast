@@ -31,6 +31,18 @@ class FlightsController extends AppController
         $this->set(compact('flights'));
     }
 
+    public function customerSideIndex(){
+        $query = $this->Flights->find();
+        $flights = $this->paginate($query);
+
+        $this->set(compact('flights'));
+    }
+
+    public function customerSideView($id = null ){
+        $flights = $this->Flights->get($id, contain: ['Bookings', 'TravelDeals']);
+        $this->set(compact('flights'));
+    }
+
     /**
      * View method
      *

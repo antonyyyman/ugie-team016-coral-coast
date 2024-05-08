@@ -32,17 +32,15 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
     <?= $this->fetch('meta') ?>
     <?= $this->fetch('css') ?>
     <?= $this->fetch('script') ?>
-    
+
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Free Tour and Travel Website Tempalte | Smarteyeapps.com</title>
 
-    
-    
 
-    <!-- Weija said to remove this right? Either way it is bugging my code so I'm removing it for now. 
+    <!-- Weija said to remove this right? Either way it is bugging my code so I'm removing it for now.
         If you need something in default stylesheet move it out.-->
-        
+
     <!-- <link rel="shortcut icon" href="assets/images/fav.png" type="image/x-icon">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i&display=swap" rel="stylesheet">
     <link rel="shortcut icon" href="assets/images/fav.jpg">
@@ -59,7 +57,7 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
         <div class="row">
             <div class="col-md-3 logo">
             <a href=<?= $this->Url->build(['controller' => 'pages', 'action' => 'home'])?>>
-                <img src="/img/logo_coralcoast.png" alt="Coral Coast Logo">
+                <img src="../webroot/img/logo_coralcoast.png" alt="Coral Coast Logo">
             </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#menu" aria-controls="menu" aria-expanded="false" aria-label="Toggle navigation">
                 <i class="fas d-block d-lg-none small-menu fa-bars"></i>
@@ -90,7 +88,7 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
 </header>
 
 <body>
-</div> 
+</div>
 
     <main class="main">
         <div>
@@ -98,7 +96,8 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
             <?= $this->fetch('content') ?>
         </div>
     </main>
-    
+
+
     <script src="assets/js/jquery-3.2.1.min.js"></script>
     <script src="assets/js/popper.min.js"></script>
     <script src="assets/js/bootstrap.min.js"></script>

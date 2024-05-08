@@ -30,6 +30,18 @@ class HotelsController extends AppController
         $this->set(compact('hotels'));
     }
 
+    public function customerSideIndex(){
+        $query = $this->Hotels->find();
+        $hotels = $this->paginate($query);
+
+        $this->set(compact('hotels'));
+    }
+
+    public function customerSideView($id = null ){
+        $hotels = $this->Hotels->get($id, contain: ['Bookings', 'TravelDeals']);
+        $this->set(compact('hotels'));
+    }
+
     /**
      * View method
      *

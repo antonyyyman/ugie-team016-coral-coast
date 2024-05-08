@@ -95,8 +95,10 @@
                     <td><?= $insurance->price === null ? '' : $this->Number->format($insurance->price) ?></td>
                     <td class="actions">
                         <?= $this->Html->link(__('View'), ['action' => 'view', $insurance->id], ['class' => 'button-link']) ?>
-                        <?= $this->Html->link(__('Edit'), ['action' => 'edit', $insurance->id], ['class' => 'button-link']) ?>
-                        <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $insurance->id], ['class' => 'button-link', 'confirm' => __('Are you sure you want to delete # {0}?', $insurance->id)]) ?>
+                        <?php if ($this->Identity->get('is_staff') == true) { 
+                            echo $this->Html->link(__('Edit'), ['action' => 'edit', $insurance->id], ['class' => 'button-link']);
+                            echo $this->Form->postLink(__('Delete'), ['action' => 'delete', $insurance->id], ['class' => 'button-link', 'confirm' => __('Are you sure you want to delete # {0}?', $insurance->id)]);
+                        }?>
                     </td>
                 </tr>
                 <?php endforeach; ?>
