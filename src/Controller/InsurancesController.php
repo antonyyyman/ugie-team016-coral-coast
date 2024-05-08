@@ -31,6 +31,19 @@ class InsurancesController extends AppController
         $this->viewBuilder()->setLayout("defaultadmin");
     }
 
+    public function customerSideIndex(){
+        $query = $this->Insurances->find();
+        $insurances = $this->paginate($query);
+
+        $this->set(compact('insurances'));
+    }
+
+    public function customerSideView($id = null ){
+        $insurance = $this->Insurances->get($id, contain: ['Bookings', 'TravelDeals']);
+        $this->set(compact('insurance'));
+
+    }
+
     /**
      * View method
      *
