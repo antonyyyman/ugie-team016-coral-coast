@@ -397,7 +397,7 @@ class BookingsController extends AppController
         if ($this->Bookings->Payments->save($payment)) {
             $booking->payment_id = $payment->id;
             if ($this->Bookings->save($booking)) {
-                $this->Flash->success('Payment record created and booking updated successfully.');
+//                $this->Flash->success('Payment record created and booking updated successfully.');
             } else {
                 $this->Flash->error('Failed to update booking.');
             }
