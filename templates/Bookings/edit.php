@@ -30,8 +30,8 @@ $this->setLayout("defaultadmin");
                 <legend><?= __('Edit Booking') ?></legend>
                 <?php
                     echo $this->Form->control('user_id', ['options' => $users, 'empty' => true]);
-                    echo $this->Form->control('start_date', ['empty' => true]);
-                    echo $this->Form->control('end_date', ['empty' => true]);
+                    echo $this->Form->control('start_date', ['empty' => true, 'id' => 'start-date']);
+                    echo $this->Form->control('end_date', ['empty' => true, 'id' => 'end-date']);
                     echo $this->Form->control('destination');
 
                     echo $this->Form->control('hotel_id', ['options' => $hotels, 'empty' => true]);
@@ -60,3 +60,24 @@ $this->setLayout("defaultadmin");
         </div>
     </div>
 </div>
+
+
+
+// js to stop form submission in front end
+<script type="text/javascript">
+    document.addEventListener('DOMContentLoaded', function () {
+        const startDateInput = document.getElementById('start-date');
+        const endDateInput = document.getElementById('end-date');
+        const form = document.querySelector('form');
+
+        form.addEventListener('submit', function (event) {
+            const startDate = new Date(startDateInput.value);
+            const endDate = new Date(endDateInput.value);
+
+            if (startDate > endDate) {
+                alert('Return Date Cannot be Eailier than Start Date');
+                event.preventDefault();
+            }
+        });
+    });
+</script>
