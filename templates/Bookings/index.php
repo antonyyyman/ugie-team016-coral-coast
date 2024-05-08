@@ -167,7 +167,7 @@ $this->setLayout("defaultadmin");
                     <td><?= $booking->total_price === null ? 'Not Calculated' : '$' . $this->Number->format($booking->total_price) ?></td>
                     <td><?= h($booking->booking_status) == 1 ? 'active' : 'cancelled' ?></td>
                     <td class="actions" style="">
-                        //newly added payment button
+<!--                        //newly added payment button-->
                         <?= $this->Html->link(__('Pay'), ['action' => 'paymentview', $booking->id], ['class' => 'button-link']) ?>
 
                         <?= $this->Html->link(__('View'), ['action' => 'view', $booking->id], ['class' => 'button-link']) ?>

@@ -191,6 +191,7 @@ class BookingsController extends AppController
         $result = $this->Authentication->getResult();
         $user = $result->getData();
         $user_id = $user->id;
+
 //        debug ($user_id);
 //        exit;
         $this->set('user_id', $user_id);
@@ -339,7 +340,11 @@ class BookingsController extends AppController
         }
     }
 
-
+    /**
+     * PaymentView method
+     *
+     * @return \Cake\Http\Response|null|void Redirects on successful add, renders view otherwise.
+     */
     public function paymentview($id = null)
     {
         // display all the information
@@ -380,6 +385,14 @@ class BookingsController extends AppController
         $payment = $this->Bookings->Payments->newEmptyEntity();
         $payment->amount = $total_price;
         $payment->status = 'unpaid';
+//        $payment->payment_method = 'Credit Card';
+
+        $paymentMethods = [
+            'credit_card' => 'Credit Card',
+            'paypal' => 'PayPal',
+            'bank_transfer' => 'Bank Transfer'
+        ];
+
 
         if ($this->Bookings->Payments->save($payment)) {
             $booking->payment_id = $payment->id;
@@ -392,6 +405,10 @@ class BookingsController extends AppController
             $this->Flash->error('Failed to create payment record.');
         }
         //ready for change payment status
+
+        $this->set(compact('booking'));
+        $this->set('payment', $payment);
+        $this->set('paymentMethods', $paymentMethods);
     }
 
 
