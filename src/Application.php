@@ -62,6 +62,8 @@ class Application extends BaseApplication implements AuthenticationServiceProvid
                 (new TableLocator())->allowFallbackClass(false)
             );
         }
+
+        $this->addPlugin('ContentBlocks');
     }
 
     /**
@@ -101,6 +103,7 @@ class Application extends BaseApplication implements AuthenticationServiceProvid
 
             // Add Authentication support by plugin
             ->add(new AuthenticationMiddleware($this));
+
 
         return $middlewareQueue;
     }

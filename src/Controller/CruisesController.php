@@ -22,7 +22,7 @@ class CruisesController extends AppController
          $this->loadComponent('Authentication.Authentication');
          $this->Authentication->allowUnauthenticated(['index']);
      }
-      
+
     public function index()
     {
         $query = $this->Cruises->find();
@@ -30,6 +30,19 @@ class CruisesController extends AppController
 
         $this->set(compact('cruises'));
         $this->viewBuilder()->setLayout("defaultadmin");
+    }
+
+    public function customerSideIndex(){
+        $query = $this->Cruises->find();
+        $cruises = $this->paginate($query);
+
+        $this->set(compact('cruises'));
+
+    }
+
+    public function customerSideView($id = null ){
+        $cruises = $this->Cruises->get($id, contain: ['TravelDeals']);
+        $this->set(compact('cruises'));
     }
 
     /**
