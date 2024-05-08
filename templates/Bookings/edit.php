@@ -41,7 +41,7 @@ $this->setLayout("defaultadmin");
                     echo $this->Form->control('travel_deal_id');
 
                     echo $this->Form->control('total_price', ["disabled"=>true]);
-                    echo $this->Form->control('payment_id');
+//                    echo $this->Form->control('payment_id');
 
                     $bookingStatus = $booking['booking_status'] ?? false;
                     if ($bookingStatus == true) {
