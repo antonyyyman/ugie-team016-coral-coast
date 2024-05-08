@@ -25,7 +25,7 @@ $this->setLayout("defaultadmin");
     </aside>
     <div class="column column-80">
         <div class="bookings form content">
-            <?= $this->Form->create($booking) ?>
+            <?= $this->Form->create($booking, ['id' => 'edit-booking-form']) ?>
             <fieldset>
                 <legend><?= __('Edit Booking') ?></legend>
                 <?php
@@ -72,16 +72,22 @@ $this->setLayout("defaultadmin");
 
 
 
-// js to stop form submission in front end
+<!--// js to stop form submission in front end-->
 <script type="text/javascript">
     document.addEventListener('DOMContentLoaded', function () {
+        const form = document.getElementById('edit-booking-form');
+
         const startDateInput = document.getElementById('start-date');
         const endDateInput = document.getElementById('end-date');
-        const form = document.querySelector('form');
+        // const form = document.querySelector('form');
+        console.log("Test");
+        console.log(startDateInput, endDateInput);
 
         form.addEventListener('submit', function (event) {
+            // event.preventDefault();
             const startDate = new Date(startDateInput.value);
             const endDate = new Date(endDateInput.value);
+            console.log(startDate, endDate);
 
             if (startDate > endDate) {
                 alert('Return Date Cannot be Earlier than Start Date');
