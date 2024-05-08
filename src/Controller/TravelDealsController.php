@@ -116,12 +116,10 @@ class TravelDealsController extends AppController
         $carRentals = $this->TravelDeals->CarRentals->find('list', limit: 200)->all();
         $translations = $this->TravelDeals->Translations->find('list', limit: 200)->all();
         $flights = $this->TravelDeals->Flights->find('list', limit: 200)->all();
-<<<<<<< HEAD
         $cruises = $this->TravelDeals->Cruises->find('list', limit: 200)->all();
         $this->set(compact('travelDeal', 'insurances', 'hotels', 'carRentals', 'translations', 'flights', 'cruises'));
-=======
         $cruises = $this->TravelDeals->Flights->find('list', limit: 200)->all();
-        $this->set(compact('travelDeal', 'insurances', 'hotels', 'carRentals', 'translations', 'flights', 'cuirses'));
+        $this->set(compact('travelDeal', 'insurances', 'hotels', 'carRentals', 'translations', 'flights', 'cruises'));
 
         // newly added for flight
         $flights_pnt_detail = [];
@@ -130,9 +128,7 @@ class TravelDealsController extends AppController
         foreach ($this->TravelDeals->Flights->find()->all() as $flight) {
             $flights_pnt_detail[$flight->id] = $flight->number;
         }
-        $this->set('flight_pnt_detail', $flights_pnt_detail);
-
->>>>>>> 38ff2e5ea25957f9d9d5a0caebb3a84442ac4fe7
+        $this->set('flight_pnt_detail', $flights_pnt_detail);g
     }
 
     /**
