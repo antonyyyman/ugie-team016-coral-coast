@@ -66,11 +66,11 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
             </div>
             <div id="menu" class="col-lg-6 col-md-9 d-none d-md-block navs collapse">
                 <ul>
-                <li><a href=<?= $this->Url->build(['controller' => 'Dashboard', 'action' => 'index'])?>>Dashboard</a></li>
-                    <li><a href=<?= $this->Url->build(['controller' =>'Bookings', 'action' => 'index'])?>>Bookings</a></li>
-                    <li><a href=<?= $this->Url->build(['controller' => 'Flights', 'action' => 'index'])?>>Flights</a></li>
-                    <li><a href=<?= $this->Url->build(['controller' => 'Hotels', 'action' => 'index'])?>>Hotels</a></li>
-                    <li><a href=<?= $this->Url->build(['controller' => 'Payments', 'action' => 'index'])?>>Payments</a></li>
+                <li><a href=<?= $this->Url->build(['controller' => 'Flights', 'action' => 'index'])?>>Flights</a></li>
+                    <li><a href=<?= $this->Url->build(['controller' =>'Hotels', 'action' => 'index'])?>>Hotels</a></li>
+                    <li><a href=<?= $this->Url->build(['controller' => 'Travel Deals', 'action' => 'index'])?>>Travel Deals</a></li>
+                    <li><a href=<?= $this->Url->build(['controller' => 'Bookings', 'action' => 'index'])?>>Bookings</a></li>
+                    <li><a href=<?= $this->Url->build(['controller' => 'ContactForms', 'action' => 'add'])?>>Contact us</a></li>
                 </ul>
             </div>
             <div class="col-md-3 d-none d-lg-block socila-link">
@@ -113,17 +113,17 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
                     <p>We prioritise modern travel experiences through an end-to-end online platform, offering worldwide travel options including cruises and air travel, along with accommodation, car rentals, travel insurance, and translation services. </p>
                 </div>
                 <div class="col-md-4 col-sm-12">
-                    <!-- <h2>Useful Links</h2>
+                    <h2>Other Links</h2>
                     <ul class="list-unstyled link-list">
-                        <li><a ui-sref="about" >About us</a><i class="fa fa-angle-right"></i></li>
-                        <li><a ui-sref="portfolio" >Portfolio</a><i class="fa fa-angle-right"></i></li>
-                        <li><a ui-sref="products" >Latest jobs</a><i class="fa fa-angle-right"></i></li>
-                        <li><a ui-sref="gallery" >Pricing</a><i class="fa fa-angle-right"></i></li>
-                        <li><a ui-sref="contact" >Contact us</a><i class="fa fa-angle-right"></i></li>
-                    </ul> -->
+                    <li><a href=<?= $this->Url->build(['controller' => 'CarRentals', 'action' => 'index'])?>>Car Rentals</a></li>
+                    <li><a href=<?= $this->Url->build(['controller' => 'Cruises', 'action' => 'index'])?>>Cruises</a></li>
+                    <li><a href=<?= $this->Url->build(['controller' => 'Insurances', 'action' => 'index'])?>>Insurances</a></li>
+                    <li><a href=<?= $this->Url->build(['controller' => 'Payments', 'action' => 'index'])?>>Payments</a></li>
+                    <li><a href=<?= $this->Url->build(['controller' => 'Translations', 'action' => 'index'])?>>Translations</a></li>
+                    </ul>
                 </div>
                 <div class="col-md-4 col-sm-12 map-img">
-                    <h2><a href= <?= $this->Url->build(['controller' => 'ContactForms', 'action' => 'add'])?>>Contact Us</a></h2>
+                    <h2>Contact Us</a></h2>
                     <address class="md-margin-bottom-40">
                         Coral Coast <br>
                         Wellington Rd, <br>

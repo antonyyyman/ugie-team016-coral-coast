@@ -6,9 +6,6 @@
     $this->Html->script('script', ['block' => true]);
     $this->Html->css('contact-form', ['block' => true]);
 ?>
-<head>
-    
-</head>
 <div class="row">
     <aside class="column">
         <!-- <div class="side-nav">

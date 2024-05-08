@@ -27,7 +27,7 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
     </title>
     <?= $this->Html->meta('icon') ?>
 
-    <?= $this->Html->css(['fontawsom-all.min','fonts','all.min','bootstrap.min','animate','cake','style']) ?>
+    <?= $this->Html->css(['animate','fontawsom-all.min','fonts','bootstrap.min','all.min','style','cake']) ?>
 
     <?= $this->fetch('meta') ?>
     <?= $this->fetch('css') ?>
@@ -60,15 +60,17 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
             <a href=<?= $this->Url->build(['controller' => 'pages', 'action' => 'home'])?>>
                 <img src="/img/logo_coralcoast.png" alt="Coral Coast Logo">
             </a>
-                 <a data-toggle="collapse" data-target="#menu" href="#menu"><i class="fas d-block d-lg-none  small-menu fa-bars"></i></a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#menu" aria-controls="menu" aria-expanded="false" aria-label="Toggle navigation">
+                <i class="fas d-block d-lg-none small-menu fa-bars"></i>
+            </button>
             </div>
-            <div id="menu" class="col-lg-6 col-md-9 d-none d-md-block navs">
+            <div id="menu" class="col-lg-6 col-md-9 d-none d-md-block navs collapse">
                 <ul>
-                <li><a href=<?= $this->Url->build(['controller' => 'Dashboard', 'action' => 'index'])?>>Dashboard</a></li>
-                    <li><a href=<?= $this->Url->build(['controller' =>'Bookings', 'action' => 'index'])?>>Bookings</a></li>
-                    <li><a href=<?= $this->Url->build(['controller' => 'Flights', 'action' => 'index'])?>>Flights</a></li>
-                    <li><a href=<?= $this->Url->build(['controller' => 'Hotels', 'action' => 'index'])?>>Hotels</a></li>
-                    <li><a href=<?= $this->Url->build(['controller' => 'Payments', 'action' => 'index'])?>>Payments</a></li>
+                <li><a href=<?= $this->Url->build(['controller' => 'Flights', 'action' => 'index'])?>>Flights</a></li>
+                    <li><a href=<?= $this->Url->build(['controller' =>'Hotels', 'action' => 'index'])?>>Hotels</a></li>
+                    <li><a href=<?= $this->Url->build(['controller' => 'Travel Deals', 'action' => 'index'])?>>Travel Deals</a></li>
+                    <li><a href=<?= $this->Url->build(['controller' => 'Bookings', 'action' => 'index'])?>>Bookings</a></li>
+                    <li><a href=<?= $this->Url->build(['controller' => 'ContactForms', 'action' => 'add'])?>>Contact us</a></li>
                 </ul>
             </div>
             <div class="col-md-3 d-none d-lg-block socila-link">
@@ -89,7 +91,6 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
         </div>
 </header>
 
-
 <body>
 </div> 
 
@@ -99,7 +100,6 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
             <?= $this->fetch('content') ?>
         </div>
     </main>
-
     
     <script src="assets/js/jquery-3.2.1.min.js"></script>
     <script src="assets/js/popper.min.js"></script>
