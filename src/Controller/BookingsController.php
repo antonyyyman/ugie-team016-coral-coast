@@ -57,8 +57,12 @@ class BookingsController extends AppController
             }
         }
 
-
         $bookings = $this->paginate($query);
+
+        //auto-calculating price for each booking
+        // so the price set for each booking in database becomes rubbish
+
+
 
         $this->set(compact('bookings'));
         $this->viewBuilder()->setLayout("defaultadmin");
