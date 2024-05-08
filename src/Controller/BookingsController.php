@@ -19,6 +19,11 @@ class BookingsController extends AppController
      */
     public function index()
     {
+        $result = $this->Authentication->getResult();
+
+        $user = $result->getData();
+        $is_staff = $user->is_staff;
+
         $query = $this->Bookings->find()
             ->contain(['Users', 'Hotels', 'CarRentals', 'Insurances', 'Translations', 'Payments', 'Flights', 'TravelDeals']);
 
