@@ -144,6 +144,23 @@ $this->setLayout("defaultadmin");
 
             </tr>
                 <?php foreach ($bookings as $booking): ?>
+
+                <!-- FOR CELINE -->    
+                <?php
+                    //Just decarling as variables for future use, this step is not necessary but probably good to do. If you DONT do this, just do the "$this->Identity->get('is_staff') etc within the conditional check
+                    $isStaff = $this->Identity->get('is_staff');
+                    $currentUserId = $this->Identity->get('id'); 
+
+                    /**
+                     * Conditional check
+                     * If CURRENT LOGGED IN USER is NOT a staff member AND the user_id of the BOOKING does not MATCH the id of CURRENT LOGGED IN USER
+                     * Skip current iteration of forloop and check next booking
+                     * You can write the conditional checks different probably depending on if you declared the variables or if you just want to do it a different way, but thats the general idea
+                     */
+                    if (!$isStaff && $booking->user_id != $currentUserId) {
+                        continue; 
+                    }
+                ?>
                 <tr>
                     <td><?= $this->Number->format($booking->id) ?></td>
                     <td><?= $booking->hasValue('user') ? $this->Html->link($booking->user->user_info_string, ['controller' => 'Users', 'action' => 'view', $booking->user->id]) : '' ?></td>
@@ -190,13 +207,11 @@ $this->setLayout("defaultadmin");
 
                         <?= $this->Html->link(__('View'), ['action' => 'view', $booking->id], ['class' => 'button-link']) ?>
                         <?= $this->Html->link(__('Edit'), ['action' => 'edit', $booking->id], ['class' => 'button-link']) ?>
-
                         <?= $this->Html->link(
                             __('Cancel'),
                             ['action' => 'cancel', $booking->id],
                             ['class' => 'button-link', 'confirm' => __('Are you sure you want to cancel this booking? This will only mark the booking status as cancelled, not to be removed from the list.')]
                         ) ?>
-
                         <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $booking->id], ['class' => 'button-link', 'confirm' => __('Are you sure you want to delete # {0}?', $booking->id)]) ?>
                     </td>
                 </tr>
