@@ -60,7 +60,7 @@ class BookingsController extends AppController
 
         $bookings = $this->paginate($query);
 
-        //auto-calculating price for each booking
+        // ********** auto-calculating price for each booking **********
         // so the price set for each booking in database becomes rubbish
         foreach ($bookings as $booking) {
             $total_price = 0;
@@ -70,7 +70,7 @@ class BookingsController extends AppController
             $car_rental_price = 0;
             $hotel_price = 0;
 
-            debug($booking);
+//            debug($booking);
 //            exit;
             $flights = $booking->flights;
             if ($flights && count($flights)) {
@@ -93,6 +93,7 @@ class BookingsController extends AppController
             $total_price = $flights_price + $translation_price + $insurance_price + $car_rental_price + $hotel_price;
             $booking->total_price = $total_price;
         }
+        // ********** auto-calculating price for each booking **********
 
         $this->set(compact('bookings'));
         $this->viewBuilder()->setLayout('defaultadmin');
@@ -108,6 +109,43 @@ class BookingsController extends AppController
     public function view(?string $id = null)
     {
         $booking = $this->Bookings->get($id, contain: ['Users', 'Payments', 'Insurances', 'Hotels', 'CarRentals', 'Translations', 'Flights']);
+
+        // ********** auto-calculating price for each booking **********
+        // so the price set for each booking in database becomes rubbish
+//        foreach ($bookings as $booking) {
+        $total_price = 0;
+        $flights_price = 0;
+        $translation_price = 0;
+        $insurance_price = 0;
+        $car_rental_price = 0;
+        $hotel_price = 0;
+
+//            debug($booking);
+//            exit;
+        $flights = $booking->flights;
+        if ($flights && count($flights)) {
+            foreach ($flights as $flight) {
+                $flights_price = $flights_price + $flight->price;
+            }
+        }
+        if (!empty($booking->translation)) {
+            $translation_price = $booking->translation->price;
+        }
+        if (!empty($booking->insurance)) {
+            $insurance_price = $booking->insurance->price;
+        }
+        if (!empty($booking->car_rental)) {
+            $car_rental_price = $booking->car_rental->price;
+        }
+        if (!empty($booking->hotel)) {
+            $hotel_price = $booking->hotel->price;
+        }
+        $total_price = $flights_price + $translation_price + $insurance_price + $car_rental_price + $hotel_price;
+        $booking->total_price = $total_price;
+//        }
+        // ********** auto-calculating price for each booking **********
+
+
         $this->set(compact('booking'));
     }
 
