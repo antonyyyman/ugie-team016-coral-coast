@@ -28,7 +28,6 @@ class InsurancesController extends AppController
         $insurances = $this->paginate($query);
 
         $this->set(compact('insurances'));
-        $this->viewBuilder()->setLayout("defaultadmin");
     }
 
     public function customerSideIndex(){
@@ -55,6 +54,7 @@ class InsurancesController extends AppController
     {
         $insurance = $this->Insurances->get($id, contain: ['Bookings', 'TravelDeals']);
         $this->set(compact('insurance'));
+        
     }
 
     /**
@@ -75,6 +75,8 @@ class InsurancesController extends AppController
             $this->Flash->error(__('The insurance could not be saved. Please, try again.'));
         }
         $this->set(compact('insurance'));
+        
+        $this->viewBuilder()->setLayout('defaultadmin');
     }
 
     /**
@@ -97,6 +99,8 @@ class InsurancesController extends AppController
             $this->Flash->error(__('The insurance could not be saved. Please, try again.'));
         }
         $this->set(compact('insurance'));
+        
+        $this->viewBuilder()->setLayout('defaultadmin');
     }
 
     /**
@@ -117,5 +121,7 @@ class InsurancesController extends AppController
         }
 
         return $this->redirect(['action' => 'index']);
+        
+        $this->viewBuilder()->setLayout('defaultadmin');
     }
 }

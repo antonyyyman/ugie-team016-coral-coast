@@ -3,7 +3,6 @@
  * @var \App\View\AppView $this
  * @var iterable<\App\Model\Entity\Translation> $translations
  */
-$this->setLayout("defaultadmin");
 ?>
 
 

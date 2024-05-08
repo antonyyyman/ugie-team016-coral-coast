@@ -21,7 +21,6 @@ class PaymentsController extends AppController
         $payments = $this->paginate($query);
 
         $this->set(compact('payments'));
-        $this->viewBuilder()->setLayout("defaultadmin");
     }
 
     /**
@@ -55,6 +54,7 @@ class PaymentsController extends AppController
             $this->Flash->error(__('The payment could not be saved. Please, try again.'));
         }
         $this->set(compact('payment'));
+        $this->viewBuilder()->setLayout('defaultadmin');
     }
 
     /**
@@ -77,6 +77,7 @@ class PaymentsController extends AppController
             $this->Flash->error(__('The payment could not be saved. Please, try again.'));
         }
         $this->set(compact('payment'));
+        $this->viewBuilder()->setLayout('defaultadmin');
     }
 
     /**
@@ -97,5 +98,6 @@ class PaymentsController extends AppController
         }
 
         return $this->redirect(['action' => 'index']);
+        $this->viewBuilder()->setLayout('defaultadmin');
     }
 }
