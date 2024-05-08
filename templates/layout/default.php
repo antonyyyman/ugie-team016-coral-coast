@@ -27,7 +27,7 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
     </title>
     <?= $this->Html->meta('icon') ?>
 
-    <?= $this->Html->css(['fontawsom-all.min','fonts','all.min','bootstrap.min','animate','cake','style']) ?>
+    <?= $this->Html->css(['animate','fontawsom-all.min','fonts','bootstrap.min','all.min','cake','style']) ?>
 
     <?= $this->fetch('meta') ?>
     <?= $this->fetch('css') ?>
@@ -51,7 +51,6 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
     <link rel="stylesheet" href="assets/plugins/slider/css/owl.theme.default.css">
     <link rel="stylesheet" type="text/css" href="assets/css/style.css" />
     <link rel="stylesheet" href="webroot/css/style.css"> -->
-
 </head>
 
 <header id="menu-jk" class="container-fluid fixed-top">
@@ -60,31 +59,30 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
             <a href=<?= $this->Url->build(['controller' => 'pages', 'action' => 'home'])?>>
                 <img src="../webroot/img/logo_coralcoast.png" alt="Coral Coast Logo">
             </a>
-                 <a data-toggle="collapse" data-target="#menu" href="#menu"><i class="fas d-block d-lg-none  small-menu fa-bars"></i></a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#menu" aria-controls="menu" aria-expanded="false" aria-label="Toggle navigation">
+                <i class="fas d-block d-lg-none small-menu fa-bars"></i>
+            </button>
             </div>
-            <div id="menu" class="col-lg-6 col-md-9 d-none d-md-block navs">
+            <div id="menu" class="col-lg-6 col-md-9 d-none d-md-block navs collapse">
                 <ul>
-                <li><a href=<?= $this->Url->build(['controller' => 'Dashboard', 'action' => 'index'])?>>Dashboard</a></li>
-                    <li><a href=<?= $this->Url->build(['controller' =>'Bookings', 'action' => 'index'])?>>Bookings</a></li>
-                    <li><a href=<?= $this->Url->build(['controller' => 'Flights', 'action' => 'index'])?>>Flights</a></li>
-                    <li><a href=<?= $this->Url->build(['controller' => 'Hotels', 'action' => 'index'])?>>Hotels</a></li>
-                    <li><a href=<?= $this->Url->build(['controller' => 'Payments', 'action' => 'index'])?>>Payments</a></li>
+                <li><a href=<?= $this->Url->build(['controller' => 'Flights', 'action' => 'index'])?>>Flights</a></li>
+                    <li><a href=<?= $this->Url->build(['controller' =>'Hotels', 'action' => 'index'])?>>Hotels</a></li>
+                    <li><a href=<?= $this->Url->build(['controller' => 'TravelDeals', 'action' => 'index'])?>>Travel Deals</a></li>
+                    <li><a href=<?= $this->Url->build(['controller' => 'Bookings', 'action' => 'index'])?>>Bookings</a></li>
+                    <li><a href=<?= $this->Url->build(['controller' => 'ContactForms', 'action' => 'add'])?>>Contact us</a></li>
                 </ul>
             </div>
             <div class="col-md-3 d-none d-lg-block socila-link">
             <?php
-                if ($this->Identity->isLoggedIn()) {
+                $buttonClass = $this->Identity->isLoggedIn() ? 'logout-button' : 'login-button';
                 echo $this->Html->link(
-                    'Logout',
-                    ['controller' => 'Auth', 'action' => 'logout'],
-                    ['class' => 'button button-outline']);
-                } else{
-                    echo $this->Html->link(
-                    'Log in',
-                    ['controller' => 'Auth', 'action' => 'login'],
-                    ['class' => 'button button-outline']);
-                }
-            ?>
+                    $this->Identity->isLoggedIn() ? 'Logout' : 'Log in',
+                    $this->Identity->isLoggedIn() ? ['controller' => 'Auth', 'action' => 'logout'] : ['controller' => 'Auth', 'action' => 'login'],
+                    ['class' => 'button button-outline ' . $buttonClass]);
+                ?>
+            </div>
+            <div class>
+
             </div>
         </div>
 </header>
@@ -111,17 +109,17 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
                     <p>We prioritise modern travel experiences through an end-to-end online platform, offering worldwide travel options including cruises and air travel, along with accommodation, car rentals, travel insurance, and translation services. </p>
                 </div>
                 <div class="col-md-4 col-sm-12">
-                    <!-- <h2>Useful Links</h2>
+                    <h2>Other Links</h2>
                     <ul class="list-unstyled link-list">
-                        <li><a ui-sref="about" >About us</a><i class="fa fa-angle-right"></i></li>
-                        <li><a ui-sref="portfolio" >Portfolio</a><i class="fa fa-angle-right"></i></li>
-                        <li><a ui-sref="products" >Latest jobs</a><i class="fa fa-angle-right"></i></li>
-                        <li><a ui-sref="gallery" >Pricing</a><i class="fa fa-angle-right"></i></li>
-                        <li><a ui-sref="contact" >Contact us</a><i class="fa fa-angle-right"></i></li>
-                    </ul> -->
+                    <li><a href=<?= $this->Url->build(['controller' => 'CarRentals', 'action' => 'index'])?>>Car Rentals</a></li>
+                    <li><a href=<?= $this->Url->build(['controller' => 'Cruises', 'action' => 'index'])?>>Cruises</a></li>
+                    <li><a href=<?= $this->Url->build(['controller' => 'Insurances', 'action' => 'index'])?>>Insurances</a></li>
+                    <li><a href=<?= $this->Url->build(['controller' => 'Payments', 'action' => 'index'])?>>Payments</a></li>
+                    <li><a href=<?= $this->Url->build(['controller' => 'Translations', 'action' => 'index'])?>>Translations</a></li>
+                    </ul>
                 </div>
                 <div class="col-md-4 col-sm-12 map-img">
-                    <h2><a href= <?= $this->Url->build(['controller' => 'ContactForms', 'action' => 'add'])?>>Contact Us</a></h2>
+                    <h2>Contact Us</a></h2>
                     <address class="md-margin-bottom-40">
                         Coral Coast <br>
                         Wellington Rd, <br>

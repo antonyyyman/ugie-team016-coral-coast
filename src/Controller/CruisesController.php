@@ -29,7 +29,7 @@ class CruisesController extends AppController
         $cruises = $this->paginate($query);
 
         $this->set(compact('cruises'));
-        $this->viewBuilder()->setLayout("defaultadmin");
+        
     }
 
     public function customerSideIndex(){
@@ -56,6 +56,7 @@ class CruisesController extends AppController
     {
         $cruise = $this->Cruises->get($id, contain: ['TravelDeals']);
         $this->set(compact('cruise'));
+        $this->viewBuilder()->setLayout('defaultadmin');
     }
 
     /**
@@ -76,6 +77,7 @@ class CruisesController extends AppController
             $this->Flash->error(__('The cruise could not be saved. Please, try again.'));
         }
         $this->set(compact('cruise'));
+        $this->viewBuilder()->setLayout('defaultadmin');
     }
 
     /**
@@ -98,6 +100,7 @@ class CruisesController extends AppController
             $this->Flash->error(__('The cruise could not be saved. Please, try again.'));
         }
         $this->set(compact('cruise'));
+        $this->viewBuilder()->setLayout('defaultadmin');
     }
 
     /**
@@ -118,5 +121,6 @@ class CruisesController extends AppController
         }
 
         return $this->redirect(['action' => 'index']);
+        $this->viewBuilder()->setLayout('defaultadmin');
     }
 }

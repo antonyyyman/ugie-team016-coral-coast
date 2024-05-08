@@ -309,6 +309,7 @@ class BookingsController extends AppController
         }
 
         return $this->redirect(['action' => 'index']);
+        $this->viewBuilder()->setLayout("defaultadmin");
     }
 
     public function cancel($id = null)
@@ -355,6 +356,7 @@ class BookingsController extends AppController
             $this->set(compact('booking'));
             $this->set('_serialize', ['booking']);
         }
+        $this->viewBuilder()->setLayout("defaultadmin");
     }
 
     /**

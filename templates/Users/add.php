@@ -3,8 +3,34 @@
  * @var \App\View\AppView $this
  * @var \App\Model\Entity\User $user
  */
-$this->setLayout("defaultadmin");
+$this->setLayout('defaultadmin');
 ?>
+
+<head>
+<style>
+        header {
+            margin-bottom: 20px;
+        }
+        .content-container {
+            padding-top: 20px;
+        }
+        body {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            margin: 0;
+        }
+        main {
+            flex: 1; 
+            padding: 100px; 
+        }
+        .spacer-for-fixed-header {
+        height: 100px; 
+        }
+
+</style>
+</head>
+
 <div class="row">
     <aside class="column">
         <div class="side-nav">
