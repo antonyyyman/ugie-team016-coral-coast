@@ -34,7 +34,6 @@ class ContactFormsController extends AppController
         $contactForms = $this->paginate($query);
 
         $this->set(compact('contactForms'));
-        $this->viewBuilder()->setLayout('defaultadmin');
     }
 
     /**
@@ -49,7 +48,6 @@ class ContactFormsController extends AppController
         $this->viewBuilder()->setLayout('contact-form');
         $contactForm = $this->ContactForms->get($id, contain: []);
         $this->set(compact('contactForm'));
-        $this->viewBuilder()->setLayout('defaultadmin');
     }
 
     /**
@@ -114,7 +112,7 @@ class ContactFormsController extends AppController
             }
             $this->Flash->error(__('There are errors in your form, please correct them and try again.'));
         }
-        $this->viewBuilder()->setLayout('defaultadmin');
+
     }
 
     /**
@@ -136,7 +134,6 @@ class ContactFormsController extends AppController
         }
 
         return $this->redirect(['action' => 'index']);
-        $this->viewBuilder()->setLayout('defaultadmin');
     }
 
 }

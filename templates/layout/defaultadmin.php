@@ -68,7 +68,7 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
                 <ul>
                 <li><a href=<?= $this->Url->build(['controller' => 'Flights', 'action' => 'index'])?>>Flights</a></li>
                     <li><a href=<?= $this->Url->build(['controller' =>'Hotels', 'action' => 'index'])?>>Hotels</a></li>
-                    <li><a href=<?= $this->Url->build(['controller' => 'Travel Deals', 'action' => 'index'])?>>Travel Deals</a></li>
+                    <li><a href=<?= $this->Url->build(['controller' => 'TravelDeals', 'action' => 'index'])?>>Travel Deals</a></li>
                     <li><a href=<?= $this->Url->build(['controller' => 'Bookings', 'action' => 'index'])?>>Bookings</a></li>
                     <li><a href=<?= $this->Url->build(['controller' => 'ContactForms', 'action' => 'add'])?>>Contact us</a></li>
                 </ul>
