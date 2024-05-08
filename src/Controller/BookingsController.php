@@ -27,6 +27,10 @@ class BookingsController extends AppController
         $query = $this->Bookings->find()
             ->contain(['Users', 'Hotels', 'CarRentals', 'Insurances', 'Translations', 'Payments', 'Flights', 'TravelDeals']);
 
+        if (!$is_staff) {
+            $query = $query->where(["Bookings.user_id"=>$user->id]);
+        }
+
         if (!empty($this->request->getQuery('id'))) {
 //            $query->where(['Bookings.id LIKE' => '%' . $this->request->getQuery('id') . '%']);
             $id = $this->request->getQuery('id');
