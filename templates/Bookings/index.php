@@ -179,7 +179,13 @@ $this->setLayout("defaultadmin");
 
                     <td class="actions" style="">
 <!--                        //newly added payment button-->
-                        <?= $this->Html->link(__('Pay'), ['action' => 'paymentview', $booking->id], ['class' => 'button-link']) ?>
+                        <?php
+                        if (!empty($booking->payment) && $booking->payment->status !== 'paid') {
+                            echo $this->Html->link(__('Pay'), ['action' => 'paymentview', $booking->id], ['class' => 'button-link']);
+                        }
+                        ?>
+
+<!--                        --><?php //= $this->Html->link(__('Pay'), ['action' => 'paymentview', $booking->id], ['class' => 'button-link']) ?>
 
                         <?= $this->Html->link(__('View'), ['action' => 'view', $booking->id], ['class' => 'button-link']) ?>
                         <?= $this->Html->link(__('Edit'), ['action' => 'edit', $booking->id], ['class' => 'button-link']) ?>
