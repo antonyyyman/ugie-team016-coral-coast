@@ -45,3 +45,22 @@ $this->setLayout("defaultadmin");
         </div>
     </div>
 </div>
+
+// js to stop form submission in front end
+<script type="text/javascript">
+    document.addEventListener('DOMContentLoaded', function () {
+        const startDateInput = document.getElementById('start-date');
+        const endDateInput = document.getElementById('end-date');
+        const form = document.querySelector('form');
+
+        form.addEventListener('submit', function (event) {
+            const startDate = new Date(startDateInput.value);
+            const endDate = new Date(endDateInput.value);
+
+            if (startDate > endDate) {
+                alert('Return Date Cannot be Eailier than Start Date');
+                event.preventDefault();
+            }
+        });
+    });
+</script>
