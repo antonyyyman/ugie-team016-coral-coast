@@ -128,7 +128,7 @@ class TravelDealsController extends AppController
         foreach ($this->TravelDeals->Flights->find()->all() as $flight) {
             $flights_pnt_detail[$flight->id] = $flight->number;
         }
-        $this->set('flight_pnt_detail', $flights_pnt_detail);g
+        $this->set('flight_pnt_detail', $flights_pnt_detail);
     }
 
     /**
