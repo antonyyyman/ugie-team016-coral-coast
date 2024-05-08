@@ -25,8 +25,8 @@ $this->setLayout("defaultadmin");
                 <legend><?= __('Add Booking') ?></legend>
                 <?php
                     echo $this->Form->control('user_id', ['options' => $users, 'empty' => true]);
-                    echo $this->Form->control('start_date', ['empty' => true]);
-                    echo $this->Form->control('end_date', ['empty' => true]);
+                    echo $this->Form->control('start_date', ['empty' => true, 'id' => 'start-date']);
+                    echo $this->Form->control('end_date', ['empty' => true, 'id' => 'end-date']);
                     echo $this->Form->control('destination');
                     echo $this->Form->control('hotel_id', ['options' => $hotels, 'empty' => true]);
                     echo $this->Form->control('car_rental_id', ['options' => $carRentals, 'empty' => true]);
