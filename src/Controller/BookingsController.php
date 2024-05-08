@@ -187,9 +187,12 @@ class BookingsController extends AppController
         $this->set(compact('booking', 'users', 'payments', 'insurances', 'hotels', 'carRentals', 'translations', 'flights'));
 
         //get user id
-        $user_id = $booking->user_id;
-        debug ($user_id);
-        exit;
+//        $user_id = $this->Bookings->get($user_id);
+        $result = $this->Authentication->getResult();
+        $user = $result->getData();
+        $user_id = $user->id;
+//        debug ($user_id);
+//        exit;
         $this->set('user_id', $user_id);
 
     }
@@ -257,6 +260,17 @@ class BookingsController extends AppController
         // ********** auto-calculating price for each booking **********
 
         $this->set(compact('booking', 'users', 'payments', 'insurances', 'hotels', 'carRentals', 'translations', 'flights'));
+
+
+        //get user id
+//        $user_id = $this->Bookings->get($user_id);
+        $result = $this->Authentication->getResult();
+        $user = $result->getData();
+        $user_id = $user->id;
+//        debug ($user_id);
+//        exit;
+        $this->set('user_id', $user_id);
+
     }
 
     /**
