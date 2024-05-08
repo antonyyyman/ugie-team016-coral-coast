@@ -45,6 +45,17 @@ class TravelDealsController extends AppController
         $this->set(compact('travelDeal'));
     }
 
+    public function customerSideIndex()
+    {
+        $travelDeal = $this->TravelDeals->find(contain: ['Insurances', 'Hotels', 'CarRentals', 'Translations', 'Flights', 'Cruises']);
+        $this->set(compact('travelDeal'));
+    }
+
+    public function customerSideView($id = null){
+        $travelDeal = $this->TravelDeals->get($id, contain: ['Insurances', 'Hotels', 'CarRentals', 'Translations', 'Flights', 'Cruises']);
+        $this->set(compact('travelDeal'));
+    }
+
     /**
      * Add method
      *
@@ -105,6 +116,10 @@ class TravelDealsController extends AppController
         $carRentals = $this->TravelDeals->CarRentals->find('list', limit: 200)->all();
         $translations = $this->TravelDeals->Translations->find('list', limit: 200)->all();
         $flights = $this->TravelDeals->Flights->find('list', limit: 200)->all();
+<<<<<<< HEAD
+        $cruises = $this->TravelDeals->Cruises->find('list', limit: 200)->all();
+        $this->set(compact('travelDeal', 'insurances', 'hotels', 'carRentals', 'translations', 'flights', 'cruises'));
+=======
         $cruises = $this->TravelDeals->Flights->find('list', limit: 200)->all();
         $this->set(compact('travelDeal', 'insurances', 'hotels', 'carRentals', 'translations', 'flights', 'cuirses'));
 
@@ -117,6 +132,7 @@ class TravelDealsController extends AppController
         }
         $this->set('flight_pnt_detail', $flights_pnt_detail);
 
+>>>>>>> 38ff2e5ea25957f9d9d5a0caebb3a84442ac4fe7
     }
 
     /**
