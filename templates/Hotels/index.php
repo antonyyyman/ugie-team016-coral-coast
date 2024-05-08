@@ -96,8 +96,10 @@ $this->setLayout("defaultadmin");
                     <td><?= $hotel->price === null ? '' : $this->Number->format($hotel->price) ?></td>
                     <td class="actions">
                         <?= $this->Html->link(__('View'), ['action' => 'view', $hotel->id], ['class' => 'button-link']) ?>
-                        <?= $this->Html->link(__('Edit'), ['action' => 'edit', $hotel->id], ['class' => 'button-link']) ?>
-                        <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $hotel->id], ['class' => 'button-link', 'confirm' => __('Are you sure you want to delete # {0}?', $hotel->id)]) ?>
+                        <?php if ($this->Identity->get('is_staff') == true) { 
+                            echo $this->Html->link(__('Edit'), ['action' => 'edit', $hotel->id], ['class' => 'button-link']);
+                            echo $this->Form->postLink(__('Delete'), ['action' => 'delete', $hotel->id], ['class' => 'button-link', 'confirm' => __('Are you sure you want to delete # {0}?', $hotel->id)]);
+                        }?>
                     </td>
                 </tr>
                 <?php endforeach; ?>
