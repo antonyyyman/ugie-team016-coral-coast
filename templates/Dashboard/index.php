@@ -1,5 +1,9 @@
 <?php
-    $this->setLayout('defaultadmin');
+/**
+ * @var \App\View\AppView $this
+ * @var iterable<\App\Model\Entity\Dashboard> $dashboard
+ */
+$this->setLayout('defaultadmin');
 ?>
 <!DOCTYPE html>
 <html>

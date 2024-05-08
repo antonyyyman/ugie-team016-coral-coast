@@ -27,7 +27,7 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
     </title>
     <?= $this->Html->meta('icon') ?>
 
-    <?= $this->Html->css(['animate','fontawsom-all.min','fonts','bootstrap.min','all.min','style','cake']) ?>
+    <?= $this->Html->css(['animate','fontawsom-all.min','fonts','bootstrap.min','all.min','cake','style']) ?>
 
     <?= $this->fetch('meta') ?>
     <?= $this->fetch('css') ?>
@@ -36,6 +36,8 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Free Tour and Travel Website Tempalte | Smarteyeapps.com</title>
+
+    
     
 
     <!-- Weija said to remove this right? Either way it is bugging my code so I'm removing it for now. 
@@ -51,7 +53,6 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
     <link rel="stylesheet" href="assets/plugins/slider/css/owl.theme.default.css">
     <link rel="stylesheet" type="text/css" href="assets/css/style.css" />
     <link rel="stylesheet" href="webroot/css/style.css"> -->
-
 </head>
 
 <header id="menu-jk" class="container-fluid fixed-top">
@@ -75,18 +76,15 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
             </div>
             <div class="col-md-3 d-none d-lg-block socila-link">
             <?php
-                if ($this->Identity->isLoggedIn()) {
+                $buttonClass = $this->Identity->isLoggedIn() ? 'logout-button' : 'login-button';
                 echo $this->Html->link(
-                    'Logout',
-                    ['controller' => 'Auth', 'action' => 'logout'],
-                    ['class' => 'button button-outline']);
-                } else{
-                    echo $this->Html->link(
-                    'Log in',
-                    ['controller' => 'Auth', 'action' => 'login'],
-                    ['class' => 'button button-outline']);
-                }
-            ?>
+                    $this->Identity->isLoggedIn() ? 'Logout' : 'Log in',
+                    $this->Identity->isLoggedIn() ? ['controller' => 'Auth', 'action' => 'logout'] : ['controller' => 'Auth', 'action' => 'login'],
+                    ['class' => 'button button-outline ' . $buttonClass]);
+                ?>
+            </div>
+            <div class>
+
             </div>
         </div>
 </header>
