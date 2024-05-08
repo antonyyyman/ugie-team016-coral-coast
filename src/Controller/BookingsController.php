@@ -61,8 +61,13 @@ class BookingsController extends AppController
 
         //auto-calculating price for each booking
         // so the price set for each booking in database becomes rubbish
+        $total_price = 0;
+        $flights_price = 0;
+        $translation_price = 0;
+        $insurance_price = 0;
+        $hotel_price = 0;
 
-
+        $flights = $bookings->flights;
 
         $this->set(compact('bookings'));
         $this->viewBuilder()->setLayout("defaultadmin");
