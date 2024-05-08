@@ -60,7 +60,7 @@ $this->setLayout("defaultadmin");
             const endDate = new Date(endDateInput.value);
 
             if (startDate > endDate) {
-                alert('Return Date Cannot be Eailier than Start Date');
+                alert('Return Date Cannot be Earlier than Start Date');
                 event.preventDefault();
             }
         });
