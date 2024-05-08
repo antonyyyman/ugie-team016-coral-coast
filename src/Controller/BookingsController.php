@@ -193,7 +193,7 @@ class BookingsController extends AppController
      */
     public function edit(?string $id = null)
     {
-        $booking = $this->Bookings->get($id, contain: ['Flights']);
+        $booking = $this->Bookings->get($id, contain: ['Users', 'Hotels', 'CarRentals', 'Insurances', 'Translations', 'Payments', 'Flights', 'TravelDeals']);
         if ($this->request->is(['patch', 'post', 'put'])) {
             $booking = $this->Bookings->patchEntity($booking, $this->request->getData());
             if ($this->Bookings->save($booking)) {
@@ -271,7 +271,7 @@ class BookingsController extends AppController
 
     public function cancel($id = null)
     {
-        $this->request->allowMethod(['post', 'get']); // 允许GET来显示表单，POST用于处理表单提交
+        $this->request->allowMethod(['post', 'get']);
 
 //        $booking = $this->Bookings->get($id, [
 //            'contain' => ['Users'],
@@ -309,7 +309,7 @@ class BookingsController extends AppController
                 $this->Flash->error(__('Cannot cancel the booking as the start date is missing.'));
             }
         } else {
-            // GET 请求时，渲染表单
+
             $this->set(compact('booking'));
             $this->set('_serialize', ['booking']);
         }
