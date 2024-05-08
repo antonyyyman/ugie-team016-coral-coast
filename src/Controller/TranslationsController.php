@@ -28,7 +28,6 @@ class TranslationsController extends AppController
         $translations = $this->paginate($query);
 
         $this->set(compact('translations'));
-        $this->viewBuilder()->setLayout("defaultadmin");
     }
 
     /**

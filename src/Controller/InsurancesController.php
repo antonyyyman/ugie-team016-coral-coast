@@ -28,7 +28,6 @@ class InsurancesController extends AppController
         $insurances = $this->paginate($query);
 
         $this->set(compact('insurances'));
-        $this->viewBuilder()->setLayout("defaultadmin");
     }
 
     /**

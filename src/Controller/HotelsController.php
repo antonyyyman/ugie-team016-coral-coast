@@ -28,7 +28,6 @@ class HotelsController extends AppController
         $hotels = $this->paginate($query);
 
         $this->set(compact('hotels'));
-        $this->viewBuilder()->setLayout("defaultadmin");
     }
 
     /**

@@ -3,7 +3,6 @@
  * @var \App\View\AppView $this
  * @var iterable<\App\Model\Entity\Booking> $bookings
  */
-$this->setLayout("defaultadmin");
 ?>
 
 <head>

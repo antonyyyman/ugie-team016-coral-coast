@@ -52,7 +52,7 @@ class BookingsController extends AppController
         $bookings = $this->paginate($query);
 
         $this->set(compact('bookings'));
-        $this->viewBuilder()->setLayout("defaultadmin");
+        // $this->viewBuilder()->setLayout("defaultadmin");
     }
 
     /**

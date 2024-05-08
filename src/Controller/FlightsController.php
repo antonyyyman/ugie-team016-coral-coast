@@ -29,7 +29,6 @@ class FlightsController extends AppController
         $flights = $this->paginate($query);
 
         $this->set(compact('flights'));
-        $this->viewBuilder()->setLayout("defaultadmin");
     }
 
     /**

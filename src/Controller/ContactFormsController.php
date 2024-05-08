@@ -34,7 +34,6 @@ class ContactFormsController extends AppController
         $contactForms = $this->paginate($query);
 
         $this->set(compact('contactForms'));
-        $this->viewBuilder()->setLayout("defaultadmin");
     }
 
     /**

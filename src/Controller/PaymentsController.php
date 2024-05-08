@@ -21,7 +21,6 @@ class PaymentsController extends AppController
         $payments = $this->paginate($query);
 
         $this->set(compact('payments'));
-        $this->viewBuilder()->setLayout("defaultadmin");
     }
 
     /**
