@@ -9,6 +9,7 @@ $this->setLayout("defaultadmin");
     <div class="column column-100" style="margin: 0 auto;">
         <div class="bookings view content">
             <h3><?= h($booking->id) ?></h3>
+            <?= $this->Form->create($booking, ['url' => ['action' => 'changestatus', $booking->id]]) ?>
             <table>
                 <tr>
                     <th><?= __('User') ?></th>
@@ -75,20 +76,17 @@ $this->setLayout("defaultadmin");
                     <th><?= __('Payment Id') ?></th>
                     <td><?= $payment->id === null ? '' : $this->Number->format($payment->id) ?></td>
                 </tr>
-                <?php if(!empty($booking->payment)) { ?>
-                    <tr>
-                        <th><?= __('Payment method') ?></th>
-                        <td>
-                            <?= $this->Form->control('payment_method', [
-                                'type' => 'select',
-                                'options' => $paymentMethods,
-                                'default' => $booking->payment->payment_method,
-                                'label' => false
-                            ]); ?>
-                        </td>
-                    </tr>
-                <?php } ?>
-
+                <tr>
+                    <th><?= __('Payment method') ?></th>
+                    <td>
+                        <?= $this->Form->control('payment_method', [
+                            'type' => 'select',
+                            'options' => $paymentMethods,
+                            'empty' => __('Select a payment method'),
+                            'label' => false
+                        ]); ?>
+                    </td>
+                </tr>
             </table>
             <div style="display:flex;justify-content:flex-end;line-height:37.6px;">
                 <div style="margin-right:12px;font-size:20px;">Total Price: <span style="color:#e74343;">
@@ -98,39 +96,10 @@ $this->setLayout("defaultadmin");
                     ]);?>
                     </span></div>
                 <div>
-                    <!-- <button type="button" class="btn btn-primary">Pay</button> -->
-                    <?= $this->Html->link(__('Pay'), ['controller' => 'Bookings', 'action' => 'changestatus', $booking->id],["type"=>"button","class"=>"btn btn-primary"]) ?>
+                    <?= $this->Form->button(__('Pay'), ['class' => 'btn btn-primary']) ?>
                 </div>
             </div>
-            <!-- <div class="related">
-                <h4><?= __('Related Payments') ?></h4>
-                <?php if (!empty($booking->payment)) : ?>
-                <div class="table-responsive">
-                    <table>
-                        <tr>
-                            <th><?= __('Id') ?></th>
-                            <th><?= __('Amount') ?></th>
-                            <th><?= __('Payment Method') ?></th>
-                            <th><?= __('Status') ?></th>
-                            <th class="actions"><?= __('Actions') ?></th>
-                        </tr>
-                        <?php foreach ($booking->payment as $payment) : ?>
-                        <tr>
-                            <td><?= h($payment->id) ?></td>
-                            <td><?= h($payment->amount) ?></td>
-                            <td><?= h($payment->payment_method) ?></td>
-                            <td><?= h($payment->status) ?></td>
-                            <td class="actions">
-                                <?= $this->Html->link(__('View'), ['controller' => 'Payments', 'action' => 'view', $payment->id]) ?>
-                                <?= $this->Html->link(__('Edit'), ['controller' => 'Payments', 'action' => 'edit', $payment->id]) ?>
-                                <?= $this->Form->postLink(__('Delete'), ['controller' => 'Payments', 'action' => 'delete', $payment->id], ['confirm' => __('Are you sure you want to delete # {0}?', $payment->id)]) ?>
-                            </td>
-                        </tr>
-                        <?php endforeach; ?>
-                    </table>
-                </div>
-                <?php endif; ?>
-            </div> -->
+            <?= $this->Form->end() ?>
         </div>
     </div>
 </div>

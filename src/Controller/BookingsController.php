@@ -418,6 +418,9 @@ class BookingsController extends AppController
             'contain' => ['Payments']
         ]);
 
+//        debug($booking);
+//        exit;
+
         if (!$booking) {
             $this->Flash->error('Booking not found.');
             return $this->redirect(['action' => 'index']);
@@ -427,12 +430,15 @@ class BookingsController extends AppController
             $payment = $booking->payment;//real entity
             $paymentMethod = $this->request->getData('payment_method');
 
+            debug($this);
+
             // Update payment method if provided
             if ($paymentMethod) {
                 $payment->payment_method = $paymentMethod;
             }
 
             debug($payment);
+            debug($paymentMethod);
             exit;
             // Check if payment is unpaid and update status
             if ($payment && $payment->status == 'unpaid') {
