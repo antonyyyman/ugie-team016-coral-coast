@@ -87,14 +87,27 @@ $this->setLayout("defaultadmin");
                     ]); ?>
                 </div>
             </div>
-            <div class="row">
-                <div class="column">
-                    <?= $this->Form->control('username', [
-                        'placeholder' => 'Customer Username contains...',
-                        'value' => $this->request->getQuery('username'),
-                    ]); ?>
-                </div>
-            </div>
+
+            <?php
+
+//            $result = $this->Authentication->getResult();
+//            $user = $result->getData();
+//            $is_staff = $user->is_staff;
+
+            if ($is_staff) {
+                echo '<div class="row">';
+                echo '<div class="column">';
+                echo $this->Form->control('username', [
+                    'placeholder' => 'Customer Username contains...',
+                    'value' => $this->request->getQuery('username'),
+                ]);
+                echo '</div>';
+                echo '</div>';
+            }
+
+            ?>
+
+
         </fieldset>
 
 
@@ -125,6 +138,10 @@ $this->setLayout("defaultadmin");
                 </tr>
             </thead>
             <tbody>
+            <tr style="display: <?= count($bookings)===0?"table-row":"none" ?>">
+                <td colspan=15>No Booking Finds</td>
+
+            </tr>
                 <?php foreach ($bookings as $booking): ?>
                 <tr>
                     <td><?= $this->Number->format($booking->id) ?></td>

@@ -97,6 +97,9 @@ class BookingsController extends AppController
 
         $this->set(compact('bookings'));
         $this->viewBuilder()->setLayout('defaultadmin');
+
+        //for removing booking search by username function
+        $this->set('is_staff', $is_staff);
     }
 
     /**
