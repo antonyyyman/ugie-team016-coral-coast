@@ -32,6 +32,15 @@ $this->setLayout("defaultadmin");
                     echo $this->Form->control('end_date', ['empty' => true]);
                     echo $this->Form->control('description');
                     echo $this->Form->control('total_price');
+
+                    //for flights
+                    echo $this->Form->control('flights._ids', [
+                        'type' => 'select',
+                        'multiple' => 'checkbox',
+                        'options' => $flight_pnt_detail,
+                        'label' => __('Select Flights')
+                    ]);
+
                     echo $this->Form->control('insurance_id', ['options' => $insurances, 'empty' => true]);
                     echo $this->Form->control('hotel_id', ['options' => $hotels, 'empty' => true]);
                     echo $this->Form->control('cruise_id');
