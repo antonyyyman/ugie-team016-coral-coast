@@ -27,7 +27,7 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
     </title>
     <?= $this->Html->meta('icon') ?>
 
-    <?= $this->Html->css(['fontawsom-all.min','fonts','all.min','bootstrap.min','animate','cake','style']) ?>
+    <?= $this->Html->css(['animate','fontawsom-all.min','fonts','bootstrap.min','all.min','cake','style']) ?>
 
     <?= $this->fetch('meta') ?>
     <?= $this->fetch('css') ?>
@@ -51,7 +51,6 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
     <link rel="stylesheet" href="assets/plugins/slider/css/owl.theme.default.css">
     <link rel="stylesheet" type="text/css" href="assets/css/style.css" />
     <link rel="stylesheet" href="webroot/css/style.css"> -->
-
 </head>
 
 <header id="menu-jk" class="container-fluid fixed-top">
@@ -60,35 +59,33 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
             <a href=<?= $this->Url->build(['controller' => 'pages', 'action' => 'home'])?>>
                 <img src="../webroot/img/logo_coralcoast.png" alt="Coral Coast Logo">
             </a>
-                 <a data-toggle="collapse" data-target="#menu" href="#menu"><i class="fas d-block d-lg-none  small-menu fa-bars"></i></a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#menu" aria-controls="menu" aria-expanded="false" aria-label="Toggle navigation">
+                <i class="fas d-block d-lg-none small-menu fa-bars"></i>
+            </button>
             </div>
-            <div id="menu" class="col-lg-6 col-md-9 d-none d-md-block navs">
+            <div id="menu" class="col-lg-6 col-md-9 d-none d-md-block navs collapse">
                 <ul>
-                <li><a href=<?= $this->Url->build(['controller' => 'Dashboard', 'action' => 'index'])?>>Dashboard</a></li>
-                    <li><a href=<?= $this->Url->build(['controller' =>'Bookings', 'action' => 'index'])?>>Bookings</a></li>
-                    <li><a href=<?= $this->Url->build(['controller' => 'Flights', 'action' => 'index'])?>>Flights</a></li>
-                    <li><a href=<?= $this->Url->build(['controller' => 'Hotels', 'action' => 'index'])?>>Hotels</a></li>
-                    <li><a href=<?= $this->Url->build(['controller' => 'Payments', 'action' => 'index'])?>>Payments</a></li>
+                <li><a href=<?= $this->Url->build(['controller' => 'Flights', 'action' => 'index'])?>>Flights</a></li>
+                    <li><a href=<?= $this->Url->build(['controller' =>'Hotels', 'action' => 'index'])?>>Hotels</a></li>
+                    <li><a href=<?= $this->Url->build(['controller' => 'TravelDeals', 'action' => 'index'])?>>Travel Deals</a></li>
+                    <li><a href=<?= $this->Url->build(['controller' => 'Bookings', 'action' => 'index'])?>>Bookings</a></li>
+                    <li><a href=<?= $this->Url->build(['controller' => 'ContactForms', 'action' => 'add'])?>>Contact us</a></li>
                 </ul>
             </div>
             <div class="col-md-3 d-none d-lg-block socila-link">
             <?php
-                if ($this->Identity->isLoggedIn()){
+                $buttonClass = $this->Identity->isLoggedIn() ? 'logout-button' : 'login-button';
                 echo $this->Html->link(
-                    'Logout',
-                    ['controller' => 'Auth', 'action' => 'logout'],
-                    ['class' => 'button button-outline']);
-                } else{
-                    echo $this->Html->link(
-                    'Log in',
-                    ['controller' => 'Auth', 'action' => 'login'],
-                    ['class' => 'button button-outline']);
-                }
-            ?>
+                    $this->Identity->isLoggedIn() ? 'Logout' : 'Log in',
+                    $this->Identity->isLoggedIn() ? ['controller' => 'Auth', 'action' => 'logout'] : ['controller' => 'Auth', 'action' => 'login'],
+                    ['class' => 'button button-outline ' . $buttonClass]);
+                ?>
+            </div>
+            <div class>
+
             </div>
         </div>
 </header>
-
 
 <body>
 </div>

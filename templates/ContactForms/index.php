@@ -14,6 +14,30 @@
 
 ?>
 
+<head>
+    <style>
+        header {
+            margin-bottom: 20px;
+        }
+        .content-container {
+            padding-top: 20px;
+        }
+        body {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            margin: 0;
+        }
+        main {
+            flex: 1; 
+            padding: 100px; 
+        }
+        .spacer-for-fixed-header {
+        height: 100px; 
+        }
+    </style>
+</head>
+
 <div class="contactForms index content">
     <h3><?= __('Contact Forms') ?></h3>
     <div class="table-responsive">

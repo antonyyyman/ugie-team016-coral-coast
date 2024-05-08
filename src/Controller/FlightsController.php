@@ -29,7 +29,6 @@ class FlightsController extends AppController
         $flights = $this->paginate($query);
 
         $this->set(compact('flights'));
-        $this->viewBuilder()->setLayout("defaultadmin");
     }
 
     public function customerSideIndex(){
@@ -76,6 +75,7 @@ class FlightsController extends AppController
         }
         $bookings = $this->Flights->Bookings->find('list', limit: 200)->all();
         $this->set(compact('flight', 'bookings'));
+        $this->viewBuilder()->setLayout('defaultadmin');
     }
 
     /**
@@ -99,6 +99,7 @@ class FlightsController extends AppController
         }
         $bookings = $this->Flights->Bookings->find('list', limit: 200)->all();
         $this->set(compact('flight', 'bookings'));
+        $this->viewBuilder()->setLayout('defaultadmin');
     }
 
     /**
@@ -119,5 +120,6 @@ class FlightsController extends AppController
         }
 
         return $this->redirect(['action' => 'index']);
+        $this->viewBuilder()->setLayout('defaultadmin');
     }
 }
