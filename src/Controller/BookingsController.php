@@ -430,22 +430,22 @@ class BookingsController extends AppController
             $payment = $booking->payment;//real entity
             $paymentMethod = $this->request->getData('payment_method');
 
-            debug($this);
+//            debug($this);
 
             // Update payment method if provided
             if ($paymentMethod) {
                 $payment->payment_method = $paymentMethod;
             }
 
-            debug($payment);
-            debug($paymentMethod);
-            exit;
+//            debug($payment);
+//            debug($paymentMethod);
+//            exit;
             // Check if payment is unpaid and update status
             if ($payment && $payment->status == 'unpaid') {
                 $payment->status = 'paid';
 
                 if ($this->Bookings->Payments->save($payment)) {
-                    $this->Flash->success('Payment updated successfully.');
+                    $this->Flash->success('Payment updated successfully. Pay ID: ' . $payment->id);
                 } else {
                     $this->Flash->error('Failed to update payment.');
                 }
