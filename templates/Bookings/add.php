@@ -24,7 +24,7 @@ $this->setLayout("defaultadmin");
             <fieldset>
                 <legend><?= __('Add Booking') ?></legend>
                 <?php
-                    echo $this->Form->control('user_id', ['options' => $users, 'empty' => true]);
+                    echo $this->Form->control('user_id', ['disabled' => true, 'value' => $user_id]);
                     echo $this->Form->control('start_date', ['empty' => true, 'id' => 'start-date']);
                     echo $this->Form->control('end_date', ['empty' => true, 'id' => 'end-date']);
                     echo $this->Form->control('destination');

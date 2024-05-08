@@ -185,6 +185,13 @@ class BookingsController extends AppController
         $translations = $this->Bookings->Translations->find('list', limit: 200)->all();
         $flights = $this->Bookings->Flights->find('list', limit: 200)->all();
         $this->set(compact('booking', 'users', 'payments', 'insurances', 'hotels', 'carRentals', 'translations', 'flights'));
+
+        //get user id
+        $user_id = $booking->user_id;
+        debug ($user_id);
+        exit;
+        $this->set('user_id', $user_id);
+
     }
 
     /**
