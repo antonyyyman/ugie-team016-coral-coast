@@ -70,9 +70,9 @@ class BookingsController extends AppController
             $car_rental_price = 0;
             $hotel_price = 0;
 
-            debug($bookings);
-            exit;
-            $flights = $bookings->flights;
+            debug($booking);
+//            exit;
+            $flights = $booking->flights;
             if ($flights && count($flights)) {
                 foreach ($flights as $flight) {
                     $flights_price = $flights_price + $flight->price;
