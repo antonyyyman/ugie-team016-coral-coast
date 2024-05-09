@@ -197,6 +197,10 @@ class AuthController extends AppController
         // if user passes authentication, grant access to the system
         if ($result && $result->isValid()) {
 
+            $identity = $this->Authentication->getIdentity();
+            // debug($identity->get('is_staff'));
+            // exit;
+
 
             $staff_login = $this->request->getData('is_staff');
             
@@ -217,12 +221,15 @@ class AuthController extends AppController
                     setcookie('remembered_email', '', time() - 3600, "/");
                 }
             }
+
             // set a fallback location in case user logged in without triggering 'unauthenticatedRedirect'
-            if(!$staff_login){
+            if(!$identity->get('is_staff')){
                 $fallbackLocation = ['controller' => 'Pages', 'action' => 'index'];
             } else {
                 $fallbackLocation = ['controller' => 'Dashboard', 'action' => 'index'];
             }
+
+            
             
 
             // and redirect user to the location they're trying to access
