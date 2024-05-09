@@ -144,11 +144,11 @@
             </tr>
                 <?php foreach ($bookings as $booking): ?>
 
-                <!-- FOR CELINE -->    
+                <!-- FOR CELINE -->
                 <?php
                     //Just decarling as variables for future use, this step is not necessary but probably good to do. If you DONT do this, just do the "$this->Identity->get('is_staff') etc within the conditional check
                     $isStaff = $this->Identity->get('is_staff');
-                    $currentUserId = $this->Identity->get('id'); 
+                    $currentUserId = $this->Identity->get('id');
 
                     /**
                      * Conditional check
@@ -157,7 +157,7 @@
                      * You can write the conditional checks different probably depending on if you declared the variables or if you just want to do it a different way, but thats the general idea
                      */
                     if (!$isStaff && $booking->user_id != $currentUserId) {
-                        continue; 
+                        continue;
                     }
                 ?>
                 <tr>
@@ -197,7 +197,7 @@
                     <td class="actions" style="">
 <!--                        //newly added payment button-->
                         <?php
-                        if (!empty($booking->payment) && $booking->payment->status !== 'paid') {
+                        if (1) {
                             echo $this->Html->link(__('Pay'), ['action' => 'paymentview', $booking->id], ['class' => 'button-link']);
                         }
                         ?>
