@@ -163,10 +163,13 @@ class BookingsController extends AppController
         if ($this->request->is('post')) {
             $data = $this->request->getData();
 
+            $unpaid_status = 'unpaid';
+
             foreach (['hotel_id', 'car_rental_id', 'insurance_id', 'translation_id', 'payment_id', 'travel_deal_id'] as $field) {
                 if (empty($data[$field])) {
                     $data[$field] = null;
                 }
+//                if ($field == 'payment_id')
             }
 
             $booking = $this->Bookings->patchEntity($booking, $this->request->getData(), [

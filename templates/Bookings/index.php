@@ -189,7 +189,7 @@
                         <?php if ($booking->payment_id && $booking->payment): ?>
                             <?= h($booking->payment->status) ?>
                         <?php else: ?>
-                            <?= __('Unpaid') ?>
+                            <?= __('unpaid') ?>
                         <?php endif; ?>
                     </td>
 
@@ -197,7 +197,7 @@
                     <td class="actions" style="">
 <!--                        //newly added payment button-->
                         <?php
-                        if (1) {
+                        if ((!empty($booking->payment) && ($booking->payment->status == 'unpaid' || $booking->payment->status == 'Unpaid')) || empty($booking->payment)) {
                             echo $this->Html->link(__('Pay'), ['action' => 'paymentview', $booking->id], ['class' => 'button-link']);
                         }
                         ?>
