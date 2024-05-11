@@ -133,7 +133,7 @@
                     <th><?= $this->Paginator->sort('travel_deal_id') ?></th>
                     <th><?= $this->Paginator->sort('total_price', __('Total')) ?></th>
                     <th><?= $this->Paginator->sort('booking_status', __('Status')) ?></th>
-                    <th><?= $this->Paginator->sort('payment_status', __('Payment Status')) ?></th>
+                    <th><?= $this->Paginator->sort('payment_status', __('Payment')) ?></th>
                     <th class="actions"><?= __('Actions') ?></th>
                 </tr>
             </thead>
@@ -173,7 +173,7 @@
                                 <?php endforeach; ?>
                             </ul>
                         <?php else: ?>
-                            N/A
+                            /
                         <?php endif; ?>
                     </td>
                     <td><?= $booking->hotel_id ? $this->Html->link($booking->hotel->name ?? 'N/A', ['controller' => 'Hotels', 'action' => 'view', $booking->hotel_id]) : '/' ?></td>

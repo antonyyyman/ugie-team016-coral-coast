@@ -27,11 +27,11 @@ $this->setLayout('defaultadmin');
             margin: 0;
         }
         main {
-            flex: 1; 
-            padding: 100px; 
+            flex: 1;
+            padding: 100px;
         }
         .spacer-for-fixed-header {
-        height: 100px; 
+        height: 100px;
         }
 
 </style>
@@ -71,7 +71,7 @@ $this->setLayout('defaultadmin');
                     echo $this->Form->control('insurance_id', ['options' => $insurances, 'empty' => true]);
                     echo $this->Form->control('translation_id', ['options' => $translations, 'empty' => true]);
 //                    echo $this->Form->control('payment_id');
-                    echo $this->Form->control('travel_deal_id');
+                    echo $this->Form->control('travel_deal_id', ['options' => $travelDeals, 'empty' => true]);
 //                    echo $this->Form->control('total_price');
 //                    echo $this->Form->control('booking_status');
                     echo $this->Form->hidden('booking_status', ['value' => '1']);

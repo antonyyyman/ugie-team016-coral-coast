@@ -165,7 +165,7 @@ class BookingsController extends AppController
 
             $unpaid_status = 'unpaid';
 
-            foreach (['hotel_id', 'car_rental_id', 'insurance_id', 'translation_id', 'payment_id', 'travel_deal_id'] as $field) {
+            foreach (['hotel_id', 'car_rental_id', 'insurance_id', 'translation_id', 'payment_id', 'travel_deal_id', 'travel_deal_id'] as $field) {
                 if (empty($data[$field])) {
                     $data[$field] = null;
                 }
@@ -188,6 +188,7 @@ class BookingsController extends AppController
         $hotels = $this->Bookings->Hotels->find('list', limit: 200)->all();
         $carRentals = $this->Bookings->CarRentals->find('list', limit: 200)->all();
         $translations = $this->Bookings->Translations->find('list', limit: 200)->all();
+        $travelDeals = $this->Bookings->TravelDeals->find('list', limit: 200)->all();
 
 //        $flights = $this->Bookings->Flights->find('list', limit: 200)->all();
         $flights = [];
@@ -197,7 +198,7 @@ class BookingsController extends AppController
             $flights[$flight->id] = $flight->number;
         }
 
-        $this->set(compact('booking', 'users', 'payments', 'insurances', 'hotels', 'carRentals', 'translations', 'flights'));
+        $this->set(compact('booking', 'users', 'payments', 'insurances', 'hotels', 'carRentals', 'translations', 'flights', 'travelDeals'));
 
         //get user id
 //        $user_id = $this->Bookings->get($user_id);
@@ -236,7 +237,7 @@ class BookingsController extends AppController
         $hotels = $this->Bookings->Hotels->find('list', limit: 200)->all();
         $carRentals = $this->Bookings->CarRentals->find('list', limit: 200)->all();
         $translations = $this->Bookings->Translations->find('list', limit: 200)->all();
-
+        $travelDeals = $this->Bookings->TravelDeals->find('list', limit: 200)->all();
         $flights_pnt_detail = [];
 //        debug($this->Bookings->Flights->find()->all());
 //        exit;
@@ -280,7 +281,7 @@ class BookingsController extends AppController
 //        }
         // ********** auto-calculating price for each booking **********
 
-        $this->set(compact('booking', 'users', 'payments', 'insurances', 'hotels', 'carRentals', 'translations', 'flights'));
+        $this->set(compact('booking', 'users', 'payments', 'insurances', 'hotels', 'carRentals', 'translations', 'flights', 'travelDeals'));
 
 
         //get user id
@@ -347,12 +348,15 @@ class BookingsController extends AppController
                         return $this->redirect(['action' => 'index']);
                     } else {
                         $this->Flash->error(__('Unable to cancel your booking.'));
+                        return $this->redirect(['action' => 'index']);
                     }
                 } else {
                     $this->Flash->error(__('Bookings can only be cancelled up to 2 weeks in advance.'));
+                    return $this->redirect(['action' => 'index']);
                 }
             } else {
                 $this->Flash->error(__('Cannot cancel the booking as the start date is missing.'));
+                return $this->redirect(['action' => 'index']);
             }
         } else {
 

@@ -73,7 +73,7 @@ $this->setLayout('defaultadmin');
                     echo $this->Form->control('car_rental_id', ['options' => $carRentals, 'empty' => true]);
                     echo $this->Form->control('insurance_id', ['options' => $insurances, 'empty' => true]);
                     echo $this->Form->control('translation_id', ['options' => $translations, 'empty' => true]);
-                    echo $this->Form->control('travel_deal_id');
+                    echo $this->Form->control('travel_deal_id', ['options' => $travelDeals, 'empty' => true]);
 
                     echo $this->Form->control('total_price', ["disabled"=>true]);
 //                    echo $this->Form->control('payment_id');
