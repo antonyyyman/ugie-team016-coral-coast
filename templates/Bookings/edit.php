@@ -27,11 +27,11 @@ $this->setLayout('defaultadmin');
             margin: 0;
         }
         main {
-            flex: 1; 
-            padding: 100px; 
+            flex: 1;
+            padding: 100px;
         }
         .spacer-for-fixed-header {
-        height: 100px; 
+        height: 100px;
         }
 
 </style>
@@ -49,7 +49,7 @@ $this->setLayout('defaultadmin');
             <?= $this->Html->link(__('List Bookings'), ['action' => 'index'], ['class' => 'side-nav-item']) ?>
         </div>
     </aside>
-    <div class="column column-80">
+    <div class="column column-80" style="padding-top: 10%">
         <div class="bookings form content">
             <?= $this->Form->create($booking, ['id' => 'edit-booking-form']) ?>
             <fieldset>
