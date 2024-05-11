@@ -3,6 +3,8 @@
  * @var \App\View\AppView $this
  * @var \App\Model\Entity\Cruise $cruise
  */
+
+ $is_staff = $this->Identity->get('is_staff');
 ?>
 
 <head>
@@ -34,10 +36,12 @@
     <aside class="column">
         <div class="side-nav">
             <h4 class="heading"><?= __('Actions') ?></h4>
-            <?= $this->Html->link(__('Edit Cruise'), ['action' => 'edit', $cruise->id], ['class' => 'side-nav-item']) ?>
-            <?= $this->Form->postLink(__('Delete Cruise'), ['action' => 'delete', $cruise->id], ['confirm' => __('Are you sure you want to delete # {0}?', $cruise->id), 'class' => 'side-nav-item']) ?>
+            <?php if($is_staff){
+                echo $this->Html->link(__('Edit Cruise'), ['action' => 'edit', $cruise->id], ['class' => 'side-nav-item']);
+                echo $this->Form->postLink(__('Delete Cruise'), ['action' => 'delete', $cruise->id], ['confirm' => __('Are you sure you want to delete # {0}?', $cruise->id), 'class' => 'side-nav-item']);
+                echo $this->Html->link(__('New Cruise'), ['action' => 'add'], ['class' => 'side-nav-item']);
+            }?>
             <?= $this->Html->link(__('List Cruises'), ['action' => 'index'], ['class' => 'side-nav-item']) ?>
-            <?= $this->Html->link(__('New Cruise'), ['action' => 'add'], ['class' => 'side-nav-item']) ?>
         </div>
     </aside>
     <div class="column column-80">
@@ -93,8 +97,10 @@
                             <td><?= h($travelDeal->translation_id) ?></td>
                             <td class="actions">
                                 <?= $this->Html->link(__('View'), ['controller' => 'TravelDeals', 'action' => 'view', $travelDeal->id]) ?>
-                                <?= $this->Html->link(__('Edit'), ['controller' => 'TravelDeals', 'action' => 'edit', $travelDeal->id]) ?>
-                                <?= $this->Form->postLink(__('Delete'), ['controller' => 'TravelDeals', 'action' => 'delete', $travelDeal->id], ['confirm' => __('Are you sure you want to delete # {0}?', $travelDeal->id)]) ?>
+                                <?php if($is_staff){
+                                    echo $this->Html->link(__('Edit'), ['controller' => 'TravelDeals', 'action' => 'edit', $travelDeal->id]);
+                                    echo $this->Form->postLink(__('Delete'), ['controller' => 'TravelDeals', 'action' => 'delete', $travelDeal->id], ['confirm' => __('Are you sure you want to delete # {0}?', $travelDeal->id)]);
+                                }?>
                             </td>
                         </tr>
                         <?php endforeach; ?>

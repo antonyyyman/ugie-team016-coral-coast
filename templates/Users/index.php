@@ -3,7 +3,13 @@
  * @var \App\View\AppView $this
  * @var iterable<\App\Model\Entity\User> $users
  */
-$this->setLayout('defaultadmin');
+if($this->Identity->get('is_staff') == true){
+    $this->Html->script('script', ['block' => true]);
+    $this->Html->css('contact-form', ['block' => true]);
+    //$this->setLayout("defaultadmin");
+} else {
+    $this->setLayout("unauthorised");
+}
 ?>
 
 <head>
