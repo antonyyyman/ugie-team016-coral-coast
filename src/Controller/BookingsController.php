@@ -537,10 +537,13 @@ class BookingsController extends AppController
             if ($charge->status == 'succeeded') {
                 // change status!!!!!!!!!!
                 $booking->payment->status = 'paid';
-
-                $this->Bookings->save($booking);
-
-                $this->Flash->success('Charge successful');
+//                $this->Bookings->save($booking);
+//                $this->Flash->success('Charge successful');
+                if (!$this->Bookings->Payments->save($booking->payment)) {
+                    $this->Flash->error('Failed to update payment status.');
+                } else {
+                    $this->Flash->success('Charge successful');
+                }
             } else {
                 $this->Flash->error('Payment was not successful');
             }
