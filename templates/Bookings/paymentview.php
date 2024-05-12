@@ -88,6 +88,20 @@ $this->setLayout("defaultadmin");
                     </td>
                 </tr>
             </table>
+
+            <?php if ($paymentMethods == 'Credit Card'): ?>
+                <div class="stripe-payment">
+                    <form action="charge.php" method="post">
+                        <input type="hidden" name="amount" value="<?= $this->Number->format($booking->total_price) ?>">
+                        <input type="text" name="card_number" placeholder="Card Number" required>
+                        <input type="text" name="exp_month" placeholder="Expiration Month" required>
+                        <input type="text" name="exp_year" placeholder="Expiration Year" required>
+                        <input type="text" name="cvc" placeholder="CVC" required>
+                        <button type="submit">Pay</button>
+                    </form>
+                </div>
+            <?php endif; ?>
+
             <div style="display:flex;justify-content:flex-end;line-height:37.6px;">
                 <div style="margin-right:12px;font-size:20px;">Total Price: <span style="color:#e74343;">
                     <?= $this->Number->format($booking->total_price, [
