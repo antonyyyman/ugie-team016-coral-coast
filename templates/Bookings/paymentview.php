@@ -5,6 +5,60 @@
  */
 $this->setLayout("defaultadmin");
 ?>
+
+<head>
+    <style>
+        .stripe-payment {
+            max-width: 400px;
+            margin: 20px auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            background: #f9f9f9;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .input-group {
+            display: flex;
+            align-items: center;
+        }
+
+        .input-group-append {
+            margin-left: 10px;
+        }
+
+        .input-group-text {
+            display: flex;
+            align-items: center;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        button.btn {
+            width: 100%;
+            padding: 10px;
+            border: none;
+            border-radius: 4px;
+            background-color: #007bff;
+            color: white;
+            cursor: pointer;
+        }
+
+        button.btn:hover {
+            background-color: #0056b3;
+        }
+
+    </style>
+</head>
+
 <div class="row">
     <div class="column column-100" style="margin: 0 auto;">
         <div class="bookings view content">
@@ -94,21 +148,37 @@ $this->setLayout("defaultadmin");
                 <form id="payment-form" action="charge.php" method="post">
                     <input type="hidden" name="amount" value="<?= $this->Number->format($booking->total_price) ?>">
 
-                    <label for="card_number">Card Number</label>
-                    <input type="text" id="card_number" name="card_number" placeholder="Card Number" required minlength="16" maxlength="16">
+                    <div class="form-group">
+                        <label for="card_number">Card Number</label>
+                        <div class="input-group">
+                            <input type="text" id="card_number" name="card_number" placeholder="Card Number" required minlength="16" maxlength="16">
+                            <div class="input-group-append">
+                    <span class="input-group-text">
+                        <img src="/img/payment.png" alt="acceptedPayments">
+                    </span>
+                            </div>
+                        </div>
+                    </div>
 
-                    <label for="exp_month">Expiration Month</label>
-                    <input type="text" id="exp_month" name="exp_month" placeholder="MM" required pattern="^(0[1-9]|1[0-2])$">
+                    <div class="form-group">
+                        <label for="exp_month">Expiration Month</label>
+                        <input type="text" id="exp_month" name="exp_month" placeholder="MM" required pattern="^(0[1-9]|1[0-2])$">
+                    </div>
 
-                    <label for="exp_year">Expiration Year</label>
-                    <input type="text" id="exp_year" name="exp_year" placeholder="YYYY" required pattern="^[0-9]{4}$">
+                    <div class="form-group">
+                        <label for="exp_year">Expiration Year</label>
+                        <input type="text" id="exp_year" name="exp_year" placeholder="YYYY" required pattern="^[0-9]{4}$">
+                    </div>
 
-                    <label for="cvc">CVC</label>
-                    <input type="text" id="cvc" name="cvc" placeholder="CVC" required minlength="3" maxlength="4">
+                    <div class="form-group">
+                        <label for="cvc">CVC</label>
+                        <input type="text" id="cvc" name="cvc" placeholder="CVC" required minlength="3" maxlength="4">
+                    </div>
 
-                    <button type="submit" class='btn btn-primary'>Pay</button>
+                    <button type="submit" class="btn btn-primary">Pay</button>
                 </form>
             </div>
+
 
 
             <div style="display:flex;justify-content:flex-end;line-height:37.6px;">
