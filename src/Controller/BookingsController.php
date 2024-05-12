@@ -5,6 +5,8 @@ namespace App\Controller;
 
 use Cake\Mailer\Mailer;
 use DateTime;
+use Stripe\Charge;
+use Stripe\Stripe;
 
 /**
  * Bookings Controller
@@ -503,5 +505,30 @@ class BookingsController extends AppController
         return $this->redirect(['action' => 'index', $bookingId]);
     }
 
+    public function charge()
+    {
+        $this->autoRender = false; // no render
+
+        //my stripe key
+        Stripe::setApiKey('sk_test_51PFDCjC4SRSYpdkUiRVsXowsmWxsO1bgmV26rjHo6kAkaaYb1912x5Yu6VQymQJpFLolqO1gEubBy3lMV3unFm8n00GSoYWvo0');
+
+        $token = $this->request->getData('stripeToken');
+        $amount = $this->request->getData('amount');
+
+        try {
+            $charge = Charge::create([
+                'amount' => $amount * 100,
+                'currency' => 'usd',
+                'description' => 'Example charge',
+                'source' => $token,
+            ]);
+
+            $this->Flash->success('Charge successful');
+            return $this->redirect(['action' => 'index']);
+        } catch (Exception $e) {
+            $this->Flash->error('Charge failed: ' . $e->getMessage());
+            return $this->redirect(['action' => 'index']);
+        }
+    }
 
 }
