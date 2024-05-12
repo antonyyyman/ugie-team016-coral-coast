@@ -91,15 +91,25 @@ $this->setLayout("defaultadmin");
             </table>
 
             <div class="stripe-payment" id="stripe-payment-form" style="display: none;">
-                <form action="charge.php" method="post">
+                <form id="payment-form" action="charge.php" method="post">
                     <input type="hidden" name="amount" value="<?= $this->Number->format($booking->total_price) ?>">
-                    <input type="text" name="card_number" placeholder="Card Number" required>
-                    <input type="text" name="exp_month" placeholder="Expiration Month" required>
-                    <input type="text" name="exp_year" placeholder="Expiration Year" required>
-                    <input type="text" name="cvc" placeholder="CVC" required>
-                    <button type="submit">Pay</button>
+
+                    <label for="card_number">Card Number</label>
+                    <input type="text" id="card_number" name="card_number" placeholder="Card Number" required minlength="16" maxlength="16">
+
+                    <label for="exp_month">Expiration Month</label>
+                    <input type="text" id="exp_month" name="exp_month" placeholder="MM" required pattern="^(0[1-9]|1[0-2])$">
+
+                    <label for="exp_year">Expiration Year</label>
+                    <input type="text" id="exp_year" name="exp_year" placeholder="YYYY" required pattern="^[0-9]{4}$">
+
+                    <label for="cvc">CVC</label>
+                    <input type="text" id="cvc" name="cvc" placeholder="CVC" required minlength="3" maxlength="4">
+
+                    <button type="submit" class='btn btn-primary'>Pay</button>
                 </form>
             </div>
+
 
             <div style="display:flex;justify-content:flex-end;line-height:37.6px;">
                 <div style="margin-right:12px;font-size:20px;">Total Price: <span style="color:#e74343;">
@@ -108,10 +118,11 @@ $this->setLayout("defaultadmin");
                         'before' => '$',
                     ]);?>
                     </span></div>
-                <div>
+                <div id="fake-pay-btn">
                     <?= $this->Form->button(__('Pay'), ['class' => 'btn btn-primary']) ?>
                 </div>
             </div>
+
             <?= $this->Form->end() ?>
         </div>
     </div>
@@ -122,15 +133,49 @@ $this->setLayout("defaultadmin");
     document.addEventListener('DOMContentLoaded', function() {
         var paymentMethodSelector = document.getElementById('payment-method-selector');
         var stripePaymentForm = document.getElementById('stripe-payment-form');
+        var fakePayButton = document.getElementById('fake-pay-btn');
 
         paymentMethodSelector.addEventListener('change', function() {
             console.log("Selected payment method: ", this.value); // for debug
 
             if (this.value === 'credit_card') {
                 stripePaymentForm.style.display = 'block'; //show stripe
+                fakePayButton.style.display = 'none';
             } else {
                 stripePaymentForm.style.display = 'none'; // hide stripe
+                fakePayButton.style.display = 'block';
             }
         });
+    });
+</script>
+<script>
+    document.getElementById('payment-form').addEventListener('submit', function(event) {
+        var form = this;
+        var cardNumber = document.getElementById('card_number').value;
+        var expMonth = document.getElementById('exp_month').value;
+        var expYear = document.getElementById('exp_year').value;
+        var cvc = document.getElementById('cvc').value;
+        var currentYear = new Date().getFullYear();
+        var currentMonth = new Date().getMonth() + 1; // month starts from 0
+
+        // simple check
+        if (!cardNumber.match(/^\d{16}$/)) {
+            alert('Please enter a valid 16-digit card number.');
+            event.preventDefault();
+            return false;
+        }
+
+        if (!expMonth.match(/^(0[1-9]|1[0-2])$/) || !expYear.match(/^[0-9]{4}$/) || parseInt(expYear) < currentYear || (parseInt(expYear) == currentYear && parseInt(expMonth) < currentMonth)) {
+            alert('Please enter a valid expiration date.');
+            event.preventDefault();
+            return false;
+        }
+
+        if (!cvc.match(/^\d{3,4}$/)) {
+            alert('Please enter a valid CVC.');
+            event.preventDefault();
+            return false;
+        }
+
     });
 </script>

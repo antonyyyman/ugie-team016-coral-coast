@@ -30,7 +30,7 @@ try {
         'source' => $token->id
     ]);
 
-    echo '<h1>Successfully charged $10.00!</h1>';
+    echo '<h1>Successfully charged: </h1>' . $amount;
 } catch(\Stripe\Exception\CardException $e) {
     // if error, print error info
     echo '<h1>Error: ' . $e->getError()->message . '</h1>';
