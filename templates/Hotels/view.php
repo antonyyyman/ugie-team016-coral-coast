@@ -3,6 +3,7 @@
  * @var \App\View\AppView $this
  * @var \App\Model\Entity\Hotel $hotel
  */
+$is_staff = $this->Identity->get('is_staff');
 ?>
 
 <head>
@@ -34,10 +35,12 @@
     <aside class="column">
         <div class="side-nav">
             <h4 class="heading"><?= __('Actions') ?></h4>
-            <?= $this->Html->link(__('Edit Hotel'), ['action' => 'edit', $hotel->id], ['class' => 'side-nav-item']) ?>
-            <?= $this->Form->postLink(__('Delete Hotel'), ['action' => 'delete', $hotel->id], ['confirm' => __('Are you sure you want to delete # {0}?', $hotel->id), 'class' => 'side-nav-item']) ?>
+            <?php if($is_staff){
+                echo $this->Html->link(__('Edit Hotel'), ['action' => 'edit', $hotel->id], ['class' => 'side-nav-item']);
+                echo $this->Form->postLink(__('Delete Hotel'), ['action' => 'delete', $hotel->id], ['confirm' => __('Are you sure you want to delete # {0}?', $hotel->id), 'class' => 'side-nav-item']);
+                echo $this->Html->link(__('New Hotel'), ['action' => 'add'], ['class' => 'side-nav-item']);
+            }?>
             <?= $this->Html->link(__('List Hotels'), ['action' => 'index'], ['class' => 'side-nav-item']) ?>
-            <?= $this->Html->link(__('New Hotel'), ['action' => 'add'], ['class' => 'side-nav-item']) ?>
         </div>
     </aside>
     <div class="column column-80">
@@ -65,6 +68,7 @@
                     <td><?= $hotel->price === null ? '' : $this->Number->format($hotel->price) ?></td>
                 </tr>
             </table>
+            <?php if ($is_staff) : ?>
             <div class="related">
                 <h4><?= __('Related Bookings') ?></h4>
                 <?php if (!empty($hotel->bookings)) : ?>
@@ -111,6 +115,7 @@
                     </table>
                 </div>
                 <?php endif; ?>
+            <?php endif; ?>
             </div>
             <div class="related">
                 <h4><?= __('Related Travel Deals') ?></h4>
@@ -144,8 +149,10 @@
                             <td><?= h($travelDeal->translation_id) ?></td>
                             <td class="actions">
                                 <?= $this->Html->link(__('View'), ['controller' => 'TravelDeals', 'action' => 'view', $travelDeal->id]) ?>
-                                <?= $this->Html->link(__('Edit'), ['controller' => 'TravelDeals', 'action' => 'edit', $travelDeal->id]) ?>
-                                <?= $this->Form->postLink(__('Delete'), ['controller' => 'TravelDeals', 'action' => 'delete', $travelDeal->id], ['confirm' => __('Are you sure you want to delete # {0}?', $travelDeal->id)]) ?>
+                                <?php if($is_staff){
+                                    echo $this->Html->link(__('Edit'), ['controller' => 'TravelDeals', 'action' => 'edit', $travelDeal->id]);
+                                    echo $this->Form->postLink(__('Delete'), ['controller' => 'TravelDeals', 'action' => 'delete', $travelDeal->id], ['confirm' => __('Are you sure you want to delete # {0}?', $travelDeal->id)]);
+                                }?>
                             </td>
                         </tr>
                         <?php endforeach; ?>
