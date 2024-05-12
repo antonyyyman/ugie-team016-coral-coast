@@ -1,38 +1,24 @@
 <?php
 require_once('vendor/autoload.php');
 
-// my stripe key
-\Stripe\Stripe::setApiKey('pk_test_51PFDCjC4SRSYpdkURdxb1ni6CPp01vZoczO6RaaYiBTQLlgEwzY5ptSaudvYtwFAwGvXqTIGGyLhLgkUkuB3LSg600RrlLVadU');
 
-// get payment information
-$card_number = $_POST['card_number'];
-$exp_month = $_POST['exp_month'];
-$exp_year = $_POST['exp_year'];
-$cvc = $_POST['cvc'];
-$amount = $_POST['value'] * 100; // amount is in cent
+\Stripe\Stripe::setApiKey('sk_test_51PFDCjC4SRSYpdkUiRVsXowsmWxsO1bgmV26rjHo6kAkaaYb1912x5Yu6VQymQJpFLolqO1gEubBy3lMV3unFm8n00GSoYWvo0');
+
+$token  = $_POST['stripeToken'];
+$amount = $_POST['amount'];
 
 try {
-    // create token
-    $token = \Stripe\Token::create([
-        'card' => [
-            'number'    => $card_number,
-            'exp_month' => $exp_month,
-            'exp_year'  => $exp_year,
-            'cvc'       => $cvc
-        ]
-    ]);
-
-    // use token to make payment
     $charge = \Stripe\Charge::create([
         'amount' => $amount,
         'currency' => 'usd',
         'description' => 'Example charge',
-        'source' => $token->id
+        'source' => $token,
     ]);
 
-    echo '<h1>Successfully charged: </h1>' . $amount;
+    echo 'Charge successful';
 } catch(\Stripe\Exception\CardException $e) {
-    // if error, print error info
-    echo '<h1>Error: ' . $e->getError()->message . '</h1>';
+    echo 'Charge failed: ' . $e->getMessage();
+} catch (\Exception $e) {
+    echo 'Charge failed: ' . $e->getMessage();
 }
 ?>

@@ -8,31 +8,36 @@ $this->setLayout("defaultadmin");
 
 <head>
     <style>
-        .stripe-payment {
-            max-width: 400px;
-            margin: 20px auto;
-            padding: 20px;
-            border: 1px solid #ccc;
+        .StripeElement {
+            box-sizing: border-box;
+            height: 40px;
+            padding: 10px 12px;
+            border: 1px solid transparent;
             border-radius: 4px;
-            background: #f9f9f9;
+            background-color: white;
+            box-shadow: 0 1px 3px 0 #e6ebf1;
+            -webkit-transition: box-shadow 150ms ease;
+            transition: box-shadow 150ms ease;
         }
 
-        .form-group {
-            margin-bottom: 20px;
+        .StripeElement--focus {
+            box-shadow: 0 1px 3px 0 #cfd7df;
         }
 
-        .input-group {
-            display: flex;
-            align-items: center;
+        .StripeElement--invalid {
+            border-color: #fa755a;
         }
 
-        .input-group-append {
-            margin-left: 10px;
+        .StripeElement--webkit-autofill {
+            background-color: #fefde5 !important;
         }
 
-        .input-group-text {
-            display: flex;
-            align-items: center;
+        #card-errors {
+            color: #fa755a;
+            text-align: left;
+            font-size: 13px;
+            line-height: 17px;
+            margin-top: 8px;
         }
 
         input[type="text"] {
@@ -63,7 +68,7 @@ $this->setLayout("defaultadmin");
     <div class="column column-100" style="margin: 0 auto;">
         <div class="bookings view content">
             <h3><?= h($booking->id) ?></h3>
-            <?= $this->Form->create($booking, ['url' => ['action' => 'changestatus', $booking->id]]) ?>
+            <?= $this->Form->create($booking, ['url' => ['action' => 'changestatus', $booking->id, 'method' => 'post']]) ?>
             <table>
                 <tr>
                     <th><?= __('User') ?></th>
@@ -130,68 +135,30 @@ $this->setLayout("defaultadmin");
                     <th><?= __('Payment Id') ?></th>
                     <td><?= $payment->id === null ? '' : $this->Number->format($payment->id) ?></td>
                 </tr>
-                <tr>
-                    <th><?= __('Payment method') ?></th>
-                    <td>
-                        <?= $this->Form->control('payment_method', [
-                            'type' => 'select',
-                            'options' => $paymentMethods,
-                            'empty' => __('Select a payment method'),
-                            'label' => false,
-                            'id' => 'payment-method-selector'
-                        ]); ?>
-                    </td>
-                </tr>
             </table>
 
-            <div class="stripe-payment" id="stripe-payment-form" style="display: none;">
-                <form id="payment-form" action="charge.php" method="post">
-                    <input type="hidden" name="amount" value="<?= $this->Number->format($booking->total_price) ?>">
-
-                    <div class="form-group">
-                        <label for="card_number">Card Number</label>
-                        <div class="input-group">
-                            <input type="text" id="card_number" name="card_number" placeholder="Card Number" required minlength="16" maxlength="16">
-                            <div class="input-group-append">
-                    <span class="input-group-text">
-                        <img src="/img/payment.png" alt="acceptedPayments">
-                    </span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="exp_month">Expiration Month</label>
-                        <input type="text" id="exp_month" name="exp_month" placeholder="MM" required pattern="^(0[1-9]|1[0-2])$">
-                    </div>
-
-                    <div class="form-group">
-                        <label for="exp_year">Expiration Year</label>
-                        <input type="text" id="exp_year" name="exp_year" placeholder="YYYY" required pattern="^[0-9]{4}$">
-                    </div>
-
-                    <div class="form-group">
-                        <label for="cvc">CVC</label>
-                        <input type="text" id="cvc" name="cvc" placeholder="CVC" required minlength="3" maxlength="4">
-                    </div>
-
-                    <button type="submit" class="btn btn-primary">Pay</button>
-                </form>
-            </div>
-
-
-
-            <div style="display:flex;justify-content:flex-end;line-height:37.6px;">
-                <div style="margin-right:12px;font-size:20px;">Total Price: <span style="color:#e74343;">
+            <div style="margin-right:12px;font-size:20px;">Total Price:
+                <span style="color:#e74343;">
                     <?= $this->Number->format($booking->total_price, [
                         'places' => 2,
                         'before' => '$',
                     ]);?>
-                    </span></div>
-                <div id="fake-pay-btn">
-                    <?= $this->Form->button(__('Pay'), ['class' => 'btn btn-primary']) ?>
-                </div>
+                </span>
             </div>
+
+            <form action="charge.php" method="POST" id="payment-form">
+                <div>
+                    <label for="card-element">
+                        Credit or debit card
+                    </label>
+                    <div id="card-element">
+                        <!-- Stripe elements goes here automatically -->
+                    </div>
+                    <div id="card-errors" role="alert"></div>
+                </div>
+
+                <button type="submit">Submit Payment</button>
+            </form>
 
             <?= $this->Form->end() ?>
         </div>
@@ -199,53 +166,47 @@ $this->setLayout("defaultadmin");
 </div>
 
 
+<script src="https://js.stripe.com/v3/"></script>
 <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        var paymentMethodSelector = document.getElementById('payment-method-selector');
-        var stripePaymentForm = document.getElementById('stripe-payment-form');
-        var fakePayButton = document.getElementById('fake-pay-btn');
+    var stripe = Stripe('pk_test_51PFDCjC4SRSYpdkURdxb1ni6CPp01vZoczO6RaaYiBTQLlgEwzY5ptSaudvYtwFAwGvXqTIGGyLhLgkUkuB3LSg600RrlLVadU'); // my public test key
+    var elements = stripe.elements();
 
-        paymentMethodSelector.addEventListener('change', function() {
-            console.log("Selected payment method: ", this.value); // for debug
+    var card = elements.create('card');
+    card.mount('#card-element');
 
-            if (this.value === 'credit_card') {
-                stripePaymentForm.style.display = 'block'; //show stripe
-                fakePayButton.style.display = 'none';
+    card.addEventListener('change', function(event) {
+        var displayError = document.getElementById('card-errors');
+        if (event.error) {
+            displayError.textContent = event.error.message;
+        } else {
+            displayError.textContent = '';
+        }
+    });
+
+    // submit form handler
+    var form = document.getElementById('payment-form');
+    form.addEventListener('submit', function(event) {
+        event.preventDefault();
+
+        stripe.createToken(card).then(function(result) {
+            if (result.error) {
+                var errorElement = document.getElementById('card-errors');
+                errorElement.textContent = result.error.message;
             } else {
-                stripePaymentForm.style.display = 'none'; // hide stripe
-                fakePayButton.style.display = 'block';
+                stripeTokenHandler(result.token);
             }
         });
     });
-</script>
-<script>
-    document.getElementById('payment-form').addEventListener('submit', function(event) {
-        var form = this;
-        var cardNumber = document.getElementById('card_number').value;
-        var expMonth = document.getElementById('exp_month').value;
-        var expYear = document.getElementById('exp_year').value;
-        var cvc = document.getElementById('cvc').value;
-        var currentYear = new Date().getFullYear();
-        var currentMonth = new Date().getMonth() + 1; // month starts from 0
 
-        // simple check
-        if (!cardNumber.match(/^\d{16}$/)) {
-            alert('Please enter a valid 16-digit card number.');
-            event.preventDefault();
-            return false;
-        }
+    // send token to server
+    function stripeTokenHandler(token) {
+        var form = document.getElementById('payment-form');
+        var hiddenInput = document.createElement('input');
+        hiddenInput.setAttribute('type', 'hidden');
+        hiddenInput.setAttribute('name', 'stripeToken');
+        hiddenInput.setAttribute('value', token.id);
+        form.appendChild(hiddenInput);
 
-        if (!expMonth.match(/^(0[1-9]|1[0-2])$/) || !expYear.match(/^[0-9]{4}$/) || parseInt(expYear) < currentYear || (parseInt(expYear) == currentYear && parseInt(expMonth) < currentMonth)) {
-            alert('Please enter a valid expiration date.');
-            event.preventDefault();
-            return false;
-        }
-
-        if (!cvc.match(/^\d{3,4}$/)) {
-            alert('Please enter a valid CVC.');
-            event.preventDefault();
-            return false;
-        }
-
-    });
+        form.submit();
+    }
 </script>
