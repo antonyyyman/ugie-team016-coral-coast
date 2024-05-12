@@ -418,7 +418,7 @@ class BookingsController extends AppController
             $travel_deal_price = $booking->travel_deal->total_price;
         }
 
-        $total_price = $flights_price + $translation_price + $insurance_price + $car_rental_price + $hotel_price;
+        $total_price = $flights_price + $translation_price + $insurance_price + $car_rental_price + $hotel_price + $travel_deal_price;
         $booking->total_price = $total_price;
 //        $this->set(compact('booking'));
         //all the information displayed

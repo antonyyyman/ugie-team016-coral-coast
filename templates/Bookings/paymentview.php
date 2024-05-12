@@ -83,7 +83,8 @@ $this->setLayout("defaultadmin");
                             'type' => 'select',
                             'options' => $paymentMethods,
                             'empty' => __('Select a payment method'),
-                            'label' => false
+                            'label' => false,
+//                            'id' => 'payment-method-selector'
                         ]); ?>
                     </td>
                 </tr>
@@ -117,3 +118,19 @@ $this->setLayout("defaultadmin");
         </div>
     </div>
 </div>
+
+
+<!--<script>-->
+<!--    document.addEventListener('DOMContentLoaded', function() {-->
+<!--        var paymentMethodSelector = document.getElementById('payment-method-selector');-->
+<!--        var stripePaymentForm = document.getElementById('stripe-payment-form');-->
+<!---->
+<!--        paymentMethodSelector.addEventListener('change', function() {-->
+<!--            if (this.value === 'Credit Card') {-->
+<!--                stripePaymentForm.style.display = 'block'; //show stripe-->
+<!--            } else {-->
+<!--                stripePaymentForm.style.display = 'none'; // hide stripe-->
+<!--            }-->
+<!--        });-->
+<!--    });-->
+<!--</script>-->
