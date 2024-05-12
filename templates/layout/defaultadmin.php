@@ -37,6 +37,13 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Free Tour and Travel Website Tempalte | Smarteyeapps.com</title>
 
+    <style>
+        
+    #admin-menu-items ul li {
+        padding: 15px;
+
+    }
+    </style>
 
     <!-- Weija said to remove this right? Either way it is bugging my code so I'm removing it for now.
         If you need something in default stylesheet move it out.-->
@@ -53,39 +60,38 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
     <link rel="stylesheet" href="webroot/css/style.css"> -->
 </head>
 
-<header id="menu-jk" class="container-fluid fixed-top">
-        <div class="row">
-            <div class="col-md-3 logo">
-            <a href=<?= $this->Url->build(['controller' => 'pages', 'action' => 'home'])?>>
-                <img src="../webroot/img/logo_coralcoast.png" alt="Coral Coast Logo">
-            </a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#menu" aria-controls="menu" aria-expanded="false" aria-label="Toggle navigation">
-                <i class="fas d-block d-lg-none small-menu fa-bars"></i>
-            </button>
-            </div>
-            <div id="menu" class="col-lg-6 col-md-9 d-none d-md-block navs collapse">
-                <ul>
+<header id="admin-menu" class="container-fluid fixed-top">
+    <div class="row align-items-center">
+        <div id="admin-menu-items" class="col-lg-9 col-md-9 d-none d-md-block navs collapse">
+            <ul class="d-flex justify-content-start">
+                <li><a href=<?= $this->Url->build(['controller' => 'Dashboard', 'action' => 'index'])?>>Dashboard</a></li>
+                <li><a href=<?= $this->Url->build(['controller' => 'Bookings', 'action' => 'index'])?>>Bookings</a></li>
+                <li><a href=<?= $this->Url->build(['controller' => 'CarRentals', 'action' => 'index'])?>>Car Rentals</a></li>
+                <li><a href=<?= $this->Url->build(['controller' => 'ContactForms', 'action' => 'index'])?>>Contact Forms</a></li>
+                <li><a href=<?= $this->Url->build(['controller' => 'Cruises', 'action' => 'index'])?>>Cruises</a></li>
                 <li><a href=<?= $this->Url->build(['controller' => 'Flights', 'action' => 'index'])?>>Flights</a></li>
-                    <li><a href=<?= $this->Url->build(['controller' =>'Hotels', 'action' => 'index'])?>>Hotels</a></li>
-                    <li><a href=<?= $this->Url->build(['controller' => 'TravelDeals', 'action' => 'index'])?>>Travel Deals</a></li>
-                    <li><a href=<?= $this->Url->build(['controller' => 'Bookings', 'action' => 'index'])?>>Bookings</a></li>
-                    <li><a href=<?= $this->Url->build(['controller' => 'ContactForms', 'action' => 'add'])?>>Contact us</a></li>
-                </ul>
-            </div>
-            <div class="col-md-3 d-none d-lg-block socila-link">
+                <li><a href=<?= $this->Url->build(['controller' => 'Hotels', 'action' => 'index'])?>>Hotels</a></li>
+                <li><a href=<?= $this->Url->build(['controller' => 'Insurances', 'action' => 'index'])?>>Insurances</a></li>
+                <li><a href=<?= $this->Url->build(['controller' => 'Payments', 'action' => 'index'])?>>Payments</a></li>
+                <li><a href=<?= $this->Url->build(['controller' => 'Translations', 'action' => 'index'])?>>Translations</a></li>
+                <li><a href=<?= $this->Url->build(['controller' => 'TravelDeals', 'action' => 'index'])?>>Travel Deals</a></li>
+                <li><a href=<?= $this->Url->build(['controller' => 'Users', 'action' => 'index'])?>>Users</a></li>
+                <li><a href=<?= $this->Url->build(['controller' => 'Pages', 'action' => 'home'])?>>Home Page</a></li>
+            </ul>
+        </div>
+        <div class="col-md-3 d-none d-lg-block social-link">
             <?php
                 $buttonClass = $this->Identity->isLoggedIn() ? 'logout-button' : 'login-button';
                 echo $this->Html->link(
                     $this->Identity->isLoggedIn() ? 'Logout' : 'Log in',
                     $this->Identity->isLoggedIn() ? ['controller' => 'Auth', 'action' => 'logout'] : ['controller' => 'Auth', 'action' => 'login'],
                     ['class' => 'button button-outline ' . $buttonClass]);
-                ?>
-            </div>
-            <div class>
-
-            </div>
+            ?>
         </div>
+    </div>
 </header>
+
+
 
 <body>
 </div>
