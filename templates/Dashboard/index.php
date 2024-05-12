@@ -12,10 +12,10 @@
 <head>
     <style>
         header {
-            margin-bottom: 20px;
+            margin-bottom: 30px;
         }
         .content-container {
-            padding-top: 20px;
+            padding-top: 30px;
         }
         body {
             display: flex;
@@ -29,6 +29,9 @@
         }
         .spacer-for-fixed-header {
         height: 100px; 
+        }
+        h1 {
+        padding-top: 20px;    
         }
     </style>
     <title>Dashboard</title>

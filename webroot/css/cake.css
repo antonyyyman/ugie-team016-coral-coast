@@ -74,6 +74,11 @@ h1, h2, h3, h4, h5, h6 {
     color: var(--color-headings);
 }
 
+#admin-menu-items ul li {
+    margin-right: 10px; /* Adjust this value to your preference */
+}
+
+
 a {
     color: var(--color-links);
     transition: color 0.2s linear;
