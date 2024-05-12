@@ -179,7 +179,7 @@ $this->setLayout("defaultadmin");
     // my stripe key
     var stripe = Stripe('pk_test_51PFDCjC4SRSYpdkURdxb1ni6CPp01vZoczO6RaaYiBTQLlgEwzY5ptSaudvYtwFAwGvXqTIGGyLhLgkUkuB3LSg600RrlLVadU');
     var elements = stripe.elements();
-
+    //
     // create card element on web page
     var card = elements.create('card', {
         style: {
@@ -198,7 +198,6 @@ $this->setLayout("defaultadmin");
     });
     card.mount('#card-element');
 
-    // listen card information error
     card.addEventListener('change', function(event) {
         var displayError = document.getElementById('card-errors');
         if (event.error) {

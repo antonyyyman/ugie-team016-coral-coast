@@ -505,30 +505,50 @@ class BookingsController extends AppController
         return $this->redirect(['action' => 'index', $bookingId]);
     }
 
-    public function charge()
+    public function charge($id)
     {
-        $this->autoRender = false; // no render
+        $booking = $this->Bookings->get($id, contain: ['Users', 'Payments', 'Insurances', 'Hotels', 'CarRentals', 'Translations', 'Flights', 'TravelDeals']);
 
-        //my stripe key
+        $this->autoRender = false;
+//        $booking = $this->Bookings->get($id); //
+
+        if (!$booking) {
+            $this->Flash->error('Booking not found.');
+            return $this->redirect(['action' => 'index']);
+        }
         Stripe::setApiKey('sk_test_51PFDCjC4SRSYpdkUiRVsXowsmWxsO1bgmV26rjHo6kAkaaYb1912x5Yu6VQymQJpFLolqO1gEubBy3lMV3unFm8n00GSoYWvo0');
 
         $token = $this->request->getData('stripeToken');
         $amount = $this->request->getData('amount');
 
+        if (!$token) {
+            $this->Flash->error('No payment token provided');
+            return $this->redirect(['action' => 'index']);
+        }
+
         try {
             $charge = Charge::create([
-                'amount' => $amount * 100,
-                'currency' => 'usd',
+                'amount' => $amount,  //in cent
+                'currency' => 'aud',
                 'description' => 'Example charge',
                 'source' => $token,
             ]);
 
-            $this->Flash->success('Charge successful');
-            return $this->redirect(['action' => 'index']);
-        } catch (Exception $e) {
+            if ($charge->status == 'succeeded') {
+                // change status!!!!!!!!!!
+                $booking->payment->status = 'paid';
+
+                $this->Bookings->save($booking);
+
+                $this->Flash->success('Charge successful');
+            } else {
+                $this->Flash->error('Payment was not successful');
+            }
+        } catch (\Exception $e) {
             $this->Flash->error('Charge failed: ' . $e->getMessage());
-            return $this->redirect(['action' => 'index']);
         }
+
+        return $this->redirect(['action' => 'index']);
     }
 
 }
