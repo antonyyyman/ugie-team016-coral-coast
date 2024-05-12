@@ -29,7 +29,6 @@ class TravelDealsController extends AppController
         $travelDeals = $this->paginate($query);
 
         $this->set(compact('travelDeals'));
-        $this->viewBuilder()->setLayout("defaultadmin");
     }
 
     /**

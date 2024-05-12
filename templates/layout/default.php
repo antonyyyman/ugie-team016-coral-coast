@@ -114,8 +114,8 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
                     <li><a href=<?= $this->Url->build(['controller' => 'CarRentals', 'action' => 'index'])?>>Car Rentals</a></li>
                     <li><a href=<?= $this->Url->build(['controller' => 'Cruises', 'action' => 'index'])?>>Cruises</a></li>
                     <li><a href=<?= $this->Url->build(['controller' => 'Insurances', 'action' => 'index'])?>>Insurances</a></li>
-                    <li><a href=<?= $this->Url->build(['controller' => 'Payments', 'action' => 'index'])?>>Payments</a></li>
                     <li><a href=<?= $this->Url->build(['controller' => 'Translations', 'action' => 'index'])?>>Translations</a></li>
+                    <li><a href=<?= $this->Url->build(['controller' => 'Dashboard', 'action' => 'index'])?>>Admin Dashboard</a></li>
                     </ul>
                 </div>
                 <div class="col-md-4 col-sm-12 map-img">
