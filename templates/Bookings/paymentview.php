@@ -84,24 +84,22 @@ $this->setLayout("defaultadmin");
                             'options' => $paymentMethods,
                             'empty' => __('Select a payment method'),
                             'label' => false,
-//                            'id' => 'payment-method-selector'
+                            'id' => 'payment-method-selector'
                         ]); ?>
                     </td>
                 </tr>
             </table>
 
-            <?php if ($paymentMethods == 'Credit Card'): ?>
-                <div class="stripe-payment">
-                    <form action="charge.php" method="post">
-                        <input type="hidden" name="amount" value="<?= $this->Number->format($booking->total_price) ?>">
-                        <input type="text" name="card_number" placeholder="Card Number" required>
-                        <input type="text" name="exp_month" placeholder="Expiration Month" required>
-                        <input type="text" name="exp_year" placeholder="Expiration Year" required>
-                        <input type="text" name="cvc" placeholder="CVC" required>
-                        <button type="submit">Pay</button>
-                    </form>
-                </div>
-            <?php endif; ?>
+            <div class="stripe-payment" id="stripe-payment-form" style="display: none;">
+                <form action="charge.php" method="post">
+                    <input type="hidden" name="amount" value="<?= $this->Number->format($booking->total_price) ?>">
+                    <input type="text" name="card_number" placeholder="Card Number" required>
+                    <input type="text" name="exp_month" placeholder="Expiration Month" required>
+                    <input type="text" name="exp_year" placeholder="Expiration Year" required>
+                    <input type="text" name="cvc" placeholder="CVC" required>
+                    <button type="submit">Pay</button>
+                </form>
+            </div>
 
             <div style="display:flex;justify-content:flex-end;line-height:37.6px;">
                 <div style="margin-right:12px;font-size:20px;">Total Price: <span style="color:#e74343;">
@@ -120,17 +118,19 @@ $this->setLayout("defaultadmin");
 </div>
 
 
-<!--<script>-->
-<!--    document.addEventListener('DOMContentLoaded', function() {-->
-<!--        var paymentMethodSelector = document.getElementById('payment-method-selector');-->
-<!--        var stripePaymentForm = document.getElementById('stripe-payment-form');-->
-<!---->
-<!--        paymentMethodSelector.addEventListener('change', function() {-->
-<!--            if (this.value === 'Credit Card') {-->
-<!--                stripePaymentForm.style.display = 'block'; //show stripe-->
-<!--            } else {-->
-<!--                stripePaymentForm.style.display = 'none'; // hide stripe-->
-<!--            }-->
-<!--        });-->
-<!--    });-->
-<!--</script>-->
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var paymentMethodSelector = document.getElementById('payment-method-selector');
+        var stripePaymentForm = document.getElementById('stripe-payment-form');
+
+        paymentMethodSelector.addEventListener('change', function() {
+            console.log("Selected payment method: ", this.value); // for debug
+
+            if (this.value === 'credit_card') {
+                stripePaymentForm.style.display = 'block'; //show stripe
+            } else {
+                stripePaymentForm.style.display = 'none'; // hide stripe
+            }
+        });
+    });
+</script>
