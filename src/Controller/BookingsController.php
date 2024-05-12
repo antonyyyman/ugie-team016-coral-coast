@@ -5,6 +5,8 @@ namespace App\Controller;
 
 use Cake\Mailer\Mailer;
 use DateTime;
+use Stripe\Charge;
+use Stripe\Stripe;
 
 /**
  * Bookings Controller
@@ -69,6 +71,7 @@ class BookingsController extends AppController
             $insurance_price = 0;
             $car_rental_price = 0;
             $hotel_price = 0;
+            $travel_deal_price = 0;
 
 //            debug($booking);
 //            exit;
@@ -90,7 +93,10 @@ class BookingsController extends AppController
             if (!empty($booking->hotel)) {
                 $hotel_price = $booking->hotel->price;
             }
-            $total_price = $flights_price + $translation_price + $insurance_price + $car_rental_price + $hotel_price;
+            if (!empty($booking->travel_deal)) {
+                $travel_deal_price = $booking->travel_deal->total_price;
+            }
+            $total_price = $flights_price + $translation_price + $insurance_price + $car_rental_price + $hotel_price + $travel_deal_price;
             $booking->total_price = $total_price;
         }
         // ********** auto-calculating price for each booking **********
@@ -111,7 +117,7 @@ class BookingsController extends AppController
      */
     public function view(?string $id = null)
     {
-        $booking = $this->Bookings->get($id, contain: ['Users', 'Payments', 'Insurances', 'Hotels', 'CarRentals', 'Translations', 'Flights']);
+        $booking = $this->Bookings->get($id, contain: ['Users', 'Payments', 'Insurances', 'Hotels', 'CarRentals', 'Translations', 'Flights', 'TravelDeals']);
 
         // ********** auto-calculating price for each booking **********
         // so the price set for each booking in database becomes rubbish
@@ -122,6 +128,7 @@ class BookingsController extends AppController
         $insurance_price = 0;
         $car_rental_price = 0;
         $hotel_price = 0;
+        $travel_deal_price = 0;
 
 //            debug($booking);
 //            exit;
@@ -143,7 +150,10 @@ class BookingsController extends AppController
         if (!empty($booking->hotel)) {
             $hotel_price = $booking->hotel->price;
         }
-        $total_price = $flights_price + $translation_price + $insurance_price + $car_rental_price + $hotel_price;
+        if (!empty($booking->travel_deal))  {
+            $travel_deal_price = $booking->travel_deal->total_price;
+        }
+        $total_price = $flights_price + $translation_price + $insurance_price + $car_rental_price + $hotel_price + $travel_deal_price;
         $booking->total_price = $total_price;
 //        }
         // ********** auto-calculating price for each booking **********
@@ -255,6 +265,7 @@ class BookingsController extends AppController
         $insurance_price = 0;
         $car_rental_price = 0;
         $hotel_price = 0;
+        $travel_deal_price = 0;
 
 //            debug($booking);
 //            exit;
@@ -276,7 +287,10 @@ class BookingsController extends AppController
         if (!empty($booking->hotel)) {
             $hotel_price = $booking->hotel->price;
         }
-        $total_price = $flights_price + $translation_price + $insurance_price + $car_rental_price + $hotel_price;
+        if (!empty($booking->travel_deal)) {
+            $travel_deal_price = $booking->travel_deal->total_price;
+        }
+        $total_price = $flights_price + $translation_price + $insurance_price + $car_rental_price + $hotel_price + $travel_deal_price;
         $booking->total_price = $total_price;
 //        }
         // ********** auto-calculating price for each booking **********
@@ -375,13 +389,14 @@ class BookingsController extends AppController
     {
         // display all the information
         // the same as above
-        $booking = $this->Bookings->get($id, contain: ['Users', 'Payments', 'Insurances', 'Hotels', 'CarRentals', 'Translations', 'Flights']);
+        $booking = $this->Bookings->get($id, contain: ['Users', 'Payments', 'Insurances', 'Hotels', 'CarRentals', 'Translations', 'Flights', 'TravelDeals']);
         $total_price = 0;
         $flights_price = 0;
         $translation_price = 0;
         $insurance_price = 0;
         $car_rental_price = 0;
         $hotel_price = 0;
+        $travel_deal_price = 0;
 
         $flights = $booking->flights;
         if ($flights && count($flights)) {
@@ -401,8 +416,11 @@ class BookingsController extends AppController
         if (!empty($booking->hotel)) {
             $hotel_price = $booking->hotel->price;
         }
+        if (!empty($booking->travel_deal)) {
+            $travel_deal_price = $booking->travel_deal->total_price;
+        }
 
-        $total_price = $flights_price + $translation_price + $insurance_price + $car_rental_price + $hotel_price;
+        $total_price = $flights_price + $translation_price + $insurance_price + $car_rental_price + $hotel_price + $travel_deal_price;
         $booking->total_price = $total_price;
 //        $this->set(compact('booking'));
         //all the information displayed
@@ -487,5 +505,53 @@ class BookingsController extends AppController
         return $this->redirect(['action' => 'index', $bookingId]);
     }
 
+    public function charge($id)
+    {
+        $booking = $this->Bookings->get($id, contain: ['Users', 'Payments', 'Insurances', 'Hotels', 'CarRentals', 'Translations', 'Flights', 'TravelDeals']);
+
+        $this->autoRender = false;
+//        $booking = $this->Bookings->get($id); //
+
+        if (!$booking) {
+            $this->Flash->error('Booking not found.');
+            return $this->redirect(['action' => 'index']);
+        }
+        Stripe::setApiKey('sk_test_51PFDCjC4SRSYpdkUiRVsXowsmWxsO1bgmV26rjHo6kAkaaYb1912x5Yu6VQymQJpFLolqO1gEubBy3lMV3unFm8n00GSoYWvo0');
+
+        $token = $this->request->getData('stripeToken');
+        $amount = $this->request->getData('amount');
+
+        if (!$token) {
+            $this->Flash->error('No payment token provided');
+            return $this->redirect(['action' => 'index']);
+        }
+
+        try {
+            $charge = Charge::create([
+                'amount' => $amount,  //in cent
+                'currency' => 'aud',
+                'description' => 'Example charge',
+                'source' => $token,
+            ]);
+
+            if ($charge->status == 'succeeded') {
+                // change status!!!!!!!!!!
+                $booking->payment->status = 'paid';
+//                $this->Bookings->save($booking);
+//                $this->Flash->success('Charge successful');
+                if (!$this->Bookings->Payments->save($booking->payment)) {
+                    $this->Flash->error('Failed to update payment status.');
+                } else {
+                    $this->Flash->success('Charge successful');
+                }
+            } else {
+                $this->Flash->error('Payment was not successful');
+            }
+        } catch (\Exception $e) {
+            $this->Flash->error('Charge failed: ' . $e->getMessage());
+        }
+
+        return $this->redirect(['action' => 'index']);
+    }
 
 }
