@@ -69,6 +69,7 @@ class BookingsController extends AppController
             $insurance_price = 0;
             $car_rental_price = 0;
             $hotel_price = 0;
+            $travel_deal_price = 0;
 
 //            debug($booking);
 //            exit;
@@ -90,7 +91,10 @@ class BookingsController extends AppController
             if (!empty($booking->hotel)) {
                 $hotel_price = $booking->hotel->price;
             }
-            $total_price = $flights_price + $translation_price + $insurance_price + $car_rental_price + $hotel_price;
+            if (!empty($booking->travel_deal)) {
+                $travel_deal_price = $booking->travel_deal->total_price;
+            }
+            $total_price = $flights_price + $translation_price + $insurance_price + $car_rental_price + $hotel_price + $travel_deal_price;
             $booking->total_price = $total_price;
         }
         // ********** auto-calculating price for each booking **********
@@ -111,7 +115,7 @@ class BookingsController extends AppController
      */
     public function view(?string $id = null)
     {
-        $booking = $this->Bookings->get($id, contain: ['Users', 'Payments', 'Insurances', 'Hotels', 'CarRentals', 'Translations', 'Flights']);
+        $booking = $this->Bookings->get($id, contain: ['Users', 'Payments', 'Insurances', 'Hotels', 'CarRentals', 'Translations', 'Flights', 'TravelDeals']);
 
         // ********** auto-calculating price for each booking **********
         // so the price set for each booking in database becomes rubbish
@@ -122,6 +126,7 @@ class BookingsController extends AppController
         $insurance_price = 0;
         $car_rental_price = 0;
         $hotel_price = 0;
+        $travel_deal_price = 0;
 
 //            debug($booking);
 //            exit;
@@ -143,7 +148,10 @@ class BookingsController extends AppController
         if (!empty($booking->hotel)) {
             $hotel_price = $booking->hotel->price;
         }
-        $total_price = $flights_price + $translation_price + $insurance_price + $car_rental_price + $hotel_price;
+        if (!empty($booking->travel_deal))  {
+            $travel_deal_price = $booking->travel_deal->total_price;
+        }
+        $total_price = $flights_price + $translation_price + $insurance_price + $car_rental_price + $hotel_price + $travel_deal_price;
         $booking->total_price = $total_price;
 //        }
         // ********** auto-calculating price for each booking **********
@@ -255,6 +263,7 @@ class BookingsController extends AppController
         $insurance_price = 0;
         $car_rental_price = 0;
         $hotel_price = 0;
+        $travel_deal_price = 0;
 
 //            debug($booking);
 //            exit;
@@ -276,7 +285,10 @@ class BookingsController extends AppController
         if (!empty($booking->hotel)) {
             $hotel_price = $booking->hotel->price;
         }
-        $total_price = $flights_price + $translation_price + $insurance_price + $car_rental_price + $hotel_price;
+        if (!empty($booking->travel_deal)) {
+            $travel_deal_price = $booking->travel_deal->total_price;
+        }
+        $total_price = $flights_price + $translation_price + $insurance_price + $car_rental_price + $hotel_price + $travel_deal_price;
         $booking->total_price = $total_price;
 //        }
         // ********** auto-calculating price for each booking **********
@@ -375,13 +387,14 @@ class BookingsController extends AppController
     {
         // display all the information
         // the same as above
-        $booking = $this->Bookings->get($id, contain: ['Users', 'Payments', 'Insurances', 'Hotels', 'CarRentals', 'Translations', 'Flights']);
+        $booking = $this->Bookings->get($id, contain: ['Users', 'Payments', 'Insurances', 'Hotels', 'CarRentals', 'Translations', 'Flights', 'TravelDeals']);
         $total_price = 0;
         $flights_price = 0;
         $translation_price = 0;
         $insurance_price = 0;
         $car_rental_price = 0;
         $hotel_price = 0;
+        $travel_deal_price = 0;
 
         $flights = $booking->flights;
         if ($flights && count($flights)) {
@@ -400,6 +413,9 @@ class BookingsController extends AppController
         }
         if (!empty($booking->hotel)) {
             $hotel_price = $booking->hotel->price;
+        }
+        if (!empty($booking->travel_deal)) {
+            $travel_deal_price = $booking->travel_deal->total_price;
         }
 
         $total_price = $flights_price + $translation_price + $insurance_price + $car_rental_price + $hotel_price;
