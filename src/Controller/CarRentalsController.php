@@ -30,21 +30,10 @@ class CarRentalsController extends AppController
         $carRentals = $this->paginate($query);
 
         $this->set(compact('carRentals'));
-        
+
     }
 
-    public function customerSideIndex(){
-        $query = $this->CarRentals->find();
-        $carRentals = $this->paginate($query);
 
-        $this->set(compact('carRentals'));
-    }
-
-    public function customerSideView($id = null )
-    {
-        $carRental = $this->CarRentals->get($id, contain: ['Bookings', 'TravelDeals']);
-        $this->set(compact('carRental'));
-    }
 
     /**
      * View method

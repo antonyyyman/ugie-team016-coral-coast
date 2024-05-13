@@ -29,21 +29,9 @@ class CruisesController extends AppController
         $cruises = $this->paginate($query);
 
         $this->set(compact('cruises'));
-        
-    }
-
-    public function customerSideIndex(){
-        $query = $this->Cruises->find();
-        $cruises = $this->paginate($query);
-
-        $this->set(compact('cruises'));
 
     }
 
-    public function customerSideView($id = null ){
-        $cruises = $this->Cruises->get($id, contain: ['TravelDeals']);
-        $this->set(compact('cruises'));
-    }
 
     /**
      * View method
