@@ -81,6 +81,8 @@
             <div class="row">
                 <div class="column">
                     <?= $this->Form->control('id', [
+                        'id' => 'usr_id',
+                        'label' => 'Booking Reference # ',
                         'placeholder' => 'Booking Reference contains...',
                         'value' => $this->request->getQuery('id'),
                     ]); ?>
@@ -230,3 +232,13 @@
     </div>
 </div>
 
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        var numericInput = document.getElementById("usr_id");
+
+        numericInput.addEventListener("input", function(event) {
+            event.target.value = event.target.value.replace(/\D/g, '');
+        });
+    });
+
+</script>
