@@ -30,18 +30,6 @@ class InsurancesController extends AppController
         $this->set(compact('insurances'));
     }
 
-    public function customerSideIndex(){
-        $query = $this->Insurances->find();
-        $insurances = $this->paginate($query);
-
-        $this->set(compact('insurances'));
-    }
-
-    public function customerSideView($id = null ){
-        $insurance = $this->Insurances->get($id, contain: ['Bookings', 'TravelDeals']);
-        $this->set(compact('insurance'));
-
-    }
 
     /**
      * View method
@@ -54,7 +42,7 @@ class InsurancesController extends AppController
     {
         $insurance = $this->Insurances->get($id, contain: ['Bookings', 'TravelDeals']);
         $this->set(compact('insurance'));
-        
+
     }
 
     /**
@@ -75,7 +63,7 @@ class InsurancesController extends AppController
             $this->Flash->error(__('The insurance could not be saved. Please, try again.'));
         }
         $this->set(compact('insurance'));
-        
+
         $this->viewBuilder()->setLayout('defaultadmin');
     }
 
@@ -99,7 +87,7 @@ class InsurancesController extends AppController
             $this->Flash->error(__('The insurance could not be saved. Please, try again.'));
         }
         $this->set(compact('insurance'));
-        
+
         $this->viewBuilder()->setLayout('defaultadmin');
     }
 
@@ -121,7 +109,7 @@ class InsurancesController extends AppController
         }
 
         return $this->redirect(['action' => 'index']);
-        
+
         $this->viewBuilder()->setLayout('defaultadmin');
     }
 }

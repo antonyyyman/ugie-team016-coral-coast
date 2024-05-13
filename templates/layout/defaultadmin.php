@@ -38,7 +38,7 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
     <title>Free Tour and Travel Website Tempalte | Smarteyeapps.com</title>
 
     <style>
-        
+
     #admin-menu-items ul li {
         padding: 15px;
 
@@ -67,6 +67,7 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
                 <li><a href=<?= $this->Url->build(['controller' => 'Dashboard', 'action' => 'index'])?>>Dashboard</a></li>
                 <li><a href=<?= $this->Url->build(['controller' => 'Bookings', 'action' => 'index'])?>>Bookings</a></li>
                 <li><a href=<?= $this->Url->build(['controller' => 'CarRentals', 'action' => 'index'])?>>Car Rentals</a></li>
+                <li><a href=<?= $this->Url->build( ['plugin' => 'ContentBlocks', 'controller' => 'ContentBlocks', 'action' => 'index']) ?>>Customise Home Page</li>
                 <li><a href=<?= $this->Url->build(['controller' => 'ContactForms', 'action' => 'index'])?>>Contact Forms</a></li>
                 <li><a href=<?= $this->Url->build(['controller' => 'Cruises', 'action' => 'index'])?>>Cruises</a></li>
                 <li><a href=<?= $this->Url->build(['controller' => 'Flights', 'action' => 'index'])?>>Flights</a></li>

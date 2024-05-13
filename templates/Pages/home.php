@@ -71,7 +71,7 @@ $hotels = $hotelsTable->find('all')->limit(5);
                         <div class="col-lg-10">
                             <div class="banner_text text-center">
                                 <div class="banner_text_iner">
-                                    <h1> Coral Coast Travel Agency</h1>
+                                    <h1> <?= $this->ContentBlock->text('website-title'); ?> </h1>
                                     <p>Let’s start your journey with us, your dream will come true</p>
                                     <h2><li><a href= <?= $this->Url->build(['controller' => 'ContactForms', 'action' => 'add'])?>>Enquire Here</a></li></h2>
                                 </div>
@@ -85,8 +85,8 @@ $hotels = $hotelsTable->find('all')->limit(5);
                 <div class="row justify-content-center">
                     <div class="col-xl-6">
                         <div class="section_tittle text-center">
-                            <a href=<?= $this->Url->build(['controller' => 'TravelDeals', 'action' => 'customerSide_index'])?>><h2>Travel Deals</h2></a>
-                            <p>Here are some of the best travel deals that you can use to make a trip memorable for you!</p>
+                            <a href=<?= $this->Url->build(['controller' => 'TravelDeals', 'action' => 'index'])?>><h2>Travel Deals</h2></a>
+                            <p><?= $this->ContentBlock->text('travel-deals-description'); ?></p>
                         </div>
                     </div>
                 </div>
@@ -101,7 +101,7 @@ $hotels = $hotelsTable->find('all')->limit(5);
                                         <p>Start Date: <?= $travelDeal->start_date?></p>
                                         <p>End Date: <?= $travelDeal->end_date?></p>
                                         <p>Total Price: <?= $travelDeal->total_price?></p>
-                                        <a href=<?= $this->Url->build(['controller' => 'TravelDeals', 'action' => 'customerSideView', $travelDeal->id])?>>View Details</a>
+                                        <a href=<?= $this->Url->build(['controller' => 'TravelDeals', 'action' => 'view', $travelDeal->id])?>>View Details</a>
                                     </div>
                                 </div>
                             </div>
@@ -125,7 +125,7 @@ $hotels = $hotelsTable->find('all')->limit(5);
                                                 <p>Departure Airport: <?= $flight->departure_airport?></p>
                                                 <p>Arrival Airport: <?= $flight->arrival_airport?></p>
                                                 <p>Price: <?= $flight->price?></p>
-                                                <a href=<?= $this->Url->build(['controller' => 'Flights', 'action' => 'customerSideView', $flight->id])?>>View Details</a>
+                                                <a href=<?= $this->Url->build(['controller' => 'Flights', 'action' => 'view', $flight->id])?>>View Details</a>
                                             </div>
                                         </div>
                                     </div>
@@ -137,7 +137,7 @@ $hotels = $hotelsTable->find('all')->limit(5);
             </div>
         </section>
         <div class="row justify-content-center">
-            <h2><a href=<?= $this->Url->build(['controller' => 'Flights', 'action' => 'customerSideIndex'])?>> View All Flights</a></h2>
+            <h2><a href=<?= $this->Url->build(['controller' => 'Flights', 'action' => 'index'])?>> View All Flights</a></h2>
         </div>
 
         <section class="hotel_list section_padding">
@@ -145,7 +145,7 @@ $hotels = $hotelsTable->find('all')->limit(5);
                 <div class="row justify-content-center">
                     <div class="col-xl-6">
                         <div class="section_tittle text-center">
-                            <h2><a href=<?= $this->Url->build(['controller' => 'Hotels', 'action' => 'customerSideIndex'])?>>Hotels</h2>
+                            <h2><a href=<?= $this->Url->build(['controller' => 'Hotels', 'action' => 'index'])?>>Hotels</h2>
                             <p>Here are some great places you can stay!</p>
                         </div>
                     </div>
@@ -159,7 +159,7 @@ $hotels = $hotelsTable->find('all')->limit(5);
                                 <h3><?= $hotel->name?></h3>
                                 <p>Location: <?= $hotel->location?></p>
                                 <p>Price: <?= $hotel->price?></p>
-                                <a href=<?= $this->Url->build(['controller' => 'Hotels', 'action' => 'customerSideView', $hotel->id])?>>View Details</a>
+                                <a href=<?= $this->Url->build(['controller' => 'Hotels', 'action' => 'view', $hotel->id])?>>View Details</a>
                             </div>
                         </div>
                     </div>
@@ -181,28 +181,28 @@ $hotels = $hotelsTable->find('all')->limit(5);
                     <div class="col-lg-3 col-sm-6">
                         <div class="single_ihotel_list">
                             <img src="../webroot/css/customerSide/img/services_1.png" alt="">
-                            <h3><a href=<?= $this->Url->build(['controller' => 'Cruises', 'action' => 'customerSideIndex'])?>>Cruises</a></h3>
+                            <h3><a href=<?= $this->Url->build(['controller' => 'Cruises', 'action' => 'index'])?>>Cruises</a></h3>
                             <p>If you wanted to take a cruise!</p>
                         </div>
                     </div>
                     <div class="col-lg-3 col-sm-6">
                         <div class="single_ihotel_list">
                             <img src="../webroot/css/customerSide/img/services_2.png" alt="">
-                            <h3> <a href=<?= $this->Url->build(['controller' => 'CarRentals', 'action' => 'customerSideIndex'])?>> Car Rental</a></h3>
+                            <h3> <a href=<?= $this->Url->build(['controller' => 'CarRentals', 'action' => 'index'])?>> Car Rental</a></h3>
                             <p>For you to be able to get around!</p>
                         </div>
                     </div>
                     <div class="col-lg-3 col-sm-6">
                         <div class="single_ihotel_list">
                             <img src="../webroot/css/customerSide/img/services_3.png" alt="">
-                            <h3><a href=<?= $this->Url->build(['controller' => 'Translations', 'action' => 'customerSideIndex'])?>>Translations</a></h3>
+                            <h3><a href=<?= $this->Url->build(['controller' => 'Translations', 'action' => 'index'])?>>Translations</a></h3>
                             <p>To help you understand the locals</p>
                         </div>
                     </div>
                     <div class="col-lg-3 col-sm-6">
                         <div class="single_ihotel_list">
                             <img src="../webroot/css/customerSide/img/services_4.png" alt="">
-                            <h3><a href=<?= $this->Url->build(['controller' => 'Insurances', 'action' => 'customerSideIndex'])?>>Insurance</a></h3>
+                            <h3><a href=<?= $this->Url->build(['controller' => 'Insurances', 'action' => 'index'])?>>Insurance</a></h3>
                             <p>Be prepared for anything while travelling</p>
                         </div>
                     </div>

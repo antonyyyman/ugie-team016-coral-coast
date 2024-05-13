@@ -71,7 +71,9 @@
 </head>
 
 <div class="travelDeals index content" style="padding-top: 10%">
-    <?= $this->Html->link(__('New Travel Deal'), ['action' => 'add'], ['class' => 'button float-right']) ?>
+    <?php if ($this->Identity->get('is_staff') == true) {
+        echo $this->Html->link(__('New Travel Deal'), ['action' => 'add'], ['class' => 'button float-right']);
+    }?>
     <h3><?= __('Travel Deals') ?></h3>
     <div class="table-responsive">
         <table>
@@ -115,7 +117,7 @@
                     <td><?= $travelDeal->hasValue('translation') ? $this->Html->link($travelDeal->translation->description, ['controller' => 'Translations', 'action' => 'view', $travelDeal->translation->id]) : 'N/A' ?></td>
                     <td class="actions">
                         <?= $this->Html->link(__('View'), ['action' => 'view', $travelDeal->id], ['class' => 'button-link']) ?>
-                        <?php if ($this->Identity->get('is_staff') == true) { 
+                        <?php if ($this->Identity->get('is_staff') == true) {
                             echo $this->Html->link(__('Edit'), ['action' => 'edit', $travelDeal->id], ['class' => 'button-link']);
                             echo $this->Form->postLink(__('Delete'), ['action' => 'delete', $travelDeal->id], ['class' => 'button-link', 'confirm' => __('Are you sure you want to delete # {0}?', $travelDeal->id)]);
                         }?>
