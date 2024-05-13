@@ -57,7 +57,7 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
         <div class="row">
             <div class="col-md-3 logo">
             <a href=<?= $this->Url->build(['controller' => 'pages', 'action' => 'home'])?>>
-                <img src="../webroot/img/logo_coralcoast.png" alt="Coral Coast Logo">
+                <?= $this->ContentBlock->image('logo'); ?>
             </a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#menu" aria-controls="menu" aria-expanded="false" aria-label="Toggle navigation">
                 <i class="fas d-block d-lg-none small-menu fa-bars"></i>
@@ -103,10 +103,7 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
             <div class="row">
                 <div class="col-md-4 col-sm-12">
                     <h2>About Us</h2>
-                    <p>
-                    Coral Coast Travel has been a specialist in Southeast Asian Travel since 1984, now expanding to international travel.
-                    </p>
-                    <p>We prioritise modern travel experiences through an end-to-end online platform, offering worldwide travel options including cruises and air travel, along with accommodation, car rentals, travel insurance, and translation services. </p>
+                    <?= $this->ContentBlock->html('about-us-content'); ?>
                 </div>
                 <div class="col-md-4 col-sm-12">
                     <h2>Other Links</h2>
@@ -120,11 +117,7 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
                 </div>
                 <div class="col-md-4 col-sm-12 map-img">
                     <h2>Contact Us</a></h2>
-                    <address class="md-margin-bottom-40">
-                        Coral Coast <br>
-                        Wellington Rd, <br>
-                        Clayton, VIC <br>
-                    </address>
+                    <?= $this->ContentBlock->html('contact-us-content'); ?>
                     <a href= <?= $this->Url->build(['controller' => 'ContactForms', 'action' => 'add'])?>>Make an enquiry</a>
                 </div>
             </div>

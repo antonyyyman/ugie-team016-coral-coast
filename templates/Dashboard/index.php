@@ -24,14 +24,14 @@
             margin: 0;
         }
         main {
-            flex: 1; 
-            padding: 100px; 
+            flex: 1;
+            padding: 100px;
         }
         .spacer-for-fixed-header {
-        height: 100px; 
+        height: 100px;
         }
         h1 {
-        padding-top: 20px;    
+        padding-top: 20px;
         }
     </style>
     <title>Dashboard</title>
@@ -48,15 +48,25 @@
 <div class="container-fluid">
     <div class="row">
         <?php foreach ($tables as $table):?>
-            <?php if (($table!= 'bookings_flights') and ($table!= 'flights_travel_deals') and ($table!= 'phinxlog')):?>
+            <?php if (($table!= 'bookings_flights') and ($table!= 'flights_travel_deals') and ($table!= 'phinxlog') and ($table!= 'content_blocks_phinxlog')):?>
                 <div class="col-md-4">
                     <div class="card mb-4">
                         <div class="card-header">
+                            <?php if ($table == 'content_blocks'): ?>
+                            <h5 class="card-title">Customise Home Page</h5>
+                            <?php else: ?>
                             <h5 class="card-title"><?= ucwords(str_replace('_', ' ', $table))?></h5>
+                            <?php endif; ?>
                         </div>
                         <div class="card-body">
-                            <a href=<?= $this->Url->build(['controller' => $table, 'action' => 'index'])?> class="btn btn-primary">View</a>
-                            <a href="<?= $this->Url->build(['controller' => $table, 'action' => 'add'])?>" class="btn btn-secondary">Add <?= ucwords(str_replace('_', ' ', $table))?></a>
+                            <?php if ($table == 'content_blocks'): ?>
+                                <a href=<?= $this->Url->build( ['plugin' => 'ContentBlocks', 'controller' => 'ContentBlocks', 'action' => 'index']) ?> class="btn btn-primary">View</a>
+                            <?php else: ?>
+                                <a href=<?= $this->Url->build(['controller' => $table, 'action' => 'index'])?> class="btn btn-primary">View</a>
+                            <?php endif; ?>
+                            <?php if ($table != 'content_blocks'): ?>
+                                <a href="<?= $this->Url->build(['controller' => $table, 'action' => 'add'])?>" class="btn btn-secondary">Add <?= ucwords(str_replace('_', ' ', $table))?></a>
+                            <?php endif; ?>
                         </div>
                     </div>
                 </div>

@@ -44,16 +44,6 @@ class TravelDealsController extends AppController
         $this->set(compact('travelDeal'));
     }
 
-    public function customerSideIndex()
-    {
-        $travelDeal = $this->TravelDeals->find(contain: ['Insurances', 'Hotels', 'CarRentals', 'Translations', 'Flights', 'Cruises']);
-        $this->set(compact('travelDeal'));
-    }
-
-    public function customerSideView($id = null){
-        $travelDeal = $this->TravelDeals->get($id, contain: ['Insurances', 'Hotels', 'CarRentals', 'Translations', 'Flights', 'Cruises']);
-        $this->set(compact('travelDeal'));
-    }
 
     /**
      * Add method
