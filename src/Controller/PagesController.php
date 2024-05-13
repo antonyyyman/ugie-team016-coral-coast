@@ -50,7 +50,7 @@ class PagesController extends AppController
             $this->Authentication->allowUnauthenticated(['display']);
         }
         if (!$path) {
-            return $this->redirect('/');
+            return $this->redirect('/pages/home');
         }
         if (in_array('..', $path, true) || in_array('.', $path, true)) {
             throw new ForbiddenException();

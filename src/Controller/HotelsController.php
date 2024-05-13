@@ -30,18 +30,6 @@ class HotelsController extends AppController
         $this->set(compact('hotels'));
     }
 
-    public function customerSideIndex(){
-        $query = $this->Hotels->find();
-        $hotels = $this->paginate($query);
-
-        $this->set(compact('hotels'));
-    }
-
-    public function customerSideView($id = null ){
-        $hotels = $this->Hotels->get($id, contain: ['Bookings', 'TravelDeals']);
-        $this->set(compact('hotels'));
-    }
-
     /**
      * View method
      *
@@ -73,7 +61,7 @@ class HotelsController extends AppController
             $this->Flash->error(__('The hotel could not be saved. Please, try again.'));
         }
         $this->set(compact('hotel'));
-        
+
         $this->viewBuilder()->setLayout('defaultadmin');
     }
 
@@ -97,7 +85,7 @@ class HotelsController extends AppController
             $this->Flash->error(__('The hotel could not be saved. Please, try again.'));
         }
         $this->set(compact('hotel'));
-        
+
         $this->viewBuilder()->setLayout('defaultadmin');
     }
 
@@ -119,7 +107,7 @@ class HotelsController extends AppController
         }
 
         return $this->redirect(['action' => 'index']);
-        
+
         $this->viewBuilder()->setLayout('defaultadmin');
     }
 }

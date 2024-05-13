@@ -28,21 +28,11 @@ class TranslationsController extends AppController
         $translations = $this->paginate($query);
 
         $this->set(compact('translations'));
-        
+
     }
 
 
-    public function customerSideIndex(){
-        $query = $this->Translations->find();
-        $translations = $this->paginate($query);
 
-        $this->set(compact('translations'));
-    }
-
-    public function customerSideView($id = null ){
-        $translations = $this->Translations->get($id, contain: ['Bookings', 'TravelDeals']);
-        $this->set(compact('translations'));
-    }
 
     /**
      * View method
