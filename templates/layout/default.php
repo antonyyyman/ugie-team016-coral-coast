@@ -53,42 +53,35 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
     <link rel="stylesheet" href="webroot/css/style.css"> -->
 </head>
 
+<body>
 <header id="menu-jk" class="container-fluid fixed-top">
-        <div class="row">
-            <div class="col-md-3 logo">
-            <a href=<?= $this->Url->build(['plugin' =>null,'controller' => 'pages', 'action' => 'home'])?>>
+        <nav class="navbar navbar-expand-md navbar-light bg-white">
+            <a class="navbar-brand" href=<?= $this->Url->build(['plugin' => null, 'controller' => 'pages', 'action' => 'home']) ?>>
                 <?= $this->ContentBlock->image('logo'); ?>
             </a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#menu" aria-controls="menu" aria-expanded="false" aria-label="Toggle navigation">
-                <i class="fas d-block d-lg-none small-menu fa-bars"></i>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
             </button>
-            </div>
-            <div id="menu" class="col-lg-6 col-md-9 d-none d-md-block navs collapse">
-                <ul>
-                <li><a href=<?= $this->Url->build(['plugin' =>null,'controller' => 'Flights', 'action' => 'index'])?>>Flights</a></li>
-                    <li><a href=<?= $this->Url->build(['plugin' =>null,'controller' =>'Hotels', 'action' => 'index'])?>>Hotels</a></li>
-                    <li><a href=<?= $this->Url->build(['plugin' =>null,'controller' => 'TravelDeals', 'action' => 'index'])?>>Travel Deals</a></li>
-                    <li><a href=<?= $this->Url->build(['plugin' =>null,'controller' => 'Bookings', 'action' => 'index'])?>>Bookings</a></li>
-                    <li><a href=<?= $this->Url->build(['plugin' =>null,'controller' => 'ContactForms', 'action' => 'add'])?>>Contact us</a></li>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav mx-auto">
+                    <li class="nav-item"><a class="nav-link" href=<?= $this->Url->build(['plugin' => null, 'controller' => 'Flights', 'action' => 'index']) ?>>Flights</a></li>
+                    <li class="nav-item"><a class="nav-link" href=<?= $this->Url->build(['plugin' => null, 'controller' => 'Hotels', 'action' => 'index']) ?>>Hotels</a></li>
+                    <li class="nav-item"><a class="nav-link" href=<?= $this->Url->build(['plugin' => null, 'controller' => 'TravelDeals', 'action' => 'index']) ?>>Travel Deals</a></li>
+                    <li class="nav-item"><a class="nav-link" href=<?= $this->Url->build(['plugin' => null, 'controller' => 'Bookings', 'action' => 'index']) ?>>Bookings</a></li>
+                    <li class="nav-item"><a class="nav-link" href=<?= $this->Url->build(['plugin' => null, 'controller' => 'ContactForms', 'action' => 'add']) ?>>Contact us</a></li>
                 </ul>
+                <div class="navbar-nav ml-auto">
+                    <?php
+                        $buttonClass = $this->Identity->isLoggedIn() ? 'logout-button' : 'login-button';
+                        echo $this->Html->link(
+                            $this->Identity->isLoggedIn() ? 'Logout' : 'Log in',
+                            $this->Identity->isLoggedIn() ? ['plugin' => null, 'controller' => 'Auth', 'action' => 'logout'] : ['controller' => 'Auth', 'action' => 'login'],
+                            ['class' => 'nav-item nav-link button button-outline ' . $buttonClass]);
+                    ?>
+                </div>
             </div>
-            <div class="col-md-3 d-none d-lg-block socila-link">
-            <?php
-                $buttonClass = $this->Identity->isLoggedIn() ? 'logout-button' : 'login-button';
-                echo $this->Html->link(
-                    $this->Identity->isLoggedIn() ? 'Logout' : 'Log in',
-                    $this->Identity->isLoggedIn() ? ['plugin' =>null, 'controller' => 'Auth', 'action' => 'logout'] : ['controller' => 'Auth', 'action' => 'login'],
-                    ['class' => 'button button-outline ' . $buttonClass]);
-                ?>
-            </div>
-            <div class>
-
-            </div>
-        </div>
-</header>
-
-
-<body>
+        </nav>
+    </header>
 </div>
 
     <main class="main">
