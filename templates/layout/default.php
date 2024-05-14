@@ -66,7 +66,6 @@ $cakeDescription = 'Coral Coast Travel';
                 </div>
             </nav>
         </header>
-    </div>
 
     <main class="main">
         <div>
