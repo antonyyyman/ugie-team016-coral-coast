@@ -40,33 +40,33 @@ $cakeDescription = 'Coral Coast Travel';
 <body>
     <!-- ignore this comments. -->
     <header id="menu-jk" class="container-fluid fixed-top">
-            <nav class="navbar navbar-expand-md navbar-light bg-white">
-                <a class="navbar-brand" href=<?= $this->Url->build(['plugin' => null, 'controller' => 'pages', 'action' => 'home']) ?>>
-                    <?= $this->ContentBlock->image('logo'); ?>
-                </a>
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarNav">
-                    <ul class="navbar-nav mx-auto">
-                        <li class="nav-item"><a class="nav-link" href=<?= $this->Url->build(['plugin' => null, 'controller' => 'Flights', 'action' => 'index']) ?>>Flights</a></li>
-                        <li class="nav-item"><a class="nav-link" href=<?= $this->Url->build(['plugin' => null, 'controller' => 'Hotels', 'action' => 'index']) ?>>Hotels</a></li>
-                        <li class="nav-item"><a class="nav-link" href=<?= $this->Url->build(['plugin' => null, 'controller' => 'TravelDeals', 'action' => 'index']) ?>>Travel Deals</a></li>
-                        <li class="nav-item"><a class="nav-link" href=<?= $this->Url->build(['plugin' => null, 'controller' => 'Bookings', 'action' => 'index']) ?>>Bookings</a></li>
-                        <li class="nav-item"><a class="nav-link" href=<?= $this->Url->build(['plugin' => null, 'controller' => 'ContactForms', 'action' => 'add']) ?>>Contact us</a></li>
-                    </ul>
-                    <div class="navbar-nav ml-auto">
-                        <?php
-                            $buttonClass = $this->Identity->isLoggedIn() ? 'logout-button' : 'login-button';
-                            echo $this->Html->link(
-                                $this->Identity->isLoggedIn() ? 'Logout' : 'Log in',
-                                $this->Identity->isLoggedIn() ? ['plugin' => null, 'controller' => 'Auth', 'action' => 'logout'] : ['controller' => 'Auth', 'action' => 'login'],
-                                ['class' => 'nav-item nav-link button button-outline ' . $buttonClass]);
-                        ?>
-                    </div>
+        <nav class="navbar navbar-expand-md navbar-light bg-white">
+            <a class="navbar-brand" href=<?= $this->Url->build(['plugin' => null, 'controller' => 'pages', 'action' => 'home']) ?>>
+                <?= $this->ContentBlock->image('logo'); ?>
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav mx-auto">
+                    <li class="nav-item"><a class="nav-link" href=<?= $this->Url->build(['plugin' => null, 'controller' => 'Flights', 'action' => 'index']) ?>>Flights</a></li>
+                    <li class="nav-item"><a class="nav-link" href=<?= $this->Url->build(['plugin' => null, 'controller' => 'Hotels', 'action' => 'index']) ?>>Hotels</a></li>
+                    <li class="nav-item"><a class="nav-link" href=<?= $this->Url->build(['plugin' => null, 'controller' => 'TravelDeals', 'action' => 'index']) ?>>Travel Deals</a></li>
+                    <li class="nav-item"><a class="nav-link" href=<?= $this->Url->build(['plugin' => null, 'controller' => 'Bookings', 'action' => 'index']) ?>>Bookings</a></li>
+                    <li class="nav-item"><a class="nav-link" href=<?= $this->Url->build(['plugin' => null, 'controller' => 'ContactForms', 'action' => 'add']) ?>>Contact us</a></li>
+                </ul>
+                <div class="navbar-nav ml-auto">
+                    <?php
+                        $buttonClass = $this->Identity->isLoggedIn() ? 'logout-button' : 'login-button';
+                        echo $this->Html->link(
+                            $this->Identity->isLoggedIn() ? 'Logout' : 'Log in',
+                            $this->Identity->isLoggedIn() ? ['plugin' => null, 'controller' => 'Auth', 'action' => 'logout'] : ['controller' => 'Auth', 'action' => 'login'],
+                            ['class' => 'nav-item nav-link button button-outline ' . $buttonClass]);
+                    ?>
                 </div>
-            </nav>
-        </header>
+            </div>
+        </nav>
+    </header>
 
     <main class="main">
         <div>
