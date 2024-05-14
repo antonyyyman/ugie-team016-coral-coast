@@ -14,7 +14,7 @@
  * @var \App\View\AppView $this
  */
 
-$cakeDescription = 'CakePHP: the rapid development php framework';
+$cakeDescription = 'Coral Coast Travel';
 ?>
 <!DOCTYPE html>
 <html>
@@ -35,61 +35,38 @@ $cakeDescription = 'CakePHP: the rapid development php framework';
 
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Free Tour and Travel Website Tempalte | Smarteyeapps.com</title>
-
-
-    <!-- Weija said to remove this right? Either way it is bugging my code so I'm removing it for now.
-        If you need something in default stylesheet move it out.-->
-
-    <!-- <link rel="shortcut icon" href="assets/images/fav.png" type="image/x-icon">
-    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i&display=swap" rel="stylesheet">
-    <link rel="shortcut icon" href="assets/images/fav.jpg">
-    <link rel="stylesheet" href="assets/css/bootstrap.min.css">
-    <link rel="stylesheet" href="assets/css/all.min.css">
-    <link rel="stylesheet" href="assets/css/animate.css">
-    <link rel="stylesheet" href="assets/plugins/slider/css/owl.carousel.min.css">
-    <link rel="stylesheet" href="assets/plugins/slider/css/owl.theme.default.css">
-    <link rel="stylesheet" type="text/css" href="assets/css/style.css" />
-    <link rel="stylesheet" href="webroot/css/style.css"> -->
 </head>
 
-<header id="menu-jk" class="container-fluid fixed-top">
-        <div class="row">
-            <div class="col-md-3 logo">
-            <a href=<?= $this->Url->build(['plugin' =>null,'controller' => 'pages', 'action' => 'home'])?>>
-                <?= $this->ContentBlock->image('logo'); ?>
-            </a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#menu" aria-controls="menu" aria-expanded="false" aria-label="Toggle navigation">
-                <i class="fas d-block d-lg-none small-menu fa-bars"></i>
-            </button>
-            </div>
-            <div id="menu" class="col-lg-6 col-md-9 d-none d-md-block navs collapse">
-                <ul>
-                <li><a href=<?= $this->Url->build(['plugin' =>null,'controller' => 'Flights', 'action' => 'index'])?>>Flights</a></li>
-                    <li><a href=<?= $this->Url->build(['plugin' =>null,'controller' =>'Hotels', 'action' => 'index'])?>>Hotels</a></li>
-                    <li><a href=<?= $this->Url->build(['plugin' =>null,'controller' => 'TravelDeals', 'action' => 'index'])?>>Travel Deals</a></li>
-                    <li><a href=<?= $this->Url->build(['plugin' =>null,'controller' => 'Bookings', 'action' => 'index'])?>>Bookings</a></li>
-                    <li><a href=<?= $this->Url->build(['plugin' =>null,'controller' => 'ContactForms', 'action' => 'add'])?>>Contact us</a></li>
-                </ul>
-            </div>
-            <div class="col-md-3 d-none d-lg-block socila-link">
-            <?php
-                $buttonClass = $this->Identity->isLoggedIn() ? 'logout-button' : 'login-button';
-                echo $this->Html->link(
-                    $this->Identity->isLoggedIn() ? 'Logout' : 'Log in',
-                    $this->Identity->isLoggedIn() ? ['plugin' =>null, 'controller' => 'Auth', 'action' => 'logout'] : ['controller' => 'Auth', 'action' => 'login'],
-                    ['class' => 'button button-outline ' . $buttonClass]);
-                ?>
-            </div>
-            <div class>
-
-            </div>
-        </div>
-</header>
-
-
 <body>
-</div>
+    <!-- ignore this comments. -->
+    <header id="menu-jk" class="container-fluid fixed-top">
+            <nav class="navbar navbar-expand-md navbar-light bg-white">
+                <a class="navbar-brand" href=<?= $this->Url->build(['plugin' => null, 'controller' => 'pages', 'action' => 'home']) ?>>
+                    <?= $this->ContentBlock->image('logo'); ?>
+                </a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav mx-auto">
+                        <li class="nav-item"><a class="nav-link" href=<?= $this->Url->build(['plugin' => null, 'controller' => 'Flights', 'action' => 'index']) ?>>Flights</a></li>
+                        <li class="nav-item"><a class="nav-link" href=<?= $this->Url->build(['plugin' => null, 'controller' => 'Hotels', 'action' => 'index']) ?>>Hotels</a></li>
+                        <li class="nav-item"><a class="nav-link" href=<?= $this->Url->build(['plugin' => null, 'controller' => 'TravelDeals', 'action' => 'index']) ?>>Travel Deals</a></li>
+                        <li class="nav-item"><a class="nav-link" href=<?= $this->Url->build(['plugin' => null, 'controller' => 'Bookings', 'action' => 'index']) ?>>Bookings</a></li>
+                        <li class="nav-item"><a class="nav-link" href=<?= $this->Url->build(['plugin' => null, 'controller' => 'ContactForms', 'action' => 'add']) ?>>Contact us</a></li>
+                    </ul>
+                    <div class="navbar-nav ml-auto">
+                        <?php
+                            $buttonClass = $this->Identity->isLoggedIn() ? 'logout-button' : 'login-button';
+                            echo $this->Html->link(
+                                $this->Identity->isLoggedIn() ? 'Logout' : 'Log in',
+                                $this->Identity->isLoggedIn() ? ['plugin' => null, 'controller' => 'Auth', 'action' => 'logout'] : ['controller' => 'Auth', 'action' => 'login'],
+                                ['class' => 'nav-item nav-link button button-outline ' . $buttonClass]);
+                        ?>
+                    </div>
+                </div>
+            </nav>
+        </header>
 
     <main class="main">
         <div>
