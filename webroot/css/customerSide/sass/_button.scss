@@ -122,6 +122,8 @@
 	color: $white_color;
 	border: 1px solid $border_color;
 	text-transform: uppercase;
+	//This needs to be changed but idfk where "$btn_bg" is defined
+	//Change from $btn_bg to #07ff00
 	background-color: $btn_bg;
 	cursor: pointer;
 	@include transform_time(0.5s);

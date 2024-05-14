@@ -47,8 +47,10 @@
     padding: 5px;
     color: rgb(255, 255, 255);
     position: relative;
+    /* Avoid using fixed px values for positioning; not responsive
     left: 80px;
-    top: 23px;
+    top: 23px;  
+    */   
 }
 
 .login-button:hover,
