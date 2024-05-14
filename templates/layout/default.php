@@ -38,7 +38,7 @@ $cakeDescription = 'Coral Coast Travel';
 </head>
 
 <body>
-    <!-- ignore this comment -->
+    <!-- ignore this comments. -->
     <header id="menu-jk" class="container-fluid fixed-top">
             <nav class="navbar navbar-expand-md navbar-light bg-white">
                 <a class="navbar-brand" href=<?= $this->Url->build(['plugin' => null, 'controller' => 'pages', 'action' => 'home']) ?>>
