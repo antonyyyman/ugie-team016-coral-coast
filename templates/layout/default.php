@@ -27,7 +27,7 @@ $cakeDescription = 'Coral Coast Travel';
     </title>
     <?= $this->Html->meta('icon') ?>
 
-    <?= $this->Html->css(['animate','fontawsom-all.min','fonts','bootstrap.min','all.min','cake','style']) ?>
+    <?= $this->Html->css(['animate','fontawsom-all.min','fonts','bootstrap.min','all.min','cake','style',"customerSide/css/bootstrap.min.css","customerSide/css/animate.css","customerSide/css/owl.carousel.min.css","customerSide/css/themify-icons.css","customerSide/css/flaticon.css","customerSide/css/magnific-popup.css","customerSide/css/gijgo.min.css","customerSide/css/nice-select.css","customerSide/css/slick.css","customerSide/css/style.css"]) ?>
 
     <?= $this->fetch('meta') ?>
     <?= $this->fetch('css') ?>
@@ -103,11 +103,15 @@ $cakeDescription = 'Coral Coast Travel';
 
     </footer>
 
-    <script src="assets/js/jquery-3.2.1.min.js"></script>
+
+</body>
+
+<script src="assets/js/jquery-3.2.1.min.js"></script>
     <script src="assets/js/popper.min.js"></script>
     <script src="assets/js/bootstrap.min.js"></script>
     <script src="assets/plugins/scroll-fixed/jquery-scrolltofixed-min.js"></script>
     <script src="assets/plugins/slider/js/owl.carousel.min.js"></script>
     <script src="assets/js/script.js"></script>
-</body>
+
+    
 </html>

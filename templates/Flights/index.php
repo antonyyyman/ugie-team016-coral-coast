@@ -3,6 +3,7 @@
  * @var \App\View\AppView $this
  * @var iterable<\App\Model\Entity\Flight> $flights
  */
+$this->setlayout('default');
 ?>
 
 <head>
