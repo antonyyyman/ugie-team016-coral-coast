@@ -46,9 +46,8 @@ class PagesController extends AppController
     public function display(string ...$path): ?Response
     {
 
-        if (in_array('home', $path)) {
-            $this->Authentication->allowUnauthenticated(['display']);
-        }
+        $this->Authentication->allowUnauthenticated(['display']);
+        
         if (!$path) {
             return $this->redirect('/pages/home');
         }
