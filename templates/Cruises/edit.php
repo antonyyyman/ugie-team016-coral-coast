@@ -3,7 +3,7 @@
  * @var \App\View\AppView $this
  * @var \App\Model\Entity\Cruise $cruise
  */
-$this->setLayout('defaultadmin');
+// $this->setLayout('defaultadmin');
 ?>
 
 <head>

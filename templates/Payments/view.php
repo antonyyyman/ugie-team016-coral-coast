@@ -3,7 +3,7 @@
  * @var \App\View\AppView $this
  * @var \App\Model\Entity\Payment $payment
  */
-$this->setLayout('defaultadmin');
+// $this->setLayout('defaultadmin');
 ?>
 
 <head>

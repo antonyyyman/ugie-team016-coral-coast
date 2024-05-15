@@ -97,7 +97,8 @@ $isStaff = $this->Identity->get('is_staff');
                     <li><a href=<?= $this->Url->build(['controller' => 'Cruises', 'action' => 'index'])?>>Cruises</a></li>
                     <li><a href=<?= $this->Url->build(['controller' => 'Insurances', 'action' => 'index'])?>>Insurances</a></li>
                     <li><a href=<?= $this->Url->build(['controller' => 'Translations', 'action' => 'index'])?>>Translations</a></li>
-                    <li><a href=<?= $this->Url->build(['controller' => 'Dashboard', 'action' => 'index'])?>>Admin Dashboard</a></li>
+                    <!-- Why are we putting admin stuff in without doing conditional checks? -->
+                    <!-- <li><a href=<?= $this->Url->build(['controller' => 'Dashboard', 'action' => 'index'])?>>Admin Dashboard</a></li> -->
                     </ul>
                 </div>
                 <div class="col-md-4 col-sm-12 map-img">
