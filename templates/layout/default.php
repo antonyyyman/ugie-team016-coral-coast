@@ -15,6 +15,7 @@
  */
 
 $cakeDescription = 'Coral Coast Travel';
+$isStaff = $this->Identity->get('is_staff');
 ?>
 <!DOCTYPE html>
 <html>
@@ -54,6 +55,13 @@ $cakeDescription = 'Coral Coast Travel';
                     <li class="nav-item"><a class="nav-link" href=<?= $this->Url->build(['plugin' => null, 'controller' => 'TravelDeals', 'action' => 'index']) ?>>Travel Deals</a></li>
                     <li class="nav-item"><a class="nav-link" href=<?= $this->Url->build(['plugin' => null, 'controller' => 'Bookings', 'action' => 'index']) ?>>Bookings</a></li>
                     <li class="nav-item"><a class="nav-link" href=<?= $this->Url->build(['plugin' => null, 'controller' => 'ContactForms', 'action' => 'add']) ?>>Contact us</a></li>
+                    <?php if ($isStaff) { ?>
+                        <li class="nav-item">
+                            <a class="nav-link" href="<?php echo $this->Url->build(['plugin' => null, 'controller' => 'Dashboard', 'action' => 'index']); ?>">Dashboard</a>
+                        </li>
+                    <?php } ?>
+
+                    
                 </ul>
                 <div class="navbar-nav ml-auto">
                     <?php
