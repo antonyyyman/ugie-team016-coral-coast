@@ -71,46 +71,46 @@
 </head>
 
 <div class="translations index content" style="padding-top: 10%">
-    <?= $this->Html->link(__('New Translation'), ['action' => 'add'], ['class' => 'button float-right']) ?>
-    <h3><?= __('Translations') ?></h3>
-    <div class="table-responsive">
-        <table>
-            <thead>
-                <tr>
-                    <th><?= $this->Paginator->sort('id') ?></th>
-                    <th><?= $this->Paginator->sort('language_from') ?></th>
-                    <th><?= $this->Paginator->sort('language_to') ?></th>
-                    <th><?= $this->Paginator->sort('description') ?></th>
-                    <th><?= $this->Paginator->sort('price') ?></th>
-                    <th class="actions"><?= __('Actions') ?></th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php foreach ($translations as $translation): ?>
-                <tr>
-                    <td><?= $this->Number->format($translation->id) ?></td>
-                    <td><?= h($translation->language_from) ?></td>
-                    <td><?= h($translation->language_to) ?></td>
-                    <td><?= h($translation->description) ?></td>
-                    <td><?= $translation->price === null ? '' : $this->Number->format($translation->price) ?></td>
-                    <td class="actions">
-                        <?= $this->Html->link(__('View'), ['action' => 'view', $translation->id], ['class' => 'button-link']) ?>
-                        <?= $this->Html->link(__('Edit'), ['action' => 'edit', $translation->id], ['class' => 'button-link']) ?>
-                        <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $translation->id], ['class' => 'button-link', 'confirm' => __('Are you sure you want to delete # {0}?', $translation->id)]) ?>
-                    </td>
-                </tr>
-                <?php endforeach; ?>
-            </tbody>
-        </table>
-    </div>
-    <div class="paginator">
-        <ul class="pagination">
-            <?= $this->Paginator->first('<< ' . __('first')) ?>
-            <?= $this->Paginator->prev('< ' . __('previous')) ?>
-            <?= $this->Paginator->numbers() ?>
-            <?= $this->Paginator->next(__('next') . ' >') ?>
-            <?= $this->Paginator->last(__('last') . ' >>') ?>
-        </ul>
-        <p><?= $this->Paginator->counter(__('Page {{page}} of {{pages}}, showing {{current}} record(s) out of {{count}} total')) ?></p>
+    <?php if ($this->Identity->get('is_staff') == true) {
+    echo $this->Html->link(__('New Translation'), ['action' => 'add'], ['class' => 'button float-right']);}
+    ?>
+    <h3 class="text-center"><?= __('Translations') ?></h3>
+    <!-- translations/index.php -->
+
+    <div class="container">
+        <?php foreach ($translations as $translation): ?>
+            <div class="card card-body mb-4">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h5 class="card-title"><?= __('Translation') ?> #<?= $this->Number->format($translation->id) ?></h5>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <p class="card-text"><strong><?= __('Language From') ?></strong>: <?= h($translation->language_from) ?></p>
+                        <p class="card-text"><strong><?= __('Language To') ?></strong>: <?= h($translation->language_to) ?></p>
+                        <p class="card-text"><strong><?= __('Description') ?></strong>: <?= h($translation->description) ?></p>
+                        <p class="card-text"><strong><?= __('Price') ?></strong>: <?= $translation->price === null ? '' : $this->Number->format($translation->price) ?></p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 text-right">
+                        <?= $this->Html->link(__('View'), ['action' => 'view', $translation->id], ['class' => 'btn btn-primary btn-sm']) ?>
+                        <?= $this->Html->link(__('Edit'), ['action' => 'edit', $translation->id], ['class' => 'btn btn-warning btn-sm']) ?>
+                        <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $translation->id], ['class' => 'btn btn-danger btn-sm', 'confirm' => __('Are you sure you want to delete # {0}?', $translation->id)]) ?>
+                    </div>
+                </div>
+            </div>
+        <?php endforeach; ?>
+        <div class="paginator">
+            <ul class="pagination">
+                <?= $this->Paginator->first('<< ' . __('first')) ?>
+                <?= $this->Paginator->prev('< ' . __('previous')) ?>
+                <?= $this->Paginator->numbers() ?>
+                <?= $this->Paginator->next(__('next') . ' >') ?>
+                <?= $this->Paginator->last(__('last') . ' >>') ?>
+            </ul>
+            <p><?= $this->Paginator->counter(__('Page {{page}} of {{pages}}, showing {{current}} record(s) out of {{count}} total')) ?></p>
+        </div>
     </div>
 </div>

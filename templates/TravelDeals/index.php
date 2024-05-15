@@ -74,34 +74,24 @@
     <?php if ($this->Identity->get('is_staff') == true) {
         echo $this->Html->link(__('New Travel Deal'), ['action' => 'add'], ['class' => 'button float-right']);
     }?>
-    <h3><?= __('Travel Deals') ?></h3>
-    <div class="table-responsive">
-        <table>
-            <thead>
-                <tr>
-                    <th><?= $this->Paginator->sort('id') ?></th>
-                    <th><?= $this->Paginator->sort('start_date') ?></th>
-                    <th><?= $this->Paginator->sort('end_date') ?></th>
-                    <th><?= $this->Paginator->sort('description') ?></th>
-                    <th><?= $this->Paginator->sort('total_price') ?></th>
-                    <th><?= $this->Paginator->sort('flights') ?></th>
-                    <th><?= $this->Paginator->sort('insurance_id') ?></th>
-                    <th><?= $this->Paginator->sort('hotel_id') ?></th>
-                    <th><?= $this->Paginator->sort('cruise_id') ?></th>
-                    <th><?= $this->Paginator->sort('car_rental_id') ?></th>
-                    <th><?= $this->Paginator->sort('translation_id') ?></th>
-                    <th class="actions"><?= __('Actions') ?></th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php foreach ($travelDeals as $travelDeal): ?>
-                <tr>
-                    <td><?= $this->Number->format($travelDeal->id) ?></td>
-                    <td><?= h($travelDeal->start_date) ?></td>
-                    <td><?= h($travelDeal->end_date) ?></td>
-                    <td><?= h($travelDeal->description) ?></td>
-                    <td><?= $travelDeal->total_price === null ? '' : $this->Number->format($travelDeal->total_price) ?></td>
-                    <td><?php if (!empty($travelDeal->flights)): ?>
+    <h3 class="text-center"><?= __('Travel Deals') ?></h3>
+    <!-- TravelDeals/index.php -->
+
+    <div class="container">
+        <?php foreach ($travelDeals as $travelDeal): ?>
+            <div class="card card-body mb-4">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h5 class="card-title"><?= __('Travel Deal') ?> #<?= $this->Number->format($travelDeal->id) ?></h5>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <p class="card-text"><strong><?= __('Start Date') ?></strong>: <?= h($travelDeal->start_date) ?></p>
+                        <p class="card-text"><strong><?= __('End Date') ?></strong>: <?= h($travelDeal->end_date) ?></p>
+                        <p class="card-text"><strong><?= __('Description') ?></strong>: <?= h($travelDeal->description) ?></p>
+                        <p class="card-text"><strong><?= __('Total Price') ?></strong>: <?= $travelDeal->total_price === null ? '' : $this->Number->format($travelDeal->total_price) ?></p>
+                        <p class="card-text"><strong><?= __('Flights') ?></strong>: <?php if (!empty($travelDeal->flights)): ?>
                         <ul>
                             <?php foreach ($travelDeal->flights as $flight): ?>
                                 <li><?= $this->Html->link(h($flight->number), ['controller' => 'Flights', 'action' => 'view', $flight->id]) ?></li>
@@ -109,32 +99,35 @@
                         </ul>
                         <?php else: ?>
                         N/A
-                        <?php endif; ?></td>
-                    <td><?= $travelDeal->hasValue('insurance') ? $this->Html->link($travelDeal->insurance->supplier, ['controller' => 'Insurances', 'action' => 'view', $travelDeal->insurance->id]) : 'N/A' ?></td>
-                    <td><?= $travelDeal->hasValue('hotel') ? $this->Html->link($travelDeal->hotel->name, ['controller' => 'Hotels', 'action' => 'view', $travelDeal->hotel->id]) : 'N/A' ?></td>
-                    <td><?= $travelDeal->hasValue('cruise') ? $this->Html->link($travelDeal->cruise->description, ['controller' => 'Cruises', 'action' => 'view', $travelDeal->cruise->id]) : 'N/A' ?></td>
-                    <td><?= $travelDeal->hasValue('car_rental') ? $this->Html->link($travelDeal->car_rental->company, ['controller' => 'CarRentals', 'action' => 'view', $travelDeal->car_rental->id]) : 'N/A' ?></td>
-                    <td><?= $travelDeal->hasValue('translation') ? $this->Html->link($travelDeal->translation->description, ['controller' => 'Translations', 'action' => 'view', $travelDeal->translation->id]) : 'N/A' ?></td>
-                    <td class="actions">
-                        <?= $this->Html->link(__('View'), ['action' => 'view', $travelDeal->id], ['class' => 'button-link']) ?>
+                        <?php endif; ?></p>
+                        <p class="card-text"><strong><?= __('Insurance') ?></strong>: <?= $travelDeal->hasValue('insurance') ? $this->Html->link($travelDeal->insurance->supplier, ['controller' => 'Insurances', 'action' => 'view', $travelDeal->insurance->id]) : 'N/A' ?></p>
+                        <p class="card-text"><strong><?= __('Hotel') ?></strong>: <?= $travelDeal->hasValue('hotel') ? $this->Html->link($travelDeal->hotel->name, ['controller' => 'Hotels', 'action' => 'view', $travelDeal->hotel->id]) : 'N/A' ?></p>
+                        <p class="card-text"><strong><?= __('Cruise') ?></strong>: <?= $travelDeal->hasValue('cruise') ? $this->Html->link($travelDeal->cruise->description, ['controller' => 'Cruises', 'action' => 'view', $travelDeal->cruise->id]) : 'N/A' ?></p>
+                        <p class="card-text"><strong><?= __('Car Rental') ?></strong>: <?= $travelDeal->hasValue('car_rental') ? $this->Html->link($travelDeal->car_rental->company, ['controller' => 'CarRentals', 'action' => 'view', $travelDeal->car_rental->id]) : 'N/A' ?></p>
+                        <p class="card-text"><strong><?= __('Translation') ?></strong>: <?= $travelDeal->hasValue('translation') ? $this->Html->link($travelDeal->translation->description, ['controller' => 'Translations', 'action' => 'view', $travelDeal->translation->id]) : 'N/A' ?></p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 text-right">
+                        <?= $this->Html->link(__('View'), ['action' => 'view', $travelDeal->id], ['class' => 'btn btn-primary btn-sm']) ?>
                         <?php if ($this->Identity->get('is_staff') == true) {
-                            echo $this->Html->link(__('Edit'), ['action' => 'edit', $travelDeal->id], ['class' => 'button-link']);
-                            echo $this->Form->postLink(__('Delete'), ['action' => 'delete', $travelDeal->id], ['class' => 'button-link', 'confirm' => __('Are you sure you want to delete # {0}?', $travelDeal->id)]);
+                            echo $this->Html->link(__('Edit'), ['action' => 'edit', $travelDeal->id], ['class' => 'btn btn-warning btn-sm']);
+                            echo '&nbsp;';
+                            echo $this->Form->postLink(__('Delete'), ['action' => 'delete', $travelDeal->id], ['class' => 'btn btn-danger btn-sm', 'confirm' => __('Are you sure you want to delete # {0}?', $travelDeal->id)]);
                         }?>
-                    </td>
-                </tr>
-                <?php endforeach; ?>
-            </tbody>
-        </table>
-    </div>
-    <div class="paginator">
-        <ul class="pagination">
-            <?= $this->Paginator->first('<< ' . __('first')) ?>
-            <?= $this->Paginator->prev('< ' . __('previous')) ?>
-            <?= $this->Paginator->numbers() ?>
-            <?= $this->Paginator->next(__('next') . ' >') ?>
-            <?= $this->Paginator->last(__('last') . ' >>') ?>
-        </ul>
-        <p><?= $this->Paginator->counter(__('Page {{page}} of {{pages}}, showing {{current}} record(s) out of {{count}} total')) ?></p>
+                    </div>
+                </div>
+            </div>
+        <?php endforeach; ?>
+        <div class="paginator">
+            <ul class="pagination">
+                <?= $this->Paginator->first('<< ' . __('first')) ?>
+                <?= $this->Paginator->prev('< ' . __('previous')) ?>
+                <?= $this->Paginator->numbers() ?>
+                <?= $this->Paginator->next(__('next') . ' >') ?>
+                <?= $this->Paginator->last(__('last') . ' >>') ?>
+            </ul>
+            <p><?= $this->Paginator->counter(__('Page {{page}} of {{pages}}, showing {{current}} record(s) out of {{count}} total')) ?></p>
+        </div>
     </div>
 </div>
