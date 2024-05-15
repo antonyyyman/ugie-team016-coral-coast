@@ -73,53 +73,67 @@ $this->setlayout('default');
 <body>
 
 <div class="flights index content" style="padding-top: 10%">
-    <?= $this->Html->link(__('New Flight'), ['action' => 'add'], ['class' => 'button float-right']) ?>
-    <h3><?= __('Flights') ?></h3>
-    <div class="table-responsive">
-        <table>
-            <thead>
-                <tr>
-                    <th><?= $this->Paginator->sort('id') ?></th>
-                    <th><?= $this->Paginator->sort('number') ?></th>
-                    <th><?= $this->Paginator->sort('departure_airport') ?></th>
-                    <th><?= $this->Paginator->sort('arrival_airport') ?></th>
-                    <th><?= $this->Paginator->sort('departure_date') ?></th>
-                    <th><?= $this->Paginator->sort('arrival_date') ?></th>
-                    <th><?= $this->Paginator->sort('price') ?></th>
-                    <th class="actions"><?= __('Actions') ?></th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php foreach ($flights as $flight): ?>
-                <tr>
-                    <td><?= $this->Number->format($flight->id) ?></td>
-                    <td><?= h($flight->number) ?></td>
-                    <td><?= h($flight->departure_airport) ?></td>
-                    <td><?= h($flight->arrival_airport) ?></td>
-                    <td><?= h($flight->departure_date) ?></td>
-                    <td><?= h($flight->arrival_date) ?></td>
-                    <td><?= $flight->price === null ? '' : $this->Number->format($flight->price) ?></td>
-                    <td class="actions">
-                        <?= $this->Html->link(__('View'), ['action' => 'view', $flight->id], ['class' => 'button-link']) ?>
-                        <?php if ($this->Identity->get('is_staff') == true) { 
-                            echo $this->Html->link(__('Edit'), ['action' => 'edit', $flight->id], ['class' => 'button-link']);
-                            echo $this->Form->postLink(__('Delete'), ['action' => 'delete', $flight->id], ['class' => 'button-link', 'confirm' => __('Are you sure you want to delete # {0}?', $flight->id)]);
-                        }?>
-                    </td>
-                </tr>
-                <?php endforeach; ?>
-            </tbody>
-        </table>
+
+
+    <?php if ($this->Identity->get('is_staff') == true) {
+       echo $this->Html->link(__('New Flight'), ['action' => 'add'], ['class' => 'button float-right']); }
+    ?>
+    <h3 class="text-center"><?= __('Flights') ?></h3>
+
+    <div class="container">
+        <?php echo $this->Form->create(null, ['type' => 'get']); ?>
+        <div class="row">
+            <div class="col-md-6">
+                <?php echo $this->Form->control('departure_date', ['label' => 'Departure Date:', 'empty' => true, 'class' => 'form-control']); ?>
+            </div>
+            <div class="col-md-6">
+                <?php echo $this->Form->control('arrival_airport', ['label' => 'Arrival Airport:', 'empty' => true, 'class' => 'form-control']); ?>
+            </div>
+        </div>
+        <div class="text-center">
+            <?php echo $this->Form->button(__('Search'), ['class' => 'btn btn-primary']); ?>
+        </div>
+        <?php echo $this->Form->end(); ?>
     </div>
-    <div class="paginator">
-        <ul class="pagination">
-            <?= $this->Paginator->first('<< ' . __('first')) ?>
-            <?= $this->Paginator->prev('< ' . __('previous')) ?>
-            <?= $this->Paginator->numbers() ?>
-            <?= $this->Paginator->next(__('next') . ' >') ?>
-            <?= $this->Paginator->last(__('last') . ' >>') ?>
-        </ul>
-        <p><?= $this->Paginator->counter(__('Page {{page}} of {{pages}}, showing {{current}} record(s) out of {{count}} total')) ?></p>
+
+    <div class="container">
+        <?php foreach ($flights as $flight): ?>
+            <div class="card card-body mb-4">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <h5 class="card-title"> Flight Number: <?= h($flight->number) ?></h5>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <p class="card-text"><strong><?= __('Departure Airport') ?></strong>: <?= h($flight->departure_airport) ?></p>
+                                <p class="card-text"><strong><?= __('Departure Date') ?></strong>: <?= h($flight->departure_date) ?></p>
+                            </div>
+                            <div class="col-md-6">
+                                <p class="card-text"><strong><?= __('Arrival Airport') ?></strong>: <?= h($flight->arrival_airport) ?></p>
+                                <p class="card-text"><strong><?= __('Arrival Date') ?></strong>: <?= h($flight->arrival_date) ?></p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <p class="card-text"><strong><?= __('Price') ?></strong>: <?= $flight->price === null ? '' : $this->Number->format($flight->price) ?></p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12 text-right">
+                                <?= $this->Html->link(__('View'), ['action' => 'view', $flight->id], ['class' => 'btn btn-primary btn-sm']) ?>
+                                    <?php if ($this->Identity->get('is_staff') == true) {
+                                        echo $this->Html->link(__('Edit'), ['action' => 'edit', $flight->id], ['class' => 'btn btn-warning btn-sm']);
+                                        echo '&nbsp;';
+                                        echo $this->Form->postLink(__('Delete'), ['action' => 'delete', $flight->id], ['class' => 'btn btn-danger btn-sm', 'confirm' => __('Are you sure you want to delete # {0}?', $flight->id)]);
+                                    }?>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        <?php endforeach; ?>
     </div>
-</div>
 </body>

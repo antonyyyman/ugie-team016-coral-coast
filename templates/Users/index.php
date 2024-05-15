@@ -79,56 +79,48 @@ if($this->Identity->get('is_staff') == true){
 <div class="users index content" style="padding-top: 10%">
     <?= $this->Html->link(__('New User'), ['action' => 'add'], ['class' => 'button float-right']) ?>
     <h3><?= __('Users') ?></h3>
-    <div class="table-responsive">
-        <table>
-            <thead>
-                <tr>
-                    <th><?= $this->Paginator->sort('id') ?></th>
-                    <th><?= $this->Paginator->sort('username') ?></th>
-                    <th><?= $this->Paginator->sort('first_name') ?></th>
-                    <th><?= $this->Paginator->sort('last_name') ?></th>
-                    <th><?= $this->Paginator->sort('email') ?></th>
-                    <th><?= $this->Paginator->sort('phone_number') ?></th>
-                    <th><?= $this->Paginator->sort('is_staff') ?></th>
-                    <th><?= $this->Paginator->sort('nonce') ?></th>
-                    <th><?= $this->Paginator->sort('nonce_expiry') ?></th>
-                    <th><?= $this->Paginator->sort('created') ?></th>
-                    <th><?= $this->Paginator->sort('modified') ?></th>
-                    <th class="actions"><?= __('Actions') ?></th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php foreach ($users as $user): ?>
-                <tr>
-                    <td><?= $this->Number->format($user->id) ?></td>
-                    <td><?= h($user->username) ?></td>
-                    <td><?= h($user->first_name) ?></td>
-                    <td><?= h($user->last_name) ?></td>
-                    <td><?= h($user->email) ?></td>
-                    <td><?= h($user->phone_number) ?></td>
-                    <td><?= $user->is_staff ? __('Yes') : __('No') ?></td>
-                    <td><?= h($user->nonce) ?></td>
-                    <td><?= h($user->nonce_expiry) ?></td>
-                    <td><?= h($user->created) ?></td>
-                    <td><?= h($user->modified) ?></td>
-                    <td class="actions">
-                        <?= $this->Html->link(__('View'), ['action' => 'view', $user->id], ['class' => 'button-link']) ?>
-                        <?= $this->Html->link(__('Edit'), ['action' => 'edit', $user->id], ['class' => 'button-link']) ?>
-                        <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $user->id], ['class' => 'button-link', 'confirm' => __('Are you sure you want to delete # {0}?', $user->id)]) ?>
-                    </td>
-                </tr>
-                <?php endforeach; ?>
-            </tbody>
-        </table>
-    </div>
-    <div class="paginator">
-        <ul class="pagination">
-            <?= $this->Paginator->first('<< ' . __('first')) ?>
-            <?= $this->Paginator->prev('< ' . __('previous')) ?>
-            <?= $this->Paginator->numbers() ?>
-            <?= $this->Paginator->next(__('next') . ' >') ?>
-            <?= $this->Paginator->last(__('last') . ' >>') ?>
-        </ul>
-        <p><?= $this->Paginator->counter(__('Page {{page}} of {{pages}}, showing {{current}} record(s) out of {{count}} total')) ?></p>
+    <!-- Users/index.php -->
+
+    <div class="container">
+        <?php foreach ($users as $user): ?>
+            <div class="card card-body mb-4">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h5 class="card-title"><?= __('User') ?> #<?= $this->Number->format($user->id) ?></h5>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <p class="card-text"><strong><?= __('Username') ?></strong>: <?= h($user->username) ?></p>
+                        <p class="card-text"><strong><?= __('First Name') ?></strong>: <?= h($user->first_name) ?></p>
+                        <p class="card-text"><strong><?= __('Last Name') ?></strong>: <?= h($user->last_name) ?></p>
+                        <p class="card-text"><strong><?= __('Email') ?></strong>: <?= h($user->email) ?></p>
+                        <p class="card-text"><strong><?= __('Phone Number') ?></strong>: <?= h($user->phone_number) ?></p>
+                        <p class="card-text"><strong><?= __('Is Staff') ?></strong>: <?= $user->is_staff ? __('Yes') : __('No') ?></p>
+                        <p class="card-text"><strong><?= __('Nonce') ?></strong>: <?= h($user->nonce) ?></p>
+                        <p class="card-text"><strong><?= __('Nonce Expiry') ?></strong>: <?= h($user->nonce_expiry) ?></p>
+                        <p class="card-text"><strong><?= __('Created') ?></strong>: <?= h($user->created) ?></p>
+                        <p class="card-text"><strong><?= __('Modified') ?></strong>: <?= h($user->modified) ?></p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 text-right">
+                        <?= $this->Html->link(__('View'), ['action' => 'view', $user->id], ['class' => 'btn btn-primary btn-sm']) ?>
+                        <?= $this->Html->link(__('Edit'), ['action' => 'edit', $user->id], ['class' => 'btn btn-warning btn-sm']) ?>
+                        <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $user->id], ['class' => 'btn btn-danger btn-sm', 'confirm' => __('Are you sure you want to delete # {0}?', $user->id)]) ?>
+                    </div>
+                </div>
+            </div>
+        <?php endforeach; ?>
+        <div class="paginator">
+            <ul class="pagination">
+                <?= $this->Paginator->first('<< ' . __('first')) ?>
+                <?= $this->Paginator->prev('< ' . __('previous')) ?>
+                <?= $this->Paginator->numbers() ?>
+                <?= $this->Paginator->next(__('next') . ' >') ?>
+                <?= $this->Paginator->last(__('last') . ' >>') ?>
+            </ul>
+            <p><?= $this->Paginator->counter(__('Page {{page}} of {{pages}}, showing {{current}} record(s) out of {{count}} total')) ?></p>
+        </div>
     </div>
 </div>
