@@ -58,7 +58,7 @@ class ContactFormsController extends AppController
      */
     public function add()
     {
-        $this->viewBuilder()->setLayout('contact-form');
+        //$this->viewBuilder()->setLayout('default');
         $contactForm = $this->ContactForms->newEmptyEntity();
         $requestNatureOptions = $this->ContactForms->getRequestNatureOptions();
         if ($this->request->is('post')) {
