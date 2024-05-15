@@ -33,17 +33,22 @@ $this->assign('title', 'Login');
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         text-align: center;
     }
+    
     .login-image {
         margin-bottom: 20px;
-        width: 100px; 
-        height: 100px; 
+        width: 400px; 
+        height: 90px; 
         border-radius: 50%;
     }
+
+    
     .login-image img {
-        width: 100%;
+        width: 100px%;
         height: 100%;
         border-radius: 50%;
     }
+    
+
     .login-box h2 {
         margin-bottom: 20px;
         color: #3498db; 
@@ -63,7 +68,7 @@ $this->assign('title', 'Login');
     .btn-login {
         display: block;
         margin: 0 auto;
-        background-color: #f39c12; 
+        background-color: orange; 
         color: #fff; 
         padding: 10px 20px;
         border: none;
@@ -96,7 +101,7 @@ $this->assign('title', 'Login');
 
 <div class="login-container">
     <div class="login-box">
-        <div class="login-image"></div>
+        <div class="login-image"><?= $this->ContentBlock->image('logo'); ?></div>
         <?= $this->Form->create() ?>
         <fieldset>
             <legend style="text-align:center;">Login</legend>
