@@ -37,7 +37,7 @@ $this->assign('title', 'Login');
     .login-image {
         margin-bottom: 20px;
         width: 400px; 
-        height: 100px; 
+        height: 90px; 
         border-radius: 50%;
     }
 
@@ -68,7 +68,7 @@ $this->assign('title', 'Login');
     .btn-login {
         display: block;
         margin: 0 auto;
-        background-color: #f39c12; 
+        background-color: orange; 
         color: #fff; 
         padding: 10px 20px;
         border: none;
