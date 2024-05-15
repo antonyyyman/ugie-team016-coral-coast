@@ -3,7 +3,7 @@
  * @var \App\View\AppView $this
  * @var \App\Model\Entity\Insurance $insurance
  */
-$this-->setLayout('defaultadmin');
+// $this-->setLayout('defaultadmin');
 ?>
 
 <head>
