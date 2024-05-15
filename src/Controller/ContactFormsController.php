@@ -29,7 +29,7 @@ class ContactFormsController extends AppController
 
     public function index()
     {
-        $this->viewBuilder()->setLayout('contact-form');
+        //$this->viewBuilder()->setLayout('contact-form');
         $query = $this->ContactForms->find();
         $contactForms = $this->paginate($query);
 
@@ -46,7 +46,7 @@ class ContactFormsController extends AppController
      */
     public function view($id = null)
     {
-        $this->viewBuilder()->setLayout('contact-form');
+        //$this->viewBuilder()->setLayout('contact-form');
         $contactForm = $this->ContactForms->get($id, contain: []);
         $this->set(compact('contactForm'));
     }
@@ -58,7 +58,7 @@ class ContactFormsController extends AppController
      */
     public function add()
     {
-        //$this->viewBuilder()->setLayout('default');
+        $this->viewBuilder()->setLayout('default');
         $contactForm = $this->ContactForms->newEmptyEntity();
         $requestNatureOptions = $this->ContactForms->getRequestNatureOptions();
         if ($this->request->is('post')) {
@@ -99,7 +99,7 @@ class ContactFormsController extends AppController
      */
     public function edit($id = null)
     {
-        $this->viewBuilder()->setLayout('contact-form');
+        //$this->viewBuilder()->setLayout('contact-form');
         $contactForm = $this->ContactForms->get($id, contain: []);
         $requestNatureOptions = $this->ContactForms->getRequestNatureOptions();
         $this->set(compact('contactForm'));
@@ -125,7 +125,7 @@ class ContactFormsController extends AppController
      */
     public function delete($id = null)
     {
-        $this->viewBuilder()->setLayout('contact-form');
+        //$this->viewBuilder()->setLayout('contact-form');
         $this->request->allowMethod(['post', 'delete']);
         $contactForm = $this->ContactForms->get($id);
         if ($this->ContactForms->delete($contactForm)) {

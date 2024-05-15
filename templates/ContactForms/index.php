@@ -5,7 +5,7 @@
  */
 
     if($this->Identity->get('is_staff') == true){
-        $this->Html->script('script', ['block' => true]);
+        $this->Html->script(['jquery-3.2.1.min', 'popper.min', 'bootstrap.min', 'script'], ['block' => true]);
         $this->Html->css('contact-form', ['block' => true]);
         //$this->setLayout("defaultadmin");
     } else {
