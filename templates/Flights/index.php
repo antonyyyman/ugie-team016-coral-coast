@@ -7,6 +7,15 @@ $this->setlayout('default');
 ?>
 
 <head>
+    <script>
+        function changeDateFormat(input) {
+            const date = new Date(input.value);
+            const year = date.getFullYear();
+            const month = String(date.getMonth() + 1).padStart(2, '0');
+            const day = String(date.getDate()).padStart(2, '0');
+            input.value = `${year}-${day}-${month}`;
+        }
+    </script>
     <style>
         body {
             border: 1px solid #ccc;
@@ -81,19 +90,19 @@ $this->setlayout('default');
     <h3 class="text-center"><?= __('Flights') ?></h3>
 
     <div class="container">
-        <?php echo $this->Form->create(null, ['type' => 'get']); ?>
+        <?php echo $this->Form->create(null, ['type' => 'get']);?>
         <div class="row">
             <div class="col-md-6">
-                <?php echo $this->Form->control('departure_date', ['label' => 'Departure Date:', 'empty' => true, 'class' => 'form-control']); ?>
+                <?php echo $this->Form->control('departure_date', ['label' => 'Departure Date:', 'empty' => true, 'class' => 'form-control', 'onchange' => 'changeDateFormat(this)']);?>
             </div>
             <div class="col-md-6">
-                <?php echo $this->Form->control('arrival_airport', ['label' => 'Arrival Airport:', 'empty' => true, 'class' => 'form-control']); ?>
+                <?php echo $this->Form->control('arrival_airport', ['label' => 'Arrival Airport:', 'empty' => true, 'class' => 'form-control']);?>
             </div>
         </div>
         <div class="text-center">
-            <?php echo $this->Form->button(__('Search'), ['class' => 'btn btn-primary']); ?>
+            <?php echo $this->Form->button(__('Search'), ['class' => 'btn btn-primary']);?>
         </div>
-        <?php echo $this->Form->end(); ?>
+        <?php echo $this->Form->end();?>
     </div>
 
     <div class="container">

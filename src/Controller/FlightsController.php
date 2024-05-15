@@ -24,24 +24,26 @@ class FlightsController extends AppController
     }
 
 
+    // Improved index function in FlightsController
     public function index()
     {
-        $search = $this->request->getQueryParams();
+        $searchParams = $this->request->getQueryParams();
         $query = $this->Flights->find();
 
-        if (isset($search['arrival_airport']) &&!empty($search['arrival_airport'])) {
-            $query->where(['Flights.arrival_airport' => $search['arrival_airport']]);
-        }
-
-        if (isset($search['Flights']['departure_date']) &&!empty($search['Flights']['departure_date'])) {
-            $query->where(['Flights.departure_date' => $search['Flights']['departure_date']]);
+        foreach ($searchParams as $field => $value) {
+            if (!empty($value)) {
+                if ($field === 'departure_date') {
+                    $query->where(["Flights.departure_date" => $value]);
+                } elseif ($field === 'arrival_airport') {
+                    $query->where(["Flights.arrival_airport" => $value]);
+                }
+            }
         }
 
         $flights = $this->paginate($query);
 
         $this->set(compact('flights'));
     }
-
 
 
     /**
