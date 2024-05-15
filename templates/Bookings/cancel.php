@@ -4,7 +4,7 @@
  * @var \App\Model\Entity\Booking $booking
  * @var string[]|\Cake\Collection\CollectionInterface $users
  */
-$this->setLayout('defaultadmin');
+// $this->setLayout('defaultadmin');
 ?>
 
 <head>
