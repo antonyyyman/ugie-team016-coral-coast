@@ -3,7 +3,7 @@
  * @var \App\View\AppView $this
  * @var \App\Model\Entity\Flight $flight
  */
-$this->setLayout('defaultadmin');
+// $this->setLayout('defaultadmin');
 ?>
 
 <head>
