@@ -71,50 +71,48 @@
 </head>
 
 <div class="carRentals index content" style="padding-top: 10%">
-    <?= $this->Html->link(__('New Car Rental'), ['action' => 'add'], ['class' => 'button float-right']) ?>
-    <h3><?= __('Car Rentals') ?></h3>
-    <div class="table-responsive">
-        <table>
-            <thead>
-                <tr>
-                    <th><?= $this->Paginator->sort('id') ?></th>
-                    <th><?= $this->Paginator->sort('company') ?></th>
-                    <th><?= $this->Paginator->sort('description') ?></th>
-                    <th><?= $this->Paginator->sort('plate') ?></th>
-                    <th><?= $this->Paginator->sort('brand') ?></th>
-                    <th><?= $this->Paginator->sort('price') ?></th>
-                    <th class="actions"><?= __('Actions') ?></th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php foreach ($carRentals as $carRental): ?>
-                <tr>
-                    <td><?= $this->Number->format($carRental->id) ?></td>
-                    <td><?= h($carRental->company) ?></td>
-                    <td><?= h($carRental->description) ?></td>
-                    <td><?= h($carRental->plate) ?></td>
-                    <td><?= h($carRental->brand) ?></td>
-                    <td><?= $carRental->price === null ? '' : $this->Number->format($carRental->price) ?></td>
-                    <td class="actions">
-                        <?= $this->Html->link(__('View'), ['action' => 'view', $carRental->id], ['class' => 'button-link']) ?>
-                        <?php if ($this->Identity->get('is_staff') == true) { 
-                            echo $this->Html->link(__('Edit'), ['action' => 'edit', $carRental->id], ['class' => 'button-link']);
-                            echo $this->Form->postLink(__('Delete'), ['action' => 'delete', $carRental->id], ['class' => 'button-link', 'confirm' => __('Are you sure you want to delete # {0}?', $carRental->id)]);
-                        }?>
-                    </td>
-                </tr>
-                <?php endforeach; ?>
-            </tbody>
-        </table>
+    <h3 class="text-center"><?= __('Car Rentals') ?></h3>
+    <div> <?php if ($this->Identity->get('is_staff') == true) {
+            echo $this->Html->link(__('New Car Rental'), ['action' => 'add'], ['class' => 'button float-right']);
+        } ?>
     </div>
-    <div class="paginator">
-        <ul class="pagination">
-            <?= $this->Paginator->first('<< ' . __('first')) ?>
-            <?= $this->Paginator->prev('< ' . __('previous')) ?>
-            <?= $this->Paginator->numbers() ?>
-            <?= $this->Paginator->next(__('next') . ' >') ?>
-            <?= $this->Paginator->last(__('last') . ' >>') ?>
-        </ul>
-        <p><?= $this->Paginator->counter(__('Page {{page}} of {{pages}}, showing {{current}} record(s) out of {{count}} total')) ?></p>
+    <div class="container">
+        <?php foreach ($carRentals as $carRental): ?>
+            <div class="card card-body mb-4">
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <h5 class="card-title"> Car Rental Number: <?= h($carRental->number) ?></h5>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <p class="card-text"><strong><?= __('Company') ?></strong>: <?= h($carRental->company) ?></p>
+                                <p class="card-text"><strong><?= __('Plate') ?></strong>: <?= h($carRental->plate) ?></p>
+                            </div>
+                            <div class="col-md-6">
+                                <p class="card-text"><strong><?= __('Description') ?></strong>: <?= h($carRental->description) ?></p>
+                                <p class="card-text"><strong><?= __('Brand') ?></strong>: <?= h($carRental->brand) ?></p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12">
+                                <p class="card-text"><strong><?= __('Price') ?></strong>: <?= $carRental->price === null ? '' : $this->Number->format($carRental->price) ?></p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-12 text-right">
+                                <?= $this->Html->link(__('View'), ['action' => 'view', $carRental->id], ['class' => 'btn btn-primary btn-sm']) ?>
+                                <?php if ($this->Identity->get('is_staff') == true) {
+                                    echo $this->Html->link(__('Edit'), ['action' => 'edit', $carRental->id], ['class' => 'btn btn-warning btn-sm']);
+                                    echo '&nbsp;';
+                                    echo $this->Form->postLink(__('Delete'), ['action' => 'delete', $carRental->id], ['class' => 'btn btn-danger btn-sm', 'confirm' => __('Are you sure you want to delete # {0}?', $carRental->id)]);
+                                }?>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        <?php endforeach; ?>
     </div>
-</div>

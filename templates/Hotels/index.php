@@ -71,48 +71,51 @@
 </head>
 
 <div class="hotels index content" style="padding-top: 10%">
-    <?= $this->Html->link(__('New Hotel'), ['action' => 'add'], ['class' => 'button float-right']) ?>
-    <h3><?= __('Hotels') ?></h3>
-    <div class="table-responsive">
-        <table>
-            <thead>
-                <tr>
-                    <th><?= $this->Paginator->sort('id') ?></th>
-                    <th><?= $this->Paginator->sort('name') ?></th>
-                    <th><?= $this->Paginator->sort('location') ?></th>
-                    <th><?= $this->Paginator->sort('telephone') ?></th>
-                    <th><?= $this->Paginator->sort('price') ?></th>
-                    <th class="actions"><?= __('Actions') ?></th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php foreach ($hotels as $hotel): ?>
-                <tr>
-                    <td><?= $this->Number->format($hotel->id) ?></td>
-                    <td><?= h($hotel->name) ?></td>
-                    <td><?= h($hotel->location) ?></td>
-                    <td><?= h($hotel->telephone) ?></td>
-                    <td><?= $hotel->price === null ? '' : $this->Number->format($hotel->price) ?></td>
-                    <td class="actions">
-                        <?= $this->Html->link(__('View'), ['action' => 'view', $hotel->id], ['class' => 'button-link']) ?>
-                        <?php if ($this->Identity->get('is_staff') == true) { 
-                            echo $this->Html->link(__('Edit'), ['action' => 'edit', $hotel->id], ['class' => 'button-link']);
-                            echo $this->Form->postLink(__('Delete'), ['action' => 'delete', $hotel->id], ['class' => 'button-link', 'confirm' => __('Are you sure you want to delete # {0}?', $hotel->id)]);
+
+    <?php if ($this->Identity->get('is_staff') == true) {
+    echo $this->Html->link(__('New Hotel'), ['action' => 'add'], ['class' => 'button float-right']);}
+    ?>
+    <h3 class="text-center"><?= __('Hotels') ?></h3>
+
+    <div class="container">
+        <?php foreach ($hotels as $hotel): ?>
+            <div class="card card-body mb-4">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h5 class="card-title"><?= __('Hotel') ?> #<?= $this->Number->format($hotel->id) ?></h5>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <p class="card-text"><strong><?= __('Name') ?></strong>: <?= h($hotel->name) ?></p>
+                        <p class="card-text"><strong><?= __('Location') ?></strong>: <?= h($hotel->location) ?></p>
+                        <p class="card-text"><strong><?= __('Telephone') ?></strong>: <?= h($hotel->telephone) ?></p>
+                    </div>
+                    <div class="col-md-6">
+                        <p class="card-text"><strong><?= __('Price') ?></strong>: <?= $hotel->price === null ? '' : $this->Number->format($hotel->price) ?></p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 text-right">
+                        <?= $this->Html->link(__('View'), ['action' => 'view', $hotel->id], ['class' => 'btn btn-primary btn-sm']) ?>
+                        <?php if ($this->Identity->get('is_staff') == true) {
+                            echo $this->Html->link(__('Edit'), ['action' => 'edit', $hotel->id], ['class' => 'btn btn-warning btn-sm']);
+                            echo '&nbsp;';
+                            echo $this->Form->postLink(__('Delete'), ['action' => 'delete', $hotel->id], ['class' => 'btn btn-danger btn-sm', 'confirm' => __('Are you sure you want to delete # {0}?', $hotel->id)]);
                         }?>
-                    </td>
-                </tr>
-                <?php endforeach; ?>
-            </tbody>
-        </table>
-    </div>
-    <div class="paginator">
-        <ul class="pagination">
-            <?= $this->Paginator->first('<< ' . __('first')) ?>
-            <?= $this->Paginator->prev('< ' . __('previous')) ?>
-            <?= $this->Paginator->numbers() ?>
-            <?= $this->Paginator->next(__('next') . ' >') ?>
-            <?= $this->Paginator->last(__('last') . ' >>') ?>
-        </ul>
-        <p><?= $this->Paginator->counter(__('Page {{page}} of {{pages}}, showing {{current}} record(s) out of {{count}} total')) ?></p>
+                    </div>
+                </div>
+            </div>
+        <?php endforeach; ?>
+        <div class="paginator">
+            <ul class="pagination">
+                <?= $this->Paginator->first('<< ' . __('first')) ?>
+                <?= $this->Paginator->prev('< ' . __('previous')) ?>
+                <?= $this->Paginator->numbers() ?>
+                <?= $this->Paginator->next(__('next') . ' >') ?>
+                <?= $this->Paginator->last(__('last') . ' >>') ?>
+            </ul>
+            <p><?= $this->Paginator->counter(__('Page {{page}} of {{pages}}, showing {{current}} record(s) out of {{count}} total')) ?></p>
+        </div>
     </div>
 </div>

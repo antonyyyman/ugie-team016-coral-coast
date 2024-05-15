@@ -73,46 +73,45 @@
 
 <div class="payments index content" style="padding-top: 10%">
     <?= $this->Html->link(__('New Payment'), ['action' => 'add'], ['class' => 'button float-right']) ?>
-    <h3><?= __('Payments') ?></h3>
-    <div class="table-responsive">
-        <table>
-            <thead>
-                <tr>
-                    <th><?= $this->Paginator->sort('id') ?></th>
-                    <th><?= $this->Paginator->sort('amount') ?></th>
-                    <th><?= $this->Paginator->sort('payment_method') ?></th>
-                    <th><?= $this->Paginator->sort('status') ?></th>
-                    <th class="actions"><?= __('Actions') ?></th>
-                </tr>
-            </thead>
-            <tbody>
-                <?php foreach ($payments as $payment): ?>
-                <tr>
-                    <td><?= $this->Number->format($payment->id) ?></td>
-                    <td><?= $payment->amount === null ? '' : $this->Number->format($payment->amount) ?></td>
-                    <td><?= h($payment->payment_method) ?></td>
-                    <td><?= h($payment->status) ?></td>
-                    <td class="actions">
-                        <?= $this->Html->link(__('View'), ['action' => 'view', $payment->id], ['class' => 'button-link']) ?>
-                        <!-- What is the edit button for in payments? Why can payments be edited manually? Making it staff only I guess???? -->
+    <h3 class="text-center"><?= __('Payments') ?></h3>
+    <!-- payments/index.php -->
+
+    <div class="container">
+        <?php foreach ($payments as $payment): ?>
+            <div class="card card-body mb-4">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h5 class="card-title"><?= __('Payment') ?> #<?= $this->Number->format($payment->id) ?></h5>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <p class="card-text"><strong><?= __('Amount') ?></strong>: <?= $payment->amount === null ? '' : $this->Number->format($payment->amount) ?></p>
+                        <p class="card-text"><strong><?= __('Payment Method') ?></strong>: <?= h($payment->payment_method) ?></p>
+                        <p class="card-text"><strong><?= __('Status') ?></strong>: <?= h($payment->status) ?></p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12 text-right">
+                        <?= $this->Html->link(__('View'), ['action' => 'view', $payment->id], ['class' => 'btn btn-primary btn-sm']) ?>
                         <?php if ($this->Identity->get('is_staff') == true) {
-                            echo $this->Html->link(__('Edit'), ['action' => 'edit', $payment->id], ['class' => 'button-link']);
+                            echo $this->Html->link(__('Edit'), ['action' => 'edit', $payment->id], ['class' => 'btn btn-warning btn-sm']);
+                            echo '&nbsp;';
+                            echo $this->Form->postLink(__('Delete'), ['action' => 'delete', $payment->id], ['class' => 'btn btn-danger btn-sm', 'confirm' => __('Are you sure you want to delete # {0}?', $payment->id)]);
                         }?>
-                        <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $payment->id], ['class' => 'button-link', 'confirm' => __('Are you sure you want to delete # {0}?', $payment->id)]) ?>
-                    </td>
-                </tr>
-                <?php endforeach; ?>
-            </tbody>
-        </table>
-    </div>
-    <div class="paginator">
-        <ul class="pagination">
-            <?= $this->Paginator->first('<< ' . __('first')) ?>
-            <?= $this->Paginator->prev('< ' . __('previous')) ?>
-            <?= $this->Paginator->numbers() ?>
-            <?= $this->Paginator->next(__('next') . ' >') ?>
-            <?= $this->Paginator->last(__('last') . ' >>') ?>
-        </ul>
-        <p><?= $this->Paginator->counter(__('Page {{page}} of {{pages}}, showing {{current}} record(s) out of {{count}} total')) ?></p>
+                    </div>
+                </div>
+            </div>
+        <?php endforeach; ?>
+        <div class="paginator">
+            <ul class="pagination">
+                <?= $this->Paginator->first('<< ' . __('first')) ?>
+                <?= $this->Paginator->prev('< ' . __('previous')) ?>
+                <?= $this->Paginator->numbers() ?>
+                <?= $this->Paginator->next(__('next') . ' >') ?>
+                <?= $this->Paginator->last(__('last') . ' >>') ?>
+            </ul>
+            <p><?= $this->Paginator->counter(__('Page {{page}} of {{pages}}, showing {{current}} record(s) out of {{count}} total')) ?></p>
+        </div>
     </div>
 </div>
