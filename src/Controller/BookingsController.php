@@ -205,7 +205,7 @@ class BookingsController extends AppController
 //        debug($this->Bookings->Flights->find()->all());
 //        exit;
         foreach ($this->Bookings->Flights->find()->all() as $flight) {
-            $flights[$flight->id] = $flight->number;
+            $flights[$flight->id] = $flight->number . ' - ' . $flight->departure_airport . ' to ' . $flight->arrival_airport . ' on ' . $flight->departure_date->format('Y-m-d');
         }
 
         $this->set(compact('booking', 'users', 'payments', 'insurances', 'hotels', 'carRentals', 'translations', 'flights', 'travelDeals'));
