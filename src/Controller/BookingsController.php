@@ -252,7 +252,7 @@ class BookingsController extends AppController
 //        debug($this->Bookings->Flights->find()->all());
 //        exit;
         foreach ($this->Bookings->Flights->find()->all() as $flight) {
-            $flights_pnt_detail[$flight->id] = $flight->number;
+            $flights_pnt_detail[$flight->id] = $flight->number . ' - ' . $flight->departure_airport . ' to ' . $flight->arrival_airport . ' on ' . $flight->departure_date->format('Y-m-d');
         }
         $this->set('flight_pnt_detail', $flights_pnt_detail);
 
