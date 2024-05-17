@@ -122,7 +122,11 @@
             <thead>
                 <tr>
                     <th><?= $this->Paginator->sort('id', 'Reference #') ?></th>
-                    <th><?= $this->Paginator->sort('user_id') ?></th>
+
+                    <?php if ($is_staff) { ?>
+                        <th><?= $this->Paginator->sort('user_id') ?></th>
+                    <?php } ?>
+
                     <th><?= $this->Paginator->sort('start_date') ?></th>
                     <th><?= $this->Paginator->sort('end_date') ?></th>
                     <th><?= $this->Paginator->sort('destination') ?></th>
@@ -164,7 +168,11 @@
                 ?>
                 <tr>
                     <td><?= $this->Number->format($booking->id) ?></td>
-                    <td><?= $booking->hasValue('user') ? $this->Html->link($booking->user->user_info_string, ['controller' => 'Users', 'action' => 'view', $booking->user->id]) : '' ?></td>
+
+                    <?php if ($is_staff) { ?>
+                        <td><?= $booking->hasValue('user') ? $this->Html->link($booking->user->user_info_string, ['controller' => 'Users', 'action' => 'view', $booking->user->id]) : '' ?></td>
+                    <?php }?>
+
                     <td><?= h($booking->start_date) ?></td>
                     <td><?= h($booking->end_date) ?></td>
                     <td><?= h($booking->destination) ?></td>

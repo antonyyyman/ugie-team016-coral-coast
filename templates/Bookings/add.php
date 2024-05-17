@@ -48,7 +48,7 @@
         <div class="bookings form content">
             <?= $this->Form->create($booking) ?>
             <fieldset>
-                <legend><?= __('Add Booking') ?></legend>
+                <legend><?= __('New Booking') ?></legend>
                 <?php
                     echo $this->Form->control('user_id', ['disabled' => true, 'value' => $user_id]);
                     echo $this->Form->hidden('user_id', ['value' => $user_id]);
